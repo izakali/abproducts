@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Page Introuvable | AB PRODUCTS</title>
+  
+  <link rel="icon" type="image/png" href="logo.PNG" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FontLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/geometries/TextGeometry.js"></script>
+
+  <style>
+    /* VARIABLES AB PRODUCTS */
+    :root {
+      --bg: #f4f6f9; --bg2: #eef1f6; --panel: #ffffff; --panel-strong: #ffffff;
+      --card: #ffffff; --card2: #f8fafc; --txt: #16233a; --muted: #51617a;
+      --muted2: #7b8aa0; --line: #e3e8ef; --brand: #0e3a5d; --brand2: #0b8457;
+      --danger: #c0392b; --shadow: 0 1px 2px rgba(16,35,58,.06), 0 12px 32px rgba(16,35,58,.07);
+      --radius: 16px;
+    }
+    
+    html[data-theme="dark"] {
+      --bg: #0c1626; --bg2: #0f1c30; --panel: #13223a; --panel-strong: #182b47;
+      --card: #13223a; --card2: #0f1c30; --txt: #eef3fa; 
+      --muted: rgba(238,243,250,.72); --muted2: rgba(238,243,250,.48); 
+      --line: rgba(238,243,250,.13); --brand: #7db6e0; --brand2: #2fbf8b; 
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 18px 45px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      overflow: hidden; /* Empêche le scroll sur la page 404 */
+      font-size: 15.5px;
+      line-height: 1.55;
+    }
+
+    h1, h2, h3, .btn { font-family: Archivo, Inter, sans-serif; }
+
+    /* FOND LUMINEUX (Orbs AB Products) */
+    body:before {
+      content: ""; position: fixed; inset: 0; pointer-events: none;
+      background: radial-gradient(900px 420px at 85% -10%, rgba(11,132,87,.08), transparent 60%),
+                  radial-gradient(900px 420px at -10% 8%, rgba(14,58,93,.08), transparent 60%);
+      z-index: 0;
+    }
+
+    /* CONTENEUR 3D */
+    #canvas-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 1;
+      pointer-events: none; /* Laisse passer les clics vers l'UI */
+    }
+
+    /* INTERFACE UTILISATEUR */
+    .ui-layer {
+      position: relative;
+      z-index: 10;
+      width: 100vw; height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end; /* Place la carte en bas pour laisser le texte 3D visible */
+      padding: 40px 20px;
+    }
+
+    .glass-card {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      max-width: 650px;
+      width: 100%;
+      text-align: center;
+      animation: softRise 0.8s cubic-bezier(.2,.8,.2,1) both;
+      pointer-events: auto; /* Réactive les clics sur la carte */
+    }
+
+    html[data-theme="dark"] .glass-card {
+      background: rgba(19, 34, 58, 0.7);
+    }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: .55rem;
+      border: 1px solid var(--line); background: var(--card2);
+      padding: .55rem .85rem; border-radius: 999px;
+      color: var(--muted); font-size: .88rem; font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .pill .dot {
+      width: .5rem; height: .5rem; border-radius: 999px; background: var(--danger);
+    }
+
+    .lead { color: var(--muted); font-size: 1.15rem; margin: 1rem 0 2rem; }
+
+    /* BOUTONS */
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+      min-height: 50px; padding: .8rem 1.8rem; border-radius: 11px;
+      font-weight: 700; transition: .22s ease; border: 1px solid transparent;
+      font-size: 1rem; text-decoration: none; cursor: pointer;
+    }
+    .btn.primary {
+      color: #fff; background: var(--brand2); box-shadow: 0 8px 22px rgba(11,132,87,.24);
+    }
+    html[data-theme="dark"] .btn.primary { color: #04160e; }
+    .btn.primary:hover { background: #096e48; transform: translateY(-3px); }
+    html[data-theme="dark"] .btn.primary:hover { background: #3ed19c; }
+    
+    .btn.secondary {
+      background: var(--panel); border-color: var(--line); color: var(--txt);
+    }
+    .btn.secondary:hover { border-color: var(--brand); transform: translateY(-3px); }
+
+    /* THEME TOGGLE (Pour garder l'harmonie avec le site) */
+    .theme-toggle {
+      position: fixed; top: 20px; right: 20px; z-index: 20;
+      width: 42px; height: 42px; border-radius: 11px;
+      display: grid; place-items: center;
+      background: var(--card2); border: 1px solid var(--line);
+      cursor: pointer; transition: 0.2s ease; color: var(--txt);
+    }
+    .theme-toggle:hover { background: var(--panel-strong); transform: translateY(-2px); }
+
+    /* EFFET SOURIS */
+    .cursor-glow {
+      position: fixed; top: 0; left: 0; width: 340px; height: 340px;
+      border-radius: 999px; background: radial-gradient(circle, rgba(11,132,87,.06), transparent 62%);
+      pointer-events: none; z-index: 9999; mix-blend-mode: multiply; transition: opacity .2s ease;
+    }
+    html[data-theme="dark"] .cursor-glow {
+      background: radial-gradient(circle, rgba(47,191,139,.09), transparent 62%);
+      mix-blend-mode: screen;
+    }
+
+    @keyframes softRise {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <button class="theme-toggle" id="themeBtn" title="Changer le thème">🌙</button>
+
+  <div id="canvas-container"></div>
+
+  <div class="ui-layer">
+    <div class="glass-card">
+      <div class="pill"><span class="dot"></span> Erreur de navigation</div>
+      <h2>Cette page n'existe pas.</h2>
+      <p class="lead">
+        L'article ou la page que vous cherchez est introuvable. Le lien est peut-être expiré ou la page a été déplacée. 
+        Pas d'inquiétude, la liaison France → Comores reste opérationnelle !
+      </p>
+      <div class="btn-group">
+        <a href="/home" class="btn primary">Retour à l'accueil <span>→</span></a>
+        <a href="/catalogue" class="btn secondary">Explorer le catalogue</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- GESTION DU THÈME ---
+    const themeBtn = document.getElementById("themeBtn");
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem("abp_theme") || "dark";
+    html.dataset.theme = savedTheme;
+    themeBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+
+    themeBtn.addEventListener("click", () => {
+      const next = html.dataset.theme === "dark" ? "light" : "dark";
+      html.dataset.theme = next;
+      localStorage.setItem("abp_theme", next);
+      themeBtn.textContent = next === "dark" ? "☀️" : "🌙";
+    });
+
+    // --- EFFET CURSEUR ---
+    const cursorGlow = document.getElementById("cursorGlow");
+    document.addEventListener("pointermove", e => {
+      cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+      cursorGlow.style.opacity = "1";
+    });
+    document.addEventListener("pointerleave", () => {
+      cursorGlow.style.opacity = "0";
+    });
+
+    // --- ANIMATION 3D (THREE.JS) ---
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimisation perf
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+    // 1. PARTICULES FLOTTANTES (logo.PNG)
+    const logos = new THREE.Group();
+    const textureLoader = new THREE.TextureLoader();
+    
+    textureLoader.load('logo.PNG', (texture) => {
+      // Création de multiples plans 3D avec le logo
+      const logoGeo = new THREE.PlaneGeometry(1.5, 1.5);
+      const logoMat = new THREE.MeshBasicMaterial({ 
+        map: texture, 
+        transparent: true, 
+        side: THREE.DoubleSide,
+        depthWrite: false
+      });
+
+      for(let i = 0; i < 25; i++) {
+        const mesh = new THREE.Mesh(logoGeo, logoMat);
+        // Position aléatoire dans l'espace
+        mesh.position.set(
+          (Math.random() - 0.5) * 30,
+          (Math.random() - 0.5) * 30 + 5,
+          (Math.random() - 0.5) * 20 - 5
+        );
+        // Rotation aléatoire initiale
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+        
+        // Vitesse de rotation personnalisée
+        mesh.userData = {
+          rx: (Math.random() - 0.5) * 0.02,
+          ry: (Math.random() - 0.5) * 0.02,
+          floatSpeed: (Math.random() * 0.02) + 0.01
+        };
+        
+        logos.add(mesh);
+      }
+      scene.add(logos);
+    });
+
+    // 2. TEXTE 3D GÉANT "404"
+    let textMesh;
+    const fontLoader = new THREE.FontLoader();
+    // Utilisation d'une police CDN robuste pour générer le texte 3D
+    fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/fonts/helvetiker_bold.typeface.json', (font) => {
+      const textGeo = new THREE.TextGeometry('404', {
+        font: font,
+        size: 4,
+        height: 0.6,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 0.1,
+        bevelSize: 0.05,
+        bevelOffset: 0,
+        bevelSegments: 5
+      });
+      
+      textGeo.computeBoundingBox();
+      const centerOffset = - 0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
+      
+      // Matériaux aux couleurs de la marque
+      const matFront = new THREE.MeshStandardMaterial({ color: 0x0e3a5d, metalness: 0.4, roughness: 0.3 }); // Bleu AB
+      const matSide = new THREE.MeshStandardMaterial({ color: 0x0b8457, metalness: 0.6, roughness: 0.2 });  // Vert AB
+      
+      textMesh = new THREE.Mesh(textGeo, [matFront, matSide]);
+      textMesh.position.x = centerOffset;
+      textMesh.position.y = 1; // Légèrement surélevé par rapport à la carte UI
+      
+      scene.add(textMesh);
+    });
+
+    // 3. LUMIÈRES
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambientLight);
+    
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight.position.set(5, 10, 7);
+    scene.add(dirLight);
+
+    camera.position.z = 12;
+
+    // 4. INTERACTION SOURIS (Parallax)
+    let mouseX = 0;
+    let mouseY = 0;
+    const windowHalfX = window.innerWidth / 2;
+    const windowHalfY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (event) => {
+      mouseX = (event.clientX - windowHalfX) * 0.001;
+      mouseY = (event.clientY - windowHalfY) * 0.001;
+    });
+
+    // 5. BOUCLE D'ANIMATION
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const time = clock.getElapsedTime();
+
+      // Animation du texte 404 (Flottaison et rotation souris)
+      if (textMesh) {
+        textMesh.rotation.y += 0.05 * (mouseX * 2 - textMesh.rotation.y);
+        textMesh.rotation.x += 0.05 * (mouseY * 2 - textMesh.rotation.x);
+        textMesh.position.y = 1 + Math.sin(time * 2) * 0.3; // Flottaison fluide
+      }
+
+      // Animation des logos flottants
+      logos.children.forEach(logo => {
+        logo.rotation.x += logo.userData.rx;
+        logo.rotation.y += logo.userData.ry;
+        logo.position.y += Math.sin(time + logo.position.x) * 0.01;
+      });
+
+      // Mouvement subtil de la caméra
+      camera.position.x += (mouseX * 3 - camera.position.x) * 0.05;
+      camera.position.y += (-mouseY * 3 - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    }
+    
+    animate();
+
+    // 6. RESPONSIVE
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
