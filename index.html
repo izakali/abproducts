@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AB PRODUCTS — Commandes France → Comores</title>
   <meta name="description" content="AB PRODUCTS : catalogue, commandes libres, suivi de colis et estimation des frais vers les Comores." />
-  <link rel="icon" href="image_a5abc6.jpg" />
+  <link rel="icon" type="image/png" href="logo.PNG" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -87,7 +87,7 @@
   <header>
     <nav class="nav">
       <a class="brand" href="/home" data-page="home" id="brandLink" aria-label="Accueil AB PRODUCTS">
-        <div class="brand-mark"><img src="image_a5abc6.jpg" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+        <div class="brand-mark"><img src="logo.PNG" alt="Logo" style="width:75%;height:75%;object-fit:contain;pointer-events:none;" /></div>
         <div><strong>AB PRODUCTS</strong><span id="brandSub">France → Comores</span></div>
       </a>
       <div class="nav-links" id="navLinks"></div>
@@ -114,7 +114,7 @@
           <div class="visual-inner"><div class="mock-hero"><div class="pill"><span class="dot"></span> Catalogue connecté</div><h3 style="font-size:2rem;line-height:1;margin-top:.9rem;letter-spacing:-.06em">AB PRODUCTS</h3><div class="mock-search">🔎 Shein, Sephora, Zara, auto, maison…</div></div><div class="mock-products"><div class="mini-product"><div class="mini-icon">👕</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">🧴</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">🔧</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">📱</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div></div></div>
         </div>
       </div>
-      <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF, plus-value par catégorie et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num">1</div><h3>Catalogue</h3><p>Produits avec photos, poids, tailles, couleurs et paramètres détaillés.</p></div><div class="step"><div class="step-num">2</div><h3>Plus-value</h3><p>Appliquée automatiquement au panier selon la catégorie choisie.</p></div><div class="step"><div class="step-num">3</div><h3>Livraison</h3><p>Calculée selon le poids total et la grille Colissimo OM1 configurée.</p></div><div class="step"><div class="step-num">4</div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail AB PRODUCTS au client.</p></div></div></div>
+      <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF, plus-value par catégorie et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num">1</div><h3>Catalogue</h3><p>Produits avec photos, poids, tailles, couleurs et paramètres détaillés.</p></div><div class="step"><div class="step-num">2</div><h3>Plus-value</h3><p>Appliquée automatiquement au panier selon la catégorie choisie.</p></div><div class="step"><div class="step-num">3</div><h3>Livraison</h3><p>Calculée selon le poids total et la grille Colissimo OM1.</p></div><div class="step"><div class="step-num">4</div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail AB PRODUCTS au client.</p></div></div></div>
     </section>
 
     <section class="page" id="catalogue"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Catalogue</div><h2>Articles disponibles.</h2></div><p>Le prix affiché correspond au prix article. La plus-value et l'envoi sont calculés au panier.</p></div><div class="toolbar"><div class="field">🔎 <input id="searchInput" type="search" placeholder="Rechercher : robe, parfum, phare, téléphone..." /></div><div class="field"><select id="categoryFilter"><option value="all">Toutes catégories</option></select></div><div class="field"><select id="sortSelect"><option value="featured">Recommandé</option><option value="asc">Prix croissant</option><option value="desc">Prix décroissant</option></select></div><button class="btn secondary" id="resetFilters">Réinitialiser</button></div><div class="grid" id="productGrid"></div></div></section>
@@ -135,7 +135,7 @@
 
     <section class="page" id="admin"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace sécurisé</div><h2>Interface entreprise.</h2></div><p>Gestion des commandes, articles, plus-values et grille de livraison.</p></div><div id="adminContent"></div></div></section>
 
-    <section class="page" id="faq"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Infos</div><h2>Questions fréquentes.</h2></div><p>Règles client, calculs et fonctionnement du service.</p></div><div class="faq-grid"><details open><summary>Pourquoi les prix sont en euros et KMF ?</summary><p>Le prix euro est converti avec la parité fixe officielle 1 € = 500 KMF. Les montants en KMF sont toujours arrondis au supérieur (finissant par des zéros) pour faciliter les retraits.</p></details><details><summary>Comment sont calculés les frais d'envoi ?</summary><p>Le site additionne le poids des articles du panier, choisit la tranche Colissimo Outre-mer OM1 correspondante, puis ajoute l'ajustement éventuel défini par le service.</p></details><details><summary>Quand la plus-value est-elle ajoutée ?</summary><p>Elle est ajoutée uniquement au panier, selon la catégorie de chaque article. Les règles peuvent être mises à jour à tout moment.</p></details><details><summary>Peut-on importer depuis n'importe quel site ?</summary><p>Le site tente de récupérer automatiquement titre, prix, description et images depuis le lien. Certains sites bloquent la lecture automatique : les champs restent modifiables avant publication.</p></details></div></div></section>
+    <section class="page" id="faq"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Infos</div><h2>Questions fréquentes.</h2></div><p>Règles client, calculs et fonctionnement du service.</p></div><div class="faq-grid"><details open><summary>Pourquoi les prix sont en euros et KMF ?</summary><p>Le prix euro est converti avec la parité de 1 € = 500 KMF. Les montants en KMF sont toujours arrondis au millier supérieur (finissent par des 0) sans centimes.</p></details><details><summary>Comment sont calculés les frais d'envoi ?</summary><p>Le site additionne le poids des articles du panier, choisit la tranche Colissimo Outre-mer OM1 correspondante, puis ajoute l'ajustement éventuel défini par le service.</p></details><details><summary>Quand la plus-value est-elle ajoutée ?</summary><p>Elle est ajoutée uniquement au panier, selon la catégorie de chaque article. Les règles peuvent être mises à jour à tout moment.</p></details><details><summary>Peut-on importer depuis n'importe quel site ?</summary><p>Le site tente de récupérer automatiquement titre, prix, description et images depuis le lien. Certains sites bloquent la lecture automatique : les champs restent modifiables avant publication.</p></details></div></div></section>
 
     <footer><div class="shell"><div class="footer-grid"><div class="footer-col"><h4>Pages</h4><ul><li><a data-page="home">Accueil</a></li><li><a data-page="catalogue">Catalogue</a></li><li><a data-page="commande">Commande libre</a></li><li><a data-page="panier">Panier</a></li><li><a data-page="suivi">Suivi</a></li></ul></div><div class="footer-col"><h4>Accès</h4><ul><li><a data-page="login">Connexion compte client</a></li><li><a data-page="login">Connexion entreprise</a></li><li><a data-page="faq">Infos</a></li></ul></div><div class="footer-col"><h4>AB PRODUCTS</h4><p>Service de commande en ligne : catalogue, commandes personnalisées, import de liens, suivi et estimation des frais vers les Comores.</p></div><div class="footer-col"><h4>Newsletter</h4><p>Recevez les nouveautés et arrivages.</p><form class="newsletter-box" id="newsletterForm"><input type="email" required placeholder="Email" name="email" /><button type="submit">S'abonner</button></form></div></div><div class="footer-bottom"><span>© 2026 AB PRODUCTS</span><span>France → Comores 🇰🇲</span></div></div></footer>
   </main>
@@ -146,14 +146,31 @@
   <div class="modal" id="orderModal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow">Commande confirmée</div><h2 style="font-size:2.5rem">Merci.</h2></div><button class="icon-btn" id="closeOrderModal">✕</button></div><div id="orderModalContent"></div></div></div>
   <div class="modal" id="productModal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow">Ajouter au panier</div><h2 id="modalProductTitle" style="font-size:2.2rem">Article</h2></div><button class="icon-btn" id="closeProductModal">✕</button></div><div id="modalProductContent"></div></div></div>
 
+  <div id="cookieBanner" class="glass-card" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(500px, calc(100vw - 48px));z-index:9999;display:none;flex-direction:column;gap:1rem;box-shadow:0 30px 90px rgba(10,20,35,.35);">
+    <h3 style="margin:0;font-size:1.2rem;">🍪 Préférences de cookies</h3>
+    <p style="margin:0;font-size:0.9rem;color:var(--muted);">Nous utilisons des cookies strictement nécessaires au fonctionnement du site et des cookies facultatifs pour les statistiques.</p>
+    <div style="display:flex;flex-direction:column;gap:.6rem;">
+      <label style="display:flex;align-items:center;gap:.6rem;font-size:0.9rem;color:var(--txt);">
+        <input type="checkbox" checked disabled style="accent-color:var(--brand2);"> Cookies nécessaires (Requis)
+      </label>
+      <label style="display:flex;align-items:center;gap:.6rem;font-size:0.9rem;color:var(--txt);cursor:pointer;">
+        <input type="checkbox" id="cookieOptional" checked style="accent-color:var(--brand2);"> Cookies facultatifs (Statistiques)
+      </label>
+    </div>
+    <div style="display:flex;gap:.8rem;margin-top:.5rem;">
+      <button class="btn primary" id="acceptAllCookies" style="flex:1;">Tout accepter</button>
+      <button class="btn secondary" id="saveCookiesBtn" style="flex:1;">Enregistrer</button>
+    </div>
+  </div>
+
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbyeK32Pc2aXA09zzXXTNqDN9Anhp4B2nfKx1DiQI15Wj-z9dHr-LuMCH9Ok2JkS1MA8Ww/exec";
-    const _K = "25e448487fd32ddea30561cf5c6c3d55fb81f73f04f16669dfa83b6ac2d79c0f";
+    const API_URL = "https://script.google.com/macros/s/AKfycbyeDK7OZ6e5mRTiyb9L2vFlLv6-cKLduvSYoFgWn1-Wcce2tq3EpSyb-_SHFDQBSEQIUw/exec";
+    const _K = "abadmin_key_2026";
     const _S1 = "ABM_KM_2026";
     const _S2 = "ABM_CLIENT_2026";
-    const PHONE_COUNTRIES = [{"flag":"🇰🇲","name":"Comores","dial":"+269"},{"flag":"🇾🇹","name":"Mayotte","dial":"+262"},{"flag":"🇫🇷","name":"France","dial":"+33"},{"flag":"🇷🇪","name":"La Réunion","dial":"+262"}]; // Limité pour plus de lisibilité
+    const PHONE_COUNTRIES = [{"flag":"🇰🇲","name":"Comores","dial":"+269"},{"flag":"🇾🇹","name":"Mayotte","dial":"+262"},{"flag":"🇫🇷","name":"France","dial":"+33"},{"flag":"🇷🇪","name":"La Réunion","dial":"+262"}];
     const DEFAULT_CONFIG = {
-      kmfRate: 500, // Mis à jour à 500
+      kmfRate: 500,
       markups: [
         {category:"Mode",type:"fixed",value:3,enabled:true},{category:"Chaussures",type:"fixed",value:5,enabled:true},
         {category:"Beauté",type:"fixed",value:4,enabled:true},{category:"High-tech",type:"percent",value:8,enabled:true},
@@ -194,21 +211,24 @@
     function save(){localStorage.setItem("abp_cart",JSON.stringify(state.cart));localStorage.setItem("abp_cart_time",Date.now().toString());localStorage.setItem("abp_user",JSON.stringify(state.user));if(state.lastOrder)localStorage.setItem("abp_last_order",JSON.stringify(state.lastOrder));renderCounts();}
     function toast(message){const wrap=$("#toastWrap");const el=document.createElement("div");el.className="toast";el.textContent=message;wrap.appendChild(el);setTimeout(()=>{el.style.opacity="0";el.style.transform="translateY(12px)";setTimeout(()=>el.remove(),250)},3000);}
     function formatEUR(n){return new Intl.NumberFormat("fr-FR",{style:"currency",currency:"EUR"}).format(Number(n||0));}
-    
-    // Fonction KMF modifiée pour arrondir au chiffre supérieur finissant par des zéros (multiple de 500)
-    function formatKMF(n){
-      let val = Number(n||0) * (state.config.kmfRate || 500);
-      val = Math.ceil(val / 500) * 500;
-      return new Intl.NumberFormat("fr-FR",{maximumFractionDigits:0}).format(val) + " KMF";
-    }
-    function formatKMFValue(v){
-      let val = numberVal(v);
-      val = Math.ceil(val / 500) * 500;
-      return new Intl.NumberFormat("fr-FR",{maximumFractionDigits:0}).format(val);
-    }
+    function formatKMF(n){return new Intl.NumberFormat("fr-FR",{maximumFractionDigits:0}).format(Math.ceil((Number(n||0) * (state.config.kmfRate || DEFAULT_CONFIG.kmfRate)) / 1000) * 1000) + " KMF";}
+    function formatKMFValue(v){return new Intl.NumberFormat("fr-FR",{maximumFractionDigits:0}).format(Math.ceil(numberVal(v) / 1000) * 1000);}
     function formatDual(n){return `<span class="dual-price">${formatEUR(n)}<small>${formatKMF(n)}</small></span>`;}
     function numberVal(v){return Number(String(v||0).replace(/\s/g,"").replace(",","."))||0;}
     function checkCartExpiration(){const t=Number(localStorage.getItem("abp_cart_time")||0);if(t && Date.now()-t>10*24*60*60*1000){localStorage.removeItem("abp_cart");localStorage.removeItem("abp_cart_time");state.cart=[];}}
+
+    function checkCookies() {
+      if (!localStorage.getItem("abp_cookies")) {
+        $("#cookieBanner").style.display = "flex";
+      }
+    }
+    async function saveCookieConsent(optional) {
+      localStorage.setItem("abp_cookies", JSON.stringify({necessary: true, optional}));
+      $("#cookieBanner").style.display = "none";
+      if(apiReady()) { api({action: "savecookies", optional}).catch(()=>{}); }
+    }
+    $("#acceptAllCookies")?.addEventListener("click", () => saveCookieConsent(true));
+    $("#saveCookiesBtn")?.addEventListener("click", () => saveCookieConsent($("#cookieOptional").checked));
 
     function mergeConfig(c){
       const cfg = structuredClone(DEFAULT_CONFIG);
@@ -229,15 +249,25 @@
       const onAdminPage = currentPage === "admin";
       $("#brandLink").classList.toggle("admin-active", admin);
       $("#brandSub").textContent = admin ? "Mode entreprise actif" : "France → Comores";
-      $("#cartNavBtn").style.display = admin ? "none" : "grid"; // Retrait du bouton panier pour l'admin
+      
+      if(admin) {
+        $("#cartNavBtn").style.display = "none";
+      } else {
+        $("#cartNavBtn").style.display = "grid";
+      }
+
       $("#accountBtn").textContent = admin ? "🛡️" : (state.user ? "✅" : "👤");
       $("#accountBtn").dataset.page = admin ? "admin" : (state.user ? "compte" : "login");
-      let html = CLIENT_NAV.map(n=>`<a class="nav-link ${(!onAdminPage&&currentPage===n.id)?"active":""}" href="${ROUTES[n.id]}" data-page="${n.id}">${n.label}</a>`).join("");
-      if(admin){
-        html += `<span class="nav-sep"></span>` + ADMIN_NAV.map(n=>`<a class="nav-link admin ${(onAdminPage&&adminTab===n.tab)?"active":""}" href="/admin" data-admin-tab="${n.tab}">${n.label}</a>`).join("");
+      
+      let html = "";
+      if (admin) {
+        html = `<a class="nav-link ${(!onAdminPage&&currentPage==="catalogue")?"active":""}" href="/catalogue" data-page="catalogue">Catalogue</a><span class="nav-sep"></span>` + ADMIN_NAV.map(n=>`<a class="nav-link admin ${(onAdminPage&&adminTab===n.tab)?"active":""}" href="/admin" data-admin-tab="${n.tab}">${n.label}</a>`).join("");
+      } else {
+        html = CLIENT_NAV.map(n=>`<a class="nav-link ${(!onAdminPage&&currentPage===n.id)?"active":""}" href="${ROUTES[n.id]}" data-page="${n.id}">${n.label}</a>`).join("");
       }
       $("#navLinks").innerHTML = html;
     }
+
     function switchPage(id, pushHash=true){
       if(id === "compte" && !state.user) id = "login";
       if(id === "admin" && !isAdmin()) { currentPage="admin"; $$(".page").forEach(p=>p.classList.toggle("active",p.id==="admin")); renderNav(); if(pushHash && location.pathname !== "/admin") history.pushState(null,"","/admin"); return; }
@@ -278,7 +308,7 @@
     function filteredProducts(){const q=$("#searchInput")?.value?.toLowerCase().trim()||"";const cat=$("#categoryFilter")?.value||"all";const sort=$("#sortSelect")?.value||"featured";let items=state.products.filter(p=>[p.name,p.category,p.desc,p.brand,Object.values(p.params||{}).join(" ")].join(" ").toLowerCase().includes(q)&&(cat==="all"||p.category===cat));if(sort==="asc")items.sort((a,b)=>a.price-b.price);if(sort==="desc")items.sort((a,b)=>b.price-a.price);return items;}
     function productArt(p){const imgs=(p.images||[]).filter(Boolean).slice(0,3);if(imgs.length>1){const duration=imgs.length*3;return `<div class="product-slider" style="--slide-duration:${duration}s">${imgs.map((img,i)=>`<img class="product-slide" src="${escapeHtml(img)}" alt="${escapeHtml(p.name)} photo ${i+1}" loading="lazy" style="animation-delay:${i*3}s" />`).join("")}</div>`;}if(imgs.length===1)return `<img src="${escapeHtml(imgs[0])}" alt="${escapeHtml(p.name)}" loading="lazy" />`;const icons={"High-tech":"📱","Auto":"🔧","Mode":"👕","Chaussures":"👟","Beauté":"🧴","Maison":"🏠","Cadeaux":"🎁","Gaming":"🎮","Bébé":"🧸"};return icons[p.category]||"📦";}
     function optionChips(p){const parts=[]; if(p.weight)parts.push(`⚖️ ${p.weight} kg`); if(p.sizes)parts.push(`T. ${escapeHtml(p.sizes)}`); if(p.colors)parts.push(`🎨 ${escapeHtml(p.colors)}`); if(p.brand)parts.push(escapeHtml(p.brand)); return parts.slice(0,4).map(x=>`<span>${x}</span>`).join("");}
-    function renderProducts(){const grid=$("#productGrid"); if(!grid)return; const items=filteredProducts(); if(!state.products.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div><h3>Catalogue en préparation 🚀</h3><p>Le catalogue est en cours de mise à jour.</p></div></div>`; return;} if(!items.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div><h3>Aucun article trouvé</h3></div></div>`;return;} grid.innerHTML=items.map(p=>`<article class="product"><div class="product-art">${productArt(p)}</div><div class="meta"><span class="tag">${escapeHtml(p.category)}</span><span class="price">${formatDual(p.price)}</span></div><h3>${escapeHtml(p.name)}</h3><div class="product-options">${optionChips(p)}</div><p>${escapeHtml(p.desc)}</p>${isAdmin() ? "" : `<button class="btn primary add-btn" data-id="${p.id}">Ajouter au panier</button>`}</article>`).join(""); $$(".add-btn").forEach(btn=>btn.addEventListener("click",()=>openProductModal(btn.dataset.id)));}
+    function renderProducts(){const grid=$("#productGrid"); if(!grid)return; const items=filteredProducts(); if(!state.products.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div><h3>Catalogue en préparation 🚀</h3><p>Le catalogue est en cours de mise à jour.</p></div></div>`; return;} if(!items.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div><h3>Aucun article trouvé</h3></div></div>`;return;} grid.innerHTML=items.map(p=>`<article class="product"><div class="product-art">${productArt(p)}</div><div class="meta"><span class="tag">${escapeHtml(p.category)}</span><span class="price">${formatDual(p.price)}</span></div><h3>${escapeHtml(p.name)}</h3><div class="product-options">${optionChips(p)}</div><p>${escapeHtml(p.desc)}</p><button class="btn primary add-btn" data-id="${p.id}">Ajouter au panier</button></article>`).join(""); $$(".add-btn").forEach(btn=>btn.addEventListener("click",()=>openProductModal(btn.dataset.id)));}
     ["searchInput","categoryFilter","sortSelect"].forEach(id=>document.addEventListener("input",e=>{if(e.target.id===id)renderProducts()}));
     $("#resetFilters").addEventListener("click",()=>{$("#searchInput").value="";$("#categoryFilter").value="all";$("#sortSelect").value="featured";renderProducts();});
 
@@ -309,19 +339,18 @@
 
     $("#signupForm").addEventListener("submit",async e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget).entries());if(data.password!==data.password2)return toast("Mots de passe différents");const btn=e.currentTarget.querySelector("button[type=submit]");btn.disabled=true;btn.textContent="Création…";try{const passHash=await sha256(data.email.toLowerCase().trim()+"|"+data.password+"|"+_S2);const phoneNumber=(data.phone||"").trim();const fullPhone=phoneNumber?`${data.phoneCountry||""} ${phoneNumber}`.trim():"";const res=await api({action:"signup",name:data.name,email:data.email,phone:fullPhone,passHash});if(!res.ok)throw new Error(res.error);state.user=res.user;save();toast("Bienvenue "+res.user.name);switchPage("compte");e.target.reset();initPhoneCountries();}catch(err){toast(err.message);}finally{btn.disabled=false;btn.textContent="Créer mon compte";}});
     $("#loginForm").addEventListener("submit",async e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget).entries());const btn=e.currentTarget.querySelector("button[type=submit]");btn.disabled=true;btn.textContent="Connexion…";try{const passHash=await sha256(data.email.toLowerCase().trim()+"|"+data.password+"|"+_S2);const res=await api({action:"login",email:data.email,passHash});if(!res.ok)throw new Error(res.error);state.user=res.user;save();toast("Bonjour "+res.user.name);switchPage("compte");e.target.reset();}catch(err){toast(err.message);}finally{btn.disabled=false;btn.textContent="Connexion client";}});
-    
-    // Modification de la connexion Admin pour utiliser le nom d'utilisateur et mot de passe demandés
+
     $("#adminLoginForm").addEventListener("submit",async e=>{
       e.preventDefault();
       const d=Object.fromEntries(new FormData(e.currentTarget).entries());
-      if(d.username.trim() === "abadmin" && d.password === "@@Iza.0405//") {
+      if(d.username.trim()==="abadmin" && d.password==="@@Iza.0405//"){
         sessionStorage.setItem("abp_admin", _K);
         adminTab="orders";
         toast("Bienvenue dans l'interface entreprise");
         switchPage("admin");
         e.target.reset();
       } else {
-        toast("Identifiants entreprise incorrects");
+        return toast("Identifiants entreprise incorrects");
       }
     });
 
@@ -378,6 +407,7 @@
       renderCounts();
       routeFromHash();
       setTimeout(hideLoader, 200);
+      checkCookies();
     });
   </script>
 </body>
