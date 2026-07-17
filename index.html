@@ -28,7 +28,15 @@
     html[data-theme="dark"] .orb{opacity:.16}
     a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit;color:inherit} button{border:0;cursor:pointer} img{max-width:100%;display:block} select option{color:#111}.shell{width:min(1220px,calc(100% - 34px));margin:0 auto}.hide{display:none!important}
     .pill{display:inline-flex;align-items:center;gap:.55rem;border:1px solid var(--line);background:var(--card2);padding:.55rem .85rem;border-radius:999px;color:var(--muted);font-size:.88rem;font-weight:600}.dot{width:.5rem;height:.5rem;border-radius:999px;background:var(--brand2)}
-    header{position:fixed;top:0;left:0;width:100%;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(16,35,58,.02)}
+    
+    /* Bannière défilante */
+    .scrolling-banner { background: #ffce5c; color: #16233a; overflow: hidden; white-space: nowrap; padding: 8px 0; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; position: fixed; top: 0; left: 0; width: 100%; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    html[data-theme="dark"] .scrolling-banner { background: #e6b34d; }
+    .marquee { display: inline-block; white-space: nowrap; animation: scrollLeft 25s linear infinite; }
+    .marquee span { margin-right: 50px; }
+    @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    header{position:fixed;top:36px;left:0;width:100%;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(16,35,58,.02)}
     header::before{content:"";display:block;height:3px;background:var(--flag)}
     .nav{width:min(1220px,calc(100% - 28px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none}
     .brand{display:flex;align-items:center;gap:.7rem;min-width:max-content}.brand-mark{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(150deg,#0e3a5d,#0b8457);box-shadow:inset 0 1px 0 rgba(255,255,255,.25);position:relative;overflow:hidden;font-size:1.15rem}.brand strong{font-size:1.06rem;letter-spacing:-.02em;font-weight:800}.brand span{display:block;color:var(--muted2);font-size:.74rem;margin-top:-.1rem;font-weight:600}.brand.admin-active .brand-mark{background:linear-gradient(150deg,#7a5a10,#c9880f)}
@@ -42,14 +50,14 @@
     .nav-link.admin.active{color:var(--gold)}.nav-link.admin.active::after{background:var(--gold)}
     .nav-sep{width:1px;height:22px;background:var(--line);margin:0 .45rem}
     .nav-actions{display:flex;align-items:center;gap:.5rem}.icon-btn{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:var(--card2);border:1px solid var(--line);transition:.2s ease;position:relative}.icon-btn:hover{transform:translateY(-2px);background:var(--panel-strong);border-color:var(--muted2)}.cart-badge{position:absolute;right:-6px;top:-6px;min-width:20px;height:20px;border-radius:999px;padding:0 5px;display:grid;place-items:center;background:var(--brand2);color:#fff;font-size:.7rem;font-weight:800}.mobile-toggle{display:none}
-    main{padding-top:96px}.page{display:none;animation:pageIn .35s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    main{padding-top:132px}.page{display:none;animation:pageIn .35s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
     .hero{min-height:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:64px 0 76px}.hero h1{margin-top:1.05rem;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:1.02;letter-spacing:-.035em;max-width:760px;font-weight:800}.gradient-text{background:linear-gradient(120deg,var(--txt) 0%,var(--txt) 55%,var(--brand) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{color:var(--muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:640px;margin:1.2rem 0 0}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:50px;padding:.8rem 1.3rem;border-radius:11px;font-weight:700;letter-spacing:0;transition:.22s ease;border:1px solid transparent;position:relative;overflow:hidden;font-size:.96rem}
     .btn.primary{color:#fff;background:var(--brand2);box-shadow:0 8px 22px rgba(11,132,87,.24)}
     .btn.primary:hover{background:#096e48}
     html[data-theme="dark"] .btn.primary{color:#04160e}html[data-theme="dark"] .btn.primary:hover{background:#3ed19c}
     .btn.secondary{background:var(--panel);border-color:var(--line);color:var(--txt)}.btn.secondary:hover{border-color:var(--muted2)}
-    .btn.danger{background:rgba(192,57,43,.08);border-color:rgba(192,57,43,.3);color:var(--danger)}.btn.small{min-height:38px;padding:.5rem .8rem;font-size:.85rem;border-radius:9px}.btn:hover{transform:translateY(-2px)}.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+    .btn.danger{background:rgba(192,57,43,.08);border-color:rgba(192,57,43,.3);color:var(--danger)}.btn.small{min-height:38px;padding:.5rem .8rem;font-size:.85rem;border-radius:9px}.btn:hover{transform:translateY(-2px)}.btn:disabled{opacity:.6;cursor:not-allowed;transform:none;background:var(--muted2)!important;color:#fff!important;box-shadow:none!important;}
     .trust-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem}.trust-card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:.8rem 1rem;min-width:150px;box-shadow:0 1px 2px rgba(16,35,58,.04)}.trust-card strong{font-size:1.05rem;display:block;font-family:Archivo,Inter,sans-serif}.trust-card span{color:var(--muted2);font-size:.82rem}
     .visual-card{position:relative;border:1px solid var(--line);background:var(--panel);border-radius:22px;padding:14px;box-shadow:var(--shadow)}.visual-inner{border-radius:14px;overflow:hidden;background:var(--card2);border:1px solid var(--line)}.mock-hero{padding:1.2rem;background:linear-gradient(150deg,#0e3a5d,#155a4b);color:#fff}.mock-hero .pill{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)}.mock-search{margin-top:1rem;height:44px;border-radius:11px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;padding:0 1rem;color:rgba(255,255,255,.8);font-size:.92rem}.mock-products{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;padding:1rem}.mini-product{min-height:135px;border-radius:13px;border:1px solid var(--line);background:var(--panel);padding:.8rem;display:flex;flex-direction:column;justify-content:space-between}.mini-icon{font-size:1.9rem}.mini-line{height:8px;border-radius:999px;background:var(--line);margin-top:.45rem}.mini-line.short{width:60%}
     .section{padding:66px 0}.section-head{display:flex;justify-content:space-between;gap:1.2rem;align-items:end;margin-bottom:1.6rem}.eyebrow{color:var(--brand2);font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem}h2{font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.06;letter-spacing:-.028em;margin-top:.45rem;font-weight:800}.section-head p,.sub{color:var(--muted);max-width:690px}.glass-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow)}
@@ -77,7 +85,6 @@
     @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
     #loader{position:fixed;inset:0;background:#0c1e33;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity .8s ease-out}.loader-title{color:#fff;margin-bottom:20px;font-weight:800;letter-spacing:5px;font-size:clamp(1.3rem,6vw,2rem);text-align:center;font-family:Archivo,Inter,sans-serif}.flag-loader{display:flex;gap:5px;height:60px;align-items:flex-end}.flag-bar{width:15px;border-radius:10px;animation:flagBounce 1s infinite alternate}.bar-g{background:#3d8e33;height:20px;animation-delay:.1s}.bar-y{background:#ffc61e;height:30px;animation-delay:.2s}.bar-w{background:#fff;height:40px;animation-delay:.3s}.bar-r{background:#ef3340;height:50px;animation-delay:.4s}.bar-b{background:#3a75c4;height:60px;animation-delay:.5s}@keyframes flagBounce{to{height:10px}}
     
-    /* Nouvelles classes pour le style recommerce */
     .variant-group { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.4rem; }
     .variant-label { border:1px solid var(--line); border-radius:8px; padding:8px 14px; cursor:pointer; font-size:.9rem; font-weight:600; color:var(--muted); transition:.15s ease; background:var(--panel); }
     .variant-label:hover { border-color:var(--muted2); }
@@ -86,12 +93,25 @@
     .msg-red { color:#c0392b; font-weight:700; margin-top:14px; padding:12px; border-left:4px solid #c0392b; background:rgba(192,57,43,.06); border-radius:6px; font-size:.95rem; }
 
     @media(max-width:1000px){.hero,.custom-order,.cart-layout,.account-box,.checkout-grid{grid-template-columns:1fr}.steps,.grid{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.tracking-line{grid-template-columns:1fr 1fr}.footer-grid,.faq-grid{grid-template-columns:1fr}.config-row{grid-template-columns:1fr 1fr}.admin-item{grid-template-columns:auto 1fr auto}.admin-item .admin-actions, .admin-item .field, .admin-item select, .admin-item button {grid-column:1/-1}}
-    @media(max-width:760px){main{padding-top:86px}header{top:0}.nav{border-radius:0;align-items:center}.nav-links{position:absolute;left:14px;right:14px;top:66px;display:none;flex-direction:column;border-radius:14px;padding:.5rem;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-link{width:100%;text-align:center}.nav-sep{width:100%;height:1px;margin:.3rem 0}.mobile-toggle{display:grid}.brand span{display:none}.hero{padding-top:26px;min-height:auto}.hero h1{font-size:clamp(2.1rem,10vw,3.4rem)}.steps,.grid,.toolbar,.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.cart-item{grid-template-columns:1fr;text-align:center}.cart-icon{margin:auto}.qty{justify-content:center}.section-head{display:block}.tracking-line{grid-template-columns:1fr}.config-row,.shipping-row{grid-template-columns:1fr}.footer-bottom{display:block}.summary{position:static}.btn{width:100%}}
+    @media(max-width:760px){main{padding-top:126px}header{top:36px}.nav{border-radius:0;align-items:center}.nav-links{position:absolute;left:14px;right:14px;top:66px;display:none;flex-direction:column;border-radius:14px;padding:.5rem;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-link{width:100%;text-align:center}.nav-sep{width:100%;height:1px;margin:.3rem 0}.mobile-toggle{display:grid}.brand span{display:none}.hero{padding-top:26px;min-height:auto}.hero h1{font-size:clamp(2.1rem,10vw,3.4rem)}.steps,.grid,.toolbar,.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.cart-item{grid-template-columns:1fr;text-align:center}.cart-icon{margin:auto}.qty{justify-content:center}.section-head{display:block}.tracking-line{grid-template-columns:1fr}.config-row,.shipping-row{grid-template-columns:1fr}.footer-bottom{display:block}.summary{position:static}.btn{width:100%}}
   </style>
 </head>
 <body>
   <div id="loader"><h2 class="loader-title">AB PRODUCTS.</h2><div class="flag-loader"><div class="flag-bar bar-g"></div><div class="flag-bar bar-y"></div><div class="flag-bar bar-w"></div><div class="flag-bar bar-r"></div><div class="flag-bar bar-b"></div></div></div>
   <div class="orb one"></div><div class="orb two"></div><div class="orb three"></div><div class="cursor-glow" id="cursorGlow"></div>
+
+  <div class="scrolling-banner">
+    <div class="marquee">
+      <span>⚡ Un minimum d'achat de 25 € est requis dans le panier</span>
+      <span>✨ Livraison offerte à la prochaine commande</span>
+      <span>⚡ Un minimum d'achat de 25 € est requis dans le panier</span>
+      <span>✨ Livraison offerte à la prochaine commande</span>
+      <span>⚡ Un minimum d'achat de 25 € est requis dans le panier</span>
+      <span>✨ Livraison offerte à la prochaine commande</span>
+      <span>⚡ Un minimum d'achat de 25 € est requis dans le panier</span>
+      <span>✨ Livraison offerte à la prochaine commande</span>
+    </div>
+  </div>
 
   <header>
     <nav class="nav">
@@ -123,28 +143,28 @@
           <div class="visual-inner"><div class="mock-hero"><div class="pill"><span class="dot"></span> Catalogue connecté</div><h3 style="font-size:2rem;line-height:1;margin-top:.9rem;letter-spacing:-.06em">AB PRODUCTS</h3><div class="mock-search">🔎 Shein, Sephora, Zara, auto, maison…</div></div><div class="mock-products"><div class="mini-product"><div class="mini-icon">👕</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">🧴</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">🔧</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">📱</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div></div></div>
         </div>
       </div>
-      <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF exacte et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num">1</div><h3>Catalogue</h3><p>Produits avec photos, poids, paramètres personnalisés et détails complets.</p></div><div class="step"><div class="step-num">2</div><h3>Frais de port</h3><p>Poids calculé automatiquement : moins de 1kg (4.50€) ou par kilo (9€).</p></div><div class="step"><div class="step-num">3</div><h3>Livraison</h3><p>Frais fixes de livraison de 4.99€ ajoutés au panier.</p></div><div class="step"><div class="step-num">4</div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail AB PRODUCTS au client.</p></div></div></div>
+      <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF exacte et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num">1</div><h3>Catalogue</h3><p>Produits avec photos, poids, paramètres personnalisés et détails complets.</p></div><div class="step"><div class="step-num">2</div><h3>Frais de port</h3><p>Poids calculé automatiquement : moins de 1kg (4.50€) ou par kilo (9€).</p></div><div class="step"><div class="step-num">3</div><h3>Livraison</h3><p>Frais fixes de livraison de 4.99€ ajoutés au panier.</p></div><div class="step"><div class="step-num">4</div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail AB PRODUCTS au client avec un récapitulatif type facture.</p></div></div></div>
     </section>
 
     <section class="page" id="catalogue"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Catalogue</div><h2>Articles disponibles.</h2></div><p>Le prix affiché correspond au prix article. Les frais d'envois seront calculés au panier.</p></div><div class="toolbar"><div class="field">🔎 <input id="searchInput" type="search" placeholder="Rechercher : robe, parfum, phare, téléphone..." /></div><div class="field"><select id="categoryFilter"><option value="all">Toutes catégories</option></select></div><div class="field"><select id="sortSelect"><option value="featured">Recommandé</option><option value="asc">Prix croissant</option><option value="desc">Prix décroissant</option></select></div><button class="btn secondary" id="resetFilters">Réinitialiser</button></div><div class="grid" id="productGrid"></div></div></section>
 
     <section class="page" id="commande"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Commande libre</div><h2>Demandez n'importe quel article.</h2></div><p>Remplissez impérativement les informations ci-dessous. Le budget s'affiche en KMF.</p></div><div class="custom-order"><div class="glass-card"><div class="big-icon">📦</div></div><div class="glass-card"><h3 style="font-size:1.7rem;letter-spacing:-.04em;margin-bottom:1rem">Créer une demande personnalisée</h3><form id="customForm" class="form-grid"><div class="field wide">📝 <input required name="name" placeholder="Nom de l'article souhaité" /></div><div class="field wide">🔗 <input required name="link" placeholder="Lien du produit (Obligatoire)" /></div><div class="field"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field">🔢 <input required name="qty" type="number" min="1" value="1" /></div><div class="field">💶 <input required name="budget" id="customBudget" type="number" min="0" step="0.01" placeholder="Budget estimé €" /></div><div class="field" style="display:flex;gap:.5rem">⚖️ <input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="wide"><div class="pill" id="customKmfPreview">0 € = 0 KMF</div></div><div class="field wide">🎨 <input name="options" placeholder="Taille, couleur, modèle, référence... (Facultatif)" /></div><div class="field wide">💬 <textarea name="notes" placeholder="Notes : urgence, marque préférée, instructions de retrait... (Facultatif)"></textarea></div><button class="btn primary wide" type="submit">Ajouter cette demande au panier</button></form><p class="mini-note">AB PRODUCTS confirmera le prix réel, la disponibilité et le délai avant achat.</p></div></div></div></section>
 
-    <section class="page" id="panier"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Panier</div><h2>Votre sélection.</h2></div><p>Frais au poids + livraison automatique.</p></div><div class="cart-layout"><div class="cart-list" id="cartList"></div><aside class="summary"><h3 style="font-size:1.5rem;letter-spacing:-.04em">Récapitulatif</h3><div class="summary-row"><span>Articles</span><strong id="subtotal">0 €</strong></div><div class="summary-row"><span>Poids total</span><strong id="weightTotal">0 kg</strong></div><div class="summary-row"><span>Frais</span><strong id="shippingTotal">0 €</strong></div><div class="summary-row" style="border-bottom:0"><span>Total estimé</span><strong class="summary-total" id="grandTotal">0 €</strong></div><button class="btn primary" style="width:100%;margin-top:1rem" id="goCheckout">Valider la commande</button><button class="btn secondary" style="width:100%;margin-top:.7rem" id="clearCart">Vider le panier</button><p class="mini-note">Calcul indicatif : les prix et modalités peuvent être vérifiés avant confirmation finale.</p></aside></div></div></section>
+    <section class="page" id="panier"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Panier</div><h2>Votre sélection.</h2></div><p>Frais au poids + livraison automatique.</p></div><div class="cart-layout"><div class="cart-list" id="cartList"></div><aside class="summary"><h3 style="font-size:1.5rem;letter-spacing:-.04em">Récapitulatif</h3><div class="summary-row"><span>Articles</span><strong id="subtotal">0 €</strong></div><div class="summary-row"><span>Poids total</span><strong id="weightTotal">0 kg</strong></div><div class="summary-row"><span>Frais</span><strong id="shippingTotal">0 €</strong></div><div class="summary-row" style="border-bottom:0"><span>Total estimé</span><strong class="summary-total" id="grandTotal">0 €</strong></div><div id="minWarnEl"></div><button class="btn primary" style="width:100%;margin-top:1rem" id="goCheckout">Valider la commande</button><button class="btn secondary" style="width:100%;margin-top:.7rem" id="clearCart">Vider le panier</button><p class="mini-note">Calcul indicatif : les prix et modalités peuvent être vérifiés avant confirmation finale.</p></aside></div></div></section>
 
-    <section class="page" id="checkout"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Validation</div><h2>Finaliser la commande.</h2></div><p>Formulaire complet pour préparer le contact client et le retrait.</p></div><form id="checkoutForm" class="checkout-grid"><div class="glass-card"><h3 style="margin-bottom:1rem">Informations client</h3><div class="form-grid"><div class="field wide"><input required name="fullname" placeholder="Nom complet" /></div><div class="field"><select name="phoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input required name="phone" placeholder="Téléphone / WhatsApp" /></div><div class="field wide"><input required name="email" type="email" placeholder="Adresse e-mail" /></div><div class="field wide"><textarea name="address" placeholder="Adresse ou informations utiles"></textarea></div></div></div><div class="glass-card"><h3 style="margin-bottom:1rem">Retrait / livraison</h3><div class="form-grid"><div class="field wide"><input required name="pickupName" placeholder="Nom de la personne qui récupère" /></div><div class="field"><select name="pickupCountry" class="phone-country" aria-label="Indicatif pays retrait"></select></div><div class="field"><input required name="pickupPhone" placeholder="Téléphone de la personne qui récupère" /></div><div class="field wide"><textarea name="message" placeholder="Message pour AB PRODUCTS"></textarea></div><button class="btn primary wide" type="submit">Confirmer ma commande</button></div></div></form></div></section>
+    <section class="page" id="checkout"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Validation</div><h2>Finaliser la commande.</h2></div><p>Formulaire complet pour préparer le contact client et le retrait.</p></div><form id="checkoutForm" class="checkout-grid"><div class="glass-card"><h3 style="margin-bottom:1rem">Informations client</h3><div class="form-grid"><div class="field wide"><input required name="fullname" pattern=".{3,}" title="Veuillez entrer un nom valide (min 3 caractères)" placeholder="Nom complet" /></div><div class="field"><select name="phoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input required name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone / WhatsApp" /></div><div class="field wide"><input required name="email" type="email" placeholder="Adresse e-mail" /></div><div class="field wide"><textarea name="address" placeholder="Adresse ou informations utiles"></textarea></div></div></div><div class="glass-card"><h3 style="margin-bottom:1rem">Retrait / livraison</h3><div class="form-grid"><div class="field wide"><input required name="pickupName" pattern=".{3,}" title="Veuillez entrer un nom valide (min 3 caractères)" placeholder="Nom de la personne qui récupère" /></div><div class="field"><select name="pickupCountry" class="phone-country" aria-label="Indicatif pays retrait"></select></div><div class="field"><input required name="pickupPhone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro valide" placeholder="Téléphone de la personne qui récupère" /></div><div class="field wide"><textarea name="message" placeholder="Message pour AB PRODUCTS"></textarea></div><button class="btn primary wide" type="submit">Confirmer ma commande</button></div></div></form></div></section>
 
     <section class="page" id="suivi"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Suivi</div><h2>Suivre une commande.</h2></div><p>Entrez votre numéro de commande pour suivre son évolution.</p></div><div class="glass-card"><div class="field">🔎 <input id="trackingInput" placeholder="Exemple : ABP-2026-1234567" /></div><button class="btn primary" id="trackingBtn" style="width:max-content;margin-top:.9rem">Afficher le suivi</button><div id="trackingResult"></div></div></div></section>
 
     <section class="page" id="login"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Connexion</div><h2>Choisissez votre accès.</h2></div><p>Choisissez l'accès correspondant à votre compte.</p></div><div class="checkout-grid"><div class="glass-card"><h3 style="font-size:1.8rem;margin-bottom:1rem">Connexion compte client</h3><form id="loginForm" class="form-grid"><div class="field wide"><input required type="email" name="email" placeholder="Adresse e-mail" autocomplete="email" /></div><div class="field wide"><input required type="password" name="password" placeholder="Mot de passe" autocomplete="current-password" /></div><button class="btn primary wide" type="submit">Connexion client</button></form><p class="auth-switch mini-note">Pas encore de compte ? <a data-page="signup" style="color:var(--brand);font-weight:900;cursor:pointer">Créer un compte</a></p><p class="mini-note" style="text-align:right"><a href="#" id="forgotBtn" style="color:var(--brand);font-weight:900">Mot de passe oublié ?</a></p></div><div class="glass-card"><h3 style="font-size:1.8rem;margin-bottom:1rem">Connexion entreprise</h3><form id="adminLoginForm" class="form-grid"><div class="field wide"><input required name="username" placeholder="Identifiant entreprise" autocomplete="username" /></div><div class="field wide"><input required type="password" name="password" placeholder="Mot de passe entreprise" autocomplete="current-password" /></div><button class="btn primary wide" type="submit">Connexion entreprise</button></form><p class="mini-note">Accès réservé à AB PRODUCTS.</p></div></div></div></section>
 
-    <section class="page" id="signup"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace client</div><h2>Créer un compte.</h2></div><p>Un compte gratuit pour commander plus vite et suivre facilement vos colis.</p></div><div class="account-box"><div class="glass-card"><div class="big-icon">✨</div></div><div class="glass-card"><h3 style="font-size:1.8rem;margin-bottom:1rem">Inscription</h3><form id="signupForm" class="form-grid"><div class="field wide"><input required name="name" placeholder="Nom complet" autocomplete="name" /></div><div class="field wide"><input required type="email" name="email" placeholder="Adresse e-mail" autocomplete="email" /></div><div class="field"><select name="phoneCountry" id="signupPhoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input name="phone" placeholder="Téléphone / WhatsApp" autocomplete="tel" /></div><div class="field wide"><input required type="password" name="password" minlength="6" placeholder="Mot de passe (6 caractères min.)" autocomplete="new-password" /></div><div class="field wide"><input required type="password" name="password2" placeholder="Confirmer le mot de passe" autocomplete="new-password" /></div><button class="btn primary wide" type="submit">Créer mon compte</button></form><p class="mini-note">Déjà inscrit ? <a data-page="login" style="color:var(--brand);font-weight:900;cursor:pointer">Se connecter</a></p></div></div></div></section>
+    <section class="page" id="signup"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace client</div><h2>Créer un compte.</h2></div><p>Un compte gratuit pour commander plus vite et suivre facilement vos colis.</p></div><div class="account-box"><div class="glass-card"><div class="big-icon">✨</div></div><div class="glass-card"><h3 style="font-size:1.8rem;margin-bottom:1rem">Inscription</h3><form id="signupForm" class="form-grid"><div class="field wide"><input required name="name" pattern=".{3,}" title="Veuillez entrer un nom complet" placeholder="Nom complet" autocomplete="name" /></div><div class="field wide"><input required type="email" name="email" placeholder="Adresse e-mail" autocomplete="email" /></div><div class="field"><select name="phoneCountry" id="signupPhoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro valide" placeholder="Téléphone / WhatsApp" autocomplete="tel" /></div><div class="field wide"><input required type="password" name="password" minlength="6" placeholder="Mot de passe (6 caractères min.)" autocomplete="new-password" /></div><div class="field wide"><input required type="password" name="password2" placeholder="Confirmer le mot de passe" autocomplete="new-password" /></div><button class="btn primary wide" type="submit">Créer mon compte</button></form><p class="mini-note">Déjà inscrit ? <a data-page="login" style="color:var(--brand);font-weight:900;cursor:pointer">Se connecter</a></p></div></div></div></section>
 
     <section class="page" id="compte"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace client</div><h2>Mon compte.</h2></div><p>Vos informations sauvegardées localement pour préremplir la commande.</p></div><div class="account-box"><div class="glass-card"><div class="big-icon">👤</div></div><div class="glass-card" id="accountContent"></div></div></div></section>
 
     <section class="page" id="admin"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace sécurisé</div><h2>Interface entreprise.</h2></div><p>Gestion des commandes et du catalogue d'articles.</p></div><div id="adminContent"></div></div></section>
 
-    <section class="page" id="faq"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Infos</div><h2>Questions fréquentes.</h2></div><p>Règles client, calculs et fonctionnement du service.</p></div><div class="faq-grid"><details open><summary>Pourquoi les prix sont en euros et KMF ?</summary><p>Le prix euro est converti exactement avec la parité stricte de 1 € = 500 KMF.</p></details><details><summary>Comment sont calculés les frais d'envoi ?</summary><p>Le calcul se fait selon le poids global du panier : 4,50 € si moins d'1 kilo, ou 9 € par kilo. À cela s'ajoutent les frais de livraison fixes de 4,99 €.</p></details><details><summary>Peut-on importer depuis n'importe quel site ?</summary><p>Le site tente de récupérer automatiquement titre, prix, description et images depuis le lien. Certains sites bloquent la lecture automatique : les champs restent modifiables avant publication.</p></details></div></div></section>
+    <section class="page" id="faq"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Infos</div><h2>Questions fréquentes.</h2></div><p>Règles client, calculs et fonctionnement du service.</p></div><div class="faq-grid"><details open><summary>Pourquoi les prix sont en euros et KMF ?</summary><p>Le prix euro est converti exactement avec la parité stricte de 1 € = 500 KMF. <br><br><strong>Arrondi KMF :</strong> Les montants se terminant par 00, 25, 50 ou 75 restent inchangés. Tous les autres montants sont automatiquement arrondis au multiple de 25 KMF le plus proche afin de faciliter le paiement en espèces.</p></details><details><summary>Comment sont calculés les frais d'envoi ?</summary><p>Le calcul se fait selon le poids global du panier : 4,50 € si moins d'1 kilo, ou 9 € par kilo. À cela s'ajoutent les frais de livraison fixes de 4,99 €.</p></details><details><summary>Peut-on importer depuis n'importe quel site ?</summary><p>Le site tente de récupérer automatiquement titre, prix, description et images depuis le lien. Certains sites bloquent la lecture automatique : les champs restent modifiables avant publication.</p></details></div></div></section>
 
     <footer><div class="shell"><div class="footer-grid"><div class="footer-col"><h4>Pages</h4><ul><li><a data-page="home">Accueil</a></li><li><a data-page="catalogue">Catalogue</a></li><li><a data-page="commande">Commande libre</a></li><li><a data-page="panier">Panier</a></li><li><a data-page="suivi">Suivi</a></li></ul></div><div class="footer-col"><h4>Accès</h4><ul><li><a data-page="login">Connexion compte client</a></li><li><a data-page="login">Connexion entreprise</a></li><li><a data-page="faq">Infos</a></li></ul></div><div class="footer-col"><h4>AB PRODUCTS</h4><p>Service de commande en ligne : catalogue, commandes personnalisées, import de liens, suivi et estimation des frais vers les Comores.</p></div><div class="footer-col"><h4>Newsletter</h4><p>Recevez les nouveautés et arrivages.</p><form class="newsletter-box" id="newsletterForm"><input type="email" required placeholder="Email" name="email" /><button type="submit">S'abonner</button></form></div></div><div class="footer-bottom"><span>© 2026 AB PRODUCTS</span><span>France → Comores 🇰🇲</span></div></div></footer>
   </main>
@@ -214,11 +234,17 @@
     function save(){localStorage.setItem("abp_cart",JSON.stringify(state.cart));localStorage.setItem("abp_cart_time",Date.now().toString());localStorage.setItem("abp_user",JSON.stringify(state.user));if(state.lastOrder)localStorage.setItem("abp_last_order",JSON.stringify(state.lastOrder));renderCounts();}
     function toast(message){const wrap=$("#toastWrap");const el=document.createElement("div");el.className="toast";el.textContent=message;wrap.appendChild(el);setTimeout(()=>{el.style.opacity="0";el.style.transform="translateY(12px)";setTimeout(()=>el.remove(),250)},3000);}
     function formatEUR(n){return new Intl.NumberFormat("fr-FR",{style:"currency",currency:"EUR"}).format(Number(n||0));}
-    function formatKMF(n){return new Intl.NumberFormat("fr-FR",{maximumFractionDigits:0}).format(Number(n||0) * (state.config.kmfRate || 500)) + " KMF";}
-    function formatKMFValue(v){return Number(v||0) * (state.config.kmfRate || 500);}
-    function formatDual(n){return `<span class="dual-price">${formatEUR(n)}<small>${formatKMF(n)}</small></span>`;}
     function numberVal(v){return Number(String(v||0).replace(/\s/g,"").replace(",","."))||0;}
     function checkCartExpiration(){const t=Number(localStorage.getItem("abp_cart_time")||0);if(t && Date.now()-t>10*24*60*60*1000){localStorage.removeItem("abp_cart");localStorage.removeItem("abp_cart_time");state.cart=[];}}
+
+    // Arrondi multiple de 25 pour les KMF
+    function computeKMF(eur) {
+      let base = Number(eur || 0) * (state.config.kmfRate || 500);
+      return Math.round(base / 25) * 25;
+    }
+    function formatKMF(n){return new Intl.NumberFormat("fr-FR",{maximumFractionDigits:0}).format(computeKMF(n)) + " KMF";}
+    function formatKMFValue(v){return computeKMF(v);}
+    function formatDual(n){return `<span class="dual-price">${formatEUR(n)}<small>${formatKMF(n)}</small></span>`;}
 
     function checkCookies() {
       if (!localStorage.getItem("abp_cookies")) {
@@ -239,7 +265,8 @@
       $("#brandLink").classList.toggle("admin-active", admin);
       $("#brandSub").textContent = admin ? "Mode entreprise actif" : "France → Comores";
       
-      if(admin) {
+      // Bloquer l'affichage du panier pour les non-inscrits et admin
+      if(admin || !state.user) {
         $("#cartNavBtn").style.display = "none";
       } else {
         $("#cartNavBtn").style.display = "grid";
@@ -259,6 +286,7 @@
 
     function switchPage(id, pushHash=true){
       if(id === "compte" && !state.user) id = "login";
+      if(id === "panier" && !state.user && !isAdmin()) { toast("Veuillez vous connecter pour accéder au panier."); id = "login"; }
       if(id === "admin" && !isAdmin()) { currentPage="admin"; $$(".page").forEach(p=>p.classList.toggle("active",p.id==="admin")); renderNav(); if(pushHash && location.pathname !== "/admin") history.pushState(null,"","/admin"); return; }
       if(!document.getElementById(id)) id="home"; currentPage=id;
       $$(".page").forEach(p=>p.classList.toggle("active",p.id===id));
@@ -366,6 +394,7 @@
     }
     
     function confirmAddProduct(){
+      if(!state.user) { toast("Veuillez vous connecter pour ajouter des articles."); $("#productModal").classList.remove("active"); switchPage("login"); return; }
       const p=modalProduct; if(!p)return; 
       const qty=Math.max(1,Number($("#modalQty")?.value||1)); 
       const note=$("#modalNote")?.value||""; 
@@ -414,10 +443,27 @@
         }).join("");
       } 
       const t=cartTotals(); 
+      let disableCheckout = false;
+      let minWarnHtml = "";
+
+      if(t.subtotal > 0 && t.subtotal < 25) {
+          minWarnHtml = `<div class="msg-red" style="margin-bottom:1rem; padding:10px; font-size:0.9rem">Le minimum d'achat est de 25 € (hors frais) pour valider la commande.</div>`;
+          disableCheckout = true;
+      }
+
       $("#subtotal").innerHTML=formatDual(t.subtotal); 
       $("#weightTotal").textContent=(Math.round(t.weight*100)/100)+" kg"; 
       $("#shippingTotal").innerHTML=formatDual(t.shipping); 
       $("#grandTotal").innerHTML=formatDual(t.grand); 
+      $("#minWarnEl").innerHTML = minWarnHtml;
+
+      const btn = $("#goCheckout");
+      if(disableCheckout) {
+          btn.disabled = true;
+      } else {
+          btn.disabled = false;
+      }
+
       $$('[data-op]').forEach(btn=>btn.addEventListener("click",()=>{
           const id=btn.dataset.id;
           const item=state.cart.find(i=>(i.cartId||i.id)===id);
@@ -436,6 +482,7 @@
     $("#customBudget").addEventListener("input",()=>{$("#customKmfPreview").innerHTML=`${formatEUR($("#customBudget").value||0)} = ${formatKMF($("#customBudget").value||0)}`;});
     $("#customForm").addEventListener("submit",e=>{
       e.preventDefault();
+      if(!state.user) { toast("Veuillez vous connecter pour ajouter au panier."); switchPage("login"); return; }
       const d=Object.fromEntries(new FormData(e.currentTarget).entries());
       const id="c_"+Date.now();
       const wKg = numberVal(d.weightKg);
@@ -457,6 +504,8 @@
         e.preventDefault();
         if(!state.cart.length) return toast("Votre panier est vide");
         const totals = cartTotals();
+        if(totals.subtotal < 25) return toast("Minimum d'achat non atteint.");
+
         const data = Object.fromEntries(new FormData(e.currentTarget).entries());
         data.phone = [data.phoneCountry||"",data.phone||""].join(" ").trim();
         data.pickupPhone = [data.pickupCountry||"",data.pickupPhone||""].join(" ").trim();
