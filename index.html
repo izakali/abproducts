@@ -46,7 +46,7 @@
     .nav-link.admin:hover{background:rgba(230,179,77,.09);color:var(--gold)}
     .nav-link.admin.active{color:var(--gold)}.nav-link.admin.active::after{background:var(--gold)}
     .nav-sep{width:1px;height:22px;background:var(--line);margin:0 .45rem}
-    .nav-actions{display:flex;align-items:center;gap:.5rem}.icon-btn{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:var(--card2);border:1px solid var(--line);transition:.2s ease;position:relative;font-size:0.9rem; font-weight:700}.icon-btn:hover{transform:translateY(-2px);background:var(--panel-strong);border-color:var(--muted2)}.cart-badge{position:absolute;right:-6px;top:-6px;min-width:20px;height:20px;border-radius:999px;padding:0 5px;display:grid;place-items:center;background:var(--brand2);color:#04160e;font-size:.7rem;font-weight:800}.mobile-toggle{display:none}
+    .nav-actions{display:flex;align-items:center;gap:1.5rem}.nav-btn{background:transparent;border:0;color:var(--txt);font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:6px;cursor:pointer;transition:.2s ease}.nav-btn:hover{color:var(--brand2)}.cart-badge{background:var(--brand2);color:#04160e;border-radius:999px;padding:2px 7px;font-size:.7rem;font-weight:800}.mobile-toggle{display:none}
     main{padding-top:125px}.page{display:none;animation:pageIn .35s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
     .hero{min-height:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:64px 0 76px}.hero h1{margin-top:1.05rem;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:1.02;letter-spacing:-.035em;max-width:760px;font-weight:800}.gradient-text{background:linear-gradient(120deg,var(--txt) 0%,var(--txt) 55%,var(--brand) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{color:var(--muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:640px;margin:1.2rem 0 0}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:50px;padding:.8rem 1.3rem;border-radius:11px;font-weight:700;letter-spacing:0;transition:.22s ease;border:1px solid transparent;position:relative;overflow:hidden;font-size:.96rem}
@@ -60,9 +60,33 @@
     .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.step{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.3rem;min-height:210px;box-shadow:0 1px 2px rgba(0,0,0,.15)}.step-num{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:var(--brand2);font-weight:800;color:#04160e;margin-bottom:1.1rem;font-family:Archivo,Inter,sans-serif}.step h3{font-size:1.12rem;margin-bottom:.5rem;letter-spacing:-.015em}.step p{color:var(--muted);font-size:.93rem}
     .toolbar{display:grid;grid-template-columns:1fr 180px 160px auto;gap:.8rem;margin:1.4rem 0 1.2rem}.field{min-height:50px;border-radius:11px;border:1px solid var(--line);background:var(--panel);display:flex;align-items:center;gap:.7rem;padding:0 .9rem;transition:border-color .15s ease}.field:focus-within{border-color:var(--brand2);box-shadow:0 0 0 3px rgba(47,191,139,.12)}.field input,.field select,.field textarea{width:100%;background:transparent;border:0;outline:0;color:var(--txt)}.field input::placeholder,.field textarea::placeholder{color:var(--muted2)}.field textarea{padding:.9rem 0;min-height:105px;resize:vertical}.field.compact{min-height:42px;border-radius:9px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.form-grid .wide{grid-column:1/-1}.mini-note{color:var(--muted2);font-size:.85rem;margin-top:.75rem}
     .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.product{border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:.95rem;min-height:410px;display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.15);transition:.22s ease}.product:hover{transform:translateY(-6px);border-color:rgba(47,191,139,.4);box-shadow:0 18px 40px rgba(0,0,0,.25)}.product-art{height:168px;border-radius:11px;margin-bottom:1rem;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;position:relative;overflow:hidden;font-size:3.4rem; color:var(--muted2)}.product-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}.product h3{letter-spacing:-.015em;font-size:1.06rem}.product p{color:var(--muted);font-size:.9rem;margin:.45rem 0 1rem;flex:1}.meta{display:flex;justify-content:space-between;align-items:flex-start;gap:.7rem;margin-bottom:.7rem}.price{font-size:1.04rem;font-weight:800;color:var(--txt);text-align:right;font-variant-numeric:tabular-nums;font-family:Archivo,Inter,sans-serif}.tag{font-size:.76rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.28rem .55rem;background:var(--card2);display:inline-flex;font-weight:600}.product .btn{width:100%;min-height:44px}.product-options{display:flex;gap:.35rem;flex-wrap:wrap;margin:.5rem 0}.product-options span{font-size:.74rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.22rem .45rem}
-    .custom-order,.account-box,.checkout-grid,.cart-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:1rem;align-items:start}.big-icon{height:100%;min-height:320px;border-radius:14px;background:linear-gradient(150deg,#182b47,#13223a);display:grid;place-items:center;font-size:4.5rem;position:relative;overflow:hidden;color:var(--brand2)}.cart-layout{grid-template-columns:1.4fr .8fr}.cart-list{display:grid;gap:.8rem}.cart-item{display:grid;grid-template-columns:auto 1fr auto auto;gap:.9rem;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.15)}.cart-icon{width:74px;height:74px;border-radius:11px;display:grid;place-items:center;font-size:1.4rem;background:var(--card2);border:1px solid var(--line);overflow:hidden; color:var(--muted2)}.cart-icon img{width:100%;height:100%;object-fit:cover}.cart-item small{color:var(--muted)}.qty{display:flex;align-items:center;gap:.45rem}.qty button{width:34px;height:34px;border-radius:9px;background:var(--card2);border:1px solid var(--line)}.summary{position:sticky;top:104px;border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow)}.summary-row{display:flex;justify-content:space-between;gap:1rem;padding:.72rem 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.95rem}.summary-row strong{color:var(--txt);text-align:right;font-variant-numeric:tabular-nums}.summary-total{font-size:1.45rem;color:var(--brand2)!important;font-weight:800}.empty{min-height:240px;display:grid;place-items:center;text-align:center;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);background:var(--card2)}
-    .tracking-line{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-top:1rem}.track-step{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:1rem;text-align:center;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;font-size:.85rem; opacity:0.5; filter:grayscale(100%); transition:0.3s ease}.track-step.done{opacity:1; filter:none; border-color:rgba(47,191,139,.4);background:rgba(47,191,139,.06)}.track-step.active{opacity:1; filter:none; border-color:var(--brand2);background:rgba(47,191,139,.1);box-shadow:0 10px 26px rgba(47,191,139,.12)}.track-ico{font-size:1.5rem; color:var(--brand2); font-weight:800}.track-step small{color:var(--muted2)}
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.faq-item{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:1.2rem;box-shadow:0 1px 2px rgba(0,0,0,.15)}.faq-item h3{font-weight:700; font-size:1.05rem; margin-bottom:0.8rem}.faq-item p{color:var(--muted)}
+    .custom-order,.checkout-grid,.cart-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:1rem;align-items:start}.big-icon{height:100%;min-height:320px;border-radius:14px;background:linear-gradient(150deg,#182b47,#13223a);display:grid;place-items:center;position:relative;overflow:hidden;color:var(--brand2)}.cart-layout{grid-template-columns:1.4fr .8fr}.cart-list{display:grid;gap:.8rem}.cart-item{display:grid;grid-template-columns:auto 1fr auto auto;gap:.9rem;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.15)}.cart-icon{width:74px;height:74px;border-radius:11px;display:grid;place-items:center;font-size:1.4rem;background:var(--card2);border:1px solid var(--line);overflow:hidden; color:var(--muted2)}.cart-icon img{width:100%;height:100%;object-fit:cover}.cart-item small{color:var(--muted)}.qty{display:flex;align-items:center;gap:.45rem}.qty button{width:34px;height:34px;border-radius:9px;background:var(--card2);border:1px solid var(--line)}.summary{position:sticky;top:104px;border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow)}.summary-row{display:flex;justify-content:space-between;gap:1rem;padding:.72rem 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.95rem}.summary-row strong{color:var(--txt);text-align:right;font-variant-numeric:tabular-nums}.summary-total{font-size:1.45rem;color:var(--brand2)!important;font-weight:800}.empty{min-height:240px;display:grid;place-items:center;text-align:center;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);background:var(--card2)}
+    
+    /* Suivi de commande Amazon-style */
+    .tracking-wrapper { position:relative; max-width:800px; margin:3rem auto; display:flex; justify-content:space-between; align-items:flex-start; }
+    .tracking-line-bg { position:absolute; top:18px; left:5%; right:5%; height:4px; background:var(--line); z-index:1; border-radius:4px; }
+    .tracking-progress { position:absolute; top:18px; left:5%; height:4px; background:var(--brand2); z-index:2; transition:0.5s ease; border-radius:4px; width:0%; }
+    .track-step { position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; gap:10px; width:25%; text-align:center; }
+    .track-dot { width:40px; height:40px; border-radius:50%; background:var(--panel); border:4px solid var(--line); display:flex; align-items:center; justify-content:center; transition:0.3s ease; }
+    .track-dot svg { width:16px; height:16px; fill:var(--muted2); opacity:0; transition:0.3s ease; }
+    .track-label { font-size:0.9rem; font-weight:700; color:var(--muted); line-height:1.2; }
+    .track-sub { font-size:0.75rem; color:var(--muted2); margin-top:4px; }
+    .track-step.done .track-dot { border-color:var(--brand2); background:var(--brand2); }
+    .track-step.done .track-dot svg { fill:#04160e; opacity:1; }
+    .track-step.done .track-label { color:var(--txt); }
+    .track-step.active .track-dot { border-color:var(--brand2); background:var(--panel); box-shadow:0 0 0 4px rgba(47,191,139,.2); }
+    .track-step.active .track-dot::after { content:''; width:12px; height:12px; background:var(--brand2); border-radius:50%; }
+    .track-step.active .track-label { color:var(--brand2); }
+
+    /* Espace Client Sidebar */
+    .account-layout { display:grid; grid-template-columns:260px 1fr; gap:2rem; align-items:start; }
+    .account-sidebar { display:flex; flex-direction:column; gap:1.5rem; }
+    .sidebar-section h4 { font-size:.9rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted2); margin-bottom:.8rem; padding-left:.8rem; }
+    .sidebar-link { display:flex; align-items:center; padding:.6rem .8rem; color:var(--muted); border-radius:9px; cursor:pointer; font-size:.95rem; font-weight:600; transition:.2s ease; border:1px solid transparent; }
+    .sidebar-link:hover { color:var(--txt); background:var(--card2); }
+    .sidebar-link.active { color:var(--brand2); background:rgba(47,191,139,.08); border-color:rgba(47,191,139,.2); }
+    
+    .faq-grid{display:grid;grid-template-columns:1fr;gap:1rem}.faq-item{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:1.2rem;box-shadow:0 1px 2px rgba(0,0,0,.15)}.faq-item h3{font-weight:700; font-size:1.05rem; margin-bottom:0.8rem}.faq-item p{color:var(--muted)}
     footer{padding:60px 0 40px;color:rgba(238,243,250,.75);background:#080d16;border-top:3px solid transparent;border-image:var(--flag) 1;margin-top:60px}.footer-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr 1.3fr;gap:2.4rem}.footer-col h4{text-transform:uppercase;letter-spacing:.13em;font-size:.8rem;color:rgba(238,243,250,.5);margin-bottom:1.1rem;font-weight:800}.footer-col ul{list-style:none}.footer-col li{margin-bottom:.7rem}.footer-col a{color:rgba(238,243,250,.78);transition:.2s ease;cursor:pointer}.footer-col a:hover{color:#fff}.newsletter-box{display:flex;margin-top:1.1rem;border:1px solid rgba(238,243,250,.2);border-radius:11px;overflow:hidden;background:rgba(255,255,255,.06)}.newsletter-box input{flex:1;background:transparent;border:0;outline:0;color:#fff;padding:.85rem 1rem}.newsletter-box input::placeholder{color:rgba(238,243,250,.45)}.newsletter-box button{padding:.85rem 1.15rem;font-weight:800;background:var(--brand2);color:#04160e}.footer-bottom{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid rgba(238,243,250,.14);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:rgba(238,243,250,.5)}
     .toast-wrap{position:fixed;right:18px;bottom:18px;z-index:100;display:grid;gap:.7rem}.toast{min-width:min(360px,calc(100vw - 36px));border:1px solid rgba(255,255,255,.08);background:#182b47;color:#fff;border-radius:13px;padding:1rem 1.05rem;box-shadow:0 18px 45px rgba(0,0,0,.5);animation:toastIn .28s ease both;font-size:.94rem}@keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
     .modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:20px;background:rgba(10,20,35,.7);backdrop-filter:blur(6px)}.modal.active{display:grid}.modal-card{width:min(900px,100%);max-height:88vh;overflow:auto;border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:1.4rem;box-shadow:0 30px 90px rgba(0,0,0,.5)}.modal-head{display:flex;justify-content:space-between;align-items:start;gap:1rem;margin-bottom:1rem}.image-strip{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.7rem}.image-strip img,.image-tile{width:80px;height:80px;border-radius:10px;object-fit:cover;border:1px solid var(--line);background:var(--card2)}
@@ -73,7 +97,6 @@
     .gradient-text{animation:textHue 7s ease-in-out infinite alternate}@keyframes textHue{to{filter:hue-rotate(8deg)}}
     .visual-card{animation:floatCard 6s ease-in-out infinite}@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
     .mini-product{animation:miniPulse 3.4s ease-in-out infinite}.mini-product:nth-child(2){animation-delay:.8s}.mini-product:nth-child(3){animation-delay:1.6s}.mini-product:nth-child(4){animation-delay:2.4s}@keyframes miniPulse{50%{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.25)}}
-    .big-icon::before,.big-icon::after{content:"";position:absolute;border:1px solid rgba(255,255,255,.05);border-radius:999px;animation:rings 6s linear infinite}.big-icon::before{width:230px;height:230px}.big-icon::after{width:330px;height:330px;animation-delay:-2s}@keyframes rings{to{transform:rotate(360deg)}}
     .product-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-120%) skewX(-12deg);transition:.6s ease;pointer-events:none}.product:hover .product-art::after{transform:translateX(120%) skewX(-12deg)}
     .product-slider{position:absolute;inset:0;border-radius:inherit;overflow:hidden}.product-slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;opacity:0;animation:productSlide var(--slide-duration,9s) infinite ease-in-out}.product-slider img:first-child{opacity:1}@keyframes productSlide{0%,29%{opacity:1;transform:scale(1.02)}34%,96%{opacity:0;transform:scale(1.08)}100%{opacity:1;transform:scale(1.02)}}
     .product,.step,.glass-card{animation:softRise .55s cubic-bezier(.2,.8,.2,1) both}@keyframes softRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -99,14 +122,9 @@
     .chat-input { display:flex; border-top:1px solid var(--line); padding:.8rem; gap:.5rem; background:var(--card); }
     .chat-input input { flex:1; background:var(--card2); border:1px solid var(--line); border-radius:9px; padding:.6rem .8rem; outline:0; color:var(--txt); font-size:.9rem; }
     .chat-input button { background:var(--brand2); color:#04160e; border:0; border-radius:9px; padding:0 1rem; font-weight:700; cursor:pointer; }
-    
-    .account-nav { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.4rem; padding-bottom:1.4rem; border-bottom:1px solid var(--line); }
-    .account-nav button { background:var(--card2); border:1px solid var(--line); color:var(--muted); padding:.6rem 1.1rem; border-radius:9px; font-weight:600; cursor:pointer; transition:.2s ease; }
-    .account-nav button:hover { border-color:var(--muted2); color:var(--txt); }
-    .account-nav button.active { background:rgba(47,191,139,.1); border-color:var(--brand2); color:var(--brand2); }
 
-    @media(max-width:1000px){.hero,.custom-order,.cart-layout,.account-box,.checkout-grid{grid-template-columns:1fr}.steps,.grid{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.tracking-line{grid-template-columns:1fr 1fr}.footer-grid,.faq-grid{grid-template-columns:1fr}.config-row{grid-template-columns:1fr 1fr}.admin-item{grid-template-columns:auto 1fr auto}.admin-item .admin-actions, .admin-item .field, .admin-item select, .admin-item button {grid-column:1/-1}}
-    @media(max-width:760px){main{padding-top:116px}header{top:31px}.nav{border-radius:0;align-items:center}.nav-links{position:absolute;left:14px;right:14px;top:66px;display:none;flex-direction:column;border-radius:14px;padding:.5rem;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-link{width:100%;text-align:center}.nav-sep{width:100%;height:1px;margin:.3rem 0}.mobile-toggle{display:grid}.brand span{display:none}.hero{padding-top:26px;min-height:auto}.hero h1{font-size:clamp(2.1rem,10vw,3.4rem)}.steps,.grid,.toolbar,.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.cart-item{grid-template-columns:1fr;text-align:center}.cart-icon{margin:auto}.qty{justify-content:center}.section-head{display:block}.tracking-line{grid-template-columns:1fr}.config-row,.shipping-row{grid-template-columns:1fr}.footer-bottom{display:block}.summary{position:static}.btn{width:100%}}
+    @media(max-width:1000px){.hero,.custom-order,.cart-layout,.account-layout,.checkout-grid{grid-template-columns:1fr}.steps,.grid{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.tracking-wrapper{flex-direction:column; gap:20px; align-items:flex-start}.tracking-line-bg{left:18px; top:0; bottom:0; width:4px; height:100%;}.tracking-progress{left:18px; top:0; width:4px; height:0%; transition:height 0.5s ease;}.track-step{width:100%; flex-direction:row; text-align:left;}.footer-grid,.faq-grid{grid-template-columns:1fr}.config-row{grid-template-columns:1fr 1fr}.admin-item{grid-template-columns:auto 1fr auto}.admin-item .admin-actions, .admin-item .field, .admin-item select, .admin-item button {grid-column:1/-1}}
+    @media(max-width:760px){main{padding-top:116px}header{top:31px}.nav{border-radius:0;align-items:center}.nav-links{position:absolute;left:14px;right:14px;top:66px;display:none;flex-direction:column;border-radius:14px;padding:.5rem;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-link{width:100%;text-align:center}.nav-sep{width:100%;height:1px;margin:.3rem 0}.mobile-toggle{display:grid}.brand span{display:none}.hero{padding-top:26px;min-height:auto}.hero h1{font-size:clamp(2.1rem,10vw,3.4rem)}.steps,.grid,.toolbar,.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.cart-item{grid-template-columns:1fr;text-align:center}.cart-icon{margin:auto}.qty{justify-content:center}.section-head{display:block}.config-row,.shipping-row{grid-template-columns:1fr}.footer-bottom{display:block}.summary{position:static}.btn{width:100%}}
   </style>
 </head>
 <body>
@@ -134,9 +152,9 @@
       </a>
       <div class="nav-links" id="navLinks"></div>
       <div class="nav-actions">
-        <button class="icon-btn" data-page="panier" title="Panier" id="cartNavBtn">Panier <span class="cart-badge" id="cartCount">0</span></button>
-        <button class="icon-btn" data-page="login" id="accountBtn" title="Compte">Compte</button>
-        <button class="icon-btn mobile-toggle" id="mobileToggle" title="Menu">Menu</button>
+        <button class="nav-btn" data-page="panier" id="cartNavBtn">Panier <span class="cart-badge" id="cartCount">0</span></button>
+        <button class="nav-btn" data-page="login" id="accountBtn">Connexion</button>
+        <button class="nav-btn mobile-toggle" id="mobileToggle">Menu</button>
       </div>
     </nav>
   </header>
@@ -160,7 +178,12 @@
 
     <section class="page" id="catalogue"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Catalogue</div><h2>Articles disponibles.</h2></div><p>Le prix affiché correspond au prix article. Les frais d'envois seront calculés au panier.</p></div><div class="toolbar"><div class="field"><input id="searchInput" type="search" placeholder="Rechercher : robe, parfum, phare, téléphone..." /></div><div class="field"><select id="categoryFilter"><option value="all">Toutes catégories</option></select></div><div class="field"><select id="sortSelect"><option value="featured">Recommandé</option><option value="asc">Prix croissant</option><option value="desc">Prix décroissant</option></select></div><button class="btn secondary" id="resetFilters">Réinitialiser</button></div><div class="grid" id="productGrid"></div></div></section>
 
-    <section class="page" id="commande"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Commande libre</div><h2>Demandez n'importe quel article.</h2></div><p>Remplissez impérativement les informations ci-dessous. Le budget s'affiche en KMF.</p></div><div class="custom-order"><div class="glass-card"><div class="big-icon">1</div></div><div class="glass-card"><h3 style="font-size:1.7rem;letter-spacing:-.04em;margin-bottom:1rem">Créer une demande personnalisée</h3><form id="customForm" class="form-grid"><div class="field wide"><input required name="name" placeholder="Nom de l'article souhaité" /></div><div class="field wide"><input required name="link" placeholder="Lien du produit" /></div><div class="field"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="qty" type="number" min="1" value="1" placeholder="Quantité" /></div><div class="field"><input required name="budget" id="customBudget" type="number" min="0" step="0.01" placeholder="Budget estimé €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="wide"><div class="pill" id="customKmfPreview">0 € = 0 KMF</div></div><div class="field wide"><input name="options" placeholder="Taille, couleur, modèle, référence... Optionnel" /></div><div class="field wide"><textarea name="notes" placeholder="Notes : urgence, marque préférée, instructions de retrait... Optionnel"></textarea></div><button class="btn primary wide" type="submit">Ajouter cette demande au panier</button></form><p class="mini-note">AB PRODUCTS confirmera le prix réel, la disponibilité et le délai avant achat.</p></div></div></div></section>
+    <section class="page" id="commande"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Commande libre</div><h2>Demandez n'importe quel article.</h2></div><p>Remplissez impérativement les informations ci-dessous. Le budget s'affiche en KMF.</p></div><div class="custom-order">
+      <div class="glass-card"><div class="big-icon">
+        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+      </div></div>
+      <div class="glass-card"><h3 style="font-size:1.7rem;letter-spacing:-.04em;margin-bottom:1rem">Créer une demande personnalisée</h3><form id="customForm" class="form-grid"><div class="field wide"><input required name="name" placeholder="Nom de l'article souhaité" /></div><div class="field wide"><input required name="link" placeholder="Lien du produit" /></div><div class="field"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="qty" type="number" min="1" value="1" placeholder="Quantité" /></div><div class="field"><input required name="budget" id="customBudget" type="number" min="0" step="0.01" placeholder="Budget estimé €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="wide"><div class="pill" id="customKmfPreview">0 € = 0 KMF</div></div><div class="field wide"><input name="options" placeholder="Taille, couleur, modèle, référence... Optionnel" /></div><div class="field wide"><textarea name="notes" placeholder="Notes : urgence, marque préférée, instructions de retrait... Optionnel"></textarea></div><button class="btn primary wide" type="submit">Ajouter cette demande au panier</button></form><p class="mini-note">AB PRODUCTS confirmera le prix réel, la disponibilité et le délai avant achat.</p></div>
+    </div></div></section>
 
     <section class="page" id="panier"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Panier</div><h2>Votre sélection.</h2></div><p>Frais au poids + livraison automatique.</p></div><div class="cart-layout"><div class="cart-list" id="cartList"></div><aside class="summary"><h3 style="font-size:1.5rem;letter-spacing:-.04em">Récapitulatif</h3><div class="summary-row"><span>Articles</span><strong id="subtotal">0 €</strong></div><div class="summary-row"><span>Poids total</span><strong id="weightTotal">0 kg</strong></div><div class="summary-row"><span>Frais</span><strong id="shippingTotal">0 €</strong></div><div class="summary-row" style="border-bottom:0"><span>Total estimé</span><strong class="summary-total" id="grandTotal">0 €</strong></div><div id="minWarnEl"></div><button class="btn primary" style="width:100%;margin-top:1rem" id="goCheckout">Valider la commande</button><button class="btn secondary" style="width:100%;margin-top:.7rem" id="clearCart">Vider le panier</button><p class="mini-note">Calcul indicatif : les prix et modalités peuvent être vérifiés avant confirmation finale.</p></aside></div></div></section>
 
@@ -170,14 +193,43 @@
 
     <section class="page" id="login"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace sécurisé</div><h2>Connexion.</h2></div><p>Saisissez vos identifiants pour accéder à votre espace personnel ou professionnel.</p></div><div class="checkout-grid"><div class="glass-card" style="grid-column:1/-1; max-width:500px; margin:auto; width:100%"><form id="unifiedLoginForm" class="form-grid"><div class="field wide"><input required name="login_id" type="text" placeholder="Adresse e-mail ou Identifiant" autocomplete="username" /></div><div class="field wide"><input required type="password" name="password" placeholder="Mot de passe" autocomplete="current-password" /></div><button class="btn primary wide" type="submit">Se connecter</button></form><p class="auth-switch mini-note">Pas encore de compte ? <a data-page="signup" style="color:var(--brand);font-weight:900;cursor:pointer">Créer un compte</a></p><p class="mini-note" style="text-align:right"><a href="#" id="forgotBtn" style="color:var(--brand);font-weight:900">Mot de passe oublié ?</a></p></div></div></div></section>
 
-    <section class="page" id="signup"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace client</div><h2>Créer un compte.</h2></div><p>Un compte gratuit pour commander plus vite et suivre facilement vos colis.</p></div><div class="account-box"><div class="glass-card"><div class="big-icon">Compte</div></div><div class="glass-card"><h3 style="font-size:1.8rem;margin-bottom:1rem">Inscription</h3><form id="signupForm" class="form-grid"><div class="field wide"><input required name="name" pattern=".{3,}" title="Veuillez entrer un nom complet" placeholder="Nom complet" autocomplete="name" /></div><div class="field wide"><input required type="email" name="email" placeholder="Adresse e-mail" autocomplete="email" /></div><div class="field"><select name="phoneCountry" id="signupPhoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro valide" placeholder="Téléphone / WhatsApp" autocomplete="tel" /></div><div class="field wide"><input required type="password" name="password" minlength="6" placeholder="Mot de passe, 6 caractères min." autocomplete="new-password" /></div><div class="field wide"><input required type="password" name="password2" placeholder="Confirmer le mot de passe" autocomplete="new-password" /></div><button class="btn primary wide" type="submit">Créer mon compte</button></form><p class="mini-note">Déjà inscrit ? <a data-page="login" style="color:var(--brand);font-weight:900;cursor:pointer">Se connecter</a></p></div></div></div></section>
+    <section class="page" id="signup"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace client</div><h2>Créer un compte.</h2></div><p>Un compte gratuit pour commander plus vite et suivre facilement vos colis.</p></div><div class="account-box"><div class="glass-card"><div class="big-icon"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div></div><div class="glass-card"><h3 style="font-size:1.8rem;margin-bottom:1rem">Inscription</h3><form id="signupForm" class="form-grid"><div class="field wide"><input required name="name" pattern=".{3,}" title="Veuillez entrer un nom complet" placeholder="Nom complet" autocomplete="name" /></div><div class="field wide"><input required type="email" name="email" placeholder="Adresse e-mail" autocomplete="email" /></div><div class="field"><select name="phoneCountry" id="signupPhoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro valide" placeholder="Téléphone / WhatsApp" autocomplete="tel" /></div><div class="field wide"><input required type="password" name="password" minlength="6" placeholder="Mot de passe, 6 caractères min." autocomplete="new-password" /></div><div class="field wide"><input required type="password" name="password2" placeholder="Confirmer le mot de passe" autocomplete="new-password" /></div><button class="btn primary wide" type="submit">Créer mon compte</button></form><p class="mini-note">Déjà inscrit ? <a data-page="login" style="color:var(--brand);font-weight:900;cursor:pointer">Se connecter</a></p></div></div></div></section>
 
-    <section class="page" id="compte"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace client</div><h2>Mon compte.</h2></div><p>Gérez vos informations, vos commandes et contactez le support.</p></div><div class="glass-card"><div class="account-nav"><button class="active" data-tab="info">Mes informations</button><button data-tab="orders">Mes commandes</button><button class="danger" id="logoutBtn" style="margin-left:auto; background:rgba(255,85,115,.08); color:var(--danger); border-color:rgba(255,85,115,.3);">Déconnexion</button></div><div id="accountContent"></div></div></div></section>
+    <section class="page" id="compte"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace client</div><h2>Mon compte.</h2></div><p>Gérez vos informations, vos commandes et contactez le support.</p></div>
+    <div class="account-layout">
+        <div class="account-sidebar glass-card" style="padding:1.5rem 1rem">
+            <div class="sidebar-section">
+                <h4>Mon profil</h4>
+                <div class="sidebar-link active" data-tab="info">Gérer mon compte</div>
+                <div class="sidebar-link" data-tab="unimplemented">Mes adresses</div>
+                <div class="sidebar-link" data-tab="unimplemented">Mes options de paiement</div>
+            </div>
+            <div class="sidebar-section">
+                <h4>Mes Commandes</h4>
+                <div class="sidebar-link" data-tab="orders_all">Toutes les commandes</div>
+                <div class="sidebar-link" data-tab="orders_unpaid">Commandes non payées</div>
+                <div class="sidebar-link" data-tab="orders_processing">Commandes en traitement</div>
+                <div class="sidebar-link" data-tab="orders_shipped">Commandes expédiées</div>
+                <div class="sidebar-link" data-tab="orders_returned">Commandes renvoyées</div>
+            </div>
+            <div class="sidebar-section">
+                <h4>Service Client</h4>
+                <div class="sidebar-link" data-tab="unimplemented">Archives des services</div>
+                <div class="sidebar-link" onclick="$('#openChatBtn').click()">Nous contacter</div>
+            </div>
+            <div class="sidebar-section">
+                <h4>Paramètres</h4>
+                <div class="sidebar-link" id="logoutBtn" style="color:var(--danger)">Se Déconnecter</div>
+            </div>
+        </div>
+        <div class="glass-card" id="accountContent"></div>
+    </div>
+    </div></section>
 
     <section class="page" id="admin"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Espace sécurisé</div><h2>Interface entreprise.</h2></div><p>Gestion globale du service professionnel.</p></div><div id="adminContent"></div></div></section>
 
     <section class="page" id="faq"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Infos</div><h2>Questions fréquentes.</h2></div><p>Règles client, calculs et fonctionnement du service.</p></div><div class="faq-grid">
-      <div class="faq-item"><h3>Pourquoi les prix sont en euros et KMF ?</h3><p>Le prix euro est converti exactement avec la parité stricte de 1 € = 500 KMF. <br><br><strong>Arrondi KMF :</strong> Les montants se terminant par 00, 25, 50 ou 75 restent inchangés. Tous les autres montants sont automatiquement arrondis au multiple de 25 KMF le plus proche afin de faciliter le paiement en espèces.</p></div>
+      <div class="faq-item"><h3>Pourquoi les prix sont en euros et KMF ?</h3><p>Le prix euro est converti avec la parité stricte de 1 € = 500 KMF. <br><br><strong>Arrondi KMF :</strong> Les montants se terminant par 00, 25, 50 ou 75 restent inchangés. Tous les autres montants sont automatiquement arrondis au multiple de 25 KMF le plus proche afin de faciliter le paiement en espèces.</p></div>
       <div class="faq-item"><h3>Comment sont calculés les frais d'envoi ?</h3><p>Le calcul se fait selon le poids global du panier : 4,50 € si moins d'1 kilo, ou 9 € par kilo. À cela s'ajoutent les frais de livraison fixes de 4,99 €.</p></div>
       <div class="faq-item"><h3>Peut-on importer depuis n'importe quel site ?</h3><p>Le site tente de récupérer automatiquement titre, prix, description et images depuis le lien. Certains sites bloquent la lecture automatique : les champs restent modifiables avant publication.</p></div>
       <div class="faq-item"><h3>Où récupérer le colis ?</h3><p>Les colis ont pour destination MOHÉLI est seront disponibles au point relais AB Motors.<br>📍Adresse Djoiezi, Monaco<br><br>Possibilité de retrait à Anjouan sous conditions, nous contacter sur Whatsapp.</p></div>
@@ -189,7 +241,6 @@
 
   <div class="toast-wrap" id="toastWrap"></div>
   <datalist id="categoryOptions"></datalist>
-  <datalist id="adminMsgsList"></datalist>
 
   <button class="chat-btn" id="openChatBtn">Aide</button>
   <div class="chat-box" id="chatBox">
@@ -203,19 +254,7 @@
 
   <div class="modal" id="orderModal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow">Commande confirmée</div><h2 style="font-size:2.5rem">Merci.</h2></div><button class="icon-btn" id="closeOrderModal">X</button></div><div id="orderModalContent"></div></div></div>
   <div class="modal" id="productModal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow">Article</div><h2 id="modalProductTitle" style="font-size:2.2rem; display:none;">Article</h2></div><button class="icon-btn" id="closeProductModal">X</button></div><div id="modalProductContent"></div></div></div>
-
-  <div id="cookieBanner" class="glass-card" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(500px, calc(100vw - 48px));z-index:9999;display:none;flex-direction:column;gap:1rem;box-shadow:0 30px 90px rgba(0,0,0,.5);">
-    <h3 style="margin:0;font-size:1.2rem;">Préférences de cookies</h3>
-    <p style="margin:0;font-size:0.9rem;color:var(--muted);">Nous utilisons des cookies strictement nécessaires au fonctionnement du site et des cookies facultatifs pour les statistiques.</p>
-    <div style="display:flex;flex-direction:column;gap:.6rem;">
-      <label style="display:flex;align-items:center;gap:.6rem;font-size:0.9rem;color:var(--txt);"><input type="checkbox" checked disabled style="accent-color:var(--brand2);"> Cookies nécessaires Requis</label>
-      <label style="display:flex;align-items:center;gap:.6rem;font-size:0.9rem;color:var(--txt);cursor:pointer;"><input type="checkbox" id="cookieOptional" checked style="accent-color:var(--brand2);"> Cookies facultatifs Statistiques</label>
-    </div>
-    <div style="display:flex;gap:.8rem;margin-top:.5rem;">
-      <button class="btn primary" id="acceptAllCookies" style="flex:1;">Tout accepter</button>
-      <button class="btn secondary" id="saveCookiesBtn" style="flex:1;">Enregistrer</button>
-    </div>
-  </div>
+  <div class="modal" id="adminCartModal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow">Détails</div><h2 style="font-size:2.2rem;">Panier Client</h2></div><button class="icon-btn" id="closeAdminCartModal">X</button></div><div id="adminCartContent"></div></div></div>
 
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbyeDK7OZ6e5mRTiyb9L2vFlLv6-cKLduvSYoFgWn1-Wcce2tq3EpSyb-_SHFDQBSEQIUw/exec";
@@ -223,26 +262,20 @@
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
     const DEFAULT_CONFIG = { kmfRate: 500 };
     const CLIENT_NAV = [{id:"home",label:"Accueil"},{id:"catalogue",label:"Catalogue"},{id:"commande",label:"Commande libre"},{id:"suivi",label:"Suivi"},{id:"faq",label:"Infos"}];
-    const ADMIN_NAV = [{tab:"orders",label:"Commandes"},{tab:"products",label:"Articles"},{tab:"clients",label:"Clients"},{tab:"messages",label:"Messages"}];
+    const ADMIN_NAV = [{tab:"orders",label:"Commandes"},{tab:"archives",label:"Archives"},{tab:"products",label:"Articles"},{tab:"clients",label:"Clients"},{tab:"messages",label:"Messages"},{tab:"config",label:"Configuration"}];
     const ROUTES = {home:"/home",catalogue:"/catalogue",commande:"/commande",panier:"/panier",checkout:"/checkout",suivi:"/suivi",faq:"/faq",login:"/login",signup:"/signup",compte:"/compte",admin:"/admin"};
     const PATH_TO_PAGE = Object.fromEntries(Object.entries(ROUTES).map(([k,v])=>[v,k]));
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
     const apiReady = () => API_URL.startsWith("https://");
     
-    let currentPage = "home";
-    let adminTab = "orders";
-    let modalProduct = null;
-    let adminImages = [];
-    let savedAdminMsgs = JSON.parse(localStorage.getItem("abp_msgs")||"[]");
-    let chatInterval = null;
+    let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let adminImages = []; let chatInterval = null;
 
     const state = {
       products: [], catalogLoaded: false, config: structuredClone(DEFAULT_CONFIG),
       cart: JSON.parse(localStorage.getItem("abp_cart") || "[]"),
       user: JSON.parse(localStorage.getItem("abp_user") || "null"),
-      lastOrder: JSON.parse(localStorage.getItem("abp_last_order") || "null"),
-      clientOrders: []
+      lastOrder: JSON.parse(localStorage.getItem("abp_last_order") || "null")
     };
 
     async function api(payload){
@@ -265,16 +298,11 @@
     function formatKMFValue(v){return computeKMF(v);}
     function formatDual(n){return `<span class="dual-price">${formatEUR(n)}<small>${formatKMF(n)}</small></span>`;}
 
-    function checkCookies() { if (!localStorage.getItem("abp_cookies")) $("#cookieBanner").style.display = "flex"; }
-    async function saveCookieConsent(optional) { localStorage.setItem("abp_cookies", JSON.stringify({necessary: true, optional})); $("#cookieBanner").style.display = "none"; if(apiReady()) { api({action: "savecookies", optional}).catch(()=>{}); } }
-    $("#acceptAllCookies")?.addEventListener("click", () => saveCookieConsent(true));
-    $("#saveCookiesBtn")?.addEventListener("click", () => saveCookieConsent($("#cookieOptional").checked));
-
     function renderNav(){
       const admin = isAdmin(); const onAdminPage = currentPage === "admin";
       $("#brandLink").classList.toggle("admin-active", admin);
       $("#brandSub").textContent = admin ? "Mode entreprise actif" : "France → Comores";
-      $("#cartNavBtn").style.display = (admin || !state.user) ? "none" : "grid";
+      $("#cartNavBtn").style.display = (admin || !state.user) ? "none" : "flex";
       $("#accountBtn").textContent = admin ? "Entreprise" : (state.user ? "Mon Compte" : "Connexion");
       $("#accountBtn").dataset.page = admin ? "admin" : (state.user ? "compte" : "login");
       $("#openChatBtn").style.display = (state.user && !admin) ? "grid" : "none";
@@ -318,14 +346,13 @@
 
     async function loadCatalog(force=false){
       if(state.catalogLoaded && !force) return;
-      try{const data=await api({action:"getcatalog"}); if(data.ok){state.products=(data.items||[]).map(normalizeProduct); state.catalogLoaded=true; initCategories(); renderProducts(); renderCategoryOptions();}}
+      try{const data=await api({action:"getcatalog"}); if(data.ok){state.products=(data.items||[]).map(normalizeProduct); state.catalogLoaded=true; initCategories(); renderProducts(); }}
       catch(e){state.catalogLoaded=true; renderProducts();}
     }
     function normalizeProduct(p){p=p||{}; const imgs=Array.isArray(p.images)?p.images.filter(Boolean):(p.image?[p.image]:[]); return {...p,images:imgs.slice(0,3),image:imgs[0]||p.image||"",price:numberVal(p.price),recommendedPrice:numberVal(p.recommendedPrice),weight:numberVal(p.weight),category:p.category||"Divers",params:p.params||{}};}
     function initCategories(){const cats=[...new Set(state.products.map(p=>p.category).filter(Boolean))].sort();$("#categoryFilter").innerHTML='<option value="all">Toutes catégories</option>'+cats.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");}
-    function renderCategoryOptions(){const cats=[...new Set(state.products.map(p=>p.category).filter(Boolean))].sort();$("#categoryOptions").innerHTML=cats.map(c=>`<option value="${escapeHtml(c)}"></option>`).join("");}
     function filteredProducts(){const q=$("#searchInput")?.value?.toLowerCase().trim()||"";const cat=$("#categoryFilter")?.value||"all";const sort=$("#sortSelect")?.value||"featured";let items=state.products.filter(p=>[p.name,p.category,p.desc,p.brand,Object.values(p.params||{}).join(" ")].join(" ").toLowerCase().includes(q)&&(cat==="all"||p.category===cat));if(sort==="asc")items.sort((a,b)=>a.price-b.price);if(sort==="desc")items.sort((a,b)=>b.price-a.price);return items;}
-    function productArt(p){const imgs=(p.images||[]).filter(Boolean).slice(0,3);if(imgs.length>1){const duration=imgs.length*3;return `<div class="product-slider" style="--slide-duration:${duration}s">${imgs.map((img,i)=>`<img class="product-slide" src="${escapeHtml(img)}" alt="${escapeHtml(p.name)}" loading="lazy" style="animation-delay:${i*3}s" />`).join("")}</div>`;}if(imgs.length===1)return `<img src="${escapeHtml(imgs[0])}" alt="${escapeHtml(p.name)}" loading="lazy" />`;return "Article";}
+    function productArt(p){const imgs=(p.images||[]).filter(Boolean).slice(0,3);if(imgs.length>1){const duration=imgs.length*3;return `<div class="product-slider" style="--slide-duration:${duration}s">${imgs.map((img,i)=>`<img class="product-slide" src="${escapeHtml(img)}" alt="${escapeHtml(p.name)}" loading="lazy" style="animation-delay:${i*3}s" />`).join("")}</div>`;}if(imgs.length===1)return `<img src="${escapeHtml(imgs[0])}" alt="${escapeHtml(p.name)}" loading="lazy" />`;return `<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`;}
     function optionChips(p){const parts=[]; if(p.weight)parts.push(`${p.weight} kg`); if(p.sizes)parts.push(`T. ${escapeHtml(p.sizes)}`); if(p.colors)parts.push(`${escapeHtml(p.colors)}`); if(p.brand)parts.push(escapeHtml(p.brand)); return parts.slice(0,4).map(x=>`<span>${x}</span>`).join("");}
     
     function renderProducts(){const grid=$("#productGrid"); if(!grid)return; const items=filteredProducts(); if(!state.products.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div><h3>Catalogue en préparation</h3><p>Le catalogue est en cours de mise à jour.</p></div></div>`; return;} if(!items.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div><h3>Aucun article trouvé</h3></div></div>`;return;} grid.innerHTML=items.map(p=>`<article class="product"><div class="product-art">${productArt(p)}</div><div class="meta"><span class="tag">${escapeHtml(p.category)}</span><span class="price">${formatDual(p.price)}</span></div><h3>${escapeHtml(p.name)}</h3><div class="product-options">${optionChips(p)}</div><p>${escapeHtml(p.desc)}</p><button class="btn primary add-btn" data-id="${p.id}">Ajouter au panier</button></article>`).join(""); $$(".add-btn").forEach(btn=>btn.addEventListener("click",()=>openProductModal(btn.dataset.id)));}
@@ -335,11 +362,8 @@
     function splitList(s){return String(s||"").split(/[,;|]/).map(x=>x.trim()).filter(Boolean);}
     
     function openProductModal(id){
-      const p = state.products.find(x => x.id === id); 
-      if(!p) return; 
-      modalProduct = p; 
-      const sizes = splitList(p.sizes), colors = splitList(p.colors);
-      let variantsHtml = "";
+      const p = state.products.find(x => x.id === id); if(!p) return; modalProduct = p; 
+      const sizes = splitList(p.sizes), colors = splitList(p.colors); let variantsHtml = "";
       if(sizes.length) variantsHtml += `<div style="margin-bottom:1rem"><strong style="font-size:0.95rem; color:var(--txt); display:block; margin-bottom:.4rem">Taille</strong><div class="variant-group">` + sizes.map(s=>`<label class="variant-label"><input type="radio" name="v_size" value="${escapeHtml(s)}"> ${escapeHtml(s)}</label>`).join("") + `</div></div>`;
       if(colors.length) variantsHtml += `<div style="margin-bottom:1rem"><strong style="font-size:0.95rem; color:var(--txt); display:block; margin-bottom:.4rem">Couleur</strong><div class="variant-group">` + colors.map(c=>`<label class="variant-label"><input type="radio" name="v_color" value="${escapeHtml(c)}"> ${escapeHtml(c)}</label>`).join("") + `</div></div>`;
       const paramsHtml = Object.entries(p.params||{}).filter(([k,v])=>v).map(([k,v])=>{
@@ -376,15 +400,13 @@
     function confirmAddProduct(){
       if(!state.user) { toast("Veuillez vous connecter pour ajouter des articles."); $("#productModal").classList.remove("active"); switchPage("login"); return; }
       const p=modalProduct; if(!p)return; 
-      const qty=Math.max(1,Number($("#modalQty")?.value||1)); 
-      const note=$("#modalNote")?.value||""; 
-      let selectedOptions = [];
-      $$("#modalProductContent input[type='radio']:checked").forEach(radio => selectedOptions.push(radio.value));
+      const qty=Math.max(1,Number($("#modalQty")?.value||1)); const note=$("#modalNote")?.value||""; 
+      let selectedOptions = []; $$("#modalProductContent input[type='radio']:checked").forEach(radio => selectedOptions.push(radio.value));
       const optionsString = selectedOptions.join(" / ");
       const cartId = [p.id, optionsString, note].join("|"); 
       const existing = state.cart.find(i=>i.cartId===cartId&&i.type==="product"); 
       if(existing) existing.qty += qty; 
-      else state.cart.push({type:"product", cartId, id:p.id, name:p.name, price:p.price, category:p.category, qty, weight:p.weight||0.5, image:p.image, icon:"Article", options:optionsString, note, params:p.params||{}}); 
+      else state.cart.push({type:"product", cartId, id:p.id, name:p.name, price:p.price, category:p.category, qty, weight:p.weight||0.5, image:p.image, icon:productArt(p), options:optionsString, note, params:p.params||{}}); 
       save(); $("#productModal").classList.remove("active"); toast(`${p.name} ajouté au panier`);
     }
     $("#closeProductModal").addEventListener("click",()=>$("#productModal").classList.remove("active"));
@@ -402,7 +424,8 @@
       if(!state.cart.length){ list.innerHTML=`<div class="empty"><div><h3>Votre panier est vide</h3></div></div>`; } 
       else {
         list.innerHTML=`<div class="pill" style="margin-bottom:1rem;color:var(--gold)"><span class="dot" style="background:var(--gold)"></span>Le panier est supprimé après 10 jours d'inactivité.</div>`+state.cart.map(item=>{
-            return `<div class="cart-item"><div class="cart-icon">${item.image?`<img src="${escapeHtml(item.image)}" alt="">`:item.icon||"A"}</div><div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category)} • article ${formatEUR(item.price)} • ${item.weight||0.5} kg</small>${item.options?`<br><small style="color:var(--brand3); font-weight:600">${escapeHtml(item.options)}</small>`:""}</div><div class="qty"><button class="qty-btn" data-op="minus" data-id="${escapeHtml(item.cartId||item.id)}">−</button><strong>${item.qty}</strong><button class="qty-btn" data-op="plus" data-id="${escapeHtml(item.cartId||item.id)}">+</button></div><button class="icon-btn" data-op="remove" data-id="${escapeHtml(item.cartId||item.id)}">X</button></div>`
+            const thumb = item.image ? `<img src="${escapeHtml(item.image)}" alt="">` : (item.icon && item.icon.startsWith('<svg') ? item.icon : `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`);
+            return `<div class="cart-item"><div class="cart-icon">${thumb}</div><div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category)} • article ${formatEUR(item.price)} • ${item.weight||0.5} kg</small>${item.options?`<br><small style="color:var(--brand3); font-weight:600">${escapeHtml(item.options)}</small>`:""}</div><div class="qty"><button class="qty-btn" data-op="minus" data-id="${escapeHtml(item.cartId||item.id)}">−</button><strong>${item.qty}</strong><button class="qty-btn" data-op="plus" data-id="${escapeHtml(item.cartId||item.id)}">+</button></div><button class="icon-btn" style="color:var(--danger); border-color:rgba(255,85,115,.3)" data-op="remove" data-id="${escapeHtml(item.cartId||item.id)}">X</button></div>`
         }).join("");
       } 
       const t=cartTotals(); 
@@ -437,7 +460,7 @@
       const d=Object.fromEntries(new FormData(e.currentTarget).entries());
       const id="c_"+Date.now();
       const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
-      state.cart.push({type:"custom", cartId:id, id, name:d.name, price:numberVal(d.budget), icon:"Demande", category:d.category||"Divers", qty:Number(d.qty||1), link:d.link, options:d.options, note:d.notes, weight:totalWeight});
+      state.cart.push({type:"custom", cartId:id, id, name:d.name, price:numberVal(d.budget), category:d.category||"Divers", qty:Number(d.qty||1), link:d.link, options:d.options, note:d.notes, weight:totalWeight});
       save(); toast("Demande personnalisée ajoutée"); switchPage("panier");
       e.currentTarget.reset(); e.currentTarget.qty.value=1; $("#customKmfPreview").textContent="0 € = 0 KMF";
     });
@@ -474,18 +497,7 @@
     function showOrderModal(order){$("#orderModalContent").innerHTML=`<div class="glass-card" style="box-shadow:none"><p>Votre commande a été enregistrée sous le numéro :</p><h3 style="font-size:2rem;color:var(--brand3);margin:.5rem 0">${order.id}</h3><div class="summary-row"><span>Total estimé</span><strong>${formatDual(order.totals.grand)}</strong></div><button class="btn primary" style="margin-top:1rem" id="goTrackFromModal">Voir le suivi</button></div>`;$("#orderModal").classList.add("active");$("#trackingInput").value=order.id;$("#goTrackFromModal").addEventListener("click",()=>{$("#orderModal").classList.remove("active");switchPage("suivi");});}
     $("#closeOrderModal").addEventListener("click",()=>$("#orderModal").classList.remove("active"));
 
-    const TRACK_STAGES=[
-      ['En attente de validation','[ 1 ]','Vérification en cours'],
-      ['En attente de paiement','[ 2 ]','Paiement non reçu'],
-      ['Payé','[ 3 ]','Paiement confirmé'],
-      ['Achat en cours','[ 4 ]','Commande en préparation'],
-      ['Colis recpetionné AB PRODUCTS FR','[ 5 ]','Reçu en France'],
-      ["En attente d'expédition",'[ 6 ]','Prêt pour l’envoi'],
-      ["En cours d'acheminement",'[ 7 ]','En transit'],
-      ['Arrivé au port','[ 8 ]','Arrivé aux Comores'],
-      ['Colis dispo en retrait AB PRODUCTS KM','[ 9 ]','Disponible']
-    ];
-    
+    // Suivi et affichage Tracking - Mode Ligne Horizontale continue
     function trackingOrderFromHash(){const qs=new URLSearchParams(location.search);return qs.get("order")||qs.get("orderId")||"";}
     function renderTrackingStart(){const orderFromLink=trackingOrderFromHash();if(orderFromLink)$("#trackingInput").value=orderFromLink;else if(state.lastOrder)$("#trackingInput").value=state.lastOrder.id;$("#trackingResult").innerHTML="";if(orderFromLink)setTimeout(()=>$("#trackingBtn").click(),250);}
     
@@ -496,26 +508,50 @@
         const box=$("#trackingResult");box.innerHTML=`<p style="margin-top:1rem;color:var(--muted)">Recherche en cours…</p>`;
         try {
             const res = await api({action:"gettracking", orderId:id, userEmail:state.user.email});
-            if(!res.ok){
-                box.innerHTML=`<div class="pill" style="margin-top:1rem; border-color:var(--danger); color:var(--danger)"><span class="dot" style="background:var(--danger)"></span> ${escapeHtml(res.error)}</div>`;
-                return;
-            }
+            if(!res.ok){ box.innerHTML=`<div class="pill" style="margin-top:1rem; border-color:var(--danger); color:var(--danger)"><span class="dot" style="background:var(--danger)"></span> ${escapeHtml(res.error)}</div>`; return; }
             if(String(res.order.status).toLowerCase().includes("annulé") || String(res.order.status).toLowerCase().includes("rétractation")) {
                 box.innerHTML=`<div class="msg-red">Commande annulée ou rétractée. Contactez le support si besoin.</div>`; return;
             }
-            let idx = TRACK_STAGES.findIndex(s => String(res.order.status).toLowerCase().includes(s[0].toLowerCase()));
-            if(idx === -1) idx = 0;
-            box.innerHTML=`<div style="margin-top:1rem"><div class="pill"><span class="dot"></span> Commande ${escapeHtml(res.order.id)} — ${escapeHtml(res.order.items)} article(s)</div>
-            ${res.order.note ? `<div class="msg-red">Information AB PRODUCTS : ${escapeHtml(res.order.note)}</div>` : ""}
-            <div class="tracking-line">${TRACK_STAGES.map((s,i)=>{
-                return `<div class="track-step ${i<idx?"done":i===idx?"active":""}"><div class="track-ico">${s[1]}</div><strong>${s[0]}</strong><small>${s[2]}</small></div>`
-            }).join("")}</div></div>`;
+            
+            // Map the internal status to the 4 visual steps
+            const s = String(res.order.status).toLowerCase();
+            let step = 1; let stepStr = "Commande validée";
+            if(s.includes("paiement")) { step = 2; stepStr = "En attente de paiement"; }
+            if(s.includes("payé") || s.includes("achat") || s.includes("recpetionné")) { step = 2; stepStr = "Préparation / Achat en cours"; }
+            if(s.includes("expédition") || s.includes("acheminement") || s.includes("port")) { step = 3; stepStr = "Expédié / En transit"; }
+            if(s.includes("retrait")) { step = 4; stepStr = "Colis disponible"; }
+
+            box.innerHTML=`<div style="margin-top:1rem">
+                <div class="pill" style="margin-bottom:1.5rem"><span class="dot"></span> Commande ${escapeHtml(res.order.id)} — ${escapeHtml(res.order.items)} article(s)</div>
+                <h3 style="font-size:1.8rem; margin-bottom:0.5rem; color:var(--brand2)">${stepStr}</h3>
+                ${res.order.note ? `<div class="msg-red">Information AB PRODUCTS : ${escapeHtml(res.order.note)}</div>` : ""}
+                <div class="tracking-wrapper">
+                    <div class="tracking-line-bg"></div>
+                    <div class="tracking-progress" style="width:${(step-1)*33.33}%"></div>
+                    
+                    <div class="track-step ${step>=1?'done':''} ${step===1?'active':''}">
+                        <div class="track-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div><div class="track-label">Validé</div><div class="track-sub">Commande confirmée</div></div>
+                    </div>
+                    <div class="track-step ${step>=2?'done':''} ${step===2?'active':''}">
+                        <div class="track-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div><div class="track-label">Préparation</div><div class="track-sub">Achat & Tri</div></div>
+                    </div>
+                    <div class="track-step ${step>=3?'done':''} ${step===3?'active':''}">
+                        <div class="track-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div><div class="track-label">Expédié</div><div class="track-sub">En transit</div></div>
+                    </div>
+                    <div class="track-step ${step>=4?'done':''} ${step===4?'active':''}">
+                        <div class="track-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div><div class="track-label">Arrivé</div><div class="track-sub">Prêt au retrait</div></div>
+                    </div>
+                </div>
+            </div>`;
         }catch(e){ box.innerHTML=`<div class="pill" style="margin-top:1rem">Erreur de connexion.</div>`; }
     });
 
     $("#unifiedLoginForm").addEventListener("submit",async e=>{
-        e.preventDefault();
-        const d=Object.fromEntries(new FormData(e.currentTarget).entries());
+        e.preventDefault(); const d=Object.fromEntries(new FormData(e.currentTarget).entries());
         const btn=e.currentTarget.querySelector("button[type=submit]");
         if(d.login_id === "abadmin" && d.password === "@@Iza.0405//"){
             sessionStorage.setItem("abp_admin", _K); adminTab="orders"; toast("Bienvenue dans l'interface entreprise"); switchPage("admin"); e.target.reset(); return;
@@ -534,23 +570,28 @@
     $("#signupForm").addEventListener("submit",async e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget).entries());if(data.password!==data.password2)return toast("Mots de passe différents");const btn=e.currentTarget.querySelector("button[type=submit]");btn.disabled=true;btn.textContent="Création…";try{const passHash=await sha256(data.email.toLowerCase().trim()+"|"+data.password+"|"+_S2);const phoneNumber=(data.phone||"").trim();const fullPhone=phoneNumber?`${data.phoneCountry||""} ${phoneNumber}`.trim():"";const res=await api({action:"signup",name:data.name,email:data.email,phone:fullPhone,passHash});if(!res.ok)throw new Error(res.error);state.user=res.user;save();toast("Bienvenue "+res.user.name);switchPage("compte");e.target.reset();initPhoneCountries();}catch(err){toast(err.message);}finally{btn.disabled=false;btn.textContent="Créer mon compte";}});
     $("#forgotBtn").addEventListener("click",async e=>{e.preventDefault();const em=prompt("Entrez l'adresse email de votre compte :");if(!em)return;toast("Envoi en cours...");try{const r=await api({action:"resetpassword",email:em});toast(r.ok?"Email de réinitialisation envoyé":"Erreur "+r.error);}catch(er){toast("Erreur serveur.");}});
 
-    // Espace Client
+    // Espace Client : Sidebar
     function renderAccount(){
-      const box=$("#accountContent"); if(!state.user)return switchPage("login");
-      const navs = $$(".account-nav button");
+      if(!state.user) return switchPage("login");
+      const navs = $$(".sidebar-link");
       navs.forEach(b => b.addEventListener("click", e => {
-          if(e.target.id === "logoutBtn") return;
+          if(e.currentTarget.id === "logoutBtn" || e.currentTarget.hasAttribute("onclick")) return;
           navs.forEach(n => n.classList.remove("active"));
-          e.target.classList.add("active");
-          renderAccountTab(e.target.dataset.tab);
+          e.currentTarget.classList.add("active");
+          renderAccountTab(e.currentTarget.dataset.tab);
       }));
       renderAccountTab("info");
     }
     
     async function renderAccountTab(tab) {
         const box=$("#accountContent");
+        if(tab === "unimplemented") {
+            box.innerHTML = `<div class="empty"><div><h3>Section en développement</h3><p>Cette fonctionnalité sera bientôt disponible.</p></div></div>`;
+            return;
+        }
         if(tab === "info") {
             box.innerHTML = `
+            <h3 style="margin-bottom:1.5rem; font-size:1.8rem">Gérer mon compte</h3>
             <form id="updateAccountForm" class="form-grid" style="max-width:600px">
                 <div class="field wide"><input required name="name" value="${escapeHtml(state.user.name)}" placeholder="Nom complet" /></div>
                 <div class="field wide"><input required type="email" name="email" value="${escapeHtml(state.user.email)}" placeholder="Adresse e-mail" disabled style="opacity:0.5" /></div>
@@ -567,8 +608,7 @@
                 e.preventDefault(); const d = Object.fromEntries(new FormData(e.currentTarget).entries());
                 const btn = e.currentTarget.querySelector("button"); btn.disabled=true; btn.textContent="Mise à jour...";
                 try {
-                    let passHash = null;
-                    if(d.newPassword) passHash = await sha256(state.user.email.toLowerCase().trim()+"|"+d.newPassword+"|"+_S2);
+                    let passHash = null; if(d.newPassword) passHash = await sha256(state.user.email.toLowerCase().trim()+"|"+d.newPassword+"|"+_S2);
                     const res = await api({action:"updateaccount", email:state.user.email, name:d.name, phone:d.phone, passHash});
                     if(!res.ok) throw new Error(res.error);
                     state.user.name = d.name; state.user.phone = d.phone; save(); toast("Informations mises à jour");
@@ -576,29 +616,28 @@
             });
             $("#deleteAccountBtn").addEventListener("click", async () => {
                 if(confirm("Êtes-vous sûr de vouloir supprimer définitivement votre compte ? Cette action est irréversible.")) {
-                    try {
-                        const res = await api({action:"deleteaccount", email:state.user.email});
-                        if(res.ok) { state.user=null; save(); toast("Compte supprimé avec succès."); switchPage("home"); }
-                        else toast(res.error);
-                    } catch(e) { toast("Erreur serveur"); }
+                    try { const res = await api({action:"deleteaccount", email:state.user.email}); if(res.ok) { state.user=null; save(); toast("Compte supprimé avec succès."); switchPage("home"); } else toast(res.error); } catch(e) { toast("Erreur serveur"); }
                 }
             });
         }
-        else if(tab === "orders") {
-            box.innerHTML = `<p>Chargement de vos commandes...</p>`;
+        else if(tab.startsWith("orders_")) {
+            const filterType = tab.replace("orders_", "");
+            box.innerHTML = `<h3 style="margin-bottom:1.5rem; font-size:1.8rem">Mes Commandes</h3><p>Chargement...</p>`;
             try {
                 const res = await api({action:"getorders_client", email:state.user.email});
                 if(!res.ok) throw new Error(res.error);
-                if(!res.orders.length) { box.innerHTML = `<div class="empty"><div><h3 style="margin-bottom:1rem">Aucune commande</h3><button class="btn primary" data-page="catalogue">Explorer le catalogue</button></div></div>`; return; }
+                let displayOrders = res.orders;
+                if(filterType === "unpaid") displayOrders = displayOrders.filter(o => String(o.status).toLowerCase().includes("attente de paiement"));
+                else if(filterType === "processing") displayOrders = displayOrders.filter(o => String(o.status).toLowerCase().includes("payé") || String(o.status).toLowerCase().includes("achat") || String(o.status).toLowerCase().includes("recpetionné") || String(o.status).toLowerCase().includes("validation"));
+                else if(filterType === "shipped") displayOrders = displayOrders.filter(o => String(o.status).toLowerCase().includes("expédition") || String(o.status).toLowerCase().includes("acheminement") || String(o.status).toLowerCase().includes("port"));
+                else if(filterType === "returned") displayOrders = displayOrders.filter(o => String(o.status).toLowerCase().includes("annulé") || String(o.status).toLowerCase().includes("rétractation"));
                 
-                box.innerHTML = res.orders.map(o => {
-                    let actionHtml = "";
-                    let st = String(o.status).toLowerCase();
-                    if(st.includes("en attente de paiement") || st.includes("en attente de validation")) {
-                        actionHtml = `<button class="btn danger small action-order-btn" data-id="${o.id}" data-type="cancel">Annuler la commande</button>`;
-                    } else if(st.includes("dispo en retrait") || st.includes("port") || st.includes("recpetionné")) {
-                        actionHtml = `<button class="btn secondary small action-order-btn" data-id="${o.id}" data-type="retract">Demander rétractation (14j)</button>`;
-                    }
+                if(!displayOrders.length) { box.innerHTML += `<div class="empty" style="min-height:150px; margin-top:1rem"><div><p>Aucune commande dans cette catégorie.</p></div></div>`; return; }
+                
+                box.innerHTML = `<h3 style="margin-bottom:1.5rem; font-size:1.8rem">Mes Commandes</h3>` + displayOrders.map(o => {
+                    let actionHtml = ""; let st = String(o.status).toLowerCase();
+                    if(st.includes("en attente de paiement") || st.includes("en attente de validation")) { actionHtml = `<button class="btn danger small action-order-btn" data-id="${o.id}" data-type="cancel">Annuler la commande</button>`; } 
+                    else if(st.includes("dispo en retrait") || st.includes("port") || st.includes("recpetionné")) { actionHtml = `<button class="btn secondary small action-order-btn" data-id="${o.id}" data-type="retract">Demander rétractation (14j)</button>`; }
                     return `<div class="glass-card" style="margin-bottom:1rem; display:flex; flex-direction:column; gap:0.5rem">
                         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:0.5rem">
                             <strong style="color:var(--brand2)">${escapeHtml(o.id)}</strong>
@@ -617,16 +656,13 @@
                 
                 $$(".action-order-btn").forEach(b => b.addEventListener("click", async e => {
                     const id = e.target.dataset.id; const type = e.target.dataset.type;
-                    let msg = type === "cancel" ? "Confirmez-vous l'annulation de cette commande ?" : "Confirmez-vous vouloir exercer votre droit de rétractation (frais de retour potentiellement à votre charge) ?";
+                    let msg = type === "cancel" ? "Confirmez-vous l'annulation de cette commande ?" : "Confirmez-vous vouloir exercer votre droit de rétractation (frais de retour à votre charge) ?";
                     if(confirm(msg)) {
                         e.target.disabled = true; e.target.textContent = "...";
-                        try {
-                            const r = await api({action:"client_action_order", orderId:id, type, email:state.user.email});
-                            if(r.ok) { toast("Demande prise en compte."); renderAccountTab("orders"); } else toast(r.error);
-                        } catch(er) { toast("Erreur serveur"); e.target.disabled = false; }
+                        try { const r = await api({action:"client_action_order", orderId:id, type, email:state.user.email}); if(r.ok) { toast("Demande prise en compte."); renderAccountTab("orders_all"); } else toast(r.error); } catch(er) { toast("Erreur serveur"); e.target.disabled = false; }
                     }
                 }));
-            } catch(e) { box.innerHTML = `<p class="msg-red">Erreur lors de la récupération des commandes.</p>`; }
+            } catch(e) { box.innerHTML += `<p class="msg-red">Erreur lors de la récupération des commandes.</p>`; }
         }
     }
 
@@ -634,59 +670,74 @@
 
     // Admin
     function renderAdmin(){const box=$("#adminContent"); if(!isAdmin()){box.innerHTML=`<div class="msg-red">Accès restreint.</div>`; return;} box.innerHTML=`<div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem"><div class="pill"><span class="dot"></span> Session entreprise active</div><button class="btn secondary" id="adminLogout">Déconnexion entreprise</button></div><div class="admin-tabs" id="adminTabs"></div><div id="adminPanel"></div>`;$("#adminLogout").addEventListener("click",()=>{sessionStorage.removeItem("abp_admin");toast("Déconnecté de l'entreprise");switchPage("home");});renderAdminPanel();}
-    function renderAdminPanel(){if(!isAdmin())return; const tabs=$("#adminTabs"); if(tabs) tabs.innerHTML=ADMIN_NAV.map(n=>`<button class="btn secondary small ${adminTab===n.tab?"active":""}" data-admin-tab="${n.tab}">${n.label}</button>`).join(""); const panel=$("#adminPanel"); if(!panel)return; if(adminTab==="orders")return renderAdminOrders(panel); if(adminTab==="products")return renderAdminProducts(panel); if(adminTab==="clients")return renderAdminClients(panel); if(adminTab==="messages")return renderAdminMessages(panel);}
+    function renderAdminPanel(){if(!isAdmin())return; const tabs=$("#adminTabs"); if(tabs) tabs.innerHTML=ADMIN_NAV.map(n=>`<button class="btn secondary small ${adminTab===n.tab?"active":""}" data-admin-tab="${n.tab}">${n.label}</button>`).join(""); const panel=$("#adminPanel"); if(!panel)return; if(adminTab==="orders")return renderAdminOrders(panel, false); if(adminTab==="archives")return renderAdminOrders(panel, true); if(adminTab==="products")return renderAdminProducts(panel); if(adminTab==="clients")return renderAdminClients(panel); if(adminTab==="messages")return renderAdminMessages(panel); if(adminTab==="config")return renderAdminConfig(panel);}
     
-    async function renderAdminOrders(panel){
-      panel.innerHTML=`<div class="glass-card">
-          <div style="display:flex; justify-content:space-between; margin-bottom:1rem; align-items:center">
-            <h3 style="margin:0">📦 Commandes</h3>
-            <label style="font-size:0.85rem; color:var(--muted); display:flex; align-items:center; gap:5px"><input type="checkbox" id="showArchivedOrders"> Afficher les archives</label>
-          </div>
-          <div class="admin-list" id="adminOrderList">Chargement...</div>
-      </div>`;
-      const list=$("#adminOrderList");
-      const loadOrders = async () => {
-          list.innerHTML="Chargement...";
-          try{
-            const res=await api({action:"getorders",adminKey:adminKey()});
-            if(!res.ok)throw new Error(res.error);
-            const showArchived = $("#showArchivedOrders").checked;
-            const filteredOrders = res.orders.filter(o => showArchived ? true : String(o.status).toLowerCase() !== "archivé");
-            
-            if(!filteredOrders.length){list.innerHTML="<p>Aucune commande.</p>";return;}
-            list.innerHTML=filteredOrders.map(o=>`
-              <div class="admin-item" style="grid-template-columns:1fr auto">
-                <div style="grid-column:1/-1; display:flex; justify-content:space-between; align-items:start">
-                    <div>
-                        <strong>${escapeHtml(o.id)}</strong> — ${escapeHtml(o.client)}<br>
-                        <small style="color:var(--muted)">📧 ${escapeHtml(o.email||"Non renseigné")} • ☎ ${escapeHtml(o.phone||"Non renseigné")}</small><br>
-                        <small style="color:var(--brand2)">${formatEUR(o.total)} / ${formatKMFValue(o.total)} KMF • ${escapeHtml(o.weight||0)} kg</small><br>
-                        <small style="color:var(--muted)">Articles : ${escapeHtml(o.items)}</small>
+    window.viewAdminCart = function(encodedDetails) {
+        try {
+            const details = JSON.parse(decodeURIComponent(encodedDetails));
+            const items = details.items || [];
+            if(!items.length) { toast("Aucun article"); return; }
+            $("#adminCartContent").innerHTML = items.map(i => `
+                <div class="summary-row" style="align-items:center; padding:10px 0; border-bottom:1px solid var(--line)">
+                    <div style="flex:1">
+                        <strong style="color:var(--txt)">${escapeHtml(i.name)}</strong><br>
+                        <small style="color:var(--muted)">Lien: ${i.link ? `<a href="${i.link}" target="_blank" style="color:var(--brand2)">Ouvrir</a>` : "N/A"}</small><br>
+                        <small style="color:var(--muted)">Opt: ${escapeHtml(i.options||"Aucune")} | Note: ${escapeHtml(i.note||"Aucune")}</small>
                     </div>
-                    <button class="btn secondary small" onclick="alert('Panier: ${escapeHtml(o.items)}\nTotal: ${formatEUR(o.total)}\nPoids: ${o.weight}kg')">Voir Panier</button>
+                    <div style="text-align:right">
+                        <strong>${i.qty} x ${formatEUR(i.price)}</strong>
+                    </div>
                 </div>
-                <select class="status-select field compact" data-id="${escapeHtml(o.id)}" style="grid-column:1/-1">
-                    <option value="En attente de validation">En attente de validation (Nouveau)</option>
-                    <option value="En attente de paiement">Validée - En attente de paiement</option>
-                    <option value="Payé">Payé</option>
-                    <option value="Achat en cours">Achat en cours</option>
-                    <option value="Colis recpetionné AB PRODUCTS FR">Colis recpetionné AB PRODUCTS FR</option>
-                    <option value="En attente d'expédition">En attente d'expédition</option>
-                    <option value="En cours d'acheminement">En cours d'acheminement</option>
-                    <option value="Arrivé au port">Arrivé au port</option>
-                    <option value="Colis dispo en retrait AB PRODUCTS KM">Colis dispo en retrait AB PRODUCTS KM</option>
-                    <option value="Annulé">Annulé</option>
-                    <option value="Archivé">Archiver (Terminée)</option>
-                </select>
-                <div class="field compact" style="grid-column:1/-1">
-                    <input class="status-note" data-id="${escapeHtml(o.id)}" placeholder="Message client optionnel" value="${escapeHtml(o.note||"")}" />
-                </div>
-                <button class="btn primary small update-status" data-id="${escapeHtml(o.id)}" style="grid-column:1/-1">Mettre à jour le statut et envoyer mail</button>
-              </div>
             `).join("");
-            
+            $("#adminCartModal").classList.add("active");
+        } catch(e) { toast("Erreur de lecture du panier"); }
+    };
+    $("#closeAdminCartModal").addEventListener("click", () => $("#adminCartModal").classList.remove("active"));
+
+    async function renderAdminOrders(panel, isArchive){
+      panel.innerHTML=`<div class="glass-card"><h3 style="margin-bottom:1rem">${isArchive ? 'Dossiers Archivés' : 'Commandes Récentes'}</h3><div class="admin-list" id="adminOrderList">Chargement...</div></div>`;
+      const list=$("#adminOrderList");
+      try{
+        const res=await api({action:"getorders",adminKey:adminKey()});
+        if(!res.ok)throw new Error(res.error);
+        const filteredOrders = res.orders.filter(o => isArchive ? String(o.status).toLowerCase() === "archivé" : String(o.status).toLowerCase() !== "archivé");
+        
+        if(!filteredOrders.length){list.innerHTML="<p>Aucune commande.</p>";return;}
+        list.innerHTML=filteredOrders.map(o=>`
+          <div class="admin-item" style="grid-template-columns:1fr auto">
+            <div style="grid-column:1/-1; display:flex; justify-content:space-between; align-items:start">
+                <div>
+                    <strong>${escapeHtml(o.id)}</strong> — ${escapeHtml(o.client)}<br>
+                    <small style="color:var(--muted)">Mail: ${escapeHtml(o.email||"Non renseigné")} • Tel: ${escapeHtml(o.phone||"Non renseigné")}</small><br>
+                    <small style="color:var(--brand2)">${formatEUR(o.total)} / ${formatKMFValue(o.total)} KMF • ${escapeHtml(o.weight||0)} kg</small><br>
+                    <small style="color:var(--muted)">Articles : ${escapeHtml(o.items)}</small>
+                </div>
+                <button class="btn secondary small" onclick="viewAdminCart('${encodeURIComponent(o.details)}')">Voir Panier</button>
+            </div>
+            ${isArchive ? `<div style="grid-column:1/-1" class="tag">Statut: Archivé</div>` : `
+            <select class="status-select field compact" data-id="${escapeHtml(o.id)}" style="grid-column:1/-1">
+                <option value="En attente de validation">En attente de validation (Nouveau)</option>
+                <option value="En attente de paiement">Validée - En attente de paiement</option>
+                <option value="Payé">Payé</option>
+                <option value="Achat en cours">Achat en cours</option>
+                <option value="Colis recpetionné AB PRODUCTS FR">Colis recpetionné AB PRODUCTS FR</option>
+                <option value="En attente d'expédition">En attente d'expédition</option>
+                <option value="En cours d'acheminement">En cours d'acheminement</option>
+                <option value="Arrivé au port">Arrivé au port</option>
+                <option value="Colis dispo en retrait AB PRODUCTS KM">Colis dispo en retrait AB PRODUCTS KM</option>
+                <option value="Annulé">Annulé</option>
+                <option value="Archivé">Archiver (Dossier clos)</option>
+            </select>
+            <div class="field compact" style="grid-column:1/-1">
+                <input class="status-note" data-id="${escapeHtml(o.id)}" placeholder="Message client optionnel" value="${escapeHtml(o.note||"")}" />
+            </div>
+            <button class="btn primary small update-status" data-id="${escapeHtml(o.id)}" style="grid-column:1/-1">Mettre à jour le statut</button>
+            `}
+          </div>
+        `).join("");
+        
+        if(!isArchive) {
             filteredOrders.forEach(o=>{ const sel=document.querySelector(`.status-select[data-id="${CSS.escape(o.id)}"]`); if(sel) sel.value = o.status||"En attente de validation"; });
-            
             $$('.update-status').forEach(btn=>btn.addEventListener('click',async()=>{
                 const id=btn.dataset.id;
                 const sel=document.querySelector(`.status-select[data-id="${CSS.escape(id)}"]`);
@@ -696,18 +747,16 @@
                 try {
                     const res=await api({action:"updateorder",adminKey:adminKey(),id,status:sel.value,note});
                     if(!res.ok)throw new Error(res.error||"Erreur serveur");
-                    toast(res.mail&&res.mail.ok?"Statut mis à jour + mail envoyé":"Statut mis à jour (vérifiez mail)");
-                    loadOrders();
+                    toast(sel.value==="Archivé" ? "Commande archivée" : (res.mail&&res.mail.ok?"Statut mis à jour + mail envoyé":"Statut mis à jour"));
+                    renderAdminOrders(document.getElementById('adminPanel'), false);
                 } catch(e) { toast(e.message); btn.textContent="Mettre à jour"; }
             }));
-          }catch(e){list.innerHTML="Erreur : "+escapeHtml(e.message);}
-      };
-      loadOrders();
-      $("#showArchivedOrders").addEventListener("change", loadOrders);
+        }
+      }catch(e){list.innerHTML="Erreur : "+escapeHtml(e.message);}
     }
 
     async function renderAdminClients(panel) {
-        panel.innerHTML=`<div class="glass-card"><h3>👥 Clients inscrits</h3><div class="admin-list" id="adminClientList">Chargement...</div></div>`;
+        panel.innerHTML=`<div class="glass-card"><h3>Clients inscrits</h3><div class="admin-list" id="adminClientList">Chargement...</div></div>`;
         try {
             const res = await api({action:"getclients_admin", adminKey:adminKey()});
             if(!res.ok) throw new Error(res.error);
@@ -716,7 +765,7 @@
                 <div class="admin-item" style="grid-template-columns:1fr auto">
                     <div>
                         <strong>${escapeHtml(c.name)}</strong><br>
-                        <small style="color:var(--muted)">📧 ${escapeHtml(c.email)} • ☎ ${escapeHtml(c.phone)}</small><br>
+                        <small style="color:var(--muted)">Mail: ${escapeHtml(c.email)} • Tel: ${escapeHtml(c.phone)}</small><br>
                         <small style="color:var(--muted2)">Inscrit le : ${escapeHtml(c.date)}</small>
                     </div>
                     <button class="btn danger small" onclick="if(confirm('Bannir / Supprimer ce client ?')) { api({action:'deleteclient_admin', adminKey:'${adminKey()}', email:'${escapeHtml(c.email)}'}).then(r => { if(r.ok) {toast('Client supprimé'); renderAdminClients(document.getElementById('adminPanel'));} else toast(r.error) }) }">Supprimer</button>
@@ -726,14 +775,13 @@
     }
 
     async function renderAdminMessages(panel) {
-        panel.innerHTML=`<div class="glass-card"><h3>💬 Messages & Support</h3><div class="admin-list" id="adminMsgList">Chargement...</div></div>`;
+        panel.innerHTML=`<div class="glass-card"><h3>Messages & Support</h3><div class="admin-list" id="adminMsgList">Chargement...</div></div>`;
         try {
             const res = await api({action:"getmessages_admin", adminKey:adminKey()});
             if(!res.ok) throw new Error(res.error);
             if(!res.tickets.length) { $("#adminMsgList").innerHTML = "<p>Aucun ticket ouvert.</p>"; return; }
             $("#adminMsgList").innerHTML = res.tickets.map(t => {
                 const msgs = t.messages || [];
-                const lastMsg = msgs.length ? msgs[msgs.length-1].text : "";
                 return `
                 <div class="admin-item" style="display:flex; flex-direction:column; align-items:stretch; gap:10px">
                     <div style="display:flex; justify-content:space-between">
@@ -757,6 +805,10 @@
     window.closeTicket = async (id) => { try { const r = await api({action:"closeticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Ticket clos"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
     window.deleteTicket = async (id) => { try { const r = await api({action:"deleteticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Ticket supprimé"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
 
+    function renderAdminConfig(panel) {
+        panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3><p class="sub">Options avancées (En développement).</p><div class="form-grid" style="margin-top:1rem"><div class="field wide"><input value="1 € = 500 KMF (Fixe)" disabled /></div><button class="btn secondary wide" disabled>Enregistrer</button></div></div>`;
+    }
+
     function renderAdminProducts(panel){panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article : Shein, Sephora, Zara, Norauto..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field"><input name="brand" placeholder="Marque" /></div><div class="field"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field"><input name="weight" type="number" min="0" step="0.01" placeholder="Poids kg" /></div><div class="field"><input name="sizes" placeholder="Tailles : XS, S, M, L..." /></div><div class="field"><input name="colors" placeholder="Couleurs : noir, rouge..." /></div><div class="field wide"><input name="sourceUrl" placeholder="Lien source" /></div><div class="field"><input name="source" placeholder="Site source" /></div><div class="field"><input name="recommendedPrice" type="number" min="0" step="0.01" placeholder="Prix conseillé" /></div><div class="field wide"><textarea name="desc" placeholder="Description"></textarea></div><div class="field wide"><textarea name="paramsText" placeholder="Paramètres dynamiques, un par ligne. Ex: Capacité: 64Go, 128Go"></textarea></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 3 maximum. Sur téléphone, appuyez une seule fois sur le bouton.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;bindAdminProductForm();loadCatalog(true).then(renderAdminList);}
     function paramsFromText(txt){const obj={};String(txt||"").split(/\n+/).forEach(line=>{const parts=line.split(":");if(parts.length>=2){const k=parts.shift().trim();const v=parts.join(":").trim();if(k)obj[k]=v;}});return obj;}
     function textFromParams(obj){return Object.entries(obj||{}).map(([k,v])=>`${k}: ${v}`).join("\n");}
@@ -765,7 +817,7 @@
     async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";f.brand.value=d.brand||f.brand.value||"";f.sourceUrl.value=d.url||url;f.source.value=d.source||f.source.value||"";const details=d.details||{};f.paramsText.value=textFromParams({...details,sku:d.sku||details.sku||"",disponibilité:d.availability||""});adminImages=(d.images||[]).filter(Boolean).slice(0,3);renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
     function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}">X</button><img src="${escapeHtml(img)}" alt="photo ${i+1}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
     function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";adminImages=[];renderImagePreview();$("#productFormTitle").textContent="Ajouter / modifier un article";}
-    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"A"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0.5} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn del-product" data-id="${p.id}" style="color:var(--danger)">X</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
+    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"Article"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0.5} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn del-product" data-id="${p.id}" style="color:var(--danger); border-color:rgba(255,85,115,.3)">X</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
     function editProduct(id){const p=state.products.find(x=>x.id===id);if(!p)return;const f=$("#adminProductForm");f.id.value=p.id;f.name.value=p.name||"";f.brand.value=p.brand||"";f.category.value=p.category||"";f.price.value=p.price||"";f.weight.value=p.weight||"";f.sizes.value=p.sizes||"";f.colors.value=p.colors||"";f.sourceUrl.value=p.sourceUrl||"";f.source.value=p.source||"";f.recommendedPrice.value=p.recommendedPrice||"";f.desc.value=p.desc||"";f.paramsText.value=textFromParams(p.params||{});adminImages=(p.images||[]).slice(0,3);renderImagePreview();$("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});}
     function compressImage(file){return new Promise(resolve=>{const img=new Image();img.onload=()=>{const MAX=420;let w=img.width,h=img.height;if(w>h&&w>MAX){h=h*MAX/w;w=MAX}else if(h>=w&&h>MAX){w=w*MAX/h;h=MAX}const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);let q=.78,out=canvas.toDataURL('image/jpeg',q);while(out.length>16000&&q>.18){q-=.08;out=canvas.toDataURL('image/jpeg',q)}resolve(out.length<=16000?out:'');URL.revokeObjectURL(img.src);};img.onerror=()=>resolve('');img.src=URL.createObjectURL(file);});}
 
