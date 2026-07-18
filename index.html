@@ -98,8 +98,9 @@
     .toast-wrap{position:fixed;right:18px;bottom:18px;z-index:100;display:grid;gap:.7rem}.toast{min-width:min(360px,calc(100vw - 36px));border:1px solid rgba(255,255,255,.08);background:#182b47;color:#fff;border-radius:13px;padding:1rem 1.05rem;box-shadow:0 18px 45px rgba(0,0,0,.5);animation:toastIn .28s ease both;font-size:.94rem}@keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
     
     .modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:20px;background:rgba(10,20,35,.7);backdrop-filter:blur(6px)}.modal.active{display:grid}.modal-card{width:min(1100px,100%);max-height:92vh;overflow:auto;border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:2rem;box-shadow:0 30px 90px rgba(0,0,0,.5)}.modal-head{display:flex;justify-content:space-between;align-items:start;gap:1rem;margin-bottom:1.5rem}
+    .modal-head .icon-btn.danger-btn { background:transparent !important; border:none !important; box-shadow:none !important; color:var(--danger); }
+    .modal-head .icon-btn.danger-btn:hover { background:rgba(255,85,115,0.1) !important; }
     
-    /* MODALE RECOMMERCE */
     .recom-modal { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
     .recom-gallery { display: flex; gap: 1rem; }
     .recom-thumbs { display: flex; flex-direction: column; gap: 0.8rem; max-height:400px; overflow-y:auto; padding-right:5px; }
@@ -150,16 +151,16 @@
 
     .chat-btn { position:fixed; bottom:24px; right:24px; width:60px; height:60px; border-radius:999px; background:var(--brand2); color:#04160e; display:none; place-items:center; font-weight:800; font-size:1rem; box-shadow:0 12px 32px rgba(0,0,0,.4); z-index:80; cursor:pointer; transition:.2s ease; border:none; }
     .chat-btn:hover { transform:scale(1.05); }
-    .chat-box { position:fixed; bottom:94px; right:24px; width:380px; max-width:calc(100vw - 48px); background:var(--panel); border:1px solid var(--line); border-radius:18px; display:none; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.6); z-index:80; overflow:hidden; }
+    .chat-box { position:fixed; bottom:94px; right:24px; width:380px; height:50vh; min-height:400px; max-width:calc(100vw - 48px); background:var(--panel); border:1px solid var(--line); border-radius:18px; display:none; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.6); z-index:80; overflow:hidden; }
     .chat-box.open { display:flex; animation:softRise .2s ease both; }
     .chat-header { background:var(--panel-strong); padding:1rem; border-bottom:1px solid var(--line); font-weight:700; display:flex; justify-content:space-between; align-items:center; }
-    .chat-msgs { flex:1; height:300px; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.8rem; }
+    .chat-msgs { flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.8rem; }
     .chat-msg { padding:.7rem 1rem; border-radius:12px; font-size:.9rem; max-width:85%; line-height:1.4; }
     .chat-msg.admin { background:var(--card2); border:1px solid var(--line); align-self:flex-start; color:var(--txt); }
     .chat-msg.client { background:var(--brand2); color:#04160e; align-self:flex-end; font-weight:500; }
     .chat-input { display:flex; border-top:1px solid var(--line); padding:.8rem; gap:.5rem; background:var(--card); align-items:center; }
     .chat-input input { flex:1; min-width:0; background:var(--card2); border:1px solid var(--line); border-radius:9px; padding:.6rem .8rem; outline:0; color:var(--txt); font-size:.9rem; }
-    .chat-input button { background:var(--brand2); color:#04160e; border:0; border-radius:9px; padding:0 1.2rem; min-width:90px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0; width:auto; }
+    .chat-input button { background:var(--brand2); color:#04160e; border:0; border-radius:9px; padding:0 1.2rem; height:100%; min-height:42px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0; width:auto; }
     .icon-btn.danger-btn { padding:0; display:grid; place-items:center; border-color:rgba(255,85,115,.3); color:var(--danger); background:transparent; font-size:1.1rem; cursor:pointer; transition:0.2s; }
     .icon-btn.danger-btn:hover { background:rgba(255,85,115,.08); }
     .svg-icon { width:18px; height:18px; flex-shrink:0; margin-right:6px; color:var(--muted); }
@@ -263,7 +264,7 @@
 
     <section class="page" id="panier"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Panier</div><h2>Votre sélection.</h2></div><p id="panierSubtext">Frais au poids + livraison automatique.</p></div><div class="cart-layout"><div class="cart-list" id="cartList"></div><aside class="summary" id="cartSummary"><h3 style="font-size:1.5rem;letter-spacing:-.04em">Récapitulatif</h3><div class="summary-row" id="articleRow"><span>Articles</span><strong id="subtotal">0 €</strong></div><div class="summary-row" id="weightRow"><span>Poids total</span><strong id="weightTotal">0 kg</strong></div><div class="summary-row" id="feeRow"><span>Frais</span><strong id="shippingTotal">0 €</strong></div><div class="summary-row" style="border-bottom:0"><span>Total estimé</span><strong class="summary-total" id="grandTotal">0 €</strong></div><div id="minWarnEl"></div><button class="btn primary" style="width:100%;margin-top:1rem" id="goCheckout">Valider la commande</button><button class="btn secondary" style="width:100%;margin-top:.7rem" id="clearCart">Vider le panier</button><p class="mini-note">Calcul indicatif : les prix et modalités peuvent être vérifiés avant confirmation finale.</p></aside></div></div></section>
 
-    <section class="page" id="checkout"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Validation</div><h2>Finaliser la commande.</h2></div><p>Formulaire complet pour préparer le contact client et le retrait.</p></div><form id="checkoutForm" class="checkout-grid"><div class="glass-card"><h3 style="margin-bottom:1rem">Informations client</h3><div class="form-grid"><div class="field wide"><input required name="fullname" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom complet" /></div><div class="field"><select name="phoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input required name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone / WhatsApp" /></div><div class="field wide"><input required name="email" type="email" placeholder="Adresse e-mail" /></div><div class="field wide"><textarea name="address" placeholder="Adresse ou informations utiles"></textarea></div></div></div><div class="glass-card"><h3 style="margin-bottom:1.5rem">Moyen de paiement</h3><div class="form-grid"><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="sumup" checked><div class="pay-btn-box"><span>Payer en ligne (Carte, Apple Pay)</span><svg class="svg-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"></rect><line x1="1" y1="10" x2="23" y2="10" stroke="currentColor" stroke-width="2"></line></svg></div></label><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="cash"><div class="pay-btn-box"><span>Payer sur place (Espèces)</span><svg class="svg-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></div></label></div><h3 style="margin-top:2rem; margin-bottom:1rem">Retrait / livraison</h3><div class="form-grid"><div class="field wide"><input required name="pickupName" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom de la personne qui récupère" /></div><div class="field"><select name="pickupCountry" class="phone-country" aria-label="Indicatif pays retrait"></select></div><div class="field"><input required name="pickupPhone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone de la personne qui récupère" /></div><div class="field wide"><textarea name="message" placeholder="Message pour AB PRODUCTS"></textarea></div><button class="btn primary wide" type="submit">Confirmer ma commande</button></div></div></form></div></section>
+    <section class="page" id="checkout"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Validation</div><h2>Finaliser la commande.</h2></div><p>Formulaire complet pour préparer le contact client et le retrait.</p></div><form id="checkoutForm" class="checkout-grid"><div class="glass-card"><h3 style="margin-bottom:1rem">Informations client</h3><div class="form-grid"><div class="field wide"><input required name="fullname" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom complet" /></div><div class="field"><select name="phoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input required name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone / WhatsApp" /></div><div class="field wide"><input required name="email" type="email" placeholder="Adresse e-mail" /></div><div class="field wide"><textarea name="address" placeholder="Adresse ou informations utiles"></textarea></div></div></div><div class="glass-card"><h3 style="margin-bottom:1.5rem">Moyen de paiement</h3><div class="form-grid"><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="sumup" checked><div class="pay-btn-box"><span>Payer en ligne (Carte bancaire)</span><svg class="svg-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"></rect><line x1="1" y1="10" x2="23" y2="10" stroke="currentColor" stroke-width="2"></line></svg></div></label><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="cash"><div class="pay-btn-box"><span>Payer sur place (Espèces)</span><svg class="svg-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></div></label></div><h3 style="margin-top:2rem; margin-bottom:1rem">Retrait / livraison</h3><div class="form-grid"><div class="field wide"><input required name="pickupName" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom de la personne qui récupère" /></div><div class="field"><select name="pickupCountry" class="phone-country" aria-label="Indicatif pays retrait"></select></div><div class="field"><input required name="pickupPhone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone de la personne qui récupère" /></div><div class="field wide"><textarea name="message" placeholder="Message pour AB PRODUCTS"></textarea></div><button class="btn primary wide" type="submit">Confirmer ma commande</button></div></div></form></div></section>
 
     <section class="page" id="suivi"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Suivi</div><h2>Suivre une commande.</h2></div><p>Renseignez votre numéro de commande pour le suivi. Réservé aux commandes de votre compte.</p></div><div class="glass-card"><div class="field"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg> <input id="trackingInput" placeholder="Exemple : ABP-2026-1234567" /></div><button class="btn primary" id="trackingBtn" style="width:max-content;margin-top:.9rem">Afficher le suivi</button><div id="trackingResult"></div></div></div></section>
 
@@ -350,10 +351,10 @@
     </form>
   </div>
 
-  <div class="modal" id="orderModal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow">Commande confirmée</div><h2 style="font-size:2.5rem">Merci.</h2></div><button class="icon-btn" id="closeOrderModal">✕</button></div><div id="orderModalContent"></div></div></div>
-  <div class="modal" id="productModal" aria-hidden="true"><div class="modal-card"><div class="modal-head" style="margin-bottom:0"><div><div class="eyebrow">ARTICLE</div><h2 id="modalProductTitle" style="font-size:2.2rem; display:none;">Article</h2></div><button class="icon-btn danger-btn" id="closeProductModal" style="width:36px; height:36px">✕</button></div><div id="modalProductContent"></div></div></div>
-  <div class="modal" id="adminCartModal" aria-hidden="true"><div class="modal-card" style="max-width:600px"><div class="modal-head"><div><div class="eyebrow">DÉTAILS</div><h2 style="font-size:2.2rem; margin-top:0">Panier Client</h2></div><button class="icon-btn danger-btn" id="closeAdminCartModal" style="width:36px; height:36px">✕</button></div><div id="adminCartContent"></div></div></div>
-  <div class="modal" id="sumupModal" aria-hidden="true"><div class="modal-card" style="max-width:500px; padding:0; overflow:hidden"><div class="modal-head" style="padding:1.5rem; border-bottom:1px solid var(--line); margin-bottom:0; background:var(--panel)"><div><div class="eyebrow">PAIEMENT SÉCURISÉ</div><h2 style="font-size:1.8rem; margin-top:0">SumUp</h2></div><button type="button" class="icon-btn danger-btn" id="closeSumupModal" style="width:36px; height:36px">✕</button></div><div id="sumup-card" style="background:#fff; min-height:400px;"></div></div></div>
+  <div class="modal" id="orderModal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow">Commande confirmée</div><h2 style="font-size:2.5rem">Merci.</h2></div><button class="icon-btn" id="closeOrderModal" style="border:none;background:transparent;color:var(--danger)">✕</button></div><div id="orderModalContent"></div></div></div>
+  <div class="modal" id="productModal" aria-hidden="true"><div class="modal-card"><div class="modal-head" style="margin-bottom:0"><div><div class="eyebrow">ARTICLE</div><h2 id="modalProductTitle" style="font-size:2.2rem; display:none;">Article</h2></div><button class="icon-btn danger-btn" id="closeProductModal" style="width:36px; height:36px; border:none; background:transparent">✕</button></div><div id="modalProductContent"></div></div></div>
+  <div class="modal" id="adminCartModal" aria-hidden="true"><div class="modal-card" style="max-width:600px"><div class="modal-head"><div><div class="eyebrow">DÉTAILS</div><h2 style="font-size:2.2rem; margin-top:0">Panier Client</h2></div><button class="icon-btn danger-btn" id="closeAdminCartModal" style="width:36px; height:36px; border:none; background:transparent">✕</button></div><div id="adminCartContent"></div></div></div>
+  <div class="modal" id="sumupModal" aria-hidden="true"><div class="modal-card" style="max-width:500px; padding:0; overflow:hidden"><div class="modal-head" style="padding:1.5rem; border-bottom:1px solid var(--line); margin-bottom:0; background:var(--panel)"><div><div class="eyebrow">PAIEMENT SÉCURISÉ</div><h2 style="font-size:1.8rem; margin-top:0">SumUp</h2></div><button type="button" class="icon-btn danger-btn" id="closeSumupModal" style="width:36px; height:36px; border:none; background:transparent">✕</button></div><div id="sumup-card" style="background:#fff; min-height:400px;"></div></div></div>
 
   <div id="cookieBanner" class="glass-card" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(500px, calc(100vw - 48px));z-index:9999;display:none;flex-direction:column;gap:1rem;box-shadow:0 30px 90px rgba(0,0,0,.5);">
     <h3 style="margin:0;font-size:1.2rem;">Préférences de cookies</h3>
@@ -372,7 +373,7 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbyeDK7OZ6e5mRTiyb9L2vFlLv6-cKLduvSYoFgWn1-Wcce2tq3EpSyb-_SHFDQBSEQIUw/exec";
     const _K = "abadmin_key_2026"; const _S2 = "ABM_CLIENT_2026";
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
-    const DEFAULT_CONFIG = { kmfRate: 500 };
+    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25 };
     const CLIENT_NAV = [{id:"home",label:"Accueil"},{id:"catalogue",label:"Catalogue"},{id:"commande",label:"Commande libre"},{id:"suivi",label:"Suivi"},{id:"faq",label:"Infos"}];
     const ADMIN_NAV = [{tab:"orders",label:"Commandes"},{tab:"archives",label:"Archives"},{tab:"products",label:"Articles"},{tab:"clients",label:"Clients"},{tab:"messages",label:"Messages"},{tab:"config",label:"Configuration"}];
     const ROUTES = {home:"/home",catalogue:"/catalogue",commande:"/commande",panier:"/panier",checkout:"/checkout",suivi:"/suivi",faq:"/faq",login:"/login",signup:"/signup",compte:"/compte",admin:"/admin"};
@@ -425,6 +426,13 @@
     $("#acceptAllCookies")?.addEventListener("click", () => saveCookieConsent(true));
     $("#saveCookiesBtn")?.addEventListener("click", () => saveCookieConsent($("#cookieOptional").checked));
 
+    function updateMarquee() {
+        const minV = state.config.minCart || 25;
+        $$('.marquee span').forEach(el => {
+            if(el.textContent.includes("MINIMUM")) el.textContent = `MINIMUM D'ACHAT DE ${minV} € REQUIS DANS LE PANIER`;
+        });
+    }
+
     function renderNav(){
       const admin = isAdmin(); const onAdminPage = currentPage === "admin";
       $("#brandLink").classList.toggle("admin-active", admin);
@@ -471,6 +479,14 @@
     function initPhoneCountries(){const opts=PHONE_COUNTRIES.map(c=>`<option value="${escapeHtml(c.dial)}" ${c.dial==="+269"?"selected":""}>${escapeHtml(c.name)} (${escapeHtml(c.dial)})</option>`).join("");$$("select.phone-country").forEach(sel=>{sel.innerHTML=opts;});}
     function splitDial(full){full=String(full||"").trim();if(!full)return null;const found=PHONE_COUNTRIES.filter(c=>full.indexOf(c.dial)===0).sort((a,b)=>b.dial.length-a.dial.length)[0];return found?{dial:found.dial,rest:full.slice(found.dial.length).trim()}:null;}
 
+    async function loadConfig() {
+        try {
+            const res = await api({action: "getconfig"});
+            if(res.ok) state.config = res.config;
+        } catch(e) {}
+        updateMarquee();
+    }
+
     async function loadCatalog(force=false, silent=false){
       if(state.catalogLoaded && !force) return;
       try{
@@ -485,6 +501,7 @@
       } catch(e){state.catalogLoaded=true; if(!silent) renderProducts();}
     }
     
+    // Normalisation des images avec option mappée
     function normalizeProduct(p){
         p=p||{}; let imgs = [];
         if(Array.isArray(p.images)) {
@@ -672,14 +689,16 @@
       const cartId = [p.id, optionsString, note].join("|"); 
       const existing = state.cart.find(i=>i.cartId===cartId&&i.type==="product"); 
       
+      // Determine the best image thumbnail based on selected options
       let thumbUrl = p.image;
       if(p.images && p.images.length > 0) {
+          // try to find an image matching one of the options
           for(let opt of selectedOptions) {
               const optVal = opt.split(':')[1].trim().toLowerCase();
               const matchedImg = p.images.find(img => img.opt && img.opt.toLowerCase().trim() === optVal);
               if(matchedImg) { thumbUrl = matchedImg.url; break; }
           }
-          if(thumbUrl === p.image) thumbUrl = p.images[0].url; 
+          if(thumbUrl === p.image) thumbUrl = p.images[0].url; // fallback to first image
       }
 
       if(existing) existing.qty += qty; 
@@ -712,9 +731,10 @@
         }).join("");
         
         const t=cartTotals(); 
+        const minVal = Number(state.config.minCart) || 25;
         let disableCheckout = false; let minWarnHtml = "";
-        if(t.subtotal > 0 && t.subtotal < 25) {
-            minWarnHtml = `<div class="msg-red" style="margin-bottom:1rem; padding:10px; font-size:0.9rem">Un minimum d'achat de 25 € (hors frais) est requis.</div>`;
+        if(t.subtotal > 0 && t.subtotal < minVal) {
+            minWarnHtml = `<div class="msg-red" style="margin-bottom:1rem; padding:10px; font-size:0.9rem">Un minimum d'achat de ${minVal} € (hors frais) est requis.</div>`;
             disableCheckout = true;
         }
         $("#subtotal").innerHTML=formatDual(t.subtotal); 
@@ -767,7 +787,8 @@
         e.preventDefault();
         if(!state.cart.length) return toast("Votre panier est vide");
         const totals = cartTotals();
-        if(totals.subtotal < 25) return toast("Minimum d'achat non atteint.");
+        const minVal = Number(state.config.minCart) || 25;
+        if(totals.subtotal < minVal) return toast("Minimum d'achat non atteint.");
 
         const data = Object.fromEntries(new FormData(e.currentTarget).entries());
         data.phone = [data.phoneCountry||"",data.phone||""].join(" ").trim();
@@ -790,12 +811,13 @@
                     id: "sumup-card",
                     checkoutId: chkRes.checkoutId,
                     onResponse: async function(type, body) {
-                        if(type === 'success') {
+                        if(type === 'success' && body && body.status === 'PAID') {
                             $("#sumupModal").classList.remove("active");
                             toast("Paiement validé avec succès !");
                             await executeOrderPlacement(data, items, totals, orderId, "Payé");
-                        } else if (type === 'error') {
-                            toast("Échec du paiement.");
+                        } else if (type === 'error' || type === 'success') {
+                            // If success but not PAID, treat as error/pending
+                            toast("Paiement non abouti ou annulé.");
                         }
                         btn.disabled=false; btn.textContent="Confirmer ma commande";
                     }
@@ -1001,7 +1023,6 @@
     function renderAdmin(){const box=$("#adminContent"); if(!isAdmin()){box.innerHTML=`<div class="msg-red">Accès restreint.</div>`; return;} box.innerHTML=`<div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem"><div class="pill"><span class="dot"></span> Session entreprise active</div><button class="btn secondary" id="adminLogout">Déconnexion entreprise</button></div><div class="admin-tabs" id="adminTabs"></div><div id="adminPanel"></div>`;$("#adminLogout").addEventListener("click",()=>{sessionStorage.removeItem("abp_admin");toast("Déconnecté de l'entreprise");switchPage("home");});renderAdminPanel();}
     function renderAdminPanel(){if(!isAdmin())return; const tabs=$("#adminTabs"); if(tabs) tabs.innerHTML=ADMIN_NAV.map(n=>`<button class="btn secondary small ${adminTab===n.tab?"active":""}" data-admin-tab="${n.tab}">${n.label}</button>`).join(""); const panel=$("#adminPanel"); if(!panel)return; if(adminTab==="orders")return renderAdminOrders(panel, false); if(adminTab==="archives")return renderAdminOrders(panel, true); if(adminTab==="products")return renderAdminProducts(panel); if(adminTab==="clients")return renderAdminClients(panel); if(adminTab==="messages")return renderAdminMessages(panel); if(adminTab==="config")return renderAdminConfig(panel);}
     
-    // Vue Panier Admin corrigée pour ressembler à la vue client
     window.viewAdminCart = function(orderId) {
         const order = currentAdminOrders.find(x => x.id === orderId);
         if(!order) return;
@@ -1154,10 +1175,28 @@
     window.deleteTicket = async (id) => { try { const r = await api({action:"deleteticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Ticket supprimé"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
 
     function renderAdminConfig(panel) {
-        panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3><p class="sub">Options avancées (En développement).</p><div class="form-grid" style="margin-top:1rem"><div class="field wide"><input value="1 € = 500 KMF (Fixe)" disabled /></div><button class="btn secondary wide" disabled>Enregistrer</button></div></div>`;
+        const minC = state.config.minCart || 25;
+        panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3>
+        <div class="form-grid" style="margin-top:1rem">
+            <div class="field wide"><label style="color:var(--muted); font-size:0.85rem; width:100%">Minimum d'achat Panier (€)</label><input type="number" id="cfgMinCart" value="${minC}" style="width:100%" /></div>
+            <button class="btn primary wide" id="saveCfgBtn">Enregistrer la configuration</button>
+        </div></div>`;
+        $("#saveCfgBtn").addEventListener("click", async () => {
+            const btn = $("#saveCfgBtn"); btn.disabled = true; btn.textContent = "Enregistrement...";
+            try {
+                const newConfig = { ...state.config, minCart: Number($("#cfgMinCart").value) };
+                const res = await api({action:"saveconfig", adminKey:adminKey(), config: newConfig});
+                if(res.ok) {
+                    state.config = res.config;
+                    toast("Configuration sauvegardée.");
+                    updateMarquee();
+                } else throw new Error(res.error);
+            } catch(e) { toast("Erreur: " + e.message); }
+            btn.disabled = false; btn.textContent = "Enregistrer la configuration";
+        });
     }
 
-    // Builder Variantes Admin Modifié pour ne garder que le strict minimum exigé
+    // Builder Variantes Admin 
     function renderAdminProducts(panel){
         panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes (Couleurs, Tailles...)</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Séparez les choix par des virgules. Ex: Rouge, Bleu, Noir.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
         bindAdminProductForm(); loadCatalog(true).then(renderAdminList);
@@ -1190,7 +1229,6 @@
             });
             for(let k in params) params[k] = [...new Set(params[k])].join(", ");
             
-            // Collect mapped options from images
             const imagesWithOpts = [];
             $$(".preview-card").forEach((card, idx) => {
                 const optVal = card.querySelector(".img-link-opt").value.trim();
@@ -1206,7 +1244,7 @@
     async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>({url:url, opt:""}));renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
     function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="icon-btn danger-btn" style="position:absolute;top:0;right:0;width:24px;height:24px;border:none;background:var(--danger);color:white;">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à (ex: Bleu)" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
     function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";adminImages=[];renderImagePreview();$("#adminVariantsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";}
-    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"Article"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
+    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'></path></svg>"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
     
     function editProduct(id){
         const p=state.products.find(x=>x.id===id);if(!p)return;const f=$("#adminProductForm");
@@ -1231,7 +1269,6 @@
                 const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
                 const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,w,h);
                 
-                // Flood fill algorithm to remove near-white background from edges
                 const imgData = ctx.getImageData(0,0,w,h); const data = imgData.data;
                 const stack = [];
                 for(let x=0; x<w; x++) { stack.push([x,0]); stack.push([x,h-1]); }
@@ -1248,13 +1285,12 @@
                     const idx = vIdx * 4;
                     const r = data[idx], g = data[idx+1], b = data[idx+2], a = data[idx+3];
                     if(a > 0 && r > 230 && g > 230 && b > 230) {
-                        data[idx+3] = 0; // Make pixel transparent
+                        data[idx+3] = 0; 
                         stack.push([x+1, y], [x-1, y], [x, y+1], [x, y-1]);
                     }
                 }
                 ctx.putImageData(imgData, 0, 0);
                 
-                // Save as WebP for transparency and compression size
                 let q=.8, out=canvas.toDataURL('image/webp',q);
                 while(out.length>12000 && q>.2){ q-=.1; out=canvas.toDataURL('image/webp',q); }
                 resolve(out); URL.revokeObjectURL(img.src);
@@ -1263,7 +1299,7 @@
         });
     }
 
-    window.addEventListener("load", () => { ignoredChatMsgs = -1; });
+    window.addEventListener("load", () => { ignoredChatMsgs = -1; loadConfig(); });
 
     $("#openChatBtn").addEventListener("click", () => {
         $("#chatBox").classList.add("open"); $("#openChatBtn").style.display="none"; loadChat();
