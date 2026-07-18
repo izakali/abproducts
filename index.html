@@ -302,11 +302,6 @@
             <div class="sidebar-section">
                 <h4>Mon profil</h4>
                 <div class="sidebar-link active" data-tab="info">Gérer mon compte</div>
-                <div class="sidebar-link" data-tab="unimplemented">Mes adresses</div>
-                <div class="sidebar-link" data-tab="unimplemented">Mes options de paiement</div>
-            </div>
-            <div class="sidebar-section">
-                <h4>Mes Commandes</h4>
                 <div class="sidebar-link" data-tab="orders_all">Toutes les commandes</div>
                 <div class="sidebar-link" data-tab="orders_processing">Commandes en traitement</div>
                 <div class="sidebar-link" data-tab="orders_shipped">Commandes expédiées</div>
@@ -373,7 +368,7 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbyeDK7OZ6e5mRTiyb9L2vFlLv6-cKLduvSYoFgWn1-Wcce2tq3EpSyb-_SHFDQBSEQIUw/exec";
     const _K = "abadmin_key_2026"; const _S2 = "ABM_CLIENT_2026";
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
-    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25 };
+    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, featuresEnabled: true, feesEnabled: true };
     const CLIENT_NAV = [{id:"home",label:"Accueil"},{id:"catalogue",label:"Catalogue"},{id:"commande",label:"Commande libre"},{id:"suivi",label:"Suivi"},{id:"faq",label:"Infos"}];
     const ADMIN_NAV = [{tab:"orders",label:"Commandes"},{tab:"archives",label:"Archives"},{tab:"products",label:"Articles"},{tab:"clients",label:"Clients"},{tab:"messages",label:"Messages"},{tab:"config",label:"Configuration"}];
     const ROUTES = {home:"/home",catalogue:"/catalogue",commande:"/commande",panier:"/panier",checkout:"/checkout",suivi:"/suivi",faq:"/faq",login:"/login",signup:"/signup",compte:"/compte",admin:"/admin"};
@@ -437,13 +432,18 @@
       const admin = isAdmin(); const onAdminPage = currentPage === "admin";
       $("#brandLink").classList.toggle("admin-active", admin);
       $("#brandSub").textContent = admin ? "Mode entreprise actif" : "France → Comores";
-      $("#cartNavBtn").style.display = (admin || !state.user) ? "none" : "flex";
+      $("#cartNavBtn").style.display = (admin || !state.user || state.config.featuresEnabled === false) ? "none" : "flex";
       $("#accountBtn").textContent = admin ? "Entreprise" : (state.user ? "Mon Compte" : "Connexion");
       $("#accountBtn").dataset.page = admin ? "admin" : (state.user ? "compte" : "login");
       $("#openChatBtn").style.display = (state.user && !admin) ? "grid" : "none";
       let html = "";
       if (admin) html = `<a class="nav-link ${(!onAdminPage&&currentPage==="catalogue")?"active":""}" href="/catalogue" data-page="catalogue">Catalogue</a><span class="nav-sep"></span>` + ADMIN_NAV.map(n=>`<a class="nav-link admin ${(onAdminPage&&adminTab===n.tab)?"active":""}" href="/admin" data-admin-tab="${n.tab}">${n.label}</a>`).join("");
-      else html = CLIENT_NAV.map(n=>`<a class="nav-link ${(!onAdminPage&&currentPage===n.id)?"active":""}" href="${ROUTES[n.id]}" data-page="${n.id}">${n.label}</a>`).join("");
+      else {
+          html = CLIENT_NAV.map(n=>{
+              if(state.config.featuresEnabled === false && (n.id === "commande" || n.id === "panier")) return "";
+              return `<a class="nav-link ${(!onAdminPage&&currentPage===n.id)?"active":""}" href="${ROUTES[n.id]}" data-page="${n.id}">${n.label}</a>`;
+          }).join("");
+      }
       $("#navLinks").innerHTML = html;
     }
 
@@ -485,6 +485,7 @@
             if(res.ok) state.config = res.config;
         } catch(e) {}
         updateMarquee();
+        renderNav();
     }
 
     async function loadCatalog(force=false, silent=false){
@@ -681,6 +682,7 @@
     }
     
     function confirmAddProduct(){
+      if(state.config.featuresEnabled === false) { toast("Les commandes sont temporairement désactivées."); return; }
       if(!state.user) { toast("Veuillez vous connecter pour ajouter des articles."); $("#productModal").classList.remove("active"); switchPage("login"); return; }
       const p=modalProduct; if(!p)return; 
       const qty=Math.max(1,Number($("#modalQty")?.value||1)); const note=$("#modalNote")?.value||""; 
@@ -707,7 +709,10 @@
     }
     $("#closeProductModal").addEventListener("click",()=>$("#productModal").classList.remove("active"));
 
-    function computeFees(weight) { let w = Number(weight) || 0; let wFee = w < 1 ? 4.50 : w * 9; return wFee + 4.99; }
+    function computeFees(weight) { 
+        if (state.config.feesEnabled === false) return 0;
+        let w = Number(weight) || 0; let wFee = w < 1 ? 4.50 : w * 9; return wFee + 4.99; 
+    }
     function cartTotals(){
       const subtotal=state.cart.reduce((s,i)=>s+numberVal(i.price)*numberVal(i.qty),0); 
       const weight=state.cart.reduce((s,i)=>s+(numberVal(i.weight)||0.5)*numberVal(i.qty),0); 
@@ -755,11 +760,16 @@
     }
     
     $("#clearCart").addEventListener("click",()=>{state.cart=[];save();renderCart();});
-    $("#goCheckout").addEventListener("click",()=>{if(!state.cart.length)return toast("Votre panier est vide");switchPage("checkout");});
+    $("#goCheckout").addEventListener("click",()=>{
+        if(state.config.featuresEnabled === false) { toast("Les validations de commandes sont désactivées."); return; }
+        if(!state.cart.length)return toast("Votre panier est vide");
+        switchPage("checkout");
+    });
 
     $("#customBudget").addEventListener("input",()=>{$("#customKmfPreview").innerHTML=`${formatEUR($("#customBudget").value||0)} = ${formatKMF($("#customBudget").value||0)}`;});
     $("#customForm").addEventListener("submit",e=>{
       e.preventDefault();
+      if(state.config.featuresEnabled === false) { toast("Les commandes sont temporairement désactivées."); return; }
       if(!state.user) { toast("Veuillez vous connecter pour ajouter au panier."); switchPage("login"); return; }
       const d=Object.fromEntries(new FormData(e.currentTarget).entries());
       const id="c_"+Date.now();
@@ -868,6 +878,20 @@
                 box.innerHTML=`<div class="msg-red">Commande annulée ou rétractée. Contactez le support si besoin.</div>`; return;
             }
             
+            if(String(res.order.status).toLowerCase().includes("archivé")) {
+                const detailsObj = res.order.details || {};
+                const itms = detailsObj.items || [];
+                const itemsHtmlList = itms.map(i => `<li>${i.qty}x ${escapeHtml(i.name)}</li>`).join("");
+                box.innerHTML=`<div class="msg-red">Cette commande est archivée. Le suivi détaillé n'est plus disponible.</div>
+                <div class="glass-card" style="margin-top:1rem; padding:1.2rem;">
+                    <h4 style="margin-bottom:0.5rem; color:var(--txt)">Détails de la commande</h4>
+                    <p style="color:var(--muted); font-size:0.9rem;">Articles :</p>
+                    <ul style="color:var(--txt); font-size:0.9rem; padding-left:1.2rem; margin-bottom:0.8rem;">${itemsHtmlList}</ul>
+                    <p style="margin-top:0.5rem;"><strong>Total estimé : ${formatEUR(res.order.total)}</strong></p>
+                </div>`;
+                return;
+            }
+            
             const s = String(res.order.status).toLowerCase();
             let activeIdx = 0;
             if(s.includes("validation")) activeIdx = 0;
@@ -930,10 +954,6 @@
     
     async function renderAccountTab(tab, silent=false) {
         const box=$("#accountContent");
-        if(tab === "unimplemented") {
-            if(!silent) box.innerHTML = `<div class="empty" style="min-height:300px"><div><h3>Section en développement</h3><p>Cette fonctionnalité sera bientôt disponible.</p></div></div>`;
-            return;
-        }
         if(tab === "info") {
             if(!silent) box.innerHTML = `
             <h3 style="margin-bottom:1.5rem; font-size:1.8rem">Gérer mon compte</h3>
@@ -944,6 +964,15 @@
                 <div class="field wide pwd-wrapper"><input type="password" name="newPassword" placeholder="Nouveau mot de passe (Laisser vide pour ne pas changer)" /><button type="button" class="pwd-toggle"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></div>
                 <button class="btn primary wide" type="submit">Mettre à jour mes informations</button>
             </form>
+            
+            <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line)">
+                <h4 style="margin-bottom:1rem; color:var(--txt)">Mon Adresse</h4>
+                <form id="updateAddressForm" class="form-grid" style="max-width:600px">
+                    <div class="field wide"><textarea required name="fullAddress" placeholder="Adresse complète (Numéro, Rue, Ville, Code Postal, Pays...)" style="min-height:80px">${escapeHtml(state.user.fullAddress || "")}</textarea></div>
+                    <button class="btn primary wide" type="submit">Enregistrer l'adresse</button>
+                </form>
+            </div>
+
             <div style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--line)">
                 <h4 style="color:var(--danger); margin-bottom:.5rem">Zone de danger</h4>
                 <p class="sub" style="font-size:0.9rem; margin-bottom:1rem">La suppression de votre compte effacera toutes vos données du site sans possibilité de récupération.</p>
@@ -960,6 +989,16 @@
                         if(!res.ok) throw new Error(res.error);
                         state.user.name = d.name; state.user.phone = d.phone; save(); toast("Informations mises à jour");
                     } catch(err){ toast(err.message); } finally { btn.disabled=false; btn.textContent="Mettre à jour mes informations"; }
+                });
+                $("#updateAddressForm").addEventListener("submit", async e => {
+                    e.preventDefault();
+                    const btn = e.currentTarget.querySelector("button"); btn.disabled=true; btn.textContent="Mise à jour...";
+                    try {
+                        const addr = $("#updateAddressForm textarea[name='fullAddress']").value;
+                        const res = await api({action:"updateaddress", email:state.user.email, address: { fullAddress: addr }});
+                        if(!res.ok) throw new Error(res.error);
+                        state.user.fullAddress = addr; save(); toast("Adresse mise à jour");
+                    } catch(err){ toast(err.message); } finally { btn.disabled=false; btn.textContent="Enregistrer l'adresse"; }
                 });
                 $("#deleteAccountBtn").addEventListener("click", async () => {
                     if(confirm("Êtes-vous sûr de vouloir supprimer définitivement votre compte ? Cette action est irréversible.")) {
@@ -989,6 +1028,15 @@
                     let actionHtml = ""; let st = String(o.status).toLowerCase();
                     if(st.includes("en attente de paiement") || st.includes("en attente de validation")) { actionHtml = `<button class="btn danger small action-order-btn" data-id="${o.id}" data-type="cancel" style="background:transparent; border:1px solid rgba(255,85,115,0.3)">Annuler la commande</button>`; } 
                     else if(st.includes("dispo en retrait") || st.includes("port") || st.includes("recpetionné")) { actionHtml = `<button class="btn secondary small action-order-btn" data-id="${o.id}" data-type="retract">Demander rétractation (14j)</button>`; }
+                    
+                    const orderItems = o.details && o.details.items ? o.details.items : [];
+                    let itemsHtml = orderItems.length ? `<div style="margin-top:10px; padding:10px; background:var(--card2); border-radius:8px; border:1px solid var(--line);">
+                        <strong style="font-size:0.9rem; color:var(--muted)">Contenu de la commande :</strong>
+                        <ul style="list-style:none; padding:0; margin:5px 0 0; font-size:0.85rem; color:var(--txt)">
+                            ${orderItems.map(item => `<li style="margin-bottom:4px; display:flex; justify-content:space-between"><span>${item.qty}x ${escapeHtml(item.name)}</span> <span>${formatEUR(item.price)}</span></li>`).join("")}
+                        </ul>
+                    </div>` : "";
+
                     return `<div class="glass-card" style="margin-bottom:1rem; display:flex; flex-direction:column; gap:0.5rem; padding:1.2rem">
                         <div style="display:flex; justify-content:space-between; align-items:center;">
                             <strong style="color:var(--brand2); font-size:1.05rem">${escapeHtml(o.id)}</strong>
@@ -998,7 +1046,8 @@
                             <span>${o.items} article(s)</span>
                             <strong>${formatEUR(o.total)}</strong>
                         </div>
-                        <div style="display:flex; justify-content:flex-end; gap:0.5rem; padding-top:0.2rem">
+                        ${itemsHtml}
+                        <div style="display:flex; justify-content:flex-end; gap:0.5rem; padding-top:0.6rem">
                             ${actionHtml}
                             <button class="btn secondary small" onclick="$('#trackingInput').value='${o.id}'; switchPage('suivi');">Suivre</button>
                         </div>
@@ -1176,20 +1225,25 @@
 
     function renderAdminConfig(panel) {
         const minC = state.config.minCart || 25;
+        const featEn = state.config.featuresEnabled !== false;
+        const feesEn = state.config.feesEnabled !== false;
         panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3>
         <div class="form-grid" style="margin-top:1rem">
             <div class="field wide"><label style="color:var(--muted); font-size:0.85rem; width:100%">Minimum d'achat Panier (€)</label><input type="number" id="cfgMinCart" value="${minC}" style="width:100%" /></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfgFeatures" ${featEn ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfgFeatures">Activer toutes les fonctionnalités clients (Commandes, Panier...)</label></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfgFees" ${feesEn ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfgFees">Activer les calculs des frais (Port et Livraison)</label></div>
             <button class="btn primary wide" id="saveCfgBtn">Enregistrer la configuration</button>
         </div></div>`;
         $("#saveCfgBtn").addEventListener("click", async () => {
             const btn = $("#saveCfgBtn"); btn.disabled = true; btn.textContent = "Enregistrement...";
             try {
-                const newConfig = { ...state.config, minCart: Number($("#cfgMinCart").value) };
+                const newConfig = { ...state.config, minCart: Number($("#cfgMinCart").value), featuresEnabled: $("#cfgFeatures").checked, feesEnabled: $("#cfgFees").checked };
                 const res = await api({action:"saveconfig", adminKey:adminKey(), config: newConfig});
                 if(res.ok) {
                     state.config = res.config;
                     toast("Configuration sauvegardée.");
                     updateMarquee();
+                    renderNav();
                 } else throw new Error(res.error);
             } catch(e) { toast("Erreur: " + e.message); }
             btn.disabled = false; btn.textContent = "Enregistrer la configuration";
@@ -1210,7 +1264,7 @@
             $("#adminVariantsList").appendChild(div);
         });
         $("#browseImages").addEventListener("click",e=>{e.preventDefault();$("#photoInput").click();});
-        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images...");for(const file of files){const img=await compressAndRemoveBg(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";});
+        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images...");for(const file of files){const img=await compressToWhiteBg(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";});
         $("#importBtn").addEventListener("click",importExternalProduct);
         $("#resetProductForm").addEventListener("click",resetProductForm);
         form.addEventListener("submit",async e=>{
@@ -1260,39 +1314,18 @@
         $("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});
     }
     
-    function compressAndRemoveBg(file){
+    function compressToWhiteBg(file){
         return new Promise(resolve=>{
             const img=new Image();
             img.onload=()=>{
                 const MAX=420; let w=img.width, h=img.height;
                 if(w>h&&w>MAX){h=Math.floor(h*MAX/w);w=MAX}else if(h>=w&&h>MAX){w=Math.floor(w*MAX/h);h=MAX}
                 const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
-                const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,w,h);
-                
-                const imgData = ctx.getImageData(0,0,w,h); const data = imgData.data;
-                const stack = [];
-                for(let x=0; x<w; x++) { stack.push([x,0]); stack.push([x,h-1]); }
-                for(let y=0; y<h; y++) { stack.push([0,y]); stack.push([w-1,y]); }
-                
-                const visited = new Uint8Array(w * h);
-                while(stack.length > 0) {
-                    const [x, y] = stack.pop();
-                    if(x < 0 || x >= w || y < 0 || y >= h) continue;
-                    const vIdx = y * w + x;
-                    if(visited[vIdx]) continue;
-                    visited[vIdx] = 1;
-                    
-                    const idx = vIdx * 4;
-                    const r = data[idx], g = data[idx+1], b = data[idx+2], a = data[idx+3];
-                    if(a > 0 && r > 230 && g > 230 && b > 230) {
-                        data[idx+3] = 0; 
-                        stack.push([x+1, y], [x-1, y], [x, y+1], [x, y-1]);
-                    }
-                }
-                ctx.putImageData(imgData, 0, 0);
-                
-                let q=.8, out=canvas.toDataURL('image/webp',q);
-                while(out.length>12000 && q>.2){ q-=.1; out=canvas.toDataURL('image/webp',q); }
+                const ctx=canvas.getContext('2d');
+                ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,w,h);
+                ctx.drawImage(img,0,0,w,h);
+                let q=.8, out=canvas.toDataURL('image/jpeg',q);
+                while(out.length>12000 && q>.2){ q-=.1; out=canvas.toDataURL('image/jpeg',q); }
                 resolve(out); URL.revokeObjectURL(img.src);
             };
             img.onerror=()=>resolve(''); img.src=URL.createObjectURL(file);
