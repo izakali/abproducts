@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
   <script>(function(){try{var p=new URLSearchParams(window.location.search),rd=p.get('redirect');if(rd){window.history.replaceState(null,"",rd);}else{var r=sessionStorage.getItem("abp_redirect");if(r){sessionStorage.removeItem("abp_redirect");window.history.replaceState(null,"",r);}}}catch(e){}})();</script>
   <style>
     :root {
@@ -98,6 +99,7 @@
     
     .modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:20px;background:rgba(10,20,35,.7);backdrop-filter:blur(6px)}.modal.active{display:grid}.modal-card{width:min(1100px,100%);max-height:92vh;overflow:auto;border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:2rem;box-shadow:0 30px 90px rgba(0,0,0,.5)}.modal-head{display:flex;justify-content:space-between;align-items:start;gap:1rem;margin-bottom:1.5rem}
     
+    /* MODALE RECOMMERCE */
     .recom-modal { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
     .recom-gallery { display: flex; gap: 1rem; }
     .recom-thumbs { display: flex; flex-direction: column; gap: 0.8rem; max-height:400px; overflow-y:auto; padding-right:5px; }
@@ -148,16 +150,16 @@
 
     .chat-btn { position:fixed; bottom:24px; right:24px; width:60px; height:60px; border-radius:999px; background:var(--brand2); color:#04160e; display:none; place-items:center; font-weight:800; font-size:1rem; box-shadow:0 12px 32px rgba(0,0,0,.4); z-index:80; cursor:pointer; transition:.2s ease; border:none; }
     .chat-btn:hover { transform:scale(1.05); }
-    .chat-box { position:fixed; bottom:94px; right:24px; width:360px; height:50vh; min-height:400px; max-width:calc(100vw - 48px); background:var(--panel); border:1px solid var(--line); border-radius:18px; display:none; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.6); z-index:80; overflow:hidden; }
+    .chat-box { position:fixed; bottom:94px; right:24px; width:380px; max-width:calc(100vw - 48px); background:var(--panel); border:1px solid var(--line); border-radius:18px; display:none; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.6); z-index:80; overflow:hidden; }
     .chat-box.open { display:flex; animation:softRise .2s ease both; }
     .chat-header { background:var(--panel-strong); padding:1rem; border-bottom:1px solid var(--line); font-weight:700; display:flex; justify-content:space-between; align-items:center; }
-    .chat-msgs { flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.8rem; }
+    .chat-msgs { flex:1; height:300px; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.8rem; }
     .chat-msg { padding:.7rem 1rem; border-radius:12px; font-size:.9rem; max-width:85%; line-height:1.4; }
     .chat-msg.admin { background:var(--card2); border:1px solid var(--line); align-self:flex-start; color:var(--txt); }
     .chat-msg.client { background:var(--brand2); color:#04160e; align-self:flex-end; font-weight:500; }
     .chat-input { display:flex; border-top:1px solid var(--line); padding:.8rem; gap:.5rem; background:var(--card); align-items:center; }
     .chat-input input { flex:1; min-width:0; background:var(--card2); border:1px solid var(--line); border-radius:9px; padding:.6rem .8rem; outline:0; color:var(--txt); font-size:.9rem; }
-    .chat-input button { background:var(--brand2); color:#04160e; border:0; border-radius:9px; padding:0 1.5rem; height:100%; min-height:42px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0; width:auto; }
+    .chat-input button { background:var(--brand2); color:#04160e; border:0; border-radius:9px; padding:0 1.2rem; min-width:90px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0; width:auto; }
     .icon-btn.danger-btn { padding:0; display:grid; place-items:center; border-color:rgba(255,85,115,.3); color:var(--danger); background:transparent; font-size:1.1rem; cursor:pointer; transition:0.2s; }
     .icon-btn.danger-btn:hover { background:rgba(255,85,115,.08); }
     .svg-icon { width:18px; height:18px; flex-shrink:0; margin-right:6px; color:var(--muted); }
@@ -231,7 +233,7 @@
           </div>
         </div>
         <div class="visual-card">
-          <div class="visual-inner"><div class="mock-hero"><div class="pill"><span class="dot"></span> Catalogue comprenant un large choix d'articles</div><h3 style="font-size:2rem;line-height:1;margin-top:.9rem;letter-spacing:-.06em">AB PRODUCTS</h3><div class="mock-search"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg> Shein, Sephora, Zara, auto, maison…</div></div><div class="mock-products"><div class="mini-product"><div class="mini-icon">👕</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">🧴</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">🔧</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon">📱</div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div></div></div>
+          <div class="visual-inner"><div class="mock-hero"><div class="pill"><span class="dot"></span> Catalogue comprenant un large choix d'articles</div><h3 style="font-size:2rem;line-height:1;margin-top:.9rem;letter-spacing:-.06em">AB PRODUCTS</h3><div class="mock-search"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg> Shein, Sephora, Zara, auto, maison…</div></div><div class="mock-products"><div class="mini-product"><div class="mini-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.38 3.46L16 2 12 4 8 2 3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg></div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="8" y="10" width="8" height="12" rx="2"></rect><path d="M10 10V6h4v4"></path><path d="M10 2h4v4h-4z"></path></svg></div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div></div></div>
         </div>
       </div>
       <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF exacte et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div><h3>Catalogue</h3><p>Produits avec photos, poids, paramètres personnalisés et détails complets.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><h3>Frais de port</h3><p>Poids calculé automatiquement : moins de 1kg (4.50€) ou par kilo (9€).</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div><h3>Livraison</h3><p>Frais fixes de livraison de 4.99€ ajoutés au panier.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail au client avec un récapitulatif type facture.</p></div></div></div>
@@ -261,7 +263,7 @@
 
     <section class="page" id="panier"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Panier</div><h2>Votre sélection.</h2></div><p id="panierSubtext">Frais au poids + livraison automatique.</p></div><div class="cart-layout"><div class="cart-list" id="cartList"></div><aside class="summary" id="cartSummary"><h3 style="font-size:1.5rem;letter-spacing:-.04em">Récapitulatif</h3><div class="summary-row" id="articleRow"><span>Articles</span><strong id="subtotal">0 €</strong></div><div class="summary-row" id="weightRow"><span>Poids total</span><strong id="weightTotal">0 kg</strong></div><div class="summary-row" id="feeRow"><span>Frais</span><strong id="shippingTotal">0 €</strong></div><div class="summary-row" style="border-bottom:0"><span>Total estimé</span><strong class="summary-total" id="grandTotal">0 €</strong></div><div id="minWarnEl"></div><button class="btn primary" style="width:100%;margin-top:1rem" id="goCheckout">Valider la commande</button><button class="btn secondary" style="width:100%;margin-top:.7rem" id="clearCart">Vider le panier</button><p class="mini-note">Calcul indicatif : les prix et modalités peuvent être vérifiés avant confirmation finale.</p></aside></div></div></section>
 
-    <section class="page" id="checkout"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Validation</div><h2>Finaliser la commande.</h2></div><p>Formulaire complet pour préparer le contact client et le retrait.</p></div><form id="checkoutForm" class="checkout-grid"><div class="glass-card"><h3 style="margin-bottom:1rem">Informations client</h3><div class="form-grid"><div class="field wide"><input required name="fullname" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom complet" /></div><div class="field"><select name="phoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input required name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone / WhatsApp" /></div><div class="field wide"><input required name="email" type="email" placeholder="Adresse e-mail" /></div><div class="field wide"><textarea name="address" placeholder="Adresse ou informations utiles"></textarea></div></div></div><div class="glass-card"><h3 style="margin-bottom:1.5rem">Moyen de paiement</h3><div class="form-grid"><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="sumup" checked><div class="pay-btn-box"><span>Payer en ligne (Carte, Apple Pay)</span><svg class="svg-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"></rect><line x1="1" y1="10" x2="23" y2="10" stroke="currentColor" stroke-width="2"></line></svg></div></label><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="cash"><div class="pay-btn-box"><span>Payer sur place (Espèces)</span><svg class="svg-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></div></label></div><h3 style="margin:top:2rem; margin-bottom:1rem">Retrait / livraison</h3><div class="form-grid"><div class="field wide"><input required name="pickupName" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom de la personne qui récupère" /></div><div class="field"><select name="pickupCountry" class="phone-country" aria-label="Indicatif pays retrait"></select></div><div class="field"><input required name="pickupPhone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone de la personne qui récupère" /></div><div class="field wide"><textarea name="message" placeholder="Message pour AB PRODUCTS"></textarea></div><button class="btn primary wide" type="submit">Confirmer ma commande</button></div></div></form></div></section>
+    <section class="page" id="checkout"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Validation</div><h2>Finaliser la commande.</h2></div><p>Formulaire complet pour préparer le contact client et le retrait.</p></div><form id="checkoutForm" class="checkout-grid"><div class="glass-card"><h3 style="margin-bottom:1rem">Informations client</h3><div class="form-grid"><div class="field wide"><input required name="fullname" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom complet" /></div><div class="field"><select name="phoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input required name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone / WhatsApp" /></div><div class="field wide"><input required name="email" type="email" placeholder="Adresse e-mail" /></div><div class="field wide"><textarea name="address" placeholder="Adresse ou informations utiles"></textarea></div></div></div><div class="glass-card"><h3 style="margin-bottom:1.5rem">Moyen de paiement</h3><div class="form-grid"><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="sumup" checked><div class="pay-btn-box"><span>Payer en ligne (Carte, Apple Pay)</span><svg class="svg-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"></rect><line x1="1" y1="10" x2="23" y2="10" stroke="currentColor" stroke-width="2"></line></svg></div></label><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="cash"><div class="pay-btn-box"><span>Payer sur place (Espèces)</span><svg class="svg-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></div></label></div><h3 style="margin-top:2rem; margin-bottom:1rem">Retrait / livraison</h3><div class="form-grid"><div class="field wide"><input required name="pickupName" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom de la personne qui récupère" /></div><div class="field"><select name="pickupCountry" class="phone-country" aria-label="Indicatif pays retrait"></select></div><div class="field"><input required name="pickupPhone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone de la personne qui récupère" /></div><div class="field wide"><textarea name="message" placeholder="Message pour AB PRODUCTS"></textarea></div><button class="btn primary wide" type="submit">Confirmer ma commande</button></div></div></form></div></section>
 
     <section class="page" id="suivi"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Suivi</div><h2>Suivre une commande.</h2></div><p>Renseignez votre numéro de commande pour le suivi. Réservé aux commandes de votre compte.</p></div><div class="glass-card"><div class="field"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg> <input id="trackingInput" placeholder="Exemple : ABP-2026-1234567" /></div><button class="btn primary" id="trackingBtn" style="width:max-content;margin-top:.9rem">Afficher le suivi</button><div id="trackingResult"></div></div></div></section>
 
@@ -338,7 +340,7 @@
   <div class="toast-wrap" id="toastWrap"></div>
   <datalist id="categoryOptions"></datalist>
 
-  <button class="chat-btn" id="openChatBtn">Aide</button>
+  <button class="chat-btn" id="openChatBtn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></button>
   <div class="chat-box" id="chatBox">
     <div class="chat-header">Service Client <button class="icon-btn" id="closeChatBtn" style="width:28px;height:28px;font-size:.8rem;background:transparent;border:0;color:var(--muted)">✕</button></div>
     <div class="chat-msgs" id="chatMsgs"></div>
@@ -351,6 +353,7 @@
   <div class="modal" id="orderModal" aria-hidden="true"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow">Commande confirmée</div><h2 style="font-size:2.5rem">Merci.</h2></div><button class="icon-btn" id="closeOrderModal">✕</button></div><div id="orderModalContent"></div></div></div>
   <div class="modal" id="productModal" aria-hidden="true"><div class="modal-card"><div class="modal-head" style="margin-bottom:0"><div><div class="eyebrow">ARTICLE</div><h2 id="modalProductTitle" style="font-size:2.2rem; display:none;">Article</h2></div><button class="icon-btn danger-btn" id="closeProductModal" style="width:36px; height:36px">✕</button></div><div id="modalProductContent"></div></div></div>
   <div class="modal" id="adminCartModal" aria-hidden="true"><div class="modal-card" style="max-width:600px"><div class="modal-head"><div><div class="eyebrow">DÉTAILS</div><h2 style="font-size:2.2rem; margin-top:0">Panier Client</h2></div><button class="icon-btn danger-btn" id="closeAdminCartModal" style="width:36px; height:36px">✕</button></div><div id="adminCartContent"></div></div></div>
+  <div class="modal" id="sumupModal" aria-hidden="true"><div class="modal-card" style="max-width:500px; padding:0; overflow:hidden"><div class="modal-head" style="padding:1.5rem; border-bottom:1px solid var(--line); margin-bottom:0; background:var(--panel)"><div><div class="eyebrow">PAIEMENT SÉCURISÉ</div><h2 style="font-size:1.8rem; margin-top:0">SumUp</h2></div><button type="button" class="icon-btn danger-btn" id="closeSumupModal" style="width:36px; height:36px">✕</button></div><div id="sumup-card" style="background:#fff; min-height:400px;"></div></div></div>
 
   <div id="cookieBanner" class="glass-card" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(500px, calc(100vw - 48px));z-index:9999;display:none;flex-direction:column;gap:1rem;box-shadow:0 30px 90px rgba(0,0,0,.5);">
     <h3 style="margin:0;font-size:1.2rem;">Préférences de cookies</h3>
@@ -482,7 +485,6 @@
       } catch(e){state.catalogLoaded=true; if(!silent) renderProducts();}
     }
     
-    // Normalisation des images avec option mappée
     function normalizeProduct(p){
         p=p||{}; let imgs = [];
         if(Array.isArray(p.images)) {
@@ -493,7 +495,7 @@
         } else if (p.image) {
             imgs = [{ url: p.image, opt: "" }];
         }
-        return {...p,images:imgs.slice(0,7),image:imgs[0]?.url||"",price:numberVal(p.price),recommendedPrice:numberVal(p.recommendedPrice),weight:numberVal(p.weight),category:p.category||"Divers",params:p.params||{}};
+        return {...p,images:imgs.slice(0,30),image:imgs[0]?.url||"",price:numberVal(p.price),recommendedPrice:numberVal(p.recommendedPrice),weight:numberVal(p.weight),category:p.category||"Divers",params:p.params||{}};
     }
     
     function initCategories(){const cats=[...new Set([...MASSIVE_CATEGORIES, ...state.products.map(p=>p.category).filter(Boolean)])].sort();$("#categoryFilter").innerHTML='<option value="all">Toutes catégories</option>'+cats.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");}
@@ -651,7 +653,7 @@
       
       $("#productModal").classList.add("active");
       
-      // Init gallery
+      // Init gallery filter if color is pre-selected
       const firstColorRadio = document.querySelector('.recom-color-label input:checked');
       if(firstColorRadio) {
           const optVal = firstColorRadio.value.split(':')[1].trim();
@@ -670,16 +672,14 @@
       const cartId = [p.id, optionsString, note].join("|"); 
       const existing = state.cart.find(i=>i.cartId===cartId&&i.type==="product"); 
       
-      // Determine the best image thumbnail based on selected options
       let thumbUrl = p.image;
       if(p.images && p.images.length > 0) {
-          // try to find an image matching one of the options
           for(let opt of selectedOptions) {
               const optVal = opt.split(':')[1].trim().toLowerCase();
               const matchedImg = p.images.find(img => img.opt && img.opt.toLowerCase().trim() === optVal);
               if(matchedImg) { thumbUrl = matchedImg.url; break; }
           }
-          if(thumbUrl === p.image) thumbUrl = p.images[0].url; // fallback to first image
+          if(thumbUrl === p.image) thumbUrl = p.images[0].url; 
       }
 
       if(existing) existing.qty += qty; 
@@ -707,7 +707,7 @@
       else {
         $("#panierSubtext").style.display = "block"; $("#feeRow").style.display = "flex"; $("#weightRow").style.display = "flex";
         list.innerHTML=`<div class="pill" style="margin-bottom:1rem;color:var(--gold)"><span class="dot" style="background:var(--gold)"></span>Le panier est supprimé après 10 jours d'inactivité.</div>`+state.cart.map(item=>{
-            const thumb = item.image ? `<img src="${escapeHtml(item.image)}" alt="">` : `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`;
+            const thumb = item.image ? `<img src="${escapeHtml(item.image)}" alt="">` : (item.icon && item.icon.startsWith('<svg') ? item.icon : `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`);
             return `<div class="cart-item"><div class="cart-icon">${thumb}</div><div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category)} • article ${formatEUR(item.price)} • ${item.weight||0} kg</small>${item.options?`<br><small style="color:var(--brand3); font-weight:600">${escapeHtml(item.options)}</small>`:""}</div><div class="qty"><button class="qty-btn" data-op="minus" data-id="${escapeHtml(item.cartId||item.id)}">−</button><strong>${item.qty}</strong><button class="qty-btn" data-op="plus" data-id="${escapeHtml(item.cartId||item.id)}">+</button></div><button class="icon-btn danger-btn" style="width:36px; height:36px" data-op="remove" data-id="${escapeHtml(item.cartId||item.id)}">✕</button></div>`
         }).join("");
         
@@ -751,6 +751,18 @@
 
     function prefillCheckout(){const form=$("#checkoutForm"); if(!form)return; if(!state.user)return; form.fullname.value=state.user.name||""; form.email.value=state.user.email||""; const sp=splitDial(state.user.phone); if(sp){form.phoneCountry.value=sp.dial; form.phone.value=sp.rest;} else if(state.user.phone){form.phone.value=state.user.phone;}}
     
+    async function executeOrderPlacement(data, items, totals, orderId, finalStatus) {
+        try {
+            if(apiReady()){
+                const res = await api({action:"placeorder", orderId, customer:data, items, totals, userEmail:state.user.email, status:finalStatus});
+                if(!res.ok) throw new Error(res.error||"Erreur serveur");
+            }
+            state.lastOrder={id:orderId, date:new Date().toISOString(), customer:data, items:[...state.cart], totals};
+            state.cart=[]; save(); showOrderModal(state.lastOrder);
+            $("#checkoutForm").reset(); initPhoneCountries();
+        } catch(err) { toast("Erreur d'envoi : "+err.message); }
+    }
+
     $("#checkoutForm").addEventListener("submit",async e=>{
         e.preventDefault();
         if(!state.cart.length) return toast("Votre panier est vide");
@@ -765,30 +777,48 @@
         const orderId="ABP-2026-"+Math.floor(1000000+Math.random()*9000000);
         const btn=e.currentTarget.querySelector("button[type=submit]");
         btn.disabled=true; btn.textContent="Envoi en cours…";
+        const items = state.cart.map(i=>({...i}));
         
-        // Simulation SumUp si "sumup" est sélectionné
         if (data.payment_method === 'sumup') {
-            toast("Redirection vers le paiement sécurisé SumUp...");
-            // Dans une vraie app, on appelle le SDK ici. Là on simule le délai.
-            await new Promise(r => setTimeout(r, 1500));
-        }
-        
-        try {
-            const items = state.cart.map(i=>({...i}));
-            if(apiReady()){
-                const res = await api({action:"placeorder", orderId, customer:data, items, totals, userEmail:state.user.email});
-                if(!res.ok) throw new Error(res.error||"Erreur serveur");
+            try {
+                const chkRes = await api({action:"create_checkout", orderId, amount: totals.grand});
+                if(!chkRes.ok) throw new Error(chkRes.error);
+                
+                $("#sumupModal").classList.add("active");
+                $("#sumup-card").innerHTML = "";
+                SumUpCard.mount({
+                    id: "sumup-card",
+                    checkoutId: chkRes.checkoutId,
+                    onResponse: async function(type, body) {
+                        if(type === 'success') {
+                            $("#sumupModal").classList.remove("active");
+                            toast("Paiement validé avec succès !");
+                            await executeOrderPlacement(data, items, totals, orderId, "Payé");
+                        } else if (type === 'error') {
+                            toast("Échec du paiement.");
+                        }
+                        btn.disabled=false; btn.textContent="Confirmer ma commande";
+                    }
+                });
+            } catch(err) {
+                toast("Erreur SumUp: " + err.message);
+                btn.disabled=false; btn.textContent="Confirmer ma commande";
             }
-            state.lastOrder={id:orderId, date:new Date().toISOString(), customer:data, items:[...state.cart], totals};
-            state.cart=[]; save(); showOrderModal(state.lastOrder);
-            e.target.reset(); initPhoneCountries();
-        } catch(err) { toast("Erreur d'envoi : "+err.message); } finally { btn.disabled=false; btn.textContent="Confirmer ma commande"; }
+        } else {
+            await executeOrderPlacement(data, items, totals, orderId, "En attente de validation");
+            btn.disabled=false; btn.textContent="Confirmer ma commande";
+        }
+    });
+
+    $("#closeSumupModal").addEventListener("click", () => {
+        $("#sumupModal").classList.remove("active");
+        $("#checkoutForm button[type=submit]").disabled=false; 
+        $("#checkoutForm button[type=submit]").textContent="Confirmer ma commande";
     });
 
     function showOrderModal(order){$("#orderModalContent").innerHTML=`<div class="glass-card" style="box-shadow:none"><p>Votre commande a été enregistrée sous le numéro :</p><h3 style="font-size:2rem;color:var(--brand3);margin:.5rem 0">${order.id}</h3><div class="summary-row"><span>Total estimé</span><strong>${formatDual(order.totals.grand)}</strong></div><button class="btn primary" style="margin-top:1rem" id="goTrackFromModal">Voir le suivi</button></div>`;$("#orderModal").classList.add("active");$("#trackingInput").value=order.id;$("#goTrackFromModal").addEventListener("click",()=>{$("#orderModal").classList.remove("active");switchPage("suivi");});}
     $("#closeOrderModal").addEventListener("click",()=>$("#orderModal").classList.remove("active"));
 
-    // Suivi de Commande 
     const TRACK_STAGES=[
       { id:"val", title:"En attente de validation", sub:"Vérification en cours", icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="10 9 9 9 8 9"></polyline></svg>` },
       { id:"paie", title:"En attente de paiement", sub:"Paiement non reçu", icon:`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>` },
@@ -971,7 +1001,7 @@
     function renderAdmin(){const box=$("#adminContent"); if(!isAdmin()){box.innerHTML=`<div class="msg-red">Accès restreint.</div>`; return;} box.innerHTML=`<div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem"><div class="pill"><span class="dot"></span> Session entreprise active</div><button class="btn secondary" id="adminLogout">Déconnexion entreprise</button></div><div class="admin-tabs" id="adminTabs"></div><div id="adminPanel"></div>`;$("#adminLogout").addEventListener("click",()=>{sessionStorage.removeItem("abp_admin");toast("Déconnecté de l'entreprise");switchPage("home");});renderAdminPanel();}
     function renderAdminPanel(){if(!isAdmin())return; const tabs=$("#adminTabs"); if(tabs) tabs.innerHTML=ADMIN_NAV.map(n=>`<button class="btn secondary small ${adminTab===n.tab?"active":""}" data-admin-tab="${n.tab}">${n.label}</button>`).join(""); const panel=$("#adminPanel"); if(!panel)return; if(adminTab==="orders")return renderAdminOrders(panel, false); if(adminTab==="archives")return renderAdminOrders(panel, true); if(adminTab==="products")return renderAdminProducts(panel); if(adminTab==="clients")return renderAdminClients(panel); if(adminTab==="messages")return renderAdminMessages(panel); if(adminTab==="config")return renderAdminConfig(panel);}
     
-    // Vue Panier Admin
+    // Vue Panier Admin corrigée pour ressembler à la vue client
     window.viewAdminCart = function(orderId) {
         const order = currentAdminOrders.find(x => x.id === orderId);
         if(!order) return;
@@ -980,7 +1010,7 @@
             const items = details.items || [];
             if(!items.length) { toast("Aucun article"); return; }
             $("#adminCartContent").innerHTML = `<div class="cart-list" style="margin-top: 1rem;">` + items.map(i => {
-                const thumb = i.image ? `<img src="${escapeHtml(i.image)}" alt="">` : (i.icon && i.icon.startsWith('<svg') ? i.icon : `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`);
+                const thumb = i.image ? `<img src="${escapeHtml(i.image)}" alt="">` : `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`;
                 let rawLink = i.link || i.sourceUrl || "";
                 let safeLink = rawLink ? (rawLink.startsWith('http') ? rawLink : 'https://' + rawLink) : '';
                 let linkHtml = safeLink ? `<a href="${escapeHtml(safeLink)}" target="_blank" style="display:inline-block; margin-top:8px; padding:4px 10px; background:rgba(47,191,139,.1); color:var(--brand2); border-radius:6px; font-weight:700; font-size:0.85rem; text-decoration:none;">Ouvrir le lien externe</a>` : `<div style="margin-top:8px; font-size:0.8rem; color:var(--muted2);">Aucun lien externe</div>`;
@@ -1127,8 +1157,9 @@
         panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3><p class="sub">Options avancées (En développement).</p><div class="form-grid" style="margin-top:1rem"><div class="field wide"><input value="1 € = 500 KMF (Fixe)" disabled /></div><button class="btn secondary wide" disabled>Enregistrer</button></div></div>`;
     }
 
+    // Builder Variantes Admin Modifié pour ne garder que le strict minimum exigé
     function renderAdminProducts(panel){
-        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes (Couleurs, Tailles...)</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Séparez les choix par des virgules. Ex: Rouge, Bleu, Noir.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 7 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
+        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes (Couleurs, Tailles...)</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Séparez les choix par des virgules. Ex: Rouge, Bleu, Noir.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
         bindAdminProductForm(); loadCatalog(true).then(renderAdminList);
     }
     
@@ -1140,7 +1171,7 @@
             $("#adminVariantsList").appendChild(div);
         });
         $("#browseImages").addEventListener("click",e=>{e.preventDefault();$("#photoInput").click();});
-        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,7-adminImages.length);if(!files.length)return;toast("Préparation des images...");for(const file of files){const img=await compressImage(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,7);renderImagePreview();e.target.value="";});
+        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images...");for(const file of files){const img=await compressAndRemoveBg(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";});
         $("#importBtn").addEventListener("click",importExternalProduct);
         $("#resetProductForm").addEventListener("click",resetProductForm);
         form.addEventListener("submit",async e=>{
@@ -1172,16 +1203,16 @@
         });
     }
     
-    async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,7).map(url=>({url:url, opt:""}));renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
+    async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>({url:url, opt:""}));renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
     function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="icon-btn danger-btn" style="position:absolute;top:0;right:0;width:24px;height:24px;border:none;background:var(--danger);color:white;">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à (ex: Bleu)" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
     function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";adminImages=[];renderImagePreview();$("#adminVariantsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";}
-    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'></path></svg>"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
+    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"Article"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
     
     function editProduct(id){
         const p=state.products.find(x=>x.id===id);if(!p)return;const f=$("#adminProductForm");
         f.id.value=p.id;f.name.value=p.name||"";f.category.value=p.category||"";f.price.value=p.price||"";f.desc.value=p.desc||"";
         const w = Number(p.weight || 0); f.weightKg.value = Math.floor(w); f.weightG.value = Math.round((w - Math.floor(w)) * 1000);
-        adminImages=(p.images||[]).slice(0,7);renderImagePreview();
+        adminImages=(p.images||[]).slice(0,30);renderImagePreview();
         $("#adminVariantsList").innerHTML = "";
         Object.entries(p.params || {}).forEach(([k,v]) => {
             const div = document.createElement("div"); div.style = "display:grid; grid-template-columns:1fr 2fr auto; gap:0.5rem;";
@@ -1191,7 +1222,46 @@
         $("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});
     }
     
-    function compressImage(file){return new Promise(resolve=>{const img=new Image();img.onload=()=>{const MAX=420;let w=img.width,h=img.height;if(w>h&&w>MAX){h=h*MAX/w;w=MAX}else if(h>=w&&h>MAX){w=w*MAX/h;h=MAX}const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);let q=.78,out=canvas.toDataURL('image/jpeg',q);while(out.length>16000&&q>.18){q-=.08;out=canvas.toDataURL('image/jpeg',q)}resolve(out.length<=16000?out:'');URL.revokeObjectURL(img.src);};img.onerror=()=>resolve('');img.src=URL.createObjectURL(file);});}
+    function compressAndRemoveBg(file){
+        return new Promise(resolve=>{
+            const img=new Image();
+            img.onload=()=>{
+                const MAX=420; let w=img.width, h=img.height;
+                if(w>h&&w>MAX){h=Math.floor(h*MAX/w);w=MAX}else if(h>=w&&h>MAX){w=Math.floor(w*MAX/h);h=MAX}
+                const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
+                const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,w,h);
+                
+                // Flood fill algorithm to remove near-white background from edges
+                const imgData = ctx.getImageData(0,0,w,h); const data = imgData.data;
+                const stack = [];
+                for(let x=0; x<w; x++) { stack.push([x,0]); stack.push([x,h-1]); }
+                for(let y=0; y<h; y++) { stack.push([0,y]); stack.push([w-1,y]); }
+                
+                const visited = new Uint8Array(w * h);
+                while(stack.length > 0) {
+                    const [x, y] = stack.pop();
+                    if(x < 0 || x >= w || y < 0 || y >= h) continue;
+                    const vIdx = y * w + x;
+                    if(visited[vIdx]) continue;
+                    visited[vIdx] = 1;
+                    
+                    const idx = vIdx * 4;
+                    const r = data[idx], g = data[idx+1], b = data[idx+2], a = data[idx+3];
+                    if(a > 0 && r > 230 && g > 230 && b > 230) {
+                        data[idx+3] = 0; // Make pixel transparent
+                        stack.push([x+1, y], [x-1, y], [x, y+1], [x, y-1]);
+                    }
+                }
+                ctx.putImageData(imgData, 0, 0);
+                
+                // Save as WebP for transparency and compression size
+                let q=.8, out=canvas.toDataURL('image/webp',q);
+                while(out.length>12000 && q>.2){ q-=.1; out=canvas.toDataURL('image/webp',q); }
+                resolve(out); URL.revokeObjectURL(img.src);
+            };
+            img.onerror=()=>resolve(''); img.src=URL.createObjectURL(file);
+        });
+    }
 
     window.addEventListener("load", () => { ignoredChatMsgs = -1; });
 
@@ -1215,7 +1285,6 @@
                 if(!visibleMsgs.length) { 
                     $("#chatMsgs").innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:20px; font-size:0.9rem">Envoyez-nous un message, nous vous répondrons dès que possible.</p>`; 
                 } else {
-                    // Update only if different to avoid cursor losing focus if user is looking
                     const currentHtml = $("#chatMsgs").innerHTML;
                     const newHtml = visibleMsgs.map(m => `<div class="chat-msg ${m.sender==='client'?'client':'admin'}">${escapeHtml(m.text)}</div>`).join("");
                     if(currentHtml !== newHtml) {
