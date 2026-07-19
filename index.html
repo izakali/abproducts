@@ -43,6 +43,8 @@
     .nav-link:hover{color:var(--txt);background:var(--card2)}
     .nav-link.active{color:var(--brand2);background:transparent}
     .nav-link.active::after{content:"";position:absolute;left:.8rem;right:.8rem;bottom:.3rem;height:2px;border-radius:2px;background:var(--brand2)}
+    .nav-link.disabled { color:var(--muted2); opacity:0.6; }
+    .nav-link.disabled:hover { background:transparent; color:var(--danger); }
     .nav-link.admin{color:var(--gold);font-size:.88rem}
     .nav-link.admin:hover{background:rgba(230,179,77,.09);color:var(--gold)}
     .nav-link.admin.active{color:var(--gold)}.nav-link.admin.active::after{background:var(--gold)}
@@ -64,8 +66,8 @@
     
     .product { display:flex; flex-direction:column; padding:1.2rem; gap:0.5rem; background:var(--panel); border:1px solid var(--line); border-radius:18px; cursor:pointer; transition:0.2s; position:relative; }
     .product:hover { border-color:var(--brand2); box-shadow:0 12px 32px rgba(0,0,0,0.25); transform:translateY(-4px); }
-    .product-art { width:100%; height:240px; background:#ffffff; border-radius:12px; margin-bottom:0.5rem; overflow:hidden; position:relative; display:grid; place-items:center; padding:10px; }
-    .product-art img { width:100%; height:100%; object-fit:contain; }
+    .product-art { width:100%; height:240px; background:#ffffff !important; border-radius:12px; margin-bottom:0.5rem; overflow:hidden; position:relative; display:grid; place-items:center; padding:10px; }
+    .product-art img { width:100%; height:100%; object-fit:contain; mix-blend-mode: multiply; }
     .product-colors { display:flex; gap:6px; margin-top:0.5rem; align-items:center; }
     .product-color-dot { width:14px; height:14px; border-radius:50%; border:1px solid rgba(255,255,255,0.1); }
     .product-cat { font-size:0.75rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-top:0.5rem; }
@@ -75,7 +77,7 @@
     .product-price { font-size:1.4rem; font-weight:800; color:var(--txt); }
     .product-kmf { font-size:0.85rem; color:var(--muted); font-weight:600; }
     
-    .custom-order,.checkout-grid,.cart-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:1rem;align-items:start}.cart-layout{grid-template-columns:1.4fr .8fr}.cart-list{display:grid;gap:.8rem}.cart-item{display:grid;grid-template-columns:auto 1fr auto auto;gap:.9rem;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.15)}.cart-icon{width:74px;height:74px;border-radius:11px;display:grid;place-items:center;font-size:1.4rem;background:#ffffff;border:1px solid var(--line);overflow:hidden; color:var(--muted2); padding:5px}.cart-icon img{width:100%;height:100%;object-fit:contain}.cart-item small{color:var(--muted)}.qty{display:flex;align-items:center;gap:.45rem}.qty button{width:34px;height:34px;border-radius:9px;background:var(--card2);border:1px solid var(--line)}.summary{position:sticky;top:104px;border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow)}.summary-row{display:flex;justify-content:space-between;gap:1rem;padding:.72rem 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.95rem}.summary-row strong{color:var(--txt);text-align:right;font-variant-numeric:tabular-nums}.summary-total{font-size:1.45rem;color:var(--brand2)!important;font-weight:800}.empty{min-height:240px;display:grid;place-items:center;text-align:center;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);background:var(--card2)}
+    .custom-order,.checkout-grid,.cart-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:1rem;align-items:start}.cart-layout{grid-template-columns:1.4fr .8fr}.cart-list{display:grid;gap:.8rem}.cart-item{display:grid;grid-template-columns:auto 1fr auto auto;gap:.9rem;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:.9rem;box-shadow:0 1px 2px rgba(0,0,0,.15)}.cart-icon{width:74px;height:74px;border-radius:11px;display:grid;place-items:center;font-size:1.4rem;background:#ffffff !important;border:1px solid var(--line);overflow:hidden; color:var(--muted2); padding:5px}.cart-icon img{width:100%;height:100%;object-fit:contain; mix-blend-mode: multiply;}.cart-item small{color:var(--muted)}.qty{display:flex;align-items:center;gap:.45rem}.qty button{width:34px;height:34px;border-radius:9px;background:var(--card2);border:1px solid var(--line)}.summary{position:sticky;top:104px;border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow)}.summary-row{display:flex;justify-content:space-between;gap:1rem;padding:.72rem 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.95rem}.summary-row strong{color:var(--txt);text-align:right;font-variant-numeric:tabular-nums}.summary-total{font-size:1.45rem;color:var(--brand2)!important;font-weight:800}.empty{min-height:240px;display:grid;place-items:center;text-align:center;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted);background:var(--card2)}
     
     .tracking-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; margin-top:1.5rem; }
     .track-box { background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:1.2rem; text-align:center; opacity:0.5; transition:0.3s ease; }
@@ -107,11 +109,11 @@
     .recom-thumbs::-webkit-scrollbar { width: 6px; }
     .recom-thumbs::-webkit-scrollbar-track { background: var(--card2); border-radius: 10px; }
     .recom-thumbs::-webkit-scrollbar-thumb { background: var(--muted2); border-radius: 10px; }
-    .recom-thumbs img { width: 70px; height: 70px; border-radius: 12px; border: 2px solid transparent; background:#ffffff; object-fit: contain; cursor: pointer; transition:0.2s; padding:5px; }
-    .recom-thumbs img.active-thumb { border-color:var(--brand2); }
+    .recom-thumbs img { width: 70px; height: 70px; border-radius: 12px; border: 2px solid transparent; background:#ffffff !important; object-fit: contain; cursor: pointer; transition:0.2s; padding:5px; mix-blend-mode: multiply; }
+    .recom-thumbs img.active-thumb { border-color:var(--brand2); box-shadow:0 0 0 2px var(--brand2); }
     .recom-thumbs img:hover { border-color:var(--brand2); }
-    .recom-main-img { flex: 1; border-radius: 20px; background: #ffffff; overflow: hidden; display: flex; align-items: center; justify-content: center; padding:2rem; min-height:350px;}
-    .recom-main-img img { max-width: 100%; max-height: 400px; object-fit: contain; }
+    .recom-main-img { flex: 1; border-radius: 20px; background: #ffffff !important; overflow: hidden; display: flex; align-items: center; justify-content: center; padding:2rem; min-height:350px;}
+    .recom-main-img img { max-width: 100%; max-height: 400px; object-fit: contain; mix-blend-mode: multiply; }
     .recom-title { font-size: 2rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; color: var(--txt); }
     .recom-opt-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--txt); }
     .recom-opt-val { font-weight: 400; color: var(--muted); }
@@ -130,7 +132,7 @@
     .recom-desc h3 { font-size: 1.5rem; margin-bottom: 1rem; }
     .recom-desc p { color: var(--muted); line-height: 1.6; white-space: pre-wrap; font-size:1.05rem; }
 
-    .admin-tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}.admin-tabs button.active{background:rgba(47,191,139,.1);border-color:var(--brand2);color:var(--brand2)}.admin-list{display:grid;gap:.7rem;margin-top:1.2rem}.admin-item{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:.9rem;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:.7rem .9rem}.admin-thumb{width:70px;height:70px;border-radius:10px;object-fit:cover;background:#ffffff;display:grid;place-items:center;font-size:1.2rem;overflow:hidden;color:var(--muted2)}.admin-thumb img{width:100%;height:100%;object-fit:contain; padding:4px}.drop-zone{border:2px dashed var(--line);border-radius:12px;padding:1.1rem;text-align:center;color:var(--muted);transition:.2s ease;background:var(--card2)}.drop-zone:hover{border-color:var(--brand2);color:var(--txt)}.preview-list{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.8rem}.preview-card{width:108px;border:1px solid var(--line);border-radius:11px;padding:.35rem;background:var(--panel);position:relative;display:flex;flex-direction:column;gap:4px}.preview-card img{width:100%;height:82px;object-fit:contain;border-radius:8px;background:#ffffff}.preview-card button{position:absolute;top:0;right:0;width:26px;height:26px;border-radius:999px;background:var(--danger);color:white; display:grid; place-items:center; border:none; cursor:pointer}.config-table{display:grid;gap:.65rem}.config-row{display:grid;grid-template-columns:1fr 130px 130px 90px auto;gap:.6rem;align-items:center}.shipping-row{display:grid;grid-template-columns:1fr 1fr auto;gap:.6rem;align-items:center}.dual-price small{display:block;color:var(--muted2);font-size:.8em;font-weight:600;margin-top:.12rem;font-variant-numeric:tabular-nums}
+    .admin-tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}.admin-tabs button.active{background:rgba(47,191,139,.1);border-color:var(--brand2);color:var(--brand2)}.admin-list{display:grid;gap:.7rem;margin-top:1.2rem}.admin-item{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:.9rem;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:.7rem .9rem}.admin-thumb{width:70px;height:70px;border-radius:10px;object-fit:cover;background:#ffffff !important;display:grid;place-items:center;font-size:1.2rem;overflow:hidden;color:var(--muted2)}.admin-thumb img{width:100%;height:100%;object-fit:contain; padding:4px; mix-blend-mode: multiply;}.drop-zone{border:2px dashed var(--line);border-radius:12px;padding:1.1rem;text-align:center;color:var(--muted);transition:.2s ease;background:var(--card2)}.drop-zone:hover{border-color:var(--brand2);color:var(--txt)}.preview-list{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.8rem}.preview-card{width:108px;border:1px solid var(--line);border-radius:11px;padding:.35rem;background:var(--panel);position:relative;display:flex;flex-direction:column;gap:4px}.preview-card img{width:100%;height:82px;object-fit:contain;border-radius:8px;background:#ffffff !important; mix-blend-mode: multiply;}.preview-card button{position:absolute;top:0;right:0;width:26px;height:26px;border-radius:999px;background:var(--danger);color:white; display:grid; place-items:center; border:none; cursor:pointer}.config-table{display:grid;gap:.65rem}.config-row{display:grid;grid-template-columns:1fr 130px 130px 90px auto;gap:.6rem;align-items:center}.shipping-row{display:grid;grid-template-columns:1fr 1fr auto;gap:.6rem;align-items:center}.dual-price small{display:block;color:var(--muted2);font-size:.8em;font-weight:600;margin-top:.12rem;font-variant-numeric:tabular-nums}
 
     .cursor-glow{position:fixed;top:0;left:0;width:340px;height:340px;border-radius:999px;background:radial-gradient(circle,rgba(47,191,139,.09),transparent 62%);pointer-events:none;z-index:9999;mix-blend-mode:screen;transition:opacity .2s ease}
     .brand-mark::after{content:"";position:absolute;inset:-70%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:rotate(35deg) translateX(-70%);animation:shine 3.8s ease-in-out infinite}@keyframes shine{0%,62%{transform:rotate(35deg) translateX(-70%)}78%,100%{transform:rotate(35deg) translateX(72%)}}
@@ -169,17 +171,6 @@
     .pay-btn-box { border: 1px solid var(--line); border-radius: 12px; padding: 16px; cursor: pointer; font-weight: 600; font-size: 0.95rem; color: var(--txt); transition: 0.2s; background: var(--panel); display:flex; align-items:center; justify-content:space-between; }
     .pay-btn-label input:checked + .pay-btn-box { border-color: var(--brand2); color: var(--brand2); background: rgba(47,191,139,0.08); box-shadow:0 0 0 1px var(--brand2); }
     .pay-btn-label:hover .pay-btn-box { border-color: var(--muted2); }
-
-
-    .feature-unavailable{opacity:.48!important;filter:grayscale(1);cursor:not-allowed!important;}
-    .feature-nav-note{display:block;font-size:.62rem;font-weight:700;color:var(--muted2);line-height:1.05;margin-top:.1rem;white-space:normal}
-    .feature-unavailable-message{margin-top:.55rem;padding:.55rem .7rem;border:1px dashed var(--line);border-radius:9px;color:var(--muted2);font-size:.78rem;font-weight:700;text-align:center;background:var(--card2)}
-    .chat-btn.feature-unavailable{width:auto;min-width:190px;padding:0 16px;border-radius:14px;font-size:.78rem}
-    .variant-detail-row{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:.8rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr auto;gap:.55rem;align-items:center}
-    .variant-detail-row .variant-extra{grid-column:1/-2}
-    .variant-live-details{display:grid;gap:.35rem;margin:.65rem 0 .2rem}
-    .variant-live-details .summary-row{padding:.35rem 0}
-    @media(max-width:1000px){.variant-detail-row{grid-template-columns:1fr 1fr}.variant-detail-row .variant-match,.variant-detail-row .variant-extra{grid-column:1/-1}.variant-detail-row .variant-remove{grid-column:1/-1;width:100%}}
 
     @media(max-width:1000px){.hero,.custom-order,.cart-layout,.account-layout,.checkout-grid{grid-template-columns:1fr}.steps,.grid{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.tracking-grid{grid-template-columns:repeat(2, 1fr)}.footer-grid,.faq-grid{grid-template-columns:1fr}.config-row{grid-template-columns:1fr 1fr}.admin-item{grid-template-columns:auto 1fr auto}.admin-item .admin-actions, .admin-item .field, .admin-item select, .admin-item button {grid-column:1/-1}.recom-modal{grid-template-columns:1fr; gap:1.5rem}.recom-gallery{flex-direction:column-reverse}}
     @media(max-width:760px){
@@ -379,26 +370,7 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbyeDK7OZ6e5mRTiyb9L2vFlLv6-cKLduvSYoFgWn1-Wcce2tq3EpSyb-_SHFDQBSEQIUw/exec";
     const _K = "abadmin_key_2026"; const _S2 = "ABM_CLIENT_2026";
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
-    const DEFAULT_FEATURES = {
-      pageHome:true, pageCatalogue:true, pageCommande:true, pagePanier:true, pageCheckout:true,
-      pageSuivi:true, pageFaq:true, pageLogin:true, pageSignup:true, pageCompte:true,
-      catalogSearch:true, addToCart:true, customOrder:true, checkout:true,
-      paymentOnline:true, paymentCash:true, tracking:true, newsletter:true, chat:true,
-      accountProfile:true, accountOrders:true, orderActions:true
-    };
-    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feesEnabled: true, features: {...DEFAULT_FEATURES} };
-    const PAGE_FEATURES = {home:"pageHome",catalogue:"pageCatalogue",commande:"pageCommande",panier:"pagePanier",checkout:"pageCheckout",suivi:"pageSuivi",faq:"pageFaq",login:"pageLogin",signup:"pageSignup",compte:"pageCompte"};
-    const FEATURE_DEFINITIONS = [
-      ["pageHome","Page Accueil"],["pageCatalogue","Page Catalogue"],["pageCommande","Page Commande libre"],
-      ["pagePanier","Page Panier"],["pageCheckout","Page Validation de commande"],["pageSuivi","Page Suivi"],
-      ["pageFaq","Page Infos / FAQ"],["pageLogin","Page Connexion"],["pageSignup","Page Inscription"],
-      ["pageCompte","Page Espace client"],["catalogSearch","Recherche et filtres du catalogue"],
-      ["addToCart","Ajout des articles au panier"],["customOrder","Envoi des commandes libres"],
-      ["checkout","Confirmation finale des commandes"],["paymentOnline","Paiement en ligne SumUp"],
-      ["paymentCash","Paiement sur place"],["tracking","Recherche de suivi"],["newsletter","Newsletter"],
-      ["chat","Chat du service client"],["accountProfile","Modification du profil client"],
-      ["accountOrders","Historique des commandes client"],["orderActions","Annulation et rétractation client"]
-    ];
+    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true };
     const CLIENT_NAV = [{id:"home",label:"Accueil"},{id:"catalogue",label:"Catalogue"},{id:"commande",label:"Commande libre"},{id:"suivi",label:"Suivi"},{id:"faq",label:"Infos"}];
     const ADMIN_NAV = [{tab:"orders",label:"Commandes"},{tab:"archives",label:"Archives"},{tab:"products",label:"Articles"},{tab:"clients",label:"Clients"},{tab:"messages",label:"Messages"},{tab:"config",label:"Configuration"}];
     const ROUTES = {home:"/home",catalogue:"/catalogue",commande:"/commande",panier:"/panier",checkout:"/checkout",suivi:"/suivi",faq:"/faq",login:"/login",signup:"/signup",compte:"/compte",admin:"/admin"};
@@ -409,7 +381,7 @@
     
     const MASSIVE_CATEGORIES = ["Smartphones & Téléphones", "Accessoires Téléphonie", "Ordinateurs Portables", "Ordinateurs de Bureau", "Tablettes", "Composants PC", "Périphériques PC", "Jeux Vidéo", "Consoles de jeux", "Accessoires Gaming", "TV & Image", "Audio & Casques", "Enceintes Bluetooth", "Appareils Photo", "Objets Connectés", "Mode Femme", "Mode Homme", "Mode Enfant", "Bébé", "Chaussures Femme", "Chaussures Homme", "Sneakers", "Sacs à main", "Sacs à dos", "Bagagerie", "Bijoux", "Montres", "Lunettes de soleil", "Accessoires Mode", "Maquillage", "Parfums", "Soins du Visage", "Soins du Corps", "Soins des Cheveux", "Hygiène", "Appareils Beauté", "Meubles", "Décoration", "Linge de maison", "Literie", "Luminaire", "Cuisine & Arts de la table", "Électroménager", "Gros Électroménager", "Petit Électroménager", "Chauffage & Climatisation", "Bricolage", "Outillage", "Jardin & Extérieur", "Piscines & Spas", "Animalerie", "Chiens", "Chats", "Sport & Fitness", "Vélos & Trottinettes", "Camping & Randonnée", "Auto & Moto", "Pièces Auto", "Accessoires Auto", "Pneus", "Équipement Moto", "Jouets", "Jeux de société", "Plein air enfant", "Livres", "Papeterie", "Fournitures de bureau", "Divers"];
 
-    let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let modalSelection = null; let adminImages = []; let chatInterval = null;
+    let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let adminImages = []; let chatInterval = null;
     let currentAdminOrders = []; let ignoredChatMsgs = -1;
     let lastCatalogStr = ""; let lastOrdersStr = ""; let lastClientOrdersStr = "";
 
@@ -420,21 +392,10 @@
       lastOrder: JSON.parse(localStorage.getItem("abp_last_order") || "null")
     };
 
-    async function api(payload, timeoutMs=18000){
+    async function api(payload){
       if(!apiReady()) throw new Error("API non configurée");
-      const controller = new AbortController();
-      const timer = setTimeout(()=>controller.abort(), timeoutMs);
-      try {
-        const res = await fetch(API_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(payload), signal:controller.signal});
-        const text = await res.text();
-        let data;
-        try { data = JSON.parse(text); } catch(e) { throw new Error("Réponse serveur invalide"); }
-        if(!res.ok) throw new Error(data.error || `Erreur serveur ${res.status}`);
-        return data;
-      } catch(e) {
-        if(e && e.name === "AbortError") throw new Error("Le serveur met trop de temps à répondre");
-        throw e;
-      } finally { clearTimeout(timer); }
+      const res = await fetch(API_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(payload)});
+      return await res.json();
     }
     async function sha256(text){ const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)); return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join(""); }
     const adminKey = () => sessionStorage.getItem("abp_admin") || "";
@@ -469,112 +430,49 @@
         });
     }
 
-    function normalizeConfig(config){
-      const incoming = config && typeof config === "object" ? config : {};
-      return {...DEFAULT_CONFIG, ...incoming, features:{...DEFAULT_FEATURES, ...(incoming.features||{})}};
-    }
-    function featureEnabled(key){ return !key || state.config.features?.[key] !== false; }
-    function pageEnabled(page){ return featureEnabled(PAGE_FEATURES[page]); }
-    function maintenanceLabel(pageOrKey){
-      const key = PAGE_FEATURES[pageOrKey] || pageOrKey;
-      const found = FEATURE_DEFINITIONS.find(x=>x[0]===key);
-      return found ? found[1] : "Fonctionnalité";
-    }
-    function goMaintenance(pageOrKey){
-      const url = new URL("/maintenance.html", window.location.origin);
-      url.searchParams.set("feature", maintenanceLabel(pageOrKey));
-      url.searchParams.set("return", window.location.pathname + window.location.search);
-      window.location.href = url.toString();
-    }
-    function setUnavailableButton(el, enabled){
-      if(!el) return;
-      if(!el.dataset.originalHtml) el.dataset.originalHtml = el.innerHTML;
-      el.classList.toggle("feature-unavailable", !enabled);
-      el.disabled = !enabled;
-      el.setAttribute("aria-disabled", String(!enabled));
-      el.innerHTML = enabled ? el.dataset.originalHtml : "Non disponible pour le moment";
-    }
-    function setUnavailableContainer(el, enabled){
-      if(!el) return;
-      el.classList.toggle("feature-unavailable", !enabled);
-      el.querySelectorAll("input,select,button,textarea").forEach(x=>x.disabled=!enabled);
-      let note = el.parentElement?.querySelector(':scope > .feature-unavailable-message[data-for="'+(el.id||'container')+'"]');
-      if(!enabled && !note){
-        note=document.createElement("div"); note.className="feature-unavailable-message"; note.dataset.for=el.id||"container"; note.textContent="Non disponible pour le moment"; el.insertAdjacentElement("afterend",note);
-      }
-      if(enabled && note) note.remove();
-    }
-    function applyFeatureAvailability(){
-      setUnavailableContainer($(".toolbar"), featureEnabled("catalogSearch"));
-      setUnavailableButton($("#confirmAddProduct"), featureEnabled("addToCart") && !(modalSelection && modalSelection.stock === 0));
-      setUnavailableButton($("#customForm button[type='submit']"), featureEnabled("customOrder"));
-      const checkoutAvailable = featureEnabled("checkout") && pageEnabled("checkout");
-      const checkoutButton = $("#goCheckout");
-      if(checkoutButton){
-        const t=cartTotals(); const cartBlocked=!state.cart.length||(t.subtotal>0&&t.subtotal<(Number(state.config.minCart)||25));
-        setUnavailableButton(checkoutButton,checkoutAvailable);
-        if(checkoutAvailable)checkoutButton.disabled=cartBlocked;
-      }
-      setUnavailableButton($("#trackingBtn"), featureEnabled("tracking"));
-      setUnavailableButton($("#newsletterForm button[type='submit']"), featureEnabled("newsletter"));
-      const online = $("input[name='payment_method'][value='sumup']");
-      const cash = $("input[name='payment_method'][value='cash']");
-      if(online){
-        const enabled=featureEnabled("paymentOnline"),label=online.closest("label"),box=label?.querySelector(".pay-btn-box");online.disabled=!enabled;label?.classList.toggle("feature-unavailable",!enabled);
-        if(box){let note=box.querySelector(".feature-nav-note");if(!enabled&&!note){note=document.createElement("span");note.className="feature-nav-note";note.textContent="Non disponible pour le moment";box.appendChild(note);}if(enabled&&note)note.remove();}
-      }
-      if(cash){
-        const enabled=featureEnabled("paymentCash"),label=cash.closest("label"),box=label?.querySelector(".pay-btn-box");cash.disabled=!enabled;label?.classList.toggle("feature-unavailable",!enabled);
-        if(box){let note=box.querySelector(".feature-nav-note");if(!enabled&&!note){note=document.createElement("span");note.className="feature-nav-note";note.textContent="Non disponible pour le moment";box.appendChild(note);}if(enabled&&note)note.remove();}
-      }
-      const onlineEnabled=featureEnabled("paymentOnline"),cashEnabled=featureEnabled("paymentCash");
-      if(online&&!onlineEnabled&&cash&&cashEnabled)cash.checked=true;
-      if(cash&&!cashEnabled&&online&&onlineEnabled)online.checked=true;
-      setUnavailableButton($("#checkoutForm button[type='submit']"), featureEnabled("checkout") && (onlineEnabled||cashEnabled));
-      $$("[data-page]").forEach(el=>{
-        if(el.id==="brandLink"||el.id==="cartNavBtn"||el.id==="accountBtn"||el.closest("#navLinks"))return;
-        const enabled=pageEnabled(el.dataset.page);if(!el.dataset.pageOriginalHtml)el.dataset.pageOriginalHtml=el.innerHTML;
-        el.classList.toggle("feature-unavailable",!enabled);el.innerHTML=enabled?el.dataset.pageOriginalHtml:el.dataset.pageOriginalHtml+'<span class="feature-nav-note">Non disponible pour le moment</span>';
-      });
-      $$(".sidebar-link[data-tab='info']").forEach(x=>{if(!x.dataset.originalText)x.dataset.originalText=x.textContent;const enabled=featureEnabled("accountProfile");x.classList.toggle("feature-unavailable",!enabled);x.textContent=enabled?x.dataset.originalText:x.dataset.originalText+" — Non disponible pour le moment";});
-      $$(".sidebar-link[data-tab^='orders_']").forEach(x=>{if(!x.dataset.originalText)x.dataset.originalText=x.textContent;const enabled=featureEnabled("accountOrders");x.classList.toggle("feature-unavailable",!enabled);x.textContent=enabled?x.dataset.originalText:x.dataset.originalText+" — Non disponible pour le moment";});
-      $$(".action-order-btn").forEach(x=>setUnavailableButton(x,featureEnabled("orderActions")));
-    }
-
     function renderNav(){
       const admin = isAdmin(); const onAdminPage = currentPage === "admin";
       $("#brandLink").classList.toggle("admin-active", admin);
       $("#brandSub").textContent = admin ? "Mode entreprise actif" : "France → Comores";
-      const cartAllowed = pageEnabled("panier");
-      $("#cartNavBtn").style.display = (admin || !state.user) ? "none" : "flex";
-      $("#cartNavBtn").classList.toggle("feature-unavailable", !cartAllowed);
-      $("#cartNavBtn").innerHTML = cartAllowed ? `Panier <span class="cart-badge" id="cartCount">${state.cart.reduce((s,i)=>s+Number(i.qty||1),0)}</span>` : "Panier — Non disponible pour le moment";
-      const accountPage = admin ? "admin" : (state.user ? "compte" : "login");
-      const accountAllowed = accountPage === "admin" || pageEnabled(accountPage);
-      $("#accountBtn").textContent = accountAllowed ? (admin ? "Entreprise" : (state.user ? "Mon Compte" : "Connexion")) : "Non disponible pour le moment";
-      $("#accountBtn").dataset.page = accountPage;
-      $("#accountBtn").classList.toggle("feature-unavailable", !accountAllowed);
-      const chatAllowed = featureEnabled("chat");
+      
+      let cartEnabled = state.config.feat_panier !== false;
+      $("#cartNavBtn").style.display = (admin || !state.user || !cartEnabled) ? "none" : "flex";
+      $("#accountBtn").textContent = admin ? "Entreprise" : (state.user ? "Mon Compte" : "Connexion");
+      $("#accountBtn").dataset.page = admin ? "admin" : (state.user ? "compte" : "login");
       $("#openChatBtn").style.display = (state.user && !admin) ? "grid" : "none";
-      $("#openChatBtn").classList.toggle("feature-unavailable", !chatAllowed);
-      $("#openChatBtn").innerHTML = chatAllowed ? `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>` : "Non disponible pour le moment";
+      
       let html = "";
       if (admin) html = `<a class="nav-link ${(!onAdminPage&&currentPage==="catalogue")?"active":""}" href="/catalogue" data-page="catalogue">Catalogue</a><span class="nav-sep"></span>` + ADMIN_NAV.map(n=>`<a class="nav-link admin ${(onAdminPage&&adminTab===n.tab)?"active":""}" href="/admin" data-admin-tab="${n.tab}">${n.label}</a>`).join("");
       else {
-        html = CLIENT_NAV.map(n=>{
-          const enabled = pageEnabled(n.id);
-          return `<a class="nav-link ${(!onAdminPage&&currentPage===n.id)?"active":""} ${enabled?"":"feature-unavailable"}" href="${ROUTES[n.id]}" data-page="${n.id}">${n.label}${enabled?"":'<span class="feature-nav-note">Non disponible pour le moment</span>'}</a>`;
-        }).join("");
+          html = CLIENT_NAV.map(n=>{
+              let isEnabled = true;
+              if(n.id === 'catalogue' && state.config.feat_catalogue === false) isEnabled = false;
+              if(n.id === 'commande' && state.config.feat_commande === false) isEnabled = false;
+              if(n.id === 'panier' && state.config.feat_panier === false) isEnabled = false;
+              if(n.id === 'suivi' && state.config.feat_suivi === false) isEnabled = false;
+
+              if (!isEnabled) {
+                  return `<a class="nav-link disabled" href="maintenance.html">${n.label} <span style="font-size:10px">(Désactivé)</span></a>`;
+              }
+              return `<a class="nav-link ${(!onAdminPage&&currentPage===n.id)?"active":""}" href="${ROUTES[n.id]}" data-page="${n.id}">${n.label}</a>`;
+          }).join("");
       }
       $("#navLinks").innerHTML = html;
-      applyFeatureAvailability();
     }
 
     function switchPage(id, pushHash=true){
-      if(!isAdmin() && id !== "admin" && !pageEnabled(id)){ goMaintenance(id); return; }
       if(id === "compte" && !state.user) id = "login";
       if(id === "panier" && !state.user && !isAdmin()) { id = "login"; }
       if(id === "admin" && !isAdmin()) { currentPage="admin"; $$(".page").forEach(p=>p.classList.toggle("active",p.id==="admin")); renderNav(); if(pushHash && location.pathname !== "/admin") history.pushState(null,"","/admin"); return; }
+      
+      // Sécurité si une page est désactivée coté config
+      if(!isAdmin()) {
+          if(id === 'catalogue' && state.config.feat_catalogue === false) return window.location.href = "maintenance.html";
+          if(id === 'commande' && state.config.feat_commande === false) return window.location.href = "maintenance.html";
+          if(id === 'panier' && state.config.feat_panier === false) return window.location.href = "maintenance.html";
+          if(id === 'suivi' && state.config.feat_suivi === false) return window.location.href = "maintenance.html";
+      }
+
       if(!document.getElementById(id)) id="home"; currentPage=id;
       $$(".page").forEach(p=>p.classList.toggle("active",p.id===id));
       $("#navLinks").classList.remove("open"); window.scrollTo({top:0,behavior:"smooth"});
@@ -586,8 +484,8 @@
       if(id==="compte") renderAccount();
       if(id==="suivi") renderTrackingStart();
       if(id==="admin") renderAdmin();
-      applyFeatureAvailability();
     }
+    
     function routeFromHash(){
       if(location.hash && location.hash.indexOf("#/")===0){history.replaceState(null,"",location.hash.slice(1));}
       let path=(location.pathname||"/").replace(/\/+$/,"");
@@ -599,20 +497,18 @@
       const target=e.target.closest("[data-page]"); if(target){e.preventDefault(); switchPage(target.dataset.page);}
     });
     $("#mobileToggle").addEventListener("click",()=>$("#navLinks").classList.toggle("open"));
-    function renderCounts(){const count=state.cart.reduce((s,i)=>s+Number(i.qty||1),0);const badge=$("#cartCount");if(badge)badge.textContent=count;renderNav();}
+    function renderCounts(){const count=state.cart.reduce((s,i)=>s+Number(i.qty||1),0);$("#cartCount").textContent=count;renderNav();}
 
     function initPhoneCountries(){const opts=PHONE_COUNTRIES.map(c=>`<option value="${escapeHtml(c.dial)}" ${c.dial==="+269"?"selected":""}>${escapeHtml(c.name)} (${escapeHtml(c.dial)})</option>`).join("");$$("select.phone-country").forEach(sel=>{sel.innerHTML=opts;});}
     function splitDial(full){full=String(full||"").trim();if(!full)return null;const found=PHONE_COUNTRIES.filter(c=>full.indexOf(c.dial)===0).sort((a,b)=>b.dial.length-a.dial.length)[0];return found?{dial:found.dial,rest:full.slice(found.dial.length).trim()}:null;}
 
     async function loadConfig() {
-      try {
-        const res = await api({action: "getconfig"});
-        if(res.ok) state.config = normalizeConfig(res.config);
-      } catch(e) { state.config = normalizeConfig(state.config); }
-      updateMarquee();
-      renderNav();
-      applyFeatureAvailability();
-      if(!isAdmin() && !pageEnabled(currentPage)) goMaintenance(currentPage);
+        try {
+            const res = await api({action: "getconfig"});
+            if(res.ok) state.config = res.config;
+        } catch(e) {}
+        updateMarquee();
+        renderNav();
     }
 
     async function loadCatalog(force=false, silent=false){
@@ -629,60 +525,20 @@
       } catch(e){state.catalogLoaded=true; if(!silent) renderProducts();}
     }
     
-    // Normalisation générique des images, options et déclinaisons
+    // Normalisation des images avec option mappée
     function normalizeProduct(p){
-      p=p||{}; let imgs = [];
-      if(Array.isArray(p.images)) {
-        imgs = p.images.map(img => {
-          if(typeof img === "string") return {url:img, match:"", opt:""};
-          return {url:img?.url||"", match:String(img?.match||img?.criteria||img?.rule||img?.opt||""), opt:String(img?.opt||"")};
-        }).filter(i=>i.url);
-      } else if(p.image) imgs=[{url:typeof p.image==="string"?p.image:p.image.url,match:"",opt:""}];
-      const variants=Array.isArray(p.variants)?p.variants.map(v=>({...v,match:String(v?.match||v?.criteria||v?.rule||"")})):[];
-      const basePrice=numberVal(p.price); const variantPrices=variants.map(v=>String(v.price??"").trim()===""?null:numberVal(v.price)).filter(v=>v!==null&&v>=0);
-      return {...p,images:imgs.slice(0,30),image:imgs[0]?.url||"",price:basePrice,displayPrice:variantPrices.length?Math.min(basePrice,...variantPrices):basePrice,recommendedPrice:numberVal(p.recommendedPrice),weight:numberVal(p.weight),category:p.category||"Divers",params:p.params||{},variants};
-    }
-    function normText(v){return String(v??"").trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
-    function parseMatchRule(rule){
-      if(rule && typeof rule === "object" && !Array.isArray(rule)) return rule;
-      const text=String(rule||"").trim(); if(!text)return {};
-      const parts=text.split(/[;|\n]+/).map(x=>x.trim()).filter(Boolean); const out={};
-      for(const part of parts){const m=part.match(/^([^=:]+)\s*[=:]\s*(.+)$/);if(m)out[m[1].trim()]=m[2].trim();else out.__legacy=part;}
-      return out;
-    }
-    function matchScore(rule,selections){
-      const parsed=parseMatchRule(rule); const entries=Object.entries(parsed); if(!entries.length)return 0;
-      let score=0;
-      for(const [key,val] of entries){
-        if(key==="__legacy"){
-          const ok=Object.values(selections).some(v=>normText(v)===normText(val)); if(!ok)return -1; score++; continue;
+        p=p||{}; let imgs = [];
+        if(Array.isArray(p.images)) {
+            imgs = p.images.map(img => {
+                if(typeof img === 'string') return { url: img, opt: "" };
+                return img;
+            }).filter(i => i && i.url);
+        } else if (p.image) {
+            imgs = [{ url: p.image, opt: "" }];
         }
-        const selectedKey=Object.keys(selections).find(k=>normText(k)===normText(key)); if(!selectedKey)return -1;
-        const allowed=String(val).split(/\s*(?:,|\/|\bor\b|\bou\b)\s*/i).filter(Boolean).map(normText);
-        if(!allowed.includes(normText(selections[selectedKey])))return -1; score++;
-      }
-      return score;
+        return {...p,images:imgs.slice(0,30),image:imgs[0]?.url||"",price:numberVal(p.price),recommendedPrice:numberVal(p.recommendedPrice),weight:numberVal(p.weight),category:p.category||"Divers",params:p.params||{}};
     }
-    function selectedOptionMap(){
-      const out={}; $$("#modalProductContent input[type='radio']:checked").forEach(r=>{out[r.dataset.optionName]=r.dataset.optionValue;}); return out;
-    }
-    function matchingImages(product,selections){
-      const scored=(product.images||[]).map((img,index)=>({img,index,score:matchScore(img.match||img.opt,selections)}));
-      const best=Math.max(0,...scored.map(x=>x.score));
-      let result=best>0?scored.filter(x=>x.score===best||x.score===0):scored.filter(x=>x.score===0);
-      if(!result.length)result=scored.filter(x=>x.score>=0);
-      if(!result.length)result=scored;
-      return result.sort((a,b)=>b.score-a.score);
-    }
-    function matchingVariant(product,selections){
-      let best=null,bestScore=0;
-      for(const variant of product.variants||[]){const score=matchScore(variant.match,selections);if(score>bestScore){best=variant;bestScore=score;}}
-      return best;
-    }
-    function parseExtraFields(text){
-      const out={}; String(text||"").split(/[;|\n]+/).map(x=>x.trim()).filter(Boolean).forEach(part=>{const m=part.match(/^([^=:]+)\s*[=:]\s*(.+)$/);if(m)out[m[1].trim()]=m[2].trim();}); return out;
-    }
-
+    
     function initCategories(){const cats=[...new Set([...MASSIVE_CATEGORIES, ...state.products.map(p=>p.category).filter(Boolean)])].sort();$("#categoryFilter").innerHTML='<option value="all">Toutes catégories</option>'+cats.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");}
     function renderCategoryOptions(){const cats=[...new Set([...MASSIVE_CATEGORIES, ...state.products.map(p=>p.category).filter(Boolean)])].sort();$("#categoryOptions").innerHTML=cats.map(c=>`<option value="${escapeHtml(c)}"></option>`).join("");}
     function filteredProducts(){const q=$("#searchInput")?.value?.toLowerCase().trim()||"";const cat=$("#categoryFilter")?.value||"all";const sort=$("#sortSelect")?.value||"featured";let items=state.products.filter(p=>[p.name,p.category,p.desc,Object.values(p.params||{}).join(" ")].join(" ").toLowerCase().includes(q)&&(cat==="all"||p.category===cat));if(sort==="asc")items.sort((a,b)=>a.price-b.price);if(sort==="desc")items.sort((a,b)=>b.price-a.price);return items;}
@@ -728,8 +584,8 @@
             <div class="product-options"><span style="border:none; padding:0; font-size:0.8rem">${p.weight||0} kg ${optStr?'• '+escapeHtml(optStr):''}</span></div>
             <div class="product-price-row">
                 <small>à partir de</small>
-                <div class="product-price">${formatEUR(p.displayPrice)}</div>
-                <div class="product-kmf">${formatKMF(p.displayPrice)}</div>
+                <div class="product-price">${formatEUR(p.price)}</div>
+                <div class="product-kmf">${formatKMF(p.price)}</div>
             </div>
           </article>`;
       }).join("");
@@ -737,67 +593,152 @@
     ["searchInput","categoryFilter","sortSelect"].forEach(id=>document.addEventListener("input",e=>{if(e.target.id===id)renderProducts()}));
     $("#resetFilters").addEventListener("click",()=>{$("#searchInput").value="";$("#categoryFilter").value="all";$("#sortSelect").value="featured";renderProducts();});
 
+    // Filtre d'image corrigé 
     window.makeImageActive = function(index) {
-      if(!modalProduct)return;
-      const img=modalProduct.images[index]; if(!img)return;
-      const main=$("#recomMainImg"); if(main)main.src=img.url;
-      $$(".recom-thumbs img").forEach(t=>t.classList.toggle("active-thumb",Number(t.dataset.imageIndex)===Number(index)));
-      if(modalSelection)modalSelection.imageUrl=img.url;
+        const thumbs = document.querySelectorAll('.recom-thumbs img');
+        if (thumbs[index]) {
+            // Forcer le changement visuel
+            document.getElementById('recomMainImg').src = thumbs[index].src;
+            thumbs.forEach(t => t.classList.remove('active-thumb'));
+            thumbs[index].classList.add('active-thumb');
+        }
     };
+    
+    window.filterGalleryByOption = function(productId, selectedOption) {
+        const p = state.products.find(x => x.id === productId); if(!p) return;
+        const thumbsContainer = document.querySelector('.recom-thumbs');
+        let html = ""; let firstValidIdx = -1;
+        
+        const selOpt = selectedOption.toLowerCase().trim();
 
-    function renderGalleryForSelection(product,selections){
-      const thumbsContainer=$(".recom-thumbs"); if(!thumbsContainer)return;
-      const matches=matchingImages(product,selections);
-      thumbsContainer.innerHTML=matches.map((x,i)=>`<img src="${escapeHtml(x.img.url)}" alt="" class="${i===0?'active-thumb':''}" data-image-index="${x.index}" onclick="makeImageActive(${x.index})">`).join("");
-      if(matches.length)makeImageActive(matches[0].index);
-    }
-
-    function updateProductSelection(){
-      const p=modalProduct;if(!p)return;
-      const selections=selectedOptionMap();
-      const variant=matchingVariant(p,selections);
-      const price=variant&&String(variant.price??"").trim()!==""?numberVal(variant.price):p.price;
-      const weight=variant&&String(variant.weight??"").trim()!==""?numberVal(variant.weight):p.weight;
-      const stock=variant&&String(variant.stock??"").trim()!==""?numberVal(variant.stock):null;
-      const sku=variant?.sku||""; const extra=parseExtraFields(variant?.extra||"");
-      modalSelection={selections,variant,price,weight,stock,sku,extra,imageUrl:p.image};
-      renderGalleryForSelection(p,selections);
-      const priceEl=$("#modalLivePrice"),kmfEl=$("#modalLiveKmf"),weightEl=$("#modalLiveWeight"),details=$("#modalVariantDetails");
-      if(priceEl)priceEl.textContent=formatEUR(price); if(kmfEl)kmfEl.textContent=formatKMF(price); if(weightEl)weightEl.textContent=`${weight||0} kg`;
-      if(details){
-        const rows=[]; if(sku)rows.push(`<div class="summary-row"><span>Référence</span><strong>${escapeHtml(sku)}</strong></div>`);
-        if(stock!==null)rows.push(`<div class="summary-row"><span>Stock</span><strong>${stock>0?escapeHtml(stock):'Indisponible'}</strong></div>`);
-        Object.entries(extra).forEach(([k,v])=>rows.push(`<div class="summary-row"><span>${escapeHtml(k)}</span><strong>${escapeHtml(v)}</strong></div>`));
-        details.innerHTML=rows.join("");
-      }
-      applyFeatureAvailability();
+        p.images.forEach((img, idx) => {
+            let show = false;
+            // Si l'image n'a pas d'option liée, elle reste globale
+            if(!img.opt) show = true; 
+            else {
+                const imgOpt = img.opt.toLowerCase().trim();
+                // Match exact ou partiel entre le paramètre choisi et l'image
+                if(imgOpt.includes(selOpt) || selOpt.includes(imgOpt)) {
+                    show = true;
+                }
+            }
+            
+            if(show) {
+                if(firstValidIdx === -1) firstValidIdx = idx;
+                html += `<img src="${escapeHtml(img.url)}" alt="" class="" onclick="makeImageActive(${idx})" id="thumb_${idx}">`;
+            }
+        });
+        
+        // Sécurité : Si l'admin a mis des options mais oublié de lier les images, on montre tout
+        if(html === "") {
+            p.images.forEach((img, idx) => {
+                if(firstValidIdx === -1) firstValidIdx = idx;
+                html += `<img src="${escapeHtml(img.url)}" alt="" class="" onclick="makeImageActive(${idx})" id="thumb_${idx}">`;
+            });
+        }
+        
+        thumbsContainer.innerHTML = html;
+        if(firstValidIdx !== -1) makeImageActive(firstValidIdx);
     }
 
     function openProductModal(id){
-      const p=state.products.find(x=>x.id===id);if(!p)return;modalProduct=p;modalSelection=null;
-      let variantsHtml="";
-      Object.entries(p.params||{}).forEach(([k,v],groupIndex)=>{
-        const opts=String(v).split(',').map(x=>x.trim()).filter(Boolean);if(!opts.length)return;
-        const isColor=/couleur|color/i.test(k); const safeId=`opt_${groupIndex}_${String(id).replace(/[^a-zA-Z0-9_-]/g,'')}`;
-        variantsHtml+=`<div style="margin-bottom:1.2rem"><div class="recom-opt-title">${escapeHtml(k)}: <span id="val_${safeId}" class="recom-opt-val">${escapeHtml(opts[0])}</span></div><div class="recom-options-row">${opts.map((opt,idx)=>isColor?`<label class="recom-color-label"><input type="radio" name="${safeId}" data-option-name="${escapeHtml(k)}" data-option-value="${escapeHtml(opt)}" ${idx===0?'checked':''}><span class="recom-color-circle" title="${escapeHtml(opt)}" style="background-color:${mapColorToHex(opt)}"></span></label>`:`<label class="recom-btn-label"><input type="radio" name="${safeId}" data-option-name="${escapeHtml(k)}" data-option-value="${escapeHtml(opt)}" ${idx===0?'checked':''}><span class="recom-btn-box">${escapeHtml(opt)}</span></label>`).join("")}</div></div>`;
+      const p = state.products.find(x => x.id === id); if(!p) return; modalProduct = p; 
+      
+      let variantsHtml = "";
+      Object.entries(p.params||{}).forEach(([k,v])=>{
+        const opts = String(v).split(',').map(x=>x.trim()).filter(Boolean);
+        if(opts.length === 0) return;
+        
+        let isColor = k.toLowerCase().includes('couleur') || k.toLowerCase().includes('color');
+        let sanitizedK = k.replace(/[^a-zA-Z0-9]/g, '');
+        
+        variantsHtml += `
+        <div style="margin-bottom:1.2rem">
+          <div class="recom-opt-title">${escapeHtml(k)}: <span id="val_${id}_${sanitizedK}" class="recom-opt-val">${escapeHtml(opts[0])}</span></div>
+          <div class="recom-options-row">
+            ${opts.map((opt, idx) => {
+                let onChangeLogic = `document.getElementById('val_${id}_${sanitizedK}').textContent='${escapeHtml(opt)}';`;
+                onChangeLogic += ` filterGalleryByOption('${id}', '${escapeHtml(opt)}');`;
+                
+                if(isColor) {
+                    return `<label class="recom-color-label"><input type="radio" name="v_param_${sanitizedK}" value="${escapeHtml(k)}: ${escapeHtml(opt)}" ${idx===0?'checked':''} onchange="${onChangeLogic}"><span class="recom-color-circle" style="background-color:${mapColorToHex(opt)}"></span></label>`;
+                } else {
+                    return `<label class="recom-btn-label"><input type="radio" name="v_param_${sanitizedK}" value="${escapeHtml(k)}: ${escapeHtml(opt)}" ${idx===0?'checked':''} onchange="${onChangeLogic}"><span class="recom-btn-box">${escapeHtml(opt)}</span></label>`;
+                }
+            }).join("")}
+          </div>
+        </div>`;
       });
-      $("#modalProductContent").innerHTML=`<div class="recom-modal"><div class="recom-gallery"><div class="recom-thumbs"></div><div class="recom-main-img"><img id="recomMainImg" src="${escapeHtml(p.image||'')}" alt=""></div></div><div><h2 class="recom-title">${escapeHtml(p.name)}</h2><div class="recom-price-box"><div class="recom-price" id="modalLivePrice">${formatEUR(p.price)}</div><span class="recom-kmf" id="modalLiveKmf">${formatKMF(p.price)}</span>${variantsHtml}<div class="summary-row" style="border:none;padding-bottom:0"><span>Poids</span><strong id="modalLiveWeight">${p.weight||0} kg</strong></div><div class="variant-live-details" id="modalVariantDetails"></div><div class="summary-row" style="border:none;padding-bottom:1rem"><span>Frais calculés</span><strong>Au panier</strong></div><div style="display:flex;gap:.5rem;align-items:center"><div class="qty" style="background:var(--card);border-radius:9px;padding:4px"><button type="button" onclick="this.nextElementSibling.stepDown()">-</button><input type="number" id="modalQty" min="1" value="1" style="width:40px;text-align:center;background:transparent;border:none;color:var(--txt);font-weight:bold"><button type="button" onclick="this.previousElementSibling.stepUp()">+</button></div><button class="btn primary" id="confirmAddProduct" style="flex:1;height:50px;font-size:1.05rem">Ajouter au panier</button></div><div class="field wide compact" style="margin-top:.8rem"><input id="modalNote" placeholder="Note pour la préparation (Optionnel)" style="font-size:.85rem"></div></div></div><div class="recom-desc"><h3>Description de l'article</h3><p>${escapeHtml(p.desc)}</p></div></div>`;
+
+      $("#modalProductContent").innerHTML = `
+      <div class="recom-modal">
+        <div class="recom-gallery">
+          <div class="recom-thumbs">
+            ${p.images.map((img, idx)=>`<img src="${escapeHtml(img.url)}" alt="" class="${idx===0?'active-thumb':''}" onclick="makeImageActive(${idx})" id="thumb_${idx}">`).join("")}
+          </div>
+          <div class="recom-main-img"><img id="recomMainImg" src="${escapeHtml(p.images[0]?.url || '')}" alt=""></div>
+        </div>
+        <div>
+          <h2 class="recom-title">${escapeHtml(p.name)}</h2>
+          
+          <div class="recom-price-box">
+            <div class="recom-price">${formatEUR(p.price)}</div>
+            <span class="recom-kmf">${formatKMF(p.price)}</span>
+            
+            ${variantsHtml}
+            
+            <div class="summary-row" style="border:none; padding-bottom:0"><span>Poids</span><strong>${p.weight||0} kg</strong></div>
+            <div class="summary-row" style="border:none; padding-bottom:1rem"><span>Frais calculés</span><strong>Au panier</strong></div>
+            
+            <div style="display:flex; gap:0.5rem; align-items:center">
+                <div class="qty" style="background:var(--card); border-radius:9px; padding:4px"><button type="button" onclick="this.nextElementSibling.stepDown()">-</button><input type="number" id="modalQty" min="1" value="1" style="width:40px; text-align:center; background:transparent; border:none; color:var(--txt); font-weight:bold"><button type="button" onclick="this.previousElementSibling.stepUp()">+</button></div>
+                <button class="btn primary" id="confirmAddProduct" style="flex:1; height:50px; font-size:1.05rem">Ajouter au panier</button>
+            </div>
+            <div class="field wide compact" style="margin-top:0.8rem"><input id="modalNote" placeholder="Note pour la préparation (Optionnel)" style="font-size:0.85rem" /></div>
+          </div>
+        </div>
+        <div class="recom-desc">
+          <h3>Description de l'article</h3>
+          <p>${escapeHtml(p.desc)}</p>
+        </div>
+      </div>`;
+      
       $("#productModal").classList.add("active");
-      $$("#modalProductContent input[type='radio']").forEach(r=>r.addEventListener("change",()=>{const label=$("#val_"+r.name);if(label)label.textContent=r.dataset.optionValue;updateProductSelection();}));
-      updateProductSelection();
+      
+      // Init gallery filter if color is pre-selected
+      const firstColorRadio = document.querySelector('.recom-color-label input:checked');
+      if(firstColorRadio) {
+          const optVal = firstColorRadio.value.split(':')[1].trim();
+          filterGalleryByOption(id, optVal);
+      }
+      
       $("#confirmAddProduct").addEventListener("click",confirmAddProduct);
     }
-
+    
     function confirmAddProduct(){
-      if(!featureEnabled("addToCart")){toast("Non disponible pour le moment");return;}
-      if(!state.user){toast("Veuillez vous connecter pour ajouter des articles.");$("#productModal").classList.remove("active");switchPage("login");return;}
-      const p=modalProduct;if(!p)return;updateProductSelection();
-      if(modalSelection?.stock===0){toast("Cette déclinaison est indisponible.");return;}
-      const qty=Math.max(1,Number($("#modalQty")?.value||1));const note=$("#modalNote")?.value||"";
-      const selectedOptions=Object.entries(modalSelection?.selections||{}).map(([k,v])=>`${k}: ${v}`);const optionsString=selectedOptions.join(" / ");
-      const cartId=[p.id,optionsString,note].join("|");const existing=state.cart.find(i=>i.cartId===cartId&&i.type==="product");
-      if(existing)existing.qty+=qty;else state.cart.push({type:"product",cartId,id:p.id,name:p.name,price:modalSelection?.price??p.price,category:p.category,qty,weight:modalSelection?.weight??p.weight??.5,image:modalSelection?.imageUrl||p.image,options:optionsString,note,params:p.params||{},variant:modalSelection?.variant||null});
-      save();$("#productModal").classList.remove("active");toast(`${p.name} ajouté au panier`);
+      if(state.config.feat_panier === false) { toast("Les commandes sont temporairement désactivées."); return; }
+      if(!state.user) { toast("Veuillez vous connecter pour ajouter des articles."); $("#productModal").classList.remove("active"); switchPage("login"); return; }
+      const p=modalProduct; if(!p)return; 
+      const qty=Math.max(1,Number($("#modalQty")?.value||1)); const note=$("#modalNote")?.value||""; 
+      let selectedOptions = []; $$("#modalProductContent input[type='radio']:checked").forEach(radio => selectedOptions.push(radio.value));
+      const optionsString = selectedOptions.join(" / ");
+      const cartId = [p.id, optionsString, note].join("|"); 
+      const existing = state.cart.find(i=>i.cartId===cartId&&i.type==="product"); 
+      
+      // Determine the best image thumbnail based on selected options
+      let thumbUrl = p.image;
+      if(p.images && p.images.length > 0) {
+          for(let opt of selectedOptions) {
+              const optVal = opt.split(':')[1].trim().toLowerCase();
+              const matchedImg = p.images.find(img => img.opt && (img.opt.toLowerCase().includes(optVal) || optVal.includes(img.opt.toLowerCase())));
+              if(matchedImg) { thumbUrl = matchedImg.url; break; }
+          }
+          if(thumbUrl === p.image) thumbUrl = p.images[0].url; // fallback to first image
+      }
+
+      if(existing) existing.qty += qty; 
+      else state.cart.push({type:"product", cartId, id:p.id, name:p.name, price:p.price, category:p.category, qty, weight:p.weight||0.5, image:thumbUrl, options:optionsString, note, params:p.params||{}}); 
+      save(); $("#productModal").classList.remove("active"); toast(`${p.name} ajouté au panier`);
     }
     $("#closeProductModal").addEventListener("click",()=>$("#productModal").classList.remove("active"));
 
@@ -849,12 +790,11 @@
             save();renderCart();
         }));
       }
-      applyFeatureAvailability();
     }
     
     $("#clearCart").addEventListener("click",()=>{state.cart=[];save();renderCart();});
     $("#goCheckout").addEventListener("click",()=>{
-        if(!featureEnabled("checkout")) { toast("Non disponible pour le moment"); return; }
+        if(state.config.feat_panier === false) { toast("Les validations de commandes sont désactivées."); return; }
         if(!state.cart.length)return toast("Votre panier est vide");
         switchPage("checkout");
     });
@@ -862,7 +802,7 @@
     $("#customBudget").addEventListener("input",()=>{$("#customKmfPreview").innerHTML=`${formatEUR($("#customBudget").value||0)} = ${formatKMF($("#customBudget").value||0)}`;});
     $("#customForm").addEventListener("submit",e=>{
       e.preventDefault();
-      if(!featureEnabled("customOrder")) { toast("Non disponible pour le moment"); return; }
+      if(state.config.feat_commande === false) { toast("Les commandes libres sont temporairement désactivées."); return; }
       if(!state.user) { toast("Veuillez vous connecter pour ajouter au panier."); switchPage("login"); return; }
       const d=Object.fromEntries(new FormData(e.currentTarget).entries());
       const id="c_"+Date.now();
@@ -888,14 +828,12 @@
 
     $("#checkoutForm").addEventListener("submit",async e=>{
         e.preventDefault();
-        if(!featureEnabled("checkout")) return toast("Non disponible pour le moment");
         if(!state.cart.length) return toast("Votre panier est vide");
         const totals = cartTotals();
         const minVal = Number(state.config.minCart) || 25;
         if(totals.subtotal < minVal) return toast("Minimum d'achat non atteint.");
 
         const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-        if(!data.payment_method) return toast("Non disponible pour le moment");
         data.phone = [data.phoneCountry||"",data.phone||""].join(" ").trim();
         data.pickupPhone = [data.pickupCountry||"",data.pickupPhone||""].join(" ").trim();
         delete data.phoneCountry; delete data.pickupCountry;
@@ -905,8 +843,6 @@
         btn.disabled=true; btn.textContent="Envoi en cours…";
         const items = state.cart.map(i=>({...i}));
         
-        if(data.payment_method==='sumup'&&!featureEnabled('paymentOnline')){btn.disabled=false;btn.textContent='Confirmer ma commande';return toast('Non disponible pour le moment');}
-        if(data.payment_method==='cash'&&!featureEnabled('paymentCash')){btn.disabled=false;btn.textContent='Confirmer ma commande';return toast('Non disponible pour le moment');}
         if (data.payment_method === 'sumup') {
             try {
                 const chkRes = await api({action:"create_checkout", orderId, amount: totals.grand});
@@ -923,7 +859,6 @@
                             toast("Paiement validé avec succès !");
                             await executeOrderPlacement(data, items, totals, orderId, "Payé");
                         } else if (type === 'error' || type === 'success') {
-                            // If success but not PAID, treat as error/pending
                             toast("Paiement non abouti ou annulé.");
                         }
                         btn.disabled=false; btn.textContent="Confirmer ma commande";
@@ -964,7 +899,6 @@
     function renderTrackingStart(){const orderFromLink=trackingOrderFromHash();if(orderFromLink)$("#trackingInput").value=orderFromLink;else if(state.lastOrder)$("#trackingInput").value=state.lastOrder.id;$("#trackingResult").innerHTML="";if(orderFromLink)setTimeout(()=>$("#trackingBtn").click(),250);}
     
     $("#trackingBtn").addEventListener("click",async()=>{
-        if(!featureEnabled("tracking")) return toast("Non disponible pour le moment");
         if(!state.user) return toast("Vous devez être connecté pour suivre un colis.");
         const id=$("#trackingInput").value.trim();
         if(!id)return toast("Entrez un numéro de commande");
@@ -1052,8 +986,6 @@
     
     async function renderAccountTab(tab, silent=false) {
         const box=$("#accountContent");
-        if(tab==="info"&&!featureEnabled("accountProfile")){box.innerHTML=`<div class="empty"><div><h3>Non disponible pour le moment</h3></div></div>`;return;}
-        if(tab.startsWith("orders_")&&!featureEnabled("accountOrders")){box.innerHTML=`<div class="empty"><div><h3>Non disponible pour le moment</h3></div></div>`;return;}
         if(tab === "info") {
             if(!silent) box.innerHTML = `
             <h3 style="margin-bottom:1.5rem; font-size:1.8rem">Gérer mon compte</h3>
@@ -1126,8 +1058,8 @@
 
                 box.innerHTML = `<h3 style="margin-bottom:1.5rem; font-size:1.8rem">Mes Commandes</h3>` + displayOrders.map(o => {
                     let actionHtml = ""; let st = String(o.status).toLowerCase();
-                    if(st.includes("en attente de paiement") || st.includes("en attente de validation")) { actionHtml = featureEnabled("orderActions") ? `<button class="btn danger small action-order-btn" data-id="${o.id}" data-type="cancel" style="background:transparent; border:1px solid rgba(255,85,115,0.3)">Annuler la commande</button>` : `<button class="btn secondary small feature-unavailable" disabled>Non disponible pour le moment</button>`; } 
-                    else if(st.includes("dispo en retrait") || st.includes("port") || st.includes("recpetionné")) { actionHtml = featureEnabled("orderActions") ? `<button class="btn secondary small action-order-btn" data-id="${o.id}" data-type="retract">Demander rétractation (14j)</button>` : `<button class="btn secondary small feature-unavailable" disabled>Non disponible pour le moment</button>`; }
+                    if(st.includes("en attente de paiement") || st.includes("en attente de validation")) { actionHtml = `<button class="btn danger small action-order-btn" data-id="${o.id}" data-type="cancel" style="background:transparent; border:1px solid rgba(255,85,115,0.3)">Annuler la commande</button>`; } 
+                    else if(st.includes("dispo en retrait") || st.includes("port") || st.includes("recpetionné")) { actionHtml = `<button class="btn secondary small action-order-btn" data-id="${o.id}" data-type="retract">Demander rétractation (14j)</button>`; }
                     
                     const orderItems = o.details && o.details.items ? o.details.items : [];
                     let itemsHtml = orderItems.length ? `<div style="margin-top:10px; padding:10px; background:var(--card2); border-radius:8px; border:1px solid var(--line);">
@@ -1149,13 +1081,12 @@
                         ${itemsHtml}
                         <div style="display:flex; justify-content:flex-end; gap:0.5rem; padding-top:0.6rem">
                             ${actionHtml}
-                            ${featureEnabled("tracking")&&pageEnabled("suivi")?`<button class="btn secondary small" onclick="$('#trackingInput').value='${o.id}'; switchPage('suivi');">Suivre</button>`:`<button class="btn secondary small feature-unavailable" disabled>Non disponible pour le moment</button>`}
+                            <button class="btn secondary small" onclick="$('#trackingInput').value='${o.id}'; switchPage('suivi');">Suivre</button>
                         </div>
                     </div>`;
                 }).join("");
                 
                 $$(".action-order-btn").forEach(b => b.addEventListener("click", async e => {
-                    if(!featureEnabled("orderActions")) return toast("Non disponible pour le moment");
                     const id = e.target.dataset.id; const type = e.target.dataset.type;
                     let msg = type === "cancel" ? "Confirmez-vous l'annulation de cette commande ?" : "Confirmez-vous vouloir exercer votre droit de rétractation (frais de retour à votre charge) ?";
                     if(confirm(msg)) {
@@ -1325,97 +1256,140 @@
     window.deleteTicket = async (id) => { try { const r = await api({action:"deleteticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Ticket supprimé"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
 
     function renderAdminConfig(panel) {
-      const minC=state.config.minCart||25;const feesEn=state.config.feesEnabled!==false;
-      const featureRows=FEATURE_DEFINITIONS.map(([key,label])=>`<div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" class="cfg-feature" data-feature-key="${key}" id="cfg_${key}" ${featureEnabled(key)?'checked':''} style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label style="color:var(--txt);cursor:pointer" for="cfg_${key}">${escapeHtml(label)}</label></div>`).join("");
-      panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3><div class="form-grid" style="margin-top:1rem"><div class="field wide"><label style="color:var(--muted);font-size:.85rem;width:100%">Minimum d'achat Panier (€)</label><input type="number" id="cfgMinCart" value="${minC}" style="width:100%"></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="cfgFees" ${feesEn?'checked':''} style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label style="color:var(--txt);cursor:pointer" for="cfgFees">Activer les calculs des frais (Port et Livraison)</label></div><div class="wide" style="margin-top:.5rem"><h4 style="margin-bottom:.65rem">Fonctionnalités côté client</h4><p class="sub" style="font-size:.82rem;margin-bottom:.8rem">Chaque fonctionnalité peut être activée ou désactivée séparément.</p></div>${featureRows}<button class="btn primary wide" id="saveCfgBtn">Enregistrer la configuration</button></div></div>`;
-      $("#saveCfgBtn").addEventListener("click",async()=>{
-        const btn=$("#saveCfgBtn");btn.disabled=true;btn.textContent="Enregistrement...";
-        try{
-          const features={...DEFAULT_FEATURES};$$(".cfg-feature").forEach(input=>features[input.dataset.featureKey]=input.checked);
-          const newConfig={...state.config,minCart:Number($("#cfgMinCart").value),feesEnabled:$("#cfgFees").checked,features};
-          const res=await api({action:"saveconfig",adminKey:adminKey(),config:newConfig});if(!res.ok)throw new Error(res.error);
-          state.config=normalizeConfig(res.config);toast("Configuration sauvegardée.");updateMarquee();renderNav();applyFeatureAvailability();
-        }catch(e){toast("Erreur: "+e.message);}finally{btn.disabled=false;btn.textContent="Enregistrer la configuration";}
-      });
+        const minC = state.config.minCart || 25;
+        const fCat = state.config.feat_catalogue !== false;
+        const fCom = state.config.feat_commande !== false;
+        const fPan = state.config.feat_panier !== false;
+        const fSui = state.config.feat_suivi !== false;
+        const feesEn = state.config.feesEnabled !== false;
+        
+        panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3>
+        <div class="form-grid" style="margin-top:1rem">
+            <div class="field wide"><label style="color:var(--muted); font-size:0.85rem; width:100%">Minimum d'achat Panier (€)</label><input type="number" id="cfgMinCart" value="${minC}" style="width:100%" /></div>
+            
+            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Modules du site (Activation / Désactivation)</h4>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_catalogue" ${fCat ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_catalogue">Afficher la page Catalogue</label></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_commande" ${fCom ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_commande">Afficher la page Commande Libre</label></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_panier" ${fPan ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_panier">Afficher le Panier (Nav + Ajouts)</label></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_suivi" ${fSui ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_suivi">Afficher la page Suivi</label></div>
+
+            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Options Financières</h4>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfgFees" ${feesEn ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfgFees">Activer les calculs des frais (Port et Livraison)</label></div>
+            
+            <button class="btn primary wide" id="saveCfgBtn" style="margin-top:1rem">Enregistrer la configuration</button>
+        </div></div>`;
+        
+        $("#saveCfgBtn").addEventListener("click", async () => {
+            const btn = $("#saveCfgBtn"); btn.disabled = true; btn.textContent = "Enregistrement...";
+            try {
+                const newConfig = { 
+                    ...state.config, 
+                    minCart: Number($("#cfgMinCart").value), 
+                    feat_catalogue: $("#cfg_catalogue").checked,
+                    feat_commande: $("#cfg_commande").checked,
+                    feat_panier: $("#cfg_panier").checked,
+                    feat_suivi: $("#cfg_suivi").checked,
+                    feesEnabled: $("#cfgFees").checked 
+                };
+                const res = await api({action:"saveconfig", adminKey:adminKey(), config: newConfig});
+                if(res.ok) {
+                    state.config = res.config;
+                    toast("Configuration sauvegardée.");
+                    updateMarquee();
+                    renderNav();
+                } else throw new Error(res.error);
+            } catch(e) { toast("Erreur: " + e.message); }
+            btn.disabled = false; btn.textContent = "Enregistrer la configuration";
+        });
     }
 
     // Builder Variantes Admin 
     function renderAdminProducts(panel){
-      panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..."></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId"><div class="field wide"><input required name="name" placeholder="Nom de l'article"></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie"></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €"></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%"><input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%"></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem;margin-top:.5rem;background:var(--card2)"><h4 style="margin-bottom:.5rem;color:var(--txt)">Options & Variantes (tous types d'articles)</h4><p class="sub" style="font-size:.8rem;margin-bottom:1rem">Créez librement Couleur, Stockage, Taille, Pointure, Matière, Modèle ou toute autre caractéristique. Séparez les valeurs par des virgules.</p><div id="adminVariantsList" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide glass-card" style="padding:1rem;margin-top:.5rem;background:var(--card2)"><h4 style="margin-bottom:.5rem;color:var(--txt)">Déclinaisons détaillées</h4><p class="sub" style="font-size:.8rem;margin-bottom:1rem">Une règle peut combiner autant de caractéristiques que nécessaire, par exemple : Couleur=Vert; Stockage=256 Go. Le prix, le poids, le stock, la référence et les autres paramètres sont facultatifs.</p><div id="adminCombinationsList" style="display:grid;gap:.65rem;margin-bottom:1rem"></div><button type="button" class="btn secondary small" id="addAdminCombinationBtn">+ Ajouter une déclinaison</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><p class="mini-note">Pour lier une photo, utilisez une règle comme Couleur=Vert; Stockage=256 Go.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
-      bindAdminProductForm();loadCatalog(true).then(renderAdminList);
+        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes infinis</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres souhaités. Ex: Couleur, Capacité, Taille, Prix supplémentaire, Modèle... Séparez les choix par des virgules.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
+        bindAdminProductForm(); loadCatalog(true).then(renderAdminList);
     }
-
-    function addAdminOptionRow(name="",values=""){
-      const div=document.createElement("div");div.style="display:grid;grid-template-columns:1fr 2fr auto;gap:.5rem";
-      div.innerHTML=`<div class="field compact"><input class="var-name" placeholder="Nom (ex: Stockage)" value="${escapeHtml(name)}"></div><div class="field compact"><input class="var-vals" placeholder="Valeurs (ex: 128 Go, 256 Go)" value="${escapeHtml(values)}"></div><button type="button" class="icon-btn danger-btn" onclick="this.parentElement.remove()" style="width:36px;height:36px">✕</button>`;$("#adminVariantsList").appendChild(div);
-    }
-    function addAdminCombinationRow(v={}){
-      const div=document.createElement("div");div.className="variant-detail-row";
-      div.innerHTML=`<div class="field compact variant-match"><input class="comb-match" placeholder="Couleur=Vert; Stockage=256 Go" value="${escapeHtml(v.match||'')}"></div><div class="field compact"><input class="comb-price" type="number" min="0" step=".01" placeholder="Prix €" value="${escapeHtml(v.price??'')}"></div><div class="field compact"><input class="comb-weight" type="number" min="0" step=".001" placeholder="Poids kg" value="${escapeHtml(v.weight??'')}"></div><div class="field compact"><input class="comb-stock" type="number" min="0" step="1" placeholder="Stock" value="${escapeHtml(v.stock??'')}"></div><div class="field compact"><input class="comb-sku" placeholder="Référence / SKU" value="${escapeHtml(v.sku||'')}"></div><button type="button" class="icon-btn danger-btn variant-remove" onclick="this.parentElement.remove()" style="width:36px;height:36px">✕</button><div class="field compact variant-extra"><input class="comb-extra" placeholder="Autres paramètres : Garantie=2 ans; Matière=Aluminium" value="${escapeHtml(v.extra||'')}"></div>`;
-      $("#adminCombinationsList").appendChild(div);
-    }
-    async function uploadPendingAdminImages(images){
-      const result=[];
-      for(let i=0;i<images.length;i++){
-        const img={...images[i]};
-        if(/^data:image\//i.test(img.url)){
-          toast(`Envoi de l'image ${i+1}/${images.length}...`);
-          const res=await api({action:"uploadimage",adminKey:adminKey(),dataUrl:img.url,fileName:img.fileName||`article-${Date.now()}-${i+1}.jpg`},60000);
-          if(!res.ok||!res.url)throw new Error(res.error||"Échec de l'envoi d'une image");img.url=res.url;
-        }
-        result.push({url:img.url,match:String(img.match||img.opt||"")});
-      }
-      return result;
-    }
+    
     function bindAdminProductForm(){
-      const form=$("#adminProductForm");
-      $("#addAdminVariantBtn").addEventListener("click",()=>addAdminOptionRow());
-      $("#addAdminCombinationBtn").addEventListener("click",()=>addAdminCombinationRow());
-      $("#browseImages").addEventListener("click",e=>{e.preventDefault();$("#photoInput").click();});
-      $("#photoInput").addEventListener("change",async e=>{
-        const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images en haute qualité...");
-        for(const file of files){const dataUrl=await prepareHighQualityImage(file);if(dataUrl)adminImages.push({url:dataUrl,match:"",fileName:file.name});}
-        adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";
-      });
-      $("#importBtn").addEventListener("click",importExternalProduct);$("#resetProductForm").addEventListener("click",resetProductForm);
-      form.addEventListener("submit",async e=>{
-        e.preventDefault();const submit=form.querySelector("button[type='submit']");submit.disabled=true;submit.textContent="Enregistrement...";
-        try{
-          const d=Object.fromEntries(new FormData(form).entries());const params={};
-          $$("#adminVariantsList > div").forEach(row=>{const k=row.querySelector(".var-name").value.trim(),v=row.querySelector(".var-vals").value.trim();if(k&&v){params[k]=[...new Set(v.split(",").map(x=>x.trim()).filter(Boolean))].join(", ");}});
-          const variants=[];$$("#adminCombinationsList .variant-detail-row").forEach(row=>{const match=row.querySelector(".comb-match").value.trim();if(!match)return;variants.push({match,price:row.querySelector(".comb-price").value.trim(),weight:row.querySelector(".comb-weight").value.trim(),stock:row.querySelector(".comb-stock").value.trim(),sku:row.querySelector(".comb-sku").value.trim(),extra:row.querySelector(".comb-extra").value.trim()});});
-          $$(".preview-card").forEach((card,idx)=>{adminImages[idx].match=card.querySelector(".img-link-rule").value.trim();});
-          const images=await uploadPendingAdminImages(adminImages);adminImages=images.map(img=>({...img}));const totalWeight=numberVal(d.weightKg)+(numberVal(d.weightG)/1000);
-          const product={id:d.id||undefined,name:d.name,category:d.category||"Divers",price:numberVal(d.price),weight:totalWeight,desc:d.desc,params,variants,images};
-          const res=await api({action:"saveproduct",adminKey:adminKey(),product},30000);if(!res.ok)throw new Error(res.error);toast("Article enregistré");resetProductForm();await loadCatalog(true);renderAdminList();
-        }catch(err){toast("Erreur : "+err.message);}finally{submit.disabled=false;submit.textContent="Publier / enregistrer";}
-      });
-    }
+        const form=$("#adminProductForm");
+        $("#addAdminVariantBtn").addEventListener("click", () => {
+            const div = document.createElement("div"); div.style = "display:grid; grid-template-columns:1fr 2fr auto; gap:0.5rem;";
+            div.innerHTML = `<div class="field compact"><input class="var-name" placeholder="Nom (ex: Capacité, Prix...)" /></div><div class="field compact"><input class="var-vals" placeholder="Valeurs (ex: 64Go, 128Go...)" /></div><button type="button" class="icon-btn danger-btn" onclick="this.parentElement.remove()" style="width:36px; height:36px">✕</button>`;
+            $("#adminVariantsList").appendChild(div);
+        });
+        $("#browseImages").addEventListener("click",e=>{e.preventDefault();$("#photoInput").click();});
+        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images (Haute Qualité)...");for(const file of files){const img=await compressToWhiteBg(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";});
+        $("#importBtn").addEventListener("click",importExternalProduct);
+        $("#resetProductForm").addEventListener("click",resetProductForm);
+        form.addEventListener("submit",async e=>{
+            e.preventDefault();
+            const d=Object.fromEntries(new FormData(form).entries());
+            const params = {};
+            $$("#adminVariantsList > div").forEach(row => {
+                const k = row.querySelector(".var-name").value.trim(); const v = row.querySelector(".var-vals").value.trim();
+                if(k && v) {
+                    if(!params[k]) params[k] = [];
+                    v.split(",").forEach(val => {
+                        const cleanVal = val.trim();
+                        if(cleanVal) params[k].push(cleanVal);
+                    });
+                }
+            });
+            for(let k in params) params[k] = [...new Set(params[k])].join(", ");
+            
+            const imagesWithOpts = [];
+            $$(".preview-card").forEach((card, idx) => {
+                const optVal = card.querySelector(".img-link-opt").value.trim();
+                imagesWithOpts.push({ url: adminImages[idx].url, opt: optVal });
+            });
 
-    async function importExternalProduct(){
-      const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";
-      try{const res=await api({action:"scrape",adminKey:adminKey(),url},30000);if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{},f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>({url,match:""}));renderImagePreview();Object.entries(d.details||{}).forEach(([k,v])=>{if(v&&k!=='sku')addAdminOptionRow(k,String(v));});toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}
+            const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
+            const product={id:d.id||undefined,name:d.name,category:d.category||"Divers",price:numberVal(d.price),weight:totalWeight,desc:d.desc,params:params,images:imagesWithOpts};
+            try{const res=await api({action:"saveproduct",adminKey:adminKey(),product});if(!res.ok)throw new Error(res.error);toast("Article enregistré");resetProductForm();await loadCatalog(true);renderAdminList();}catch(err){toast("Erreur : "+err.message);}
+        });
     }
-    function renderImagePreview(){
-      const box=$("#photoPreview");if(!box)return;
-      box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="icon-btn danger-btn" style="position:absolute;top:0;right:0;width:24px;height:24px;border:none;background:var(--danger);color:white">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Couleur=Vert; Stockage=256 Go" class="img-link-rule field compact" style="width:100%;font-size:.68rem;margin-top:4px;height:30px;min-height:30px;padding:0 5px" value="${escapeHtml(img.match||img.opt||'')}"></div>`).join("");
-      $$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));
-    }
-    function resetProductForm(){
-      const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";adminImages=[];renderImagePreview();$("#adminVariantsList").innerHTML="";$("#adminCombinationsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";
-    }
-    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'></path></svg>"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.displayPrice)} • ${p.weight||0} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
+    
+    async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>({url:url, opt:""}));renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
+    function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="icon-btn danger-btn" style="position:absolute;top:0;right:0;width:24px;height:24px;border:none;background:var(--danger);color:white;">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à (ex: Bleu)" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
+    function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";adminImages=[];renderImagePreview();$("#adminVariantsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";}
+    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'></path></svg>"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
+    
     function editProduct(id){
-      const p=state.products.find(x=>x.id===id);if(!p)return;const f=$("#adminProductForm");f.id.value=p.id;f.name.value=p.name||"";f.category.value=p.category||"";f.price.value=p.price||"";f.desc.value=p.desc||"";const w=Number(p.weight||0);f.weightKg.value=Math.floor(w);f.weightG.value=Math.round((w-Math.floor(w))*1000);adminImages=(p.images||[]).map(img=>({...img,match:img.match||img.opt||""})).slice(0,30);renderImagePreview();$("#adminVariantsList").innerHTML="";Object.entries(p.params||{}).forEach(([k,v])=>addAdminOptionRow(k,v));$("#adminCombinationsList").innerHTML="";(p.variants||[]).forEach(v=>addAdminCombinationRow(v));$("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});
+        const p=state.products.find(x=>x.id===id);if(!p)return;const f=$("#adminProductForm");
+        f.id.value=p.id;f.name.value=p.name||"";f.category.value=p.category||"";f.price.value=p.price||"";f.desc.value=p.desc||"";
+        const w = Number(p.weight || 0); f.weightKg.value = Math.floor(w); f.weightG.value = Math.round((w - Math.floor(w)) * 1000);
+        adminImages=(p.images||[]).slice(0,30);renderImagePreview();
+        $("#adminVariantsList").innerHTML = "";
+        Object.entries(p.params || {}).forEach(([k,v]) => {
+            const div = document.createElement("div"); div.style = "display:grid; grid-template-columns:1fr 2fr auto; gap:0.5rem;";
+            div.innerHTML = `<div class="field compact"><input class="var-name" value="${escapeHtml(k)}" /></div><div class="field compact"><input class="var-vals" value="${escapeHtml(v)}" /></div><button type="button" class="icon-btn danger-btn" onclick="this.parentElement.remove()" style="width:36px; height:36px">✕</button>`;
+            $("#adminVariantsList").appendChild(div);
+        });
+        $("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});
     }
-    function prepareHighQualityImage(file){
-      return new Promise(resolve=>{const img=new Image(),objectUrl=URL.createObjectURL(file);img.onload=()=>{let w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;const MAX=2200;if(Math.max(w,h)>MAX){const ratio=MAX/Math.max(w,h);w=Math.round(w*ratio);h=Math.round(h*ratio);}const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle='#ffffff';ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);let quality=.94,out=canvas.toDataURL('image/jpeg',quality);while(out.length>4500000&&quality>.74){quality-=.04;out=canvas.toDataURL('image/jpeg',quality);}URL.revokeObjectURL(objectUrl);resolve(out);};img.onerror=()=>{URL.revokeObjectURL(objectUrl);resolve('');};img.src=objectUrl;});
+    
+    // Compression haute définition sur fond blanc
+    function compressToWhiteBg(file){
+        return new Promise(resolve=>{
+            const img=new Image();
+            img.onload=()=>{
+                const MAX=1024; // Force la HD
+                let w=img.width, h=img.height;
+                if(w>h&&w>MAX){h=Math.floor(h*MAX/w);w=MAX}else if(h>=w&&h>MAX){w=Math.floor(w*MAX/h);h=MAX}
+                const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
+                const ctx=canvas.getContext('2d');
+                ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,w,h);
+                ctx.drawImage(img,0,0,w,h);
+                let q=0.92, out=canvas.toDataURL('image/jpeg',q);
+                while(out.length>500000 && q>.3){ q-=.1; out=canvas.toDataURL('image/jpeg',q); } // Limite à 500Ko
+                resolve(out); URL.revokeObjectURL(img.src);
+            };
+            img.onerror=()=>resolve(''); img.src=URL.createObjectURL(file);
+        });
     }
 
-    window.addEventListener("load", () => { ignoredChatMsgs = -1; });
+    window.addEventListener("load", () => { ignoredChatMsgs = -1; loadConfig(); });
 
     $("#openChatBtn").addEventListener("click", () => {
-        if(!featureEnabled("chat")) return toast("Non disponible pour le moment");
         $("#chatBox").classList.add("open"); $("#openChatBtn").style.display="none"; loadChat();
         chatInterval = setInterval(loadChat, 10000); 
     });
@@ -1452,8 +1426,7 @@
         } catch(e) {}
     }
     $("#chatForm").addEventListener("submit", async e => {
-        e.preventDefault();
-        if(!featureEnabled("chat")) return toast("Non disponible pour le moment"); const text = e.target.msg.value.trim(); if(!text || !state.user) return;
+        e.preventDefault(); const text = e.target.msg.value.trim(); if(!text || !state.user) return;
         e.target.msg.value = "";
         $("#chatMsgs").innerHTML += `<div class="chat-msg client">${escapeHtml(text)}</div>`;
         $("#chatMsgs").scrollTop = $("#chatMsgs").scrollHeight;
@@ -1470,17 +1443,14 @@
         }
     }, 10000);
 
-    $("#newsletterForm").addEventListener("submit",async e=>{e.preventDefault();if(!featureEnabled("newsletter"))return toast("Non disponible pour le moment");try{await api({action:"newsletter",email:e.currentTarget.email.value});toast("Merci ! Vous êtes abonné(e)");e.target.reset();}catch(err){toast("Merci !");}});
+    $("#newsletterForm").addEventListener("submit",async e=>{e.preventDefault();try{await api({action:"newsletter",email:e.currentTarget.email.value});toast("Merci ! Vous êtes abonné(e)");e.target.reset();}catch(err){toast("Merci !");}});
     window.addEventListener("hashchange",routeFromHash);window.addEventListener("popstate",routeFromHash);
     checkCartExpiration();
     initPhoneCountries();
 
-    const hideLoader = () => { const loader=$("#loader"); if(loader && loader.style.display!=="none"){ loader.style.opacity="0"; setTimeout(()=>loader.style.display="none", 600); } };
-    const loaderSafetyTimer=setTimeout(hideLoader,3500);
-    (async()=>{
-      try{await Promise.allSettled([loadConfig(),loadCatalog()]);renderCounts();routeFromHash();checkCookies();}
-      finally{clearTimeout(loaderSafetyTimer);setTimeout(hideLoader,200);}
-    })();
+    const hideLoader = () => { const loader=$("#loader"); if(loader){ loader.style.opacity="0"; setTimeout(()=>loader.style.display="none", 600); } };
+
+    loadCatalog().then(()=>{ renderCounts(); routeFromHash(); setTimeout(hideLoader, 200); checkCookies(); });
   </script>
 </body>
 </html>
