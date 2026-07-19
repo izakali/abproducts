@@ -19,7 +19,7 @@
       --brand:#7db6e0; --brand2:#2fbf8b; --brand3:#2fbf8b; --gold:#e6b34d; --danger:#ff5573;
       --shadow:0 1px 2px rgba(0,0,0,.35),0 18px 45px rgba(0,0,0,.35);
       --radius:16px; --radius2:12px;
-      --flag:linear-gradient(90deg,#3d8e33 0 22%,#ffc61e 22% 44%,#f4f6f9 44% 56%,#ef3340 56% 78%,#3a75c4 78% 100%);
+      --flag:linear-gradient(90deg,#3d8e33 0 22%,#ffc61e 22% 44%,#f4f6f9 44% 56%,#ef3340 56% 78%,#3a75c4 78% 100%); --banner-offset:31px;
     }
     *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
     body{min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;font-size:15.5px;line-height:1.55}
@@ -34,7 +34,7 @@
     .marquee span { margin-right: 50px; }
     @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    header{position:fixed;top:31px;left:0;width:100%;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(0,0,0,.15); transition:0.3s;}
+    header{position:fixed;top:var(--banner-offset);left:0;width:100%;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(0,0,0,.15); transition:0.3s;}
     header::before{content:"";display:block;height:3px;background:var(--flag)}
     .nav{width:min(1220px,calc(100% - 28px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none}
     .brand{display:flex;align-items:center;gap:.7rem;min-width:max-content}.brand-mark{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(150deg,#182b47,#0f1c30);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);position:relative;overflow:hidden;font-size:1.15rem}.brand strong{font-size:1.06rem;letter-spacing:-.02em;font-weight:800}.brand span{display:block;color:var(--muted2);font-size:.74rem;margin-top:-.1rem;font-weight:600}.brand.admin-active .brand-mark{background:linear-gradient(150deg,#7a5a10,#e6b34d)}
@@ -50,7 +50,7 @@
     .nav-link.admin.active{color:var(--gold)}.nav-link.admin.active::after{background:var(--gold)}
     .nav-sep{width:1px;height:22px;background:var(--line);margin:0 .45rem}
     .nav-actions{display:flex;align-items:center;gap:1.5rem}.nav-btn{background:transparent;border:0;color:var(--txt);font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:6px;cursor:pointer;transition:.2s ease}.nav-btn:hover{color:var(--brand2)}.cart-badge{background:var(--brand2);color:#04160e;border-radius:999px;padding:2px 7px;font-size:.7rem;font-weight:800}.mobile-toggle{display:none}
-    main{padding-top:125px}.page{display:none;animation:pageIn .35s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    main{padding-top:calc(94px + var(--banner-offset))}.page{display:none;animation:pageIn .35s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
     .hero{min-height:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:64px 0 76px}.hero h1{margin-top:1.05rem;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:1.02;letter-spacing:-.035em;max-width:760px;font-weight:800}.gradient-text{background:linear-gradient(120deg,var(--txt) 0%,var(--txt) 55%,var(--brand) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{color:var(--muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:640px;margin:1.2rem 0 0}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:50px;padding:.8rem 1.3rem;border-radius:11px;font-weight:700;letter-spacing:0;transition:.22s ease;border:1px solid transparent;position:relative;overflow:hidden;font-size:.96rem}
     .btn.primary{color:#04160e;background:var(--brand2);box-shadow:0 8px 22px rgba(47,191,139,.18)}
@@ -64,37 +64,175 @@
     @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
     /* ==================== AB MOTORS CSS IMPORTÉ ==================== */
-    .abm-section::before{content:"";position:absolute;inset:8% 0 auto;height:72%;pointer-events:none;background:radial-gradient(700px 320px at 16% 50%,rgba(125,182,224,.08),transparent 68%),radial-gradient(600px 300px at 86% 48%,rgba(47,191,139,.08),transparent 70%)}
-    .abm-slider{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);isolation:isolate}
-    .abm-track{display:flex;transition:transform .9s cubic-bezier(.22,.8,.22,1);will-change:transform}
-    .abm-slide{position:relative;min-width:100%;overflow:hidden}
-    .abm-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.045);animation:abmCinematic 16s ease-in-out infinite alternate;filter:saturate(1.04) contrast(1.03)}
-    .abm-photo-shadow{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,13,24,.95) 0%,rgba(8,19,33,.78) 40%,rgba(8,19,33,.25) 70%,rgba(5,13,24,.56) 100%),linear-gradient(0deg,rgba(5,13,24,.92) 0%,transparent 52%,rgba(5,13,24,.24) 100%)}
-    .abm-photo-glow{position:absolute;width:420px;height:420px;border-radius:50%;left:23%;bottom:7%;background:radial-gradient(circle,rgba(230,179,77,.22),rgba(230,179,77,.04) 42%,transparent 70%);filter:blur(10px);animation:abmGlow 4.5s ease-in-out infinite alternate}
-    .abm-grid-lines{position:absolute;inset:0;opacity:.17;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(90deg,#000,transparent 74%)}
-    .abm-wave{position:absolute;left:-8%;right:-8%;bottom:-67px;height:126px;border-radius:46% 54% 0 0/58% 58% 0 0;background:rgba(125,182,224,.1);filter:blur(.2px);animation:abmWave 8s ease-in-out infinite alternate;z-index:3}
-    .abm-wave.two{bottom:-85px;background:rgba(47,191,139,.08);animation-duration:10s;animation-delay:-3s}
-    .abm-map{position:relative;min-height:430px;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,rgba(125,182,224,.1),rgba(47,191,139,.045)),radial-gradient(circle at 50% 58%,rgba(47,191,139,.09),transparent 32%),#0b1729;}
-    .abm-map::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(238,243,250,.18) 1px,transparent 1px);background-size:22px 22px;opacity:.24;mask-image:radial-gradient(circle,#000 15%,transparent 76%)}
-    .abm-map-illustration{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-    .abm-route-line{fill:none;stroke:var(--brand);stroke-width:4.5;stroke-linecap:round;stroke-dasharray:13 17;filter:drop-shadow(0 0 9px rgba(125,182,224,.5));animation:abmRouteDash 7s linear infinite}
-    .abm-route-line.route-green{stroke:var(--brand2);animation-duration:8.5s;animation-direction:reverse}
-    .abm-island-path{fill:url(#abmIslandFill);stroke:rgba(238,243,250,.42);stroke-width:3.5;stroke-linejoin:round;filter:drop-shadow(0 18px 28px rgba(0,0,0,.34))}
-    .abm-island-shine{fill:url(#abmIslandShine);opacity:.42;pointer-events:none}
-    .abm-islet{fill:#4ebf9f;stroke:rgba(238,243,250,.32);stroke-width:2;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
-    .abm-map-marker .ring{fill:none;stroke:rgba(230,179,77,.25);stroke-width:14;animation:abmMarkerPulse 2.4s ease-in-out infinite}
-    .abm-map-marker .core{fill:var(--gold);stroke:#fff;stroke-width:2;filter:drop-shadow(0 0 12px rgba(230,179,77,.65))}
-    .abm-map-label .name{fill:var(--txt);font-size:26px;font-weight:800;letter-spacing:-.02em}
-    .abm-map-label .sub{fill:rgba(238,243,250,.7);font-size:16px;font-weight:650}
-    .abm-map-label .leader{fill:none;stroke:rgba(238,243,250,.42);stroke-width:2.2;stroke-linecap:round}
-    .abm-svg-boat .halo{fill:rgba(47,191,139,.16);stroke:rgba(47,191,139,.35);stroke-width:3}
-    .abm-svg-boat .disc{fill:var(--brand2);filter:drop-shadow(0 10px 16px rgba(0,0,0,.38))}
-    .abm-svg-boat .boat-mark{fill:none;stroke:#04160e;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-    @keyframes abmMarkerPulse{0%,100%{opacity:.45;transform:scale(.86);transform-origin:center}50%{opacity:.12;transform:scale(1.18);transform-origin:center}}
-    @keyframes abmCinematic{0%{transform:scale(1.045) translate3d(0,0,0)}100%{transform:scale(1.11) translate3d(-1.5%,-1%,0)}}
-    @keyframes abmGlow{to{transform:scale(1.15);opacity:.7}}
-    @keyframes abmWave{to{transform:translateX(4%) rotate(.5deg)}}
-    @keyframes abmRouteDash{to{stroke-dashoffset:-160}}
+    /* ==================== AB MOTORS : ANIMATION INTER-ÎLES ==================== */
+        .abm-section{padding:12px 0 78px;position:relative}
+        .abm-section::before{content:"";position:absolute;inset:8% 0 auto;height:72%;pointer-events:none;background:radial-gradient(700px 320px at 16% 50%,rgba(125,182,224,.08),transparent 68%),radial-gradient(600px 300px at 86% 48%,rgba(47,191,139,.08),transparent 70%)}
+        .abm-slider{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);isolation:isolate}
+        .abm-slider::before{content:none!important;display:none!important}
+        .abm-track{display:flex;transition:transform .9s cubic-bezier(.22,.8,.22,1);will-change:transform}
+        .abm-slide{position:relative;min-width:100%;min-height:610px;overflow:hidden}
+        .abm-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.045);animation:abmCinematic 16s ease-in-out infinite alternate;filter:saturate(1.04) contrast(1.03)}
+        .abm-photo-shadow{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,13,24,.95) 0%,rgba(8,19,33,.78) 40%,rgba(8,19,33,.25) 70%,rgba(5,13,24,.56) 100%),linear-gradient(0deg,rgba(5,13,24,.92) 0%,transparent 52%,rgba(5,13,24,.24) 100%)}
+        .abm-photo-glow{position:absolute;width:420px;height:420px;border-radius:50%;left:23%;bottom:7%;background:radial-gradient(circle,rgba(230,179,77,.22),rgba(230,179,77,.04) 42%,transparent 70%);filter:blur(10px);animation:abmGlow 4.5s ease-in-out infinite alternate}
+        .abm-grid-lines{position:absolute;inset:0;opacity:.17;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(90deg,#000,transparent 74%)}
+        .abm-content{position:relative;z-index:4;display:flex;flex-direction:column;justify-content:center;min-height:610px;padding:clamp(38px,6vw,76px);max-width:850px}
+        .abm-kicker{display:inline-flex;align-items:center;gap:.65rem;width:max-content;max-width:100%;padding:.58rem .9rem;border-radius:999px;border:1px solid rgba(238,243,250,.18);background:rgba(12,22,38,.56);backdrop-filter:blur(10px);color:rgba(238,243,250,.82);font-size:.79rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+        .abm-kicker::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--brand2);box-shadow:0 0 0 5px rgba(47,191,139,.13);animation:abmPulse 1.7s ease-in-out infinite}
+        .abm-title{font-size:clamp(2.35rem,6vw,5rem);line-height:.98;letter-spacing:-.045em;margin:1.2rem 0 1rem;max-width:780px;color:var(--txt);text-shadow:0 14px 34px rgba(0,0,0,.28)}
+        .abm-title .abm-accent{color:var(--brand2)}
+        .abm-typing-caret{display:inline-block;width:3px;height:.82em;margin-left:.12em;vertical-align:-.05em;background:var(--gold);border-radius:2px;animation:abmBlink .8s steps(1) infinite}
+        .abm-intro{max-width:690px;color:rgba(238,243,250,.77);font-size:clamp(1rem,1.5vw,1.13rem)}
+        .abm-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:2rem;max-width:920px}
+        .abm-flow-card{position:relative;min-height:118px;padding:1rem;border:1px solid rgba(238,243,250,.16);border-radius:15px;background:rgba(12,22,38,.58);backdrop-filter:blur(12px);opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease,border-color .25s ease,background .25s ease}
+        .abm-slider.is-visible .abm-slide.is-active .abm-flow-card{opacity:1;transform:translateY(0)}
+        .abm-slider.is-visible .abm-slide.is-active .abm-flow-card:nth-child(2){transition-delay:.12s}
+        .abm-slider.is-visible .abm-slide.is-active .abm-flow-card:nth-child(3){transition-delay:.24s}
+        .abm-slider.is-visible .abm-slide.is-active .abm-flow-card:nth-child(4){transition-delay:.36s}
+        .abm-flow-card:hover{border-color:rgba(47,191,139,.58);background:rgba(19,34,58,.78)}
+        .abm-flow-num{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--brand2);color:#04160e;margin-bottom:.7rem;box-shadow:0 8px 18px rgba(47,191,139,.18)}
+        .abm-flow-num svg{width:19px;height:19px;display:block}
+        .abm-flow-card strong{display:block;font-size:.94rem}
+        .abm-flow-card > span:not(.abm-flow-num){display:block;margin-top:.25rem;color:rgba(238,243,250,.6);font-size:.78rem;line-height:1.35}
+        .abm-primary-action{display:inline-flex;align-items:center;gap:.6rem;width:max-content;margin-top:1.45rem;padding:.78rem 1.05rem;border:1px solid rgba(47,191,139,.38);border-radius:11px;background:rgba(47,191,139,.13);color:var(--brand2);font-weight:800;transition:.25s ease}
+        .abm-primary-action:hover{transform:translateY(-2px);background:rgba(47,191,139,.2)}
+        .abm-primary-action svg{transition:transform .25s ease}.abm-primary-action:hover svg{transform:translateX(4px)}
+        .abm-wave{position:absolute;left:-8%;right:-8%;bottom:-67px;height:126px;border-radius:46% 54% 0 0/58% 58% 0 0;background:rgba(125,182,224,.1);filter:blur(.2px);animation:abmWave 8s ease-in-out infinite alternate;z-index:3}
+        .abm-wave.two{bottom:-85px;background:rgba(47,191,139,.08);animation-duration:10s;animation-delay:-3s}
+    
+        .abm-slide-routes{background:linear-gradient(145deg,#0b1627,#13223a 52%,#0f1c30)}
+        .abm-routes-layout{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,70px);align-items:center;min-height:610px;padding:clamp(38px,6vw,72px)}
+        .abm-map{position:relative;min-height:430px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:linear-gradient(160deg,rgba(125,182,224,.1),rgba(47,191,139,.045)),radial-gradient(circle at 50% 58%,rgba(47,191,139,.09),transparent 32%),#0b1729;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+        .abm-map-column{display:grid;gap:1rem;align-self:center;min-width:0}
+        .abm-book-link{display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;min-height:52px;padding:.8rem 1rem;border:1px solid rgba(47,191,139,.42);border-radius:13px;background:rgba(47,191,139,.11);color:var(--brand2);font-weight:800;text-align:center;transition:transform .22s ease,background .22s ease,border-color .22s ease}
+        .abm-book-link:hover{transform:translateY(-2px);background:rgba(47,191,139,.18);border-color:var(--brand2)}
+        .abm-book-link svg{width:21px;height:21px;display:block;flex:0 0 auto}
+        .abm-map::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(238,243,250,.18) 1px,transparent 1px);background-size:22px 22px;opacity:.24;mask-image:radial-gradient(circle,#000 15%,transparent 76%)}
+        .abm-map::after{content:"OCÉAN INDIEN";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);font-family:Archivo,Inter,sans-serif;font-size:clamp(1.5rem,4vw,3.1rem);font-weight:800;letter-spacing:.18em;color:rgba(238,243,250,.035);white-space:nowrap}
+        .abm-map-illustration{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+        .abm-route-line{fill:none;stroke:var(--brand);stroke-width:4.5;stroke-linecap:round;stroke-dasharray:13 17;filter:drop-shadow(0 0 9px rgba(125,182,224,.5));animation:abmRouteDash 7s linear infinite}
+        .abm-route-line.route-green{stroke:var(--brand2);animation-duration:8.5s;animation-direction:reverse}
+        .abm-island-path{fill:url(#abmIslandFill);stroke:rgba(238,243,250,.42);stroke-width:3.5;stroke-linejoin:round;filter:drop-shadow(0 18px 28px rgba(0,0,0,.34))}
+        .abm-island-shine{fill:url(#abmIslandShine);opacity:.42;pointer-events:none}
+        .abm-islet{fill:#4ebf9f;stroke:rgba(238,243,250,.32);stroke-width:2;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
+        .abm-map-marker .ring{fill:none;stroke:rgba(230,179,77,.25);stroke-width:14;animation:abmMarkerPulse 2.4s ease-in-out infinite}
+        .abm-map-marker .core{fill:var(--gold);stroke:#fff;stroke-width:2;filter:drop-shadow(0 0 12px rgba(230,179,77,.65))}
+        .abm-map-label{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;filter:drop-shadow(0 3px 8px rgba(0,0,0,.7))}
+        .abm-map-label .name{fill:var(--txt);font-size:26px;font-weight:800;letter-spacing:-.02em}
+        .abm-map-label .sub{fill:rgba(238,243,250,.7);font-size:16px;font-weight:650}
+        .abm-map-label .leader{fill:none;stroke:rgba(238,243,250,.42);stroke-width:2.2;stroke-linecap:round}
+        .abm-svg-boat .halo{fill:rgba(47,191,139,.16);stroke:rgba(47,191,139,.35);stroke-width:3}
+        .abm-svg-boat .disc{fill:var(--brand2);filter:drop-shadow(0 10px 16px rgba(0,0,0,.38))}
+        .abm-svg-boat .boat-mark{fill:none;stroke:#04160e;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+        @keyframes abmMarkerPulse{0%,100%{opacity:.45;transform:scale(.86);transform-origin:center}50%{opacity:.12;transform:scale(1.18);transform-origin:center}}
+        .abm-route-copy{position:relative}
+        .abm-route-copy h2{font-size:clamp(2.1rem,4.6vw,3.9rem);line-height:1.02;letter-spacing:-.04em;margin:.85rem 0 1rem}
+        .abm-route-copy>p{color:var(--muted);font-size:1.03rem}
+        .abm-route-pills{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.25rem 0 1.45rem}
+        .abm-route-pill{display:inline-flex;align-items:center;gap:.55rem;padding:.7rem .85rem;border-radius:999px;background:var(--card2);border:1px solid var(--line);font-weight:800;font-size:.86rem}
+        .abm-route-pill svg{width:17px;height:17px;color:var(--brand2)}
+        .abm-service-list{display:grid;gap:.72rem}
+        .abm-service{display:grid;grid-template-columns:46px minmax(0,1fr);gap:.85rem;align-items:center;padding:.9rem;border:1px solid var(--line);border-radius:13px;background:rgba(15,28,48,.72);transition:.22s ease}
+        .abm-service:hover{transform:translateX(4px);border-color:rgba(47,191,139,.4)}
+        .abm-service-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:rgba(47,191,139,.12);color:var(--brand2);align-self:center;justify-self:center}
+        .abm-service-icon svg{width:23px;height:23px;display:block}
+        .abm-service strong{display:block;font-size:.95rem}.abm-service > div > span{display:block;color:var(--muted);font-size:.82rem;margin-top:.18rem}
+        .abm-controls{position:absolute;z-index:10;right:22px;bottom:20px;display:flex;align-items:center;gap:.65rem}
+        .abm-arrow{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;border:1px solid rgba(238,243,250,.16);background:rgba(12,22,38,.72);backdrop-filter:blur(12px);color:var(--txt);transition:.22s ease}
+        .abm-arrow:hover{background:var(--brand2);border-color:var(--brand2);color:#04160e;transform:translateY(-2px)}
+        .abm-arrow svg{width:20px;height:20px}
+        .abm-dots{position:absolute;z-index:10;left:24px;bottom:29px;display:flex;gap:.45rem}
+        .abm-dot{width:9px;height:9px;border-radius:999px;background:rgba(238,243,250,.35);transition:.3s ease}
+        .abm-dot.active{width:31px;background:var(--brand2)}
+        @keyframes abmCinematic{0%{transform:scale(1.045) translate3d(0,0,0)}100%{transform:scale(1.11) translate3d(-1.5%,-1%,0)}}
+        @keyframes abmGlow{to{transform:scale(1.15);opacity:.7}}
+        @keyframes abmPulse{50%{box-shadow:0 0 0 9px rgba(47,191,139,0)}}
+        @keyframes abmBlink{50%{opacity:0}}
+        @keyframes abmWave{to{transform:translateX(4%) rotate(.5deg)}}
+        @keyframes abmRouteDash{to{stroke-dashoffset:-160}}
+        @media(max-width:1000px){
+          .abm-slide,.abm-content,.abm-routes-layout{min-height:690px}
+          .abm-flow{grid-template-columns:repeat(2,1fr);max-width:680px}
+          .abm-routes-layout{grid-template-columns:1fr 1fr;gap:24px}
+          .abm-map{min-height:400px}
+          .abm-boat{display:none}
+        }
+        @media(max-width:760px){
+          .abm-section{padding:0 0 54px}
+          .abm-slider{border-radius:18px}
+          .abm-slide,.abm-content,.abm-routes-layout{min-height:auto}
+          .abm-content{padding:38px 20px 92px;justify-content:flex-start}
+          .abm-photo{object-position:58% center}
+          .abm-photo-shadow{background:linear-gradient(0deg,rgba(5,13,24,.96) 0%,rgba(5,13,24,.76) 68%,rgba(5,13,24,.28) 100%)}
+          .abm-title{font-size:clamp(2.15rem,12vw,3.15rem);margin-top:1rem}
+          .abm-intro{font-size:.95rem}
+          .abm-flow{grid-template-columns:1fr 1fr;gap:.55rem;margin-top:1.3rem}
+          .abm-flow-card{min-height:104px;padding:.75rem}
+          .abm-flow-card span{font-size:.72rem}
+          .abm-routes-layout{grid-template-columns:1fr;padding:38px 20px 92px}
+          .abm-map{min-height:330px}
+          .abm-island{padding:.52rem .62rem}
+          .abm-island strong{font-size:.78rem}
+          .abm-island small{display:none}
+          .abm-island.mohéli{left:46%;bottom:12%}
+          .abm-island.anjouan{right:4%;top:13%}
+          .abm-island.moroni{left:4%;top:17%}
+          .abm-route-copy h2{font-size:2.35rem}
+          .abm-controls{right:15px;bottom:15px}
+          .abm-dots{left:16px;bottom:27px}
+          .abm-arrow{width:42px;height:42px}
+        }
+        @media(max-width:460px){
+          .abm-flow{grid-template-columns:1fr}
+          .abm-flow-card{min-height:0;display:grid;grid-template-columns:auto 1fr;column-gap:.65rem;align-items:center}
+          .abm-flow-num{grid-row:1/3;margin:0}
+          .abm-flow-card > span:not(.abm-flow-num){margin:0}
+          .abm-map{min-height:290px}
+          .abm-route-copy h2{font-size:2rem}
+          .abm-kicker{font-size:.67rem;letter-spacing:.08em}
+          .abm-primary-action{width:100%;justify-content:center}
+        }
+        @media(prefers-reduced-motion:reduce){
+          .abm-photo,.abm-photo-glow,.abm-kicker::before,.abm-route-line,.abm-typing-caret{animation:none!important}
+          .abm-track{transition:none}
+          .abm-flow-card{opacity:1;transform:none}
+        }
+
+    /* Ajustement de l'animation uniquement dans son emplacement de la page d'accueil */
+    .visual-card .abm-section{width:100%;margin:0;padding:0;position:relative}
+    .visual-card .abm-primary-action svg{width:18px;height:18px;flex:0 0 auto}
+    @media(min-width:1001px){
+      .visual-card .abm-slider{height:535px;border-radius:22px}
+      .visual-card .abm-slide{min-height:535px}
+      .visual-card .abm-content{min-height:535px;padding:28px 24px 68px;max-width:100%}
+      .visual-card .abm-kicker{font-size:.6rem;letter-spacing:.08em;padding:.42rem .65rem}
+      .visual-card .abm-title{font-size:clamp(2rem,3vw,2.75rem);line-height:1;margin:.85rem 0 .7rem;max-width:560px}
+      .visual-card .abm-intro{font-size:.86rem;line-height:1.45;max-width:560px}
+      .visual-card .abm-flow{grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin-top:1rem;max-width:100%}
+      .visual-card .abm-flow-card{min-height:88px;padding:.68rem;border-radius:12px}
+      .visual-card .abm-flow-num{width:29px;height:29px;border-radius:8px;margin-bottom:.45rem}
+      .visual-card .abm-flow-num svg{width:16px;height:16px}
+      .visual-card .abm-flow-card strong{font-size:.78rem}
+      .visual-card .abm-flow-card > span:not(.abm-flow-num){display:none}
+      .visual-card .abm-primary-action{width:100%;justify-content:center;margin-top:.85rem;padding:.62rem .82rem;font-size:.76rem}
+      .visual-card .abm-routes-layout{min-height:535px;grid-template-columns:.92fr 1.08fr;gap:14px;padding:20px 18px 68px}
+      .visual-card .abm-map-column{gap:.55rem}
+      .visual-card .abm-map{min-height:355px;border-radius:15px}
+      .visual-card .abm-book-link{min-height:42px;padding:.55rem .7rem;border-radius:10px;font-size:.74rem}
+      .visual-card .abm-route-copy h2{font-size:1.85rem;margin:.45rem 0 .55rem}
+      .visual-card .abm-route-copy>p{font-size:.72rem;line-height:1.4}
+      .visual-card .abm-route-pills{gap:.35rem;margin:.65rem 0 .75rem}
+      .visual-card .abm-route-pill{padding:.42rem .55rem;font-size:.65rem}
+      .visual-card .abm-route-pill svg{width:13px;height:13px}
+      .visual-card .abm-service-list{gap:.4rem}
+      .visual-card .abm-service{grid-template-columns:34px minmax(0,1fr);gap:.5rem;padding:.5rem;border-radius:10px}
+      .visual-card .abm-service-icon{width:34px;height:34px;border-radius:9px}
+      .visual-card .abm-service-icon svg{width:18px;height:18px}
+      .visual-card .abm-service strong{font-size:.7rem}
+      .visual-card .abm-service > div > span{font-size:.61rem;line-height:1.25;margin-top:.08rem}
+      .visual-card .abm-controls{right:14px;bottom:13px}
+      .visual-card .abm-arrow{width:38px;height:38px;border-radius:10px}
+      .visual-card .abm-dots{left:15px;bottom:24px}
+    }
     /* ========================================================= */
 
     .section{padding:66px 0}.section-head{display:flex;justify-content:space-between;gap:1.2rem;align-items:center;margin-bottom:1.6rem}.eyebrow{color:var(--brand2);font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem}h2{font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.06;letter-spacing:-.028em;margin-top:.45rem;font-weight:800}.section-head p,.sub{color:var(--muted);max-width:690px}.glass-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow)}
@@ -212,7 +350,7 @@
 
     @media(max-width:1000px){.hero,.custom-order,.cart-layout,.account-layout,.checkout-grid{grid-template-columns:1fr}.steps,.grid{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.tracking-grid{grid-template-columns:repeat(2, 1fr)}.footer-grid,.faq-grid{grid-template-columns:1fr}.config-row{grid-template-columns:1fr 1fr}.admin-item{grid-template-columns:auto 1fr auto}.admin-item .admin-actions, .admin-item .field, .admin-item select, .admin-item button {grid-column:1/-1}.recom-modal{grid-template-columns:1fr; gap:1.5rem}.recom-gallery{flex-direction:column-reverse}}
     @media(max-width:760px){
-      main{padding-top:116px}header{top:31px}.nav{border-radius:0;align-items:center}.nav-links{position:absolute;left:14px;right:14px;top:66px;display:none;flex-direction:column;border-radius:14px;padding:.5rem;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-link{width:100%;text-align:center}.nav-sep{width:100%;height:1px;margin:.3rem 0}.mobile-toggle{display:grid}.brand span{display:none}.hero{padding-top:26px;min-height:auto}.hero h1{font-size:clamp(2rem,10vw,2.8rem)}
+      main{padding-top:calc(85px + var(--banner-offset))}header{top:var(--banner-offset)}.nav{border-radius:0;align-items:center}.nav-links{position:absolute;left:14px;right:14px;top:66px;display:none;flex-direction:column;border-radius:14px;padding:.5rem;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-link{width:100%;text-align:center}.nav-sep{width:100%;height:1px;margin:.3rem 0}.mobile-toggle{display:grid}.brand span{display:none}.hero{padding-top:26px;min-height:auto}.hero h1{font-size:clamp(2rem,10vw,2.8rem)}
       body { font-size: 14px; }
       .product-art { height:200px; padding:10px; }
       .scrolling-banner { font-size:0.65rem; padding:4px 0; }
@@ -224,6 +362,7 @@
       .recom-thumbs{flex-direction:row; overflow-x:auto}
     }
   </style>
+  <link rel="preload" as="image" href="bateau.PNG" />
 </head>
 <body>
   <div id="loader"><h2 class="loader-title">AB PRODUCTS.</h2><div class="flag-loader"><div class="flag-bar bar-g"></div><div class="flag-bar bar-y"></div><div class="flag-bar bar-w"></div><div class="flag-bar bar-r"></div><div class="flag-bar bar-b"></div></div></div>
@@ -275,13 +414,155 @@
         </div>
         
         <div class="visual-card" style="padding:0; border:none; box-shadow:none; background:transparent;">
-          <!-- ============================================== -->
-          <!-- COLLE LA SUITE DE TON ANIMATION SVG JUSTE ICI  -->
-          <!-- ============================================== -->
-          <div class="abm-map" style="height:100%; min-height:450px; border-radius:24px; box-shadow:var(--shadow);">
-              <p style="color:var(--muted); text-align:center; padding-top:200px;">Insérer le code de l'animation ici</p>
-          </div>
-          <!-- ============================================== -->
+          <div class="shell abm-section" aria-label="Présentation du service AB MOTORS">
+                  <div class="abm-slider" id="abmSlider" tabindex="0" aria-roledescription="carrousel" aria-label="Fonctionnement et trajets AB MOTORS">
+                    <div class="abm-track" id="abmTrack">
+                      <article class="abm-slide abm-slide-hero is-active" aria-label="Comment AB MOTORS procède">
+                        <img class="abm-photo" src="bateau.PNG" alt="Bateau AB MOTORS naviguant au coucher du soleil" />
+                        <div class="abm-photo-shadow"></div>
+                        <div class="abm-photo-glow"></div>
+                        <div class="abm-grid-lines"></div>
+                        <div class="abm-content">
+                          <div class="abm-kicker">AB MOTORS · Transport maritime inter-îles</div>
+                          <h2 class="abm-title"><span id="abmTyped" aria-label="Comment AB MOTORS procède"></span><span class="abm-typing-caret" aria-hidden="true"></span></h2>
+                          <p class="abm-intro">Un service pensé pour transporter les voyageurs et acheminer les produits commandés sur AB PRODUCTS jusqu'à leur île de destination.</p>
+                          <div class="abm-flow" aria-label="Étapes du service">
+                            <div class="abm-flow-card"><span class="abm-flow-num" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span><strong>Demande du trajet</strong><span>Le passager ou le client communique son trajet et son besoin.</span></div>
+                            <div class="abm-flow-card"><span class="abm-flow-num" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m8 12 2.7 2.7L16.5 9"></path></svg></span><strong>Confirmation</strong><span>AB MOTORS confirme l'organisation du départ et la prise en charge.</span></div>
+                            <div class="abm-flow-card"><span class="abm-flow-num" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18c2 1.5 4 1.5 6 0 2 1.5 4 1.5 6 0 2 1.5 4 1.5 6 0"></path><path d="m5 15 2-7h10l2 7"></path><path d="M9 8V4h6v4"></path></svg></span><strong>Embarquement</strong><span>Les voyageurs ou les produits AB PRODUCTS sont pris en charge.</span></div>
+                            <div class="abm-flow-card"><span class="abm-flow-num" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></span><strong>Arrivée</strong><span>Le trajet se termine sur l'île prévue avec remise des produits transportés.</span></div>
+                          </div>
+                          <button class="abm-primary-action" type="button" id="abmDiscoverRoutes">
+                            Voir les trajets disponibles
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                          </button>
+                        </div>
+                        <div class="abm-wave"></div><div class="abm-wave two"></div>
+                      </article>
+
+                      <article class="abm-slide abm-slide-routes" aria-label="Trajets et services AB MOTORS">
+                        <div class="abm-routes-layout">
+                          <div class="abm-map-column">
+                            <div class="abm-map" aria-label="Schéma des liaisons entre Mohéli, Anjouan et Moroni">
+                            <svg class="abm-map-illustration" viewBox="0 0 1000 750" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Silhouettes fidèles de Grande Comore, Mohéli et Anjouan avec les trajets AB MOTORS">
+                              <defs>
+                                <linearGradient id="abmIslandFill" x1="0" y1="0" x2="1" y2="1">
+                                  <stop offset="0%" stop-color="#7db6e0"></stop>
+                                  <stop offset="48%" stop-color="#2fbf8b"></stop>
+                                  <stop offset="100%" stop-color="#178765"></stop>
+                                </linearGradient>
+                                <linearGradient id="abmIslandShine" x1="0" y1="0" x2="1" y2="0">
+                                  <stop offset="0%" stop-color="#ffffff" stop-opacity=".34"></stop>
+                                  <stop offset="52%" stop-color="#ffffff" stop-opacity="0"></stop>
+                                </linearGradient>
+                              </defs>
+
+                              <path id="abmRouteMoroni" class="abm-route-line" d="M426 665 C345 610 250 518 176 421 C125 354 85 320 28 309"></path>
+                              <path id="abmRouteAnjouan" class="abm-route-line route-green" d="M438 670 C580 700 741 687 904 616"></path>
+
+                              <path class="abm-island-path" d="M75 9 L72 13 L68 11 L61 12 L44 24 L36 39 L33 65 L30 73 L36 84 L36 97 L40 104 L41 115 L37 131 L31 142 L30 160 L34 169 L26 197 L27 247 L30 251 L31 260 L23 266 L18 284 L12 287 L8 294 L8 300 L0 309 L2 328 L7 335 L9 352 L20 359 L31 373 L32 387 L44 405 L59 413 L79 417 L84 412 L88 414 L88 417 L96 415 L118 417 L129 425 L130 431 L150 455 L162 460 L169 468 L175 469 L176 465 L179 465 L185 477 L191 476 L198 482 L195 474 L196 471 L206 482 L213 479 L213 473 L221 473 L224 470 L226 458 L241 443 L234 438 L232 433 L227 432 L221 426 L217 418 L209 414 L209 404 L200 385 L193 379 L193 371 L186 354 L188 344 L185 335 L185 320 L173 297 L173 291 L166 284 L164 272 L156 259 L145 250 L137 235 L140 228 L134 210 L137 202 L135 194 L139 177 L144 172 L147 130 L141 120 L140 113 L142 107 L140 102 L149 89 L149 78 L155 64 L153 47 L148 34 L144 30 L140 20 L140 13 L137 9 L131 7 L123 9 L118 5 L112 5 L106 0 Z"></path>
+                              <path class="abm-island-shine" d="M75 9 L61 12 L44 24 L36 39 L33 65 L30 73 L36 84 L36 97 L40 104 L41 115 L37 131 L31 142 L30 160 L34 169 L26 197 L27 247 L30 251 L31 260 L23 266 L18 284 L12 287 L8 294 L8 300 L0 309 L2 328 L9 352 L20 359 L31 373 L44 405 L59 413 L79 417 L96 415 L118 417 L129 425 L150 455 L162 460 L169 468 L176 465 L185 477 L191 476 L198 482 L195 474 L206 482 L213 479 L213 473 L221 473 L226 458 L214 448 L202 429 L192 405 L182 376 L176 345 L174 316 L164 284 L156 259 L145 250 L137 235 L134 210 L135 194 L144 172 L147 130 L140 113 L149 89 L155 64 L148 34 L140 20 L137 9 L123 9 L112 5 L106 0 Z"></path>
+
+                              <path class="abm-island-path" d="M332 618 L332 635 L330 638 L341 655 L342 663 L339 666 L352 666 L360 670 L364 675 L366 690 L362 694 L362 700 L369 696 L374 701 L384 702 L386 699 L403 701 L409 708 L413 707 L412 703 L414 701 L425 702 L432 708 L432 701 L437 699 L450 704 L458 716 L458 707 L463 705 L471 710 L487 710 L491 715 L497 714 L511 718 L523 718 L529 724 L535 725 L536 704 L529 697 L520 682 L514 682 L504 673 L493 667 L487 669 L478 667 L470 660 L468 655 L459 653 L454 648 L452 642 L441 642 L421 624 L413 626 L408 623 L401 623 L392 616 L362 613 L359 607 L352 607 L344 614 L338 614 Z"></path>
+                              <path class="abm-island-shine" d="M332 618 L332 635 L341 655 L342 663 L352 666 L360 670 L364 675 L366 690 L374 701 L384 702 L403 701 L409 708 L425 702 L432 708 L437 699 L450 704 L458 716 L463 705 L471 710 L487 710 L491 715 L497 714 L511 718 L523 718 L529 724 L535 725 L536 704 L520 682 L504 673 L487 669 L470 660 L459 653 L452 642 L441 642 L421 624 L401 623 L392 616 L362 613 L352 607 L344 614 Z"></path>
+                              <path class="abm-islet" d="M423 720 L425 722 L426 722 L429 724 L427 721 L427 719 L426 719 L425 720 Z"></path>
+                              <path class="abm-islet" d="M374 729 L373 730 L372 730 L371 731 L370 731 L367 734 L366 734 L363 737 L362 737 L359 740 L358 740 L356 742 L355 742 L354 743 L354 746 L356 744 L360 744 L360 743 L361 742 L361 741 L363 739 L364 739 L365 738 L366 738 L367 739 L367 748 L368 749 L372 749 L371 748 L371 735 L372 734 L372 732 Z"></path>
+                              <path class="abm-islet" d="M397 728 L396 729 L396 731 L398 734 L398 746 L401 749 L401 747 L402 746 L402 744 L401 743 L401 738 L400 737 L400 734 L401 733 L401 731 L402 730 L403 730 L402 730 L401 729 L399 729 L398 728 Z"></path>
+                              <path class="abm-islet" d="M349 733 L346 733 L345 734 L344 734 L343 735 L342 735 L342 737 L348 737 L348 736 L349 735 Z"></path>
+                              <path class="abm-islet" d="M408 737 L408 741 L411 744 L411 745 L414 748 L414 749 L415 748 L415 746 L416 745 L413 742 L412 742 L410 740 L410 739 L409 738 L409 737 Z"></path>
+
+                              <path class="abm-island-path" d="M723 568 L723 571 L731 576 L735 582 L769 601 L785 607 L791 612 L818 624 L837 623 L867 634 L889 663 L899 665 L905 669 L912 683 L917 688 L926 689 L936 695 L961 720 L963 726 L959 737 L961 741 L974 747 L989 745 L992 738 L991 723 L999 716 L991 707 L992 689 L994 686 L987 670 L987 660 L992 645 L999 640 L993 636 L994 629 L988 620 L990 615 L982 602 L983 591 L980 588 L979 576 L970 565 L965 553 L960 526 L954 519 L958 510 L958 502 L950 490 L940 482 L933 480 L927 482 L910 497 L900 501 L899 507 L910 518 L910 525 L900 535 L899 549 L894 555 L884 557 L864 579 L845 584 L831 584 L820 591 L814 586 L807 591 L792 588 L789 584 L791 579 L780 583 L753 579 L746 567 Z"></path>
+                              <path class="abm-island-shine" d="M723 568 L731 576 L735 582 L769 601 L785 607 L818 624 L837 623 L867 634 L889 663 L905 669 L912 683 L926 689 L936 695 L961 720 L963 726 L959 737 L974 747 L989 745 L992 738 L991 723 L999 716 L991 707 L994 686 L987 670 L987 660 L992 645 L999 640 L993 636 L988 620 L982 602 L979 576 L970 565 L960 526 L954 519 L958 510 L950 490 L940 482 L933 480 L927 482 L910 497 L900 501 L899 507 L910 518 L900 535 L899 549 L884 557 L864 579 L845 584 L831 584 L820 591 L807 591 L792 588 L780 583 L753 579 L746 567 Z"></path>
+                              <path class="abm-islet" d="M721 562 L720 561 L719 561 L718 562 L717 562 L717 565 L718 565 L719 564 L720 564 L721 563 Z"></path>
+
+                              <g class="abm-map-marker" transform="translate(28 309)"><circle class="ring" r="16"></circle><circle class="core" r="7"></circle></g>
+                              <g class="abm-map-marker" transform="translate(426 665)"><circle class="ring" r="16"></circle><circle class="core" r="7"></circle></g>
+                              <g class="abm-map-marker" transform="translate(904 616)"><circle class="ring" r="16"></circle><circle class="core" r="7"></circle></g>
+
+                              <g class="abm-map-label" transform="translate(220 135)">
+                                <path class="leader" d="M0 30 C-25 40 -49 55 -73 77"></path>
+                                <text class="name" x="10" y="0">Grande Comore</text>
+                                <text class="sub" x="10" y="25">Moroni</text>
+                              </g>
+                              <g class="abm-map-label" transform="translate(410 550)">
+                                <path class="leader" d="M30 28 C24 45 19 67 16 92"></path>
+                                <text class="name" x="0" y="0">Mohéli</text>
+                                <text class="sub" x="0" y="25">Départ et arrivée</text>
+                              </g>
+                              <g class="abm-map-label" transform="translate(720 465)">
+                                <path class="leader" d="M120 30 C145 53 168 79 184 121"></path>
+                                <text class="name" x="0" y="0">Anjouan</text>
+                                <text class="sub" x="0" y="25">Liaison inter-îles</text>
+                              </g>
+
+                              <g class="abm-svg-boat">
+                                <g transform="translate(-24 -24)">
+                                  <circle class="halo" cx="24" cy="24" r="22"></circle><circle class="disc" cx="24" cy="24" r="16"></circle>
+                                  <path class="boat-mark" d="M15 29c3 2 6 2 9 0 3 2 6 2 9 0M17 26l3-10h8l3 10M21 16v-5h6v5"></path>
+                                </g>
+                                <animateMotion dur="8.5s" repeatCount="indefinite" rotate="auto"><mpath href="#abmRouteMoroni"></mpath></animateMotion>
+                              </g>
+                              <g class="abm-svg-boat">
+                                <g transform="translate(-24 -24)">
+                                  <circle class="halo" cx="24" cy="24" r="22"></circle><circle class="disc" cx="24" cy="24" r="16"></circle>
+                                  <path class="boat-mark" d="M15 29c3 2 6 2 9 0 3 2 6 2 9 0M17 26l3-10h8l3 10M21 16v-5h6v5"></path>
+                                </g>
+                                <animateMotion dur="7.3s" begin="-2.2s" repeatCount="indefinite" rotate="auto"><mpath href="#abmRouteAnjouan"></mpath></animateMotion>
+                              </g>
+                            </svg>
+                            </div>
+                            <a class="abm-book-link" href="https://abmotors.falask.fr/" target="_blank" rel="noopener noreferrer" aria-label="Réserver un trajet AB MOTORS">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 10h18"></path><path d="m9 15 2 2 4-4"></path></svg>
+                              <span>Réservez juste ici</span>
+                            </a>
+                          </div>
+                          <div class="abm-route-copy">
+                            <div class="eyebrow">Voyage et acheminement</div>
+                            <h2>AB MOTORS relie <span class="abm-accent" style="color:var(--brand2)">les îles.</span></h2>
+                            <p>AB MOTORS assure des trajets entre Mohéli et Anjouan, ainsi qu'entre Mohéli et Moroni. Le service permet aux voyageurs de se déplacer et aux clients de recevoir les produits commandés sur AB PRODUCTS.</p>
+                            <div class="abm-route-pills">
+                              <span class="abm-route-pill">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m15 8 4 4-4 4"></path><path d="m9 16-4-4 4-4"></path></svg>
+                                Mohéli ⇄ Anjouan
+                              </span>
+                              <span class="abm-route-pill">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m15 8 4 4-4 4"></path><path d="m9 16-4-4 4-4"></path></svg>
+                                Mohéli ⇄ Moroni
+                              </span>
+                            </div>
+                            <div class="abm-service-list">
+                              <div class="abm-service">
+                                <span class="abm-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a6.5 6.5 0 0 1 13 0"></path></svg></span>
+                                <div><strong>Transport de passagers</strong><span>AB MOTORS accompagne les voyageurs pour leurs trajets entre les îles desservies.</span></div>
+                              </div>
+                              <div class="abm-service">
+                                <span class="abm-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 7 9-4 9 4-9 4-9-4Z"></path><path d="m3 7 9 4 9-4"></path><path d="M3 7v10l9 4 9-4V7"></path><path d="M12 11v10"></path></svg></span>
+                                <div><strong>Transport des commandes AB PRODUCTS</strong><span>Les produits commandés peuvent être acheminés par AB MOTORS vers l'île concernée.</span></div>
+                              </div>
+                              <div class="abm-service">
+                                <span class="abm-service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17 10 5l4 7 3-4 3 9"></path><path d="M2 20h20"></path></svg></span>
+                                <div><strong>Un service inter-îles</strong><span>Voyageurs et produits bénéficient d'une même organisation de transport maritime.</span></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+
+                    <div class="abm-dots" role="tablist" aria-label="Choisir une slide">
+                      <button class="abm-dot active" type="button" data-abm-slide="0" aria-label="Afficher le fonctionnement" aria-selected="true"></button>
+                      <button class="abm-dot" type="button" data-abm-slide="1" aria-label="Afficher les trajets" aria-selected="false"></button>
+                    </div>
+                    <div class="abm-controls">
+                      <button class="abm-arrow" type="button" id="abmPrev" aria-label="Slide précédente">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"></path></svg>
+                      </button>
+                      <button class="abm-arrow" type="button" id="abmNext" aria-label="Slide suivante">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"></path></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
         </div>
 
       </div>
@@ -480,7 +761,9 @@
         }
         
         const banner = document.querySelector('.scrolling-banner');
-        if(banner) banner.style.display = state.config.feat_banner !== false ? 'block' : 'none';
+        const bannerEnabled = state.config.feat_banner !== false;
+        if(banner) banner.style.display = bannerEnabled ? 'block' : 'none';
+        document.documentElement.style.setProperty('--banner-offset', bannerEnabled ? '31px' : '0px');
     }
 
     function renderNav(){
@@ -1554,6 +1837,130 @@
     const hideLoader = () => { const loader=$("#loader"); if(loader){ loader.style.opacity="0"; setTimeout(()=>loader.style.display="none", 600); } };
 
     loadCatalog().then(()=>{ renderCounts(); routeFromHash(); setTimeout(hideLoader, 200); checkCookies(); });
+  </script>
+  <script>
+(function(){
+      const slider = document.getElementById("abmSlider");
+      const track = document.getElementById("abmTrack");
+      if(!slider || !track) return;
+
+      const slides = Array.from(track.querySelectorAll(".abm-slide"));
+      const dots = Array.from(slider.querySelectorAll(".abm-dot"));
+      const prev = document.getElementById("abmPrev");
+      const next = document.getElementById("abmNext");
+      const discover = document.getElementById("abmDiscoverRoutes");
+      const typed = document.getElementById("abmTyped");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const typingText = "Comment AB MOTORS procède";
+      let index = 0;
+      let timer = null;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
+      let typedOnce = false;
+
+      function typeTitle(){
+        if(typedOnce || !typed) return;
+        typedOnce = true;
+        if(reducedMotion){
+          typed.textContent = typingText;
+          return;
+        }
+        let i = 0;
+        const write = function(){
+          typed.textContent = typingText.slice(0, i);
+          i += 1;
+          if(i <= typingText.length) window.setTimeout(write, i < 8 ? 90 : 58);
+        };
+        write();
+      }
+
+      function showSlide(nextIndex, userAction){
+        index = (nextIndex + slides.length) % slides.length;
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
+        slides.forEach(function(slide, i){
+          slide.classList.toggle("is-active", i === index);
+          slide.setAttribute("aria-hidden", i === index ? "false" : "true");
+        });
+        dots.forEach(function(dot, i){
+          const active = i === index;
+          dot.classList.toggle("active", active);
+          dot.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        if(userAction) restartAutoplay();
+      }
+
+      function restartAutoplay(){
+        window.clearInterval(timer);
+        if(reducedMotion) return;
+        timer = window.setInterval(function(){ showSlide(index + 1, false); }, 7000);
+      }
+
+      function pauseAutoplay(){ window.clearInterval(timer); }
+      function resumeAutoplay(){ restartAutoplay(); }
+
+      prev.addEventListener("click", function(){ showSlide(index - 1, true); });
+      next.addEventListener("click", function(){ showSlide(index + 1, true); });
+      if(discover) discover.addEventListener("click", function(){ showSlide(1, true); });
+      dots.forEach(function(dot){
+        dot.addEventListener("click", function(){ showSlide(Number(dot.dataset.abmSlide), true); });
+      });
+
+      slider.addEventListener("keydown", function(event){
+        if(event.key === "ArrowRight"){ event.preventDefault(); showSlide(index + 1, true); }
+        if(event.key === "ArrowLeft"){ event.preventDefault(); showSlide(index - 1, true); }
+      });
+      slider.addEventListener("mouseenter", pauseAutoplay);
+      slider.addEventListener("mouseleave", resumeAutoplay);
+      slider.addEventListener("focusin", pauseAutoplay);
+      slider.addEventListener("focusout", resumeAutoplay);
+
+      slider.addEventListener("pointerdown", function(event){
+        if(event.target.closest("button")) return;
+        dragging = true;
+        startX = event.clientX;
+        currentX = startX;
+        slider.setPointerCapture(event.pointerId);
+      });
+      slider.addEventListener("pointermove", function(event){
+        if(!dragging) return;
+        currentX = event.clientX;
+      });
+      slider.addEventListener("pointerup", function(event){
+        if(!dragging) return;
+        dragging = false;
+        const delta = currentX - startX;
+        if(Math.abs(delta) > 55) showSlide(index + (delta < 0 ? 1 : -1), true);
+        try{ slider.releasePointerCapture(event.pointerId); }catch(e){}
+      });
+      slider.addEventListener("pointercancel", function(){ dragging = false; });
+
+      if("IntersectionObserver" in window){
+        const observer = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              slider.classList.add("is-visible");
+              typeTitle();
+              restartAutoplay();
+            }else{
+              pauseAutoplay();
+            }
+          });
+        }, {threshold:.25});
+        observer.observe(slider);
+      }else{
+        slider.classList.add("is-visible");
+        typeTitle();
+        restartAutoplay();
+      }
+
+      document.addEventListener("visibilitychange", function(){
+        if(document.hidden) pauseAutoplay();
+        else restartAutoplay();
+      });
+
+      showSlide(0, false);
+    })();
   </script>
 </body>
 </html>
