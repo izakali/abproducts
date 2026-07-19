@@ -205,6 +205,15 @@
 </head>
 <body>
   <div id="loader"><h2 class="loader-title">AB PRODUCTS.</h2><div class="flag-loader"><div class="flag-bar bar-g"></div><div class="flag-bar bar-y"></div><div class="flag-bar bar-w"></div><div class="flag-bar bar-r"></div><div class="flag-bar bar-b"></div></div></div>
+  <script>
+    window.__abpEmergencyLoaderTimer = setTimeout(function(){
+      var loader = document.getElementById("loader");
+      if(!loader) return;
+      loader.style.opacity = "0";
+      loader.style.pointerEvents = "none";
+      setTimeout(function(){ loader.style.display = "none"; }, 600);
+    }, 7000);
+  </script>
   <div class="orb one"></div><div class="orb two"></div><div class="orb three"></div><div class="cursor-glow" id="cursorGlow"></div>
 
   <div class="scrolling-banner">
@@ -432,8 +441,40 @@
 
     async function api(payload){
       if(!apiReady()) throw new Error("API non configurée");
-      const res = await fetch(API_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(payload)});
-      return await res.json();
+
+      const action = String(payload?.action || "").toLowerCase();
+      const timeoutMs =
+        action === "uploadimage" ? 90000 :
+        action === "scrape" ? 45000 :
+        20000;
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+      try {
+        const res = await fetch(API_URL, {
+          method:"POST",
+          headers:{"Content-Type":"text/plain;charset=utf-8"},
+          body:JSON.stringify(payload),
+          signal:controller.signal
+        });
+
+        if(!res.ok) throw new Error(`Erreur serveur HTTP ${res.status}`);
+
+        const text = await res.text();
+        try {
+          return JSON.parse(text);
+        } catch(e) {
+          throw new Error("Réponse invalide du serveur Google Apps Script");
+        }
+      } catch(e) {
+        if(e && e.name === "AbortError") {
+          throw new Error("Le serveur Google Apps Script met trop de temps à répondre");
+        }
+        throw e;
+      } finally {
+        clearTimeout(timeoutId);
+      }
     }
     async function sha256(text){ const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)); return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join(""); }
     const adminKey = () => sessionStorage.getItem("abp_admin") || "";
@@ -1277,7 +1318,8 @@
       return new Promise(resolve=>{const img=new Image();img.onload=()=>{const MAX=1800;let w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;const scale=Math.min(1,MAX/Math.max(w,h));w=Math.max(1,Math.round(w*scale));h=Math.max(1,Math.round(h*scale));const canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;const ctx=canvas.getContext("2d",{alpha:false});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);let quality=.92;let dataUrl=canvas.toDataURL("image/jpeg",quality);while(dataUrl.length>4_500_000&&quality>.7){quality-=.04;dataUrl=canvas.toDataURL("image/jpeg",quality);}URL.revokeObjectURL(img.src);resolve({dataUrl,name:(file.name||`image-${Date.now()}`).replace(/\.[^.]+$/,"")+".jpg",mimeType:"image/jpeg"});};img.onerror=()=>resolve(null);img.src=URL.createObjectURL(file);});
     }
 
-    window.addEventListener("load", () => { ignoredChatMsgs = -1; loadConfig(); });
+    // Le démarrage principal est géré à la fin du script afin que le loader
+    // ne puisse jamais rester affiché indéfiniment.
 
     $("#openChatBtn").addEventListener("click", () => {
       if(!featureEnabled("chat")){toast(unavailableText());return;}
@@ -1340,9 +1382,40 @@
     checkCartExpiration();
     initPhoneCountries();
 
-    const hideLoader = () => { const loader=$("#loader"); if(loader){ loader.style.opacity="0"; setTimeout(()=>loader.style.display="none", 600); } };
+    const hideLoader = () => {
+      const loader = $("#loader");
+      if(!loader) return;
+      loader.style.opacity = "0";
+      loader.style.pointerEvents = "none";
+      setTimeout(() => loader.style.display = "none", 600);
+    };
 
-    loadCatalog().then(()=>{ renderCounts(); routeFromHash(); setTimeout(hideLoader, 200); checkCookies(); });
+    async function startApplication(){
+      ignoredChatMsgs = -1;
+
+      // Sécurité absolue : même si l'API ou une autre fonction bloque,
+      // le site devient accessible après quelques secondes.
+      const loaderFailSafe = setTimeout(hideLoader, 5000);
+      if(window.__abpEmergencyLoaderTimer) clearTimeout(window.__abpEmergencyLoaderTimer);
+
+      try {
+        await Promise.allSettled([
+          loadConfig(),
+          loadCatalog()
+        ]);
+      } catch(e) {
+        console.error("Erreur de démarrage AB PRODUCTS :", e);
+      } finally {
+        try { renderCounts(); } catch(e) { console.error(e); }
+        try { routeFromHash(); } catch(e) { console.error(e); }
+        try { checkCookies(); } catch(e) { console.error(e); }
+
+        clearTimeout(loaderFailSafe);
+        setTimeout(hideLoader, 200);
+      }
+    }
+
+    startApplication();
   </script>
 </body>
 </html>
