@@ -203,17 +203,17 @@
     @media(min-width:1001px){
       .visual-card .abm-slider{height:535px;border-radius:22px}
       .visual-card .abm-slide{min-height:535px}
-      .visual-card .abm-content{min-height:535px;padding:28px 24px 68px;max-width:100%}
-      .visual-card .abm-kicker{font-size:.6rem;letter-spacing:.08em;padding:.42rem .65rem}
-      .visual-card .abm-title{font-size:clamp(2rem,3vw,2.75rem);line-height:1;margin:.85rem 0 .7rem;max-width:560px}
-      .visual-card .abm-intro{font-size:.86rem;line-height:1.45;max-width:560px}
-      .visual-card .abm-flow{grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin-top:1rem;max-width:100%}
-      .visual-card .abm-flow-card{min-height:88px;padding:.68rem;border-radius:12px}
-      .visual-card .abm-flow-num{width:29px;height:29px;border-radius:8px;margin-bottom:.45rem}
-      .visual-card .abm-flow-num svg{width:16px;height:16px}
-      .visual-card .abm-flow-card strong{font-size:.78rem}
-      .visual-card .abm-flow-card > span:not(.abm-flow-num){display:none}
-      .visual-card .abm-primary-action{width:100%;justify-content:center;margin-top:.85rem;padding:.62rem .82rem;font-size:.76rem}
+      .visual-card .abm-content{min-height:535px;padding:22px 24px 62px;max-width:100%}
+      .visual-card .abm-kicker{font-size:.6rem;letter-spacing:.08em;padding:.4rem .62rem}
+      .visual-card .abm-title{font-size:clamp(1.9rem,2.7vw,2.5rem);line-height:1;margin:.62rem 0 .5rem;max-width:560px}
+      .visual-card .abm-intro{font-size:.8rem;line-height:1.38;max-width:560px}
+      .visual-card .abm-flow{grid-template-columns:repeat(2,minmax(0,1fr));gap:.48rem;margin-top:.68rem;max-width:100%}
+      .visual-card .abm-flow-card{min-height:96px;padding:.58rem .62rem;border-radius:12px}
+      .visual-card .abm-flow-num{width:27px;height:27px;border-radius:8px;margin-bottom:.34rem}
+      .visual-card .abm-flow-num svg{width:15px;height:15px}
+      .visual-card .abm-flow-card strong{font-size:.76rem;line-height:1.2}
+      .visual-card .abm-flow-card > span:not(.abm-flow-num){display:block!important;visibility:visible!important;margin-top:.18rem;color:rgba(238,243,250,.66);font-size:.66rem;line-height:1.25}
+      .visual-card .abm-primary-action{width:100%;justify-content:center;margin-top:.62rem;padding:.56rem .78rem;font-size:.74rem}
       .visual-card .abm-routes-layout{min-height:535px;grid-template-columns:.92fr 1.08fr;gap:14px;padding:20px 18px 68px}
       .visual-card .abm-map-column{gap:.55rem}
       .visual-card .abm-map{min-height:355px;border-radius:15px}
@@ -232,6 +232,13 @@
       .visual-card .abm-controls{right:14px;bottom:13px}
       .visual-card .abm-arrow{width:38px;height:38px;border-radius:10px}
       .visual-card .abm-dots{left:15px;bottom:24px}
+    }
+    @media(max-width:860px) and (min-width:761px){
+      .visual-card .abm-routes-layout{grid-template-columns:1fr;min-height:auto;padding:34px 28px 92px}
+      .visual-card .abm-map{min-height:380px}
+      .visual-card .abm-content{padding:34px 28px 92px}
+      .visual-card .abm-title{font-size:clamp(2.2rem,6vw,3.2rem)}
+      .visual-card .abm-flow-card > span:not(.abm-flow-num){font-size:.76rem;line-height:1.35}
     }
     /* ========================================================= */
 
@@ -698,6 +705,20 @@
     const _K = "abadmin_key_2026"; const _S2 = "ABM_CLIENT_2026";
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
     const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true, feat_sumup: true, feat_cash: true, feat_banner: true };
+    const PUBLIC_CONFIG_CACHE_KEY = "abp_public_config_cache_v1";
+    function readPublicConfigCache(){
+      try { return JSON.parse(localStorage.getItem(PUBLIC_CONFIG_CACHE_KEY) || "{}"); }
+      catch(e) { return {}; }
+    }
+    function cachePublicConfig(config){
+      try {
+        localStorage.setItem(PUBLIC_CONFIG_CACHE_KEY, JSON.stringify({
+          feat_banner: config.feat_banner !== false,
+          banner_text1: config.banner_text1 || "",
+          banner_text2: config.banner_text2 || ""
+        }));
+      } catch(e) {}
+    }
     const CLIENT_NAV = [{id:"home",label:"Accueil"},{id:"catalogue",label:"Catalogue"},{id:"commande",label:"Commande libre"},{id:"suivi",label:"Suivi"},{id:"faq",label:"Infos"}];
     const ADMIN_NAV = [{tab:"orders",label:"Commandes"},{tab:"archives",label:"Archives"},{tab:"products",label:"Articles"},{tab:"clients",label:"Clients"},{tab:"messages",label:"Messages"},{tab:"config",label:"Configuration"}];
     const ROUTES = {home:"/home",catalogue:"/catalogue",commande:"/commande",panier:"/panier",checkout:"/checkout",suivi:"/suivi",faq:"/faq",login:"/login",signup:"/signup",compte:"/compte",admin:"/admin"};
@@ -713,7 +734,7 @@
     let lastCatalogStr = ""; let lastOrdersStr = ""; let lastClientOrdersStr = "";
 
     const state = {
-      products: [], catalogLoaded: false, config: structuredClone(DEFAULT_CONFIG),
+      products: [], catalogLoaded: false, config: { ...structuredClone(DEFAULT_CONFIG), ...readPublicConfigCache() },
       cart: JSON.parse(localStorage.getItem("abp_cart") || "[]"),
       user: JSON.parse(localStorage.getItem("abp_user") || "null"),
       lastOrder: JSON.parse(localStorage.getItem("abp_last_order") || "null")
@@ -750,20 +771,33 @@
     $("#acceptAllCookies")?.addEventListener("click", () => saveCookieConsent(true));
     $("#saveCookiesBtn")?.addEventListener("click", () => saveCookieConsent($("#cookieOptional").checked));
 
+    function syncBannerOffset() {
+        const banner = document.querySelector('.scrolling-banner');
+        const bannerEnabled = state.config.feat_banner !== false;
+        if(!banner || !bannerEnabled || banner.hidden) {
+            document.documentElement.style.setProperty('--banner-offset', '0px');
+            return;
+        }
+        document.documentElement.style.setProperty('--banner-offset', `${banner.offsetHeight}px`);
+    }
+
     function updateMarquee() {
         const minV = state.config.minCart || 25;
         const t1 = state.config.banner_text1 || `MINIMUM D'ACHAT DE ${minV} € REQUIS DANS LE PANIER`;
         const t2 = state.config.banner_text2 || `LIVRAISON OFFERTE DÈS 100€ D'ACHAT`;
-        
         const marquee = document.querySelector('.marquee');
         if(marquee) {
             marquee.innerHTML = `<span>${escapeHtml(t1)}</span><span>${escapeHtml(t2)}</span><span>${escapeHtml(t1)}</span><span>${escapeHtml(t2)}</span><span>${escapeHtml(t1)}</span><span>${escapeHtml(t2)}</span><span>${escapeHtml(t1)}</span><span>${escapeHtml(t2)}</span>`;
         }
-        
+
         const banner = document.querySelector('.scrolling-banner');
         const bannerEnabled = state.config.feat_banner !== false;
-        if(banner) banner.style.display = bannerEnabled ? 'block' : 'none';
-        document.documentElement.style.setProperty('--banner-offset', bannerEnabled ? '31px' : '0px');
+        if(banner) {
+            banner.hidden = !bannerEnabled;
+            banner.style.display = bannerEnabled ? 'block' : 'none';
+            banner.setAttribute('aria-hidden', bannerEnabled ? 'false' : 'true');
+        }
+        syncBannerOffset();
     }
 
     function renderNav(){
@@ -842,7 +876,12 @@
             const res = await api({action: "getconfig"});
             if(res.ok) {
                 let localExtra = JSON.parse(localStorage.getItem("abp_extra_config") || "{}");
-                state.config = { ...res.config, ...localExtra };
+                state.config = {
+                    ...res.config,
+                    feat_sumup: localExtra.feat_sumup ?? res.config.feat_sumup,
+                    feat_cash: localExtra.feat_cash ?? res.config.feat_cash
+                };
+                cachePublicConfig(state.config);
             }
         } catch(e) {}
         updateMarquee();
@@ -1661,10 +1700,7 @@
             
             const localExtra = {
                 feat_sumup: $("#cfg_sumup").checked,
-                feat_cash: $("#cfg_cash").checked,
-                feat_banner: $("#cfg_banner").checked,
-                banner_text1: $("#cfg_banner_text1").value,
-                banner_text2: $("#cfg_banner_text2").value
+                feat_cash: $("#cfg_cash").checked
             };
             localStorage.setItem("abp_extra_config", JSON.stringify(localExtra));
 
@@ -1676,11 +1712,15 @@
                     feat_commande: $("#cfg_commande").checked,
                     feat_panier: $("#cfg_panier").checked,
                     feat_suivi: $("#cfg_suivi").checked,
-                    feesEnabled: $("#cfgFees").checked 
+                    feesEnabled: $("#cfgFees").checked,
+                    feat_banner: $("#cfg_banner").checked,
+                    banner_text1: $("#cfg_banner_text1").value,
+                    banner_text2: $("#cfg_banner_text2").value
                 };
                 const res = await api({action:"saveconfig", adminKey:adminKey(), config: newConfig});
                 if(res.ok) {
-                    state.config = { ...res.config, ...localExtra };
+                    state.config = { ...newConfig, ...(res.config || {}), ...localExtra };
+                    cachePublicConfig(state.config);
                     toast("Configuration sauvegardée.");
                     updateMarquee();
                     renderNav();
@@ -1773,7 +1813,15 @@
         });
     }
 
-    window.addEventListener("load", () => { ignoredChatMsgs = -1; loadConfig(); });
+    window.addEventListener("load", () => { ignoredChatMsgs = -1; updateMarquee(); loadConfig(); });
+    window.addEventListener("resize", syncBannerOffset, { passive: true });
+    window.addEventListener("storage", event => {
+      if(event.key !== PUBLIC_CONFIG_CACHE_KEY || !event.newValue) return;
+      try {
+        state.config = { ...state.config, ...JSON.parse(event.newValue) };
+        updateMarquee();
+      } catch(e) {}
+    });
 
     $("#openChatBtn").addEventListener("click", () => {
         $("#chatBox").classList.add("open"); $("#openChatBtn").style.display="none"; loadChat();
@@ -1916,7 +1964,7 @@
       slider.addEventListener("focusout", resumeAutoplay);
 
       slider.addEventListener("pointerdown", function(event){
-        if(event.target.closest("button")) return;
+        if(event.target.closest("button, a")) return;
         dragging = true;
         startX = event.clientX;
         currentX = startX;
