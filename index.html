@@ -51,7 +51,7 @@
     .nav-sep{width:1px;height:22px;background:var(--line);margin:0 .45rem}
     .nav-actions{display:flex;align-items:center;gap:1.5rem}.nav-btn{background:transparent;border:0;color:var(--txt);font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:6px;cursor:pointer;transition:.2s ease}.nav-btn:hover{color:var(--brand2)}.cart-badge{background:var(--brand2);color:#04160e;border-radius:999px;padding:2px 7px;font-size:.7rem;font-weight:800}.mobile-toggle{display:none}
     main{padding-top:calc(94px + var(--banner-offset))}.page{display:none;animation:pageIn .35s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-    .hero{min-height:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:64px 0 76px}.hero h1{margin-top:1.05rem;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:1.02;letter-spacing:-.035em;max-width:760px;font-weight:800}.gradient-text{background:linear-gradient(120deg,var(--txt) 0%,var(--txt) 55%,var(--brand) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{color:var(--muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:640px;margin:1.2rem 0 0}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem}
+    .hero{min-height:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:64px 0 76px}.hero>*{min-width:0}.hero h1{margin-top:1.05rem;font-size:clamp(2.5rem,5.4vw,4.3rem);line-height:1.02;letter-spacing:-.035em;max-width:760px;font-weight:800}.gradient-text{background:linear-gradient(120deg,var(--txt) 0%,var(--txt) 55%,var(--brand) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{color:var(--muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:640px;margin:1.2rem 0 0}.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:50px;padding:.8rem 1.3rem;border-radius:11px;font-weight:700;letter-spacing:0;transition:.22s ease;border:1px solid transparent;position:relative;overflow:hidden;font-size:.96rem}
     .btn.primary{color:#04160e;background:var(--brand2);box-shadow:0 8px 22px rgba(47,191,139,.18)}
     .btn.primary:hover{background:#3ed19c}
@@ -69,8 +69,8 @@
         .abm-section::before{content:"";position:absolute;inset:8% 0 auto;height:72%;pointer-events:none;background:radial-gradient(700px 320px at 16% 50%,rgba(125,182,224,.08),transparent 68%),radial-gradient(600px 300px at 86% 48%,rgba(47,191,139,.08),transparent 70%)}
         .abm-slider{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);isolation:isolate}
         .abm-slider::before{content:none!important;display:none!important}
-        .abm-track{display:flex;transition:transform .9s cubic-bezier(.22,.8,.22,1);will-change:transform}
-        .abm-slide{position:relative;min-width:100%;min-height:610px;overflow:hidden}
+        .abm-track{display:flex;width:100%;min-width:0;transition:transform .9s cubic-bezier(.22,.8,.22,1);will-change:transform}
+        .abm-slide{position:relative;flex:0 0 100%;width:100%;min-width:0;min-height:610px;overflow:hidden}
         .abm-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.045);animation:abmCinematic 16s ease-in-out infinite alternate;filter:saturate(1.04) contrast(1.03)}
         .abm-photo-shadow{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,13,24,.95) 0%,rgba(8,19,33,.78) 40%,rgba(8,19,33,.25) 70%,rgba(5,13,24,.56) 100%),linear-gradient(0deg,rgba(5,13,24,.92) 0%,transparent 52%,rgba(5,13,24,.24) 100%)}
         .abm-photo-glow{position:absolute;width:420px;height:420px;border-radius:50%;left:23%;bottom:7%;background:radial-gradient(circle,rgba(230,179,77,.22),rgba(230,179,77,.04) 42%,transparent 70%);filter:blur(10px);animation:abmGlow 4.5s ease-in-out infinite alternate}
@@ -150,6 +150,8 @@
         @keyframes abmWave{to{transform:translateX(4%) rotate(.5deg)}}
         @keyframes abmRouteDash{to{stroke-dashoffset:-160}}
         @media(max-width:1000px){
+          .abm-track{align-items:flex-start}
+          .abm-slider,.abm-track{transition:height .42s cubic-bezier(.22,.8,.22,1),transform .9s cubic-bezier(.22,.8,.22,1)}
           .abm-slide,.abm-content,.abm-routes-layout{min-height:690px}
           .abm-flow{grid-template-columns:repeat(2,1fr);max-width:680px}
           .abm-routes-layout{grid-template-columns:1fr 1fr;gap:24px}
@@ -182,14 +184,22 @@
           .abm-arrow{width:42px;height:42px}
         }
         @media(max-width:460px){
-          .abm-flow{grid-template-columns:1fr}
-          .abm-flow-card{min-height:0;display:grid;grid-template-columns:auto 1fr;column-gap:.65rem;align-items:center}
-          .abm-flow-num{grid-row:1/3;margin:0}
-          .abm-flow-card > span:not(.abm-flow-num){margin:0}
-          .abm-map{min-height:290px}
+          .abm-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+          .abm-flow-card{min-height:132px;display:block;padding:.7rem}
+          .abm-flow-num{grid-row:auto;margin:0 0 .5rem}
+          .abm-flow-card > span:not(.abm-flow-num){margin-top:.22rem;font-size:.68rem;line-height:1.3}
+          .abm-flow-card strong{font-size:.78rem;line-height:1.22}
+          .abm-map{min-height:250px}
           .abm-route-copy h2{font-size:2rem}
           .abm-kicker{font-size:.67rem;letter-spacing:.08em}
           .abm-primary-action{width:100%;justify-content:center}
+        }
+        @media(max-width:360px){
+          .abm-flow{grid-template-columns:1fr}
+          .abm-flow-card{min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:.65rem;align-items:center}
+          .abm-flow-num{grid-row:1/3;margin:0}
+          .abm-flow-card > span:not(.abm-flow-num){margin:0}
+          .visual-card .abm-route-pills{grid-template-columns:1fr}
         }
         @media(prefers-reduced-motion:reduce){
           .abm-photo,.abm-photo-glow,.abm-kicker::before,.abm-route-line,.abm-typing-caret{animation:none!important}
@@ -357,7 +367,32 @@
 
     @media(max-width:1000px){.hero,.custom-order,.cart-layout,.account-layout,.checkout-grid{grid-template-columns:1fr}.steps,.grid{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.tracking-grid{grid-template-columns:repeat(2, 1fr)}.footer-grid,.faq-grid{grid-template-columns:1fr}.config-row{grid-template-columns:1fr 1fr}.admin-item{grid-template-columns:auto 1fr auto}.admin-item .admin-actions, .admin-item .field, .admin-item select, .admin-item button {grid-column:1/-1}.recom-modal{grid-template-columns:1fr; gap:1.5rem}.recom-gallery{flex-direction:column-reverse}}
     @media(max-width:760px){
-      main{padding-top:calc(85px + var(--banner-offset))}header{top:var(--banner-offset)}.nav{border-radius:0;align-items:center}.nav-links{position:absolute;left:14px;right:14px;top:66px;display:none;flex-direction:column;border-radius:14px;padding:.5rem;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-link{width:100%;text-align:center}.nav-sep{width:100%;height:1px;margin:.3rem 0}.mobile-toggle{display:grid}.brand span{display:none}.hero{padding-top:26px;min-height:auto}.hero h1{font-size:clamp(2rem,10vw,2.8rem)}
+      html,body{width:100%;max-width:100%;overflow-x:hidden}
+      header,main,footer,.page{width:100%;max-width:100%}
+      main{padding-top:calc(85px + var(--banner-offset))}header{top:var(--banner-offset)}.nav{border-radius:0;align-items:center}.nav-links{position:absolute;left:14px;right:14px;top:66px;display:none;flex-direction:column;border-radius:14px;padding:.5rem;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-link{width:100%;text-align:center}.nav-sep{width:100%;height:1px;margin:.3rem 0}.mobile-toggle{display:grid}.brand span{display:none}.hero{padding-top:26px;min-height:auto;width:min(100% - 34px,1220px)}.hero h1{font-size:clamp(2rem,10vw,2.8rem)}
+      .hero>*,.visual-card,.visual-card .abm-section,.visual-card .abm-slider,.abm-track,.abm-slide,.abm-content,.abm-routes-layout,.abm-map-column,.abm-route-copy,.abm-map{min-width:0;max-width:100%}
+      .visual-card{width:100%;overflow:hidden}
+      .visual-card .abm-section,.visual-card .abm-slider{width:100%}
+      .visual-card .abm-content,.visual-card .abm-routes-layout{width:100%;padding-left:18px;padding-right:18px}
+      .visual-card .abm-flow{width:100%;min-width:0}
+      .visual-card .abm-flow-card{min-width:0;overflow-wrap:anywhere}
+      .visual-card .abm-kicker{width:fit-content;max-width:100%;white-space:normal}
+      .visual-card .abm-title,.visual-card .abm-intro,.visual-card .abm-route-copy h2,.visual-card .abm-route-copy>p{max-width:100%;overflow-wrap:anywhere}
+      footer .shell,.footer-grid,.footer-col,.newsletter-box{min-width:0;max-width:100%}
+      .newsletter-box input{min-width:0}
+      .visual-card .abm-track{align-items:flex-start}
+      .visual-card .abm-slider,.visual-card .abm-track{transition:height .42s cubic-bezier(.22,.8,.22,1),transform .9s cubic-bezier(.22,.8,.22,1)}
+      .visual-card .abm-routes-layout{padding-top:26px;padding-bottom:72px;gap:20px}
+      .visual-card .abm-route-copy h2{font-size:clamp(1.75rem,8vw,2.2rem);margin:.55rem 0 .7rem}
+      .visual-card .abm-route-copy>p{font-size:.84rem;line-height:1.45}
+      .visual-card .abm-route-pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin:.85rem 0 1rem}
+      .visual-card .abm-route-pill{justify-content:center;min-width:0;padding:.55rem .45rem;font-size:.68rem;text-align:center}
+      .visual-card .abm-service-list{gap:.5rem}
+      .visual-card .abm-service{grid-template-columns:38px minmax(0,1fr);gap:.6rem;padding:.62rem;border-radius:11px}
+      .visual-card .abm-service-icon{width:38px;height:38px;border-radius:10px}
+      .visual-card .abm-service-icon svg{width:19px;height:19px}
+      .visual-card .abm-service strong{font-size:.78rem;line-height:1.25}
+      .visual-card .abm-service>div>span{font-size:.68rem;line-height:1.35;margin-top:.12rem}
       body { font-size: 14px; }
       .product-art { height:200px; padding:10px; }
       .scrolling-banner { font-size:0.65rem; padding:4px 0; }
@@ -573,7 +608,7 @@
         </div>
 
       </div>
-      <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF exacte et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div><h3>Catalogue</h3><p>Produits avec photos, poids, paramètres personnalisés et détails complets.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><h3>Frais de port</h3><p>Poids calculé automatiquement : moins de 1kg 4.50€ ou par kilo 9€.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div><h3>Livraison</h3><p>Frais fixes de livraison de 4.99€ ajoutés au panier.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail au client avec un récapitulatif type facture.</p></div></div></div>
+      <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF exacte et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div><h3>Catalogue</h3><p>Produits avec photos, poids, paramètres personnalisés et détails complets.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><h3>Frais de port</h3><p id="weightPricingText">Poids calculé automatiquement : moins de 1 kg 4,50 € ou par kilo 9,00 €.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div><h3>Livraison</h3><p id="deliveryPricingText">Frais fixes de livraison de 4,99 € ajoutés au panier.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail au client avec un récapitulatif type facture.</p></div></div></div>
     </section>
 
     <section class="page" id="catalogue"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Catalogue</div><h2>Articles disponibles.</h2></div><p>Le prix affiché correspond au prix article. Les frais d'envois seront calculés au panier.</p></div><div class="toolbar"><div class="field"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg> <input id="searchInput" type="search" placeholder="Rechercher : robe, parfum, phare, téléphone..." /></div><div class="field"><select id="categoryFilter"><option value="all">Toutes catégories</option></select></div><div class="field"><select id="sortSelect"><option value="featured">Recommandé</option><option value="asc">Prix croissant</option><option value="desc">Prix décroissant</option></select></div><button class="btn secondary" id="resetFilters">Réinitialiser</button></div><div class="grid" id="productGrid"></div></div></section>
@@ -704,7 +739,7 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbyeDK7OZ6e5mRTiyb9L2vFlLv6-cKLduvSYoFgWn1-Wcce2tq3EpSyb-_SHFDQBSEQIUw/exec";
     const _K = "abadmin_key_2026"; const _S2 = "ABM_CLIENT_2026";
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
-    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true, feat_sumup: true, feat_cash: true, feat_banner: true };
+    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true, weightFeeUnder1: 4.50, weightFeePerKg: 9, deliveryFee: 4.99, feat_sumup: true, feat_cash: true, feat_banner: true };
     const PUBLIC_CONFIG_CACHE_KEY = "abp_public_config_cache_v1";
     function readPublicConfigCache(){
       try { return JSON.parse(localStorage.getItem(PUBLIC_CONFIG_CACHE_KEY) || "{}"); }
@@ -715,7 +750,10 @@
         localStorage.setItem(PUBLIC_CONFIG_CACHE_KEY, JSON.stringify({
           feat_banner: config.feat_banner !== false,
           banner_text1: config.banner_text1 || "",
-          banner_text2: config.banner_text2 || ""
+          banner_text2: config.banner_text2 || "",
+          weightFeeUnder1: numberVal(config.weightFeeUnder1 ?? 4.50),
+          weightFeePerKg: numberVal(config.weightFeePerKg ?? 9),
+          deliveryFee: numberVal(config.deliveryFee ?? 4.99)
         }));
       } catch(e) {}
     }
@@ -734,7 +772,7 @@
     let lastCatalogStr = ""; let lastOrdersStr = ""; let lastClientOrdersStr = "";
 
     const state = {
-      products: [], catalogLoaded: false, config: { ...structuredClone(DEFAULT_CONFIG), ...readPublicConfigCache() },
+      products: [], adminProducts: [], catalogLoaded: false, config: { ...structuredClone(DEFAULT_CONFIG), ...readPublicConfigCache() },
       cart: JSON.parse(localStorage.getItem("abp_cart") || "[]"),
       user: JSON.parse(localStorage.getItem("abp_user") || "null"),
       lastOrder: JSON.parse(localStorage.getItem("abp_last_order") || "null")
@@ -759,6 +797,15 @@
     function formatKMF(n){return new Intl.NumberFormat("fr-FR",{maximumFractionDigits:0}).format(computeKMF(n)) + " KMF";}
     function formatKMFValue(v){return computeKMF(v);}
     function formatDual(n){return `<span class="dual-price">${formatEUR(n)}<small>${formatKMF(n)}</small></span>`;}
+    function updatePublicPricingTexts(){
+      const underOne = numberVal(state.config.weightFeeUnder1 ?? 4.50);
+      const perKg = numberVal(state.config.weightFeePerKg ?? 9);
+      const delivery = numberVal(state.config.deliveryFee ?? 4.99);
+      const weightText = $("#weightPricingText");
+      const deliveryText = $("#deliveryPricingText");
+      if(weightText) weightText.textContent = `Poids calculé automatiquement : moins de 1 kg ${formatEUR(underOne)} ou par kilo ${formatEUR(perKg)}.`;
+      if(deliveryText) deliveryText.textContent = `Frais fixes de livraison de ${formatEUR(delivery)} ajoutés au panier.`;
+    }
 
     function mapColorToHex(cName) {
         const map = { "noir":"#1a1a1a", "minuit":"#1e293b", "blanc":"#f8fafc", "stellaire":"#f1f5f9", "bleu":"#3b82f6", "pacifique":"#1e3a8a", "rouge":"#ef4444", "vert":"#22c55e", "jaune":"#eab308", "rose":"#ec4899", "violet":"#a855f7", "gris":"#6b7280", "argent":"#e2e8f0", "or":"#fef08a", "marron":"#78350f", "orange":"#f97316" };
@@ -885,6 +932,7 @@
             }
         } catch(e) {}
         updateMarquee();
+        updatePublicPricingTexts();
         renderNav();
     }
 
@@ -902,6 +950,17 @@
       } catch(e){state.catalogLoaded=true; if(!silent) renderProducts();}
     }
     
+    async function loadAdminCatalog(){
+      try{
+        const data = await api({action:"getcatalog_admin", adminKey:adminKey()});
+        if(!data.ok) throw new Error(data.error || "Catalogue indisponible");
+        state.adminProducts = (data.items || []).map(normalizeProduct);
+      } catch(e) {
+        state.adminProducts = [];
+        toast("Erreur catalogue admin : " + e.message);
+      }
+    }
+
     function normalizeProduct(p){
         p=p||{}; let imgs = [];
         if(Array.isArray(p.images)) {
@@ -1139,7 +1198,12 @@
 
     function computeFees(weight) { 
         if (state.config.feesEnabled === false) return 0;
-        let w = Number(weight) || 0; let wFee = w < 1 ? 4.50 : w * 9; return wFee + 4.99; 
+        const w = Number(weight) || 0;
+        const underOne = numberVal(state.config.weightFeeUnder1 ?? 4.50);
+        const perKg = numberVal(state.config.weightFeePerKg ?? 9);
+        const delivery = numberVal(state.config.deliveryFee ?? 4.99);
+        const weightFee = w < 1 ? underOne : w * perKg;
+        return weightFee + delivery;
     }
     function cartTotals(){
       const subtotal=state.cart.reduce((s,i)=>s+numberVal(i.price)*numberVal(i.qty),0); 
@@ -1666,6 +1730,9 @@
         const fPan = state.config.feat_panier !== false;
         const fSui = state.config.feat_suivi !== false;
         const feesEn = state.config.feesEnabled !== false;
+        const weightFeeUnder1 = numberVal(state.config.weightFeeUnder1 ?? 4.50);
+        const weightFeePerKg = numberVal(state.config.weightFeePerKg ?? 9);
+        const deliveryFee = numberVal(state.config.deliveryFee ?? 4.99);
         const fSumup = state.config.feat_sumup !== false;
         const fCash = state.config.feat_cash !== false;
         const fBanner = state.config.feat_banner !== false;
@@ -1682,6 +1749,9 @@
 
             <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Options Financières</h4>
             <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfgFees" ${feesEn ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfgFees">Activer les calculs des frais Port et Livraison</label></div>
+            <div class="field" style="display:block; padding:.65rem .9rem"><label for="cfgWeightUnder1" style="display:block;color:var(--muted);font-size:.82rem;margin-bottom:.25rem">Tarif poids inférieur à 1 kg (€)</label><input type="number" min="0" step="0.01" id="cfgWeightUnder1" value="${weightFeeUnder1}" /></div>
+            <div class="field" style="display:block; padding:.65rem .9rem"><label for="cfgWeightPerKg" style="display:block;color:var(--muted);font-size:.82rem;margin-bottom:.25rem">Tarif par kilogramme à partir de 1 kg (€)</label><input type="number" min="0" step="0.01" id="cfgWeightPerKg" value="${weightFeePerKg}" /></div>
+            <div class="field wide" style="display:block; padding:.65rem .9rem"><label for="cfgDeliveryFee" style="display:block;color:var(--muted);font-size:.82rem;margin-bottom:.25rem">Frais fixes de livraison (€)</label><input type="number" min="0" step="0.01" id="cfgDeliveryFee" value="${deliveryFee}" /></div>
             
             <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Moyens de Paiement Panier</h4>
             <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_sumup" ${fSumup ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_sumup">Paiement par Carte SumUp</label></div>
@@ -1713,6 +1783,9 @@
                     feat_panier: $("#cfg_panier").checked,
                     feat_suivi: $("#cfg_suivi").checked,
                     feesEnabled: $("#cfgFees").checked,
+                    weightFeeUnder1: numberVal($("#cfgWeightUnder1").value),
+                    weightFeePerKg: numberVal($("#cfgWeightPerKg").value),
+                    deliveryFee: numberVal($("#cfgDeliveryFee").value),
                     feat_banner: $("#cfg_banner").checked,
                     banner_text1: $("#cfg_banner_text1").value,
                     banner_text2: $("#cfg_banner_text2").value
@@ -1723,6 +1796,7 @@
                     cachePublicConfig(state.config);
                     toast("Configuration sauvegardée.");
                     updateMarquee();
+                    updatePublicPricingTexts();
                     renderNav();
                 } else throw new Error(res.error);
             } catch(e) { toast("Erreur: " + e.message); }
@@ -1731,8 +1805,8 @@
     }
 
     function renderAdminProducts(panel){
-        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes Prix Dynamique</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos HD</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
-        bindAdminProductForm(); loadCatalog(true).then(renderAdminList);
+        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductActive" name="active" checked style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductActive" style="color:var(--txt);cursor:pointer">Afficher cet article dans le catalogue</label></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes Prix Dynamique</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos HD</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles du catalogue</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
+        bindAdminProductForm(); loadAdminCatalog().then(renderAdminList);
     }
     
     function bindAdminProductForm(){
@@ -1769,19 +1843,45 @@
             });
 
             const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
-            const product={id:d.id||undefined,name:d.name,category:d.category||"Divers",price:numberVal(d.price),weight:totalWeight,desc:d.desc,params:params,images:imagesWithOpts};
-            try{const res=await api({action:"saveproduct",adminKey:adminKey(),product});if(!res.ok)throw new Error(res.error);toast("Article enregistré");resetProductForm();await loadCatalog(true);renderAdminList();}catch(err){toast("Erreur : "+err.message);}
+            const product={id:d.id||undefined,name:d.name,category:d.category||"Divers",price:numberVal(d.price),weight:totalWeight,desc:d.desc,params:params,images:imagesWithOpts,active:$("#adminProductActive").checked};
+            try{const res=await api({action:"saveproduct",adminKey:adminKey(),product});if(!res.ok)throw new Error(res.error);toast("Article enregistré");resetProductForm();await loadAdminCatalog();state.catalogLoaded=false;await loadCatalog(true);renderAdminList();}catch(err){toast("Erreur : "+err.message);}
         });
     }
     
     async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>({url:url, opt:""}));renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
     function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="icon-btn danger-btn" style="position:absolute;top:0;right:0;width:24px;height:24px;border:none;background:var(--danger);color:white;">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à ex: Bleu" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
-    function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";adminImages=[];renderImagePreview();$("#adminVariantsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";}
-    function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'></path></svg>"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
+    function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";if($("#adminProductActive"))$("#adminProductActive").checked=true;adminImages=[];renderImagePreview();$("#adminVariantsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";}
+    function renderAdminList(){
+      const list=$("#adminList");
+      if(!list)return;
+      const items=state.adminProducts || [];
+      if(!items.length){list.innerHTML="<p>Aucun article.</p>";return;}
+      list.innerHTML=items.map(p=>`<div class="admin-item">
+        <div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'></path></svg>"}</div>
+        <div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small><br><small style="color:${p.active===false?'var(--gold)':'var(--brand2)'};font-weight:800">${p.active===false?'MASQUÉ':'VISIBLE'}</small></div>
+        <div class="admin-actions" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn secondary small edit-product" data-id="${p.id}">Éditer</button><button class="btn ${p.active===false?'primary':'secondary'} small toggle-product" data-id="${p.id}" data-active="${p.active===false?'true':'false'}">${p.active===false?'Afficher':'Masquer'}</button></div>
+        <button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button>
+      </div>`).join("");
+      $$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));
+      $$('.toggle-product').forEach(btn=>btn.addEventListener('click',()=>toggleProductVisibility(btn.dataset.id,btn.dataset.active==='true')));
+      $$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadAdminCatalog();state.catalogLoaded=false;await loadCatalog(true);renderAdminList();}}));
+    }
+
+    async function toggleProductVisibility(id, active){
+      try{
+        const res=await api({action:"toggleproductactive",adminKey:adminKey(),id,active});
+        if(!res.ok)throw new Error(res.error||"Modification impossible");
+        toast(active?"Article affiché dans le catalogue":"Article masqué du catalogue");
+        await loadAdminCatalog();
+        state.catalogLoaded=false;
+        await loadCatalog(true);
+        renderAdminList();
+      }catch(e){toast("Erreur : "+e.message);}
+    }
     
     function editProduct(id){
-        const p=state.products.find(x=>x.id===id);if(!p)return;const f=$("#adminProductForm");
-        f.id.value=p.id;f.name.value=p.name||"";f.category.value=p.category||"";f.price.value=p.price||"";f.desc.value=p.desc||"";
+        const p=(state.adminProducts||[]).find(x=>x.id===id);if(!p)return;const f=$("#adminProductForm");
+        f.id.value=p.id;f.name.value=p.name||"";f.category.value=p.category||"";f.price.value=p.price||"";f.desc.value=p.desc||"";$("#adminProductActive").checked=p.active!==false;
         const w = Number(p.weight || 0); f.weightKg.value = Math.floor(w); f.weightG.value = Math.round((w - Math.floor(w)) * 1000);
         adminImages=(p.images||[]).slice(0,30);renderImagePreview();
         $("#adminVariantsList").innerHTML = "";
@@ -1906,6 +2006,24 @@
       let currentX = 0;
       let dragging = false;
       let typedOnce = false;
+      const mobileSliderQuery = window.matchMedia("(max-width: 1000px)");
+
+      function syncSliderHeight(){
+        if(!mobileSliderQuery.matches){
+          slider.style.height = "";
+          track.style.height = "";
+          return;
+        }
+        window.requestAnimationFrame(function(){
+          const activeSlide = slides[index];
+          if(!activeSlide) return;
+          const height = Math.ceil(activeSlide.scrollHeight);
+          if(height > 0){
+            slider.style.height = height + "px";
+            track.style.height = height + "px";
+          }
+        });
+      }
 
       function typeTitle(){
         if(typedOnce || !typed) return;
@@ -1919,6 +2037,7 @@
           typed.textContent = typingText.slice(0, i);
           i += 1;
           if(i <= typingText.length) window.setTimeout(write, i < 8 ? 90 : 58);
+          else syncSliderHeight();
         };
         write();
       }
@@ -1935,6 +2054,7 @@
           dot.classList.toggle("active", active);
           dot.setAttribute("aria-selected", active ? "true" : "false");
         });
+        syncSliderHeight();
         if(userAction) restartAutoplay();
       }
 
@@ -2006,8 +2126,12 @@
         if(document.hidden) pauseAutoplay();
         else restartAutoplay();
       });
+      window.addEventListener("resize", syncSliderHeight, {passive:true});
+      if(document.fonts && document.fonts.ready) document.fonts.ready.then(syncSliderHeight).catch(function(){});
 
       showSlide(0, false);
+      window.setTimeout(syncSliderHeight, 120);
+      window.setTimeout(syncSliderHeight, 1500);
     })();
   </script>
 </body>
