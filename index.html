@@ -506,7 +506,10 @@
     async function loadConfig() {
         try {
             const res = await api({action: "getconfig"});
-            if(res.ok) state.config = res.config;
+            if(res.ok) {
+                let localExtra = JSON.parse(localStorage.getItem("abp_extra_config") || "{}");
+                state.config = { ...res.config, ...localExtra };
+            }
         } catch(e) {}
         updateMarquee();
         renderNav();
@@ -564,14 +567,18 @@
           Object.entries(p.params||{}).forEach(([k,v])=>{
               if(k.toLowerCase().includes('couleur') || k.toLowerCase().includes('color')) {
                   const opts = String(v).split(',').map(x=>x.trim()).filter(Boolean);
-                  colorDots = `<div class="product-colors">` + opts.slice(0,5).map(c => `<div class="product-color-dot" style="background-color:${mapColorToHex(c)}" title="${escapeHtml(c)}"></div>`).join("") + (opts.length>5?`<span style="font-size:10px; color:var(--muted)">+${opts.length-5}</span>`:"") + `</div>`;
+                  colorDots = `<div class="product-colors">` + opts.slice(0,5).map(c => {
+                      let cleanC = c.replace(/\d+(?:[.,]\d+)?\s*€/gi, '').trim();
+                      return `<div class="product-color-dot" style="background-color:${mapColorToHex(cleanC)}" title="${escapeHtml(cleanC)}"></div>`;
+                  }).join("") + (opts.length>5?`<span style="font-size:10px; color:var(--muted)">+${opts.length-5}</span>`:"") + `</div>`;
               }
           });
           
           let subOptions = [];
           Object.entries(p.params||{}).forEach(([k,v])=>{
               if(!k.toLowerCase().includes('couleur') && !k.toLowerCase().includes('color')) {
-                  subOptions.push(String(v).split(',')[0].trim());
+                  let optClean = String(v).split(',')[0].replace(/\d+(?:[.,]\d+)?\s*€/gi, '').trim();
+                  subOptions.push(optClean);
               }
           });
           const optStr = subOptions.filter(Boolean).slice(0,2).join(" • ");
@@ -607,7 +614,7 @@
     window.updateModalVariant = function(productId, labelId, optVal) {
         if(labelId) {
             const labelEl = document.getElementById(labelId);
-            if(labelEl) labelEl.textContent = optVal;
+            if(labelEl) labelEl.textContent = optVal.replace(/\d+(?:[.,]\d+)?\s*€/gi, '').trim();
         }
         
         const p = state.products.find(x => x.id === productId); if(!p) return;
@@ -669,15 +676,17 @@
         
         let isColor = k.toLowerCase().includes('couleur') || k.toLowerCase().includes('color');
         let sanitizedK = k.replace(/[^a-zA-Z0-9]/g, '');
+        let firstOptClean = opts[0].replace(/\d+(?:[.,]\d+)?\s*€/gi, '').trim();
         
         variantsHtml += `
         <div style="margin-bottom:1.2rem">
-          <div class="recom-opt-title">${escapeHtml(k)}: <span id="val_${id}_${sanitizedK}" class="recom-opt-val">${escapeHtml(opts[0])}</span></div>
+          <div class="recom-opt-title">${escapeHtml(k)}: <span id="val_${id}_${sanitizedK}" class="recom-opt-val">${escapeHtml(firstOptClean)}</span></div>
           <div class="recom-options-row">
             ${opts.map((opt, idx) => {
+                let cleanOpt = opt.replace(/\d+(?:[.,]\d+)?\s*€/gi, '').trim();
                 return `<label class="${isColor?'recom-color-label':'recom-btn-label'}">
                     <input type="radio" name="v_param_${sanitizedK}" value="${escapeHtml(k)}: ${escapeHtml(opt)}" data-optval="${escapeHtml(opt)}" ${idx===0?'checked':''} onchange="updateModalVariant('${id}', 'val_${id}_${sanitizedK}', '${escapeHtml(opt)}')">
-                    <span class="${isColor?'recom-color-circle':'recom-btn-box'}" ${isColor ? `style="background-color:${mapColorToHex(opt)}"` : ''}>${isColor?'':escapeHtml(opt)}</span>
+                    <span class="${isColor?'recom-color-circle':'recom-btn-box'}" ${isColor ? `style="background-color:${mapColorToHex(cleanOpt)}"` : ''}>${isColor?'':escapeHtml(cleanOpt)}</span>
                 </label>`;
             }).join("")}
           </div>
@@ -782,7 +791,8 @@
         $("#panierSubtext").style.display = "block"; $("#feeRow").style.display = "flex"; $("#weightRow").style.display = "flex";
         list.innerHTML=`<div class="pill" style="margin-bottom:1rem;color:var(--gold)"><span class="dot" style="background:var(--gold)"></span>Le panier est supprimé après 10 jours d'inactivité.</div>`+state.cart.map(item=>{
             const thumb = item.image ? `<img src="${escapeHtml(item.image)}" alt="">` : (item.icon && item.icon.startsWith('<svg') ? item.icon : `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`);
-            return `<div class="cart-item"><div class="cart-icon">${thumb}</div><div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category)} • article ${formatEUR(item.price)} • ${item.weight||0} kg</small>${item.options?`<br><small style="color:var(--brand3); font-weight:600">${escapeHtml(item.options)}</small>`:""}</div><div class="qty"><button class="qty-btn" data-op="minus" data-id="${escapeHtml(item.cartId||item.id)}">−</button><strong>${item.qty}</strong><button class="qty-btn" data-op="plus" data-id="${escapeHtml(item.cartId||item.id)}">+</button></div><button class="icon-btn danger-btn" style="width:36px; height:36px" data-op="remove" data-id="${escapeHtml(item.cartId||item.id)}">✕</button></div>`
+            let displayOptions = item.options ? item.options.replace(/\d+(?:[.,]\d+)?\s*€/gi, '').replace(/\s+/g, ' ').trim() : "";
+            return `<div class="cart-item"><div class="cart-icon">${thumb}</div><div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category)} • article ${formatEUR(item.price)} • ${item.weight||0} kg</small>${displayOptions?`<br><small style="color:var(--brand3); font-weight:600">${escapeHtml(displayOptions)}</small>`:""}</div><div class="qty"><button class="qty-btn" data-op="minus" data-id="${escapeHtml(item.cartId||item.id)}">−</button><strong>${item.qty}</strong><button class="qty-btn" data-op="plus" data-id="${escapeHtml(item.cartId||item.id)}">+</button></div><button class="icon-btn danger-btn" style="width:36px; height:36px" data-op="remove" data-id="${escapeHtml(item.cartId||item.id)}">✕</button></div>`
         }).join("");
         
         const t=cartTotals(); 
@@ -1288,6 +1298,7 @@
         const fPan = state.config.feat_panier !== false;
         const fSui = state.config.feat_suivi !== false;
         const feesEn = state.config.feesEnabled !== false;
+        
         const fSumup = state.config.feat_sumup !== false;
         const fCash = state.config.feat_cash !== false;
         const fBanner = state.config.feat_banner !== false;
@@ -1317,6 +1328,14 @@
         
         $("#saveCfgBtn").addEventListener("click", async () => {
             const btn = $("#saveCfgBtn"); btn.disabled = true; btn.textContent = "Enregistrement...";
+            
+            const localExtra = {
+                feat_sumup: $("#cfg_sumup").checked,
+                feat_cash: $("#cfg_cash").checked,
+                feat_banner: $("#cfg_banner").checked
+            };
+            localStorage.setItem("abp_extra_config", JSON.stringify(localExtra));
+
             try {
                 const newConfig = { 
                     ...state.config, 
@@ -1325,14 +1344,11 @@
                     feat_commande: $("#cfg_commande").checked,
                     feat_panier: $("#cfg_panier").checked,
                     feat_suivi: $("#cfg_suivi").checked,
-                    feesEnabled: $("#cfgFees").checked,
-                    feat_sumup: $("#cfg_sumup").checked,
-                    feat_cash: $("#cfg_cash").checked,
-                    feat_banner: $("#cfg_banner").checked
+                    feesEnabled: $("#cfgFees").checked 
                 };
                 const res = await api({action:"saveconfig", adminKey:adminKey(), config: newConfig});
                 if(res.ok) {
-                    state.config = res.config;
+                    state.config = { ...res.config, ...localExtra };
                     toast("Configuration sauvegardée.");
                     updateMarquee();
                     renderNav();
@@ -1342,6 +1358,7 @@
         });
     }
 
+    // Builder Variantes Admin 
     function renderAdminProducts(panel){
         panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes (Prix Dynamique)</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos (HD)</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
         bindAdminProductForm(); loadCatalog(true).then(renderAdminList);
