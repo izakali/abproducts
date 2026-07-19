@@ -29,12 +29,12 @@
     a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit;color:inherit} button{border:0;cursor:pointer} img{max-width:100%;display:block} select option{color:#111}.shell{width:min(1220px,calc(100% - 34px));margin:0 auto}.hide{display:none!important}
     .pill{display:inline-flex;align-items:center;gap:.55rem;border:1px solid var(--line);background:var(--card2);padding:.55rem .85rem;border-radius:999px;color:var(--muted);font-size:.88rem;font-weight:600}.dot{width:.5rem;height:.5rem;border-radius:999px;background:var(--brand2)}
     
-    .scrolling-banner { background: #e6b34d; color: #0c1626; overflow: hidden; white-space: nowrap; padding: 5px 0; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; position: fixed; top: 0; left: 0; width: 100%; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.15); }
+    .scrolling-banner { background: #e6b34d; color: #0c1626; overflow: hidden; white-space: nowrap; padding: 5px 0; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; position: fixed; top: 0; left: 0; width: 100%; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.15); transition: 0.3s; }
     .marquee { display: inline-block; white-space: nowrap; animation: scrollLeft 25s linear infinite; }
     .marquee span { margin-right: 50px; }
     @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    header{position:fixed;top:31px;left:0;width:100%;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(0,0,0,.15)}
+    header{position:fixed;top:31px;left:0;width:100%;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(0,0,0,.15); transition:0.3s;}
     header::before{content:"";display:block;height:3px;background:var(--flag)}
     .nav{width:min(1220px,calc(100% - 28px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none}
     .brand{display:flex;align-items:center;gap:.7rem;min-width:max-content}.brand-mark{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(150deg,#182b47,#0f1c30);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);position:relative;overflow:hidden;font-size:1.15rem}.brand strong{font-size:1.06rem;letter-spacing:-.02em;font-weight:800}.brand span{display:block;color:var(--muted2);font-size:.74rem;margin-top:-.1rem;font-weight:600}.brand.admin-active .brand-mark{background:linear-gradient(150deg,#7a5a10,#e6b34d)}
@@ -266,7 +266,7 @@
 
     <section class="page" id="panier"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Panier</div><h2>Votre sélection.</h2></div><p id="panierSubtext">Frais au poids + livraison automatique.</p></div><div class="cart-layout"><div class="cart-list" id="cartList"></div><aside class="summary" id="cartSummary"><h3 style="font-size:1.5rem;letter-spacing:-.04em">Récapitulatif</h3><div class="summary-row" id="articleRow"><span>Articles</span><strong id="subtotal">0 €</strong></div><div class="summary-row" id="weightRow"><span>Poids total</span><strong id="weightTotal">0 kg</strong></div><div class="summary-row" id="feeRow"><span>Frais</span><strong id="shippingTotal">0 €</strong></div><div class="summary-row" style="border-bottom:0"><span>Total estimé</span><strong class="summary-total" id="grandTotal">0 €</strong></div><div id="minWarnEl"></div><button class="btn primary" style="width:100%;margin-top:1rem" id="goCheckout">Valider la commande</button><button class="btn secondary" style="width:100%;margin-top:.7rem" id="clearCart">Vider le panier</button><p class="mini-note">Calcul indicatif : les prix et modalités peuvent être vérifiés avant confirmation finale.</p></aside></div></div></section>
 
-    <section class="page" id="checkout"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Validation</div><h2>Finaliser la commande.</h2></div><p>Formulaire complet pour préparer le contact client et le retrait.</p></div><form id="checkoutForm" class="checkout-grid"><div class="glass-card"><h3 style="margin-bottom:1rem">Informations client</h3><div class="form-grid"><div class="field wide"><input required name="fullname" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom complet" /></div><div class="field"><select name="phoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input required name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone / WhatsApp" /></div><div class="field wide"><input required name="email" type="email" placeholder="Adresse e-mail" /></div><div class="field wide"><textarea name="address" placeholder="Adresse ou informations utiles"></textarea></div></div></div><div class="glass-card"><h3 style="margin-bottom:1.5rem">Moyen de paiement</h3><div class="form-grid"><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="sumup" checked><div class="pay-btn-box"><span>Payer en ligne (Carte bancaire)</span><svg class="svg-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"></rect><line x1="1" y1="10" x2="23" y2="10" stroke="currentColor" stroke-width="2"></line></svg></div></label><label class="pay-btn-label wide"><input type="radio" name="payment_method" value="cash"><div class="pay-btn-box"><span>Payer sur place (Espèces)</span><svg class="svg-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></div></label></div><h3 style="margin-top:2rem; margin-bottom:1rem">Retrait / livraison</h3><div class="form-grid"><div class="field wide"><input required name="pickupName" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom de la personne qui récupère" /></div><div class="field"><select name="pickupCountry" class="phone-country" aria-label="Indicatif pays retrait"></select></div><div class="field"><input required name="pickupPhone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone de la personne qui récupère" /></div><div class="field wide"><textarea name="message" placeholder="Message pour AB PRODUCTS"></textarea></div><button class="btn primary wide" type="submit">Confirmer ma commande</button></div></div></form></div></section>
+    <section class="page" id="checkout"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Validation</div><h2>Finaliser la commande.</h2></div><p>Formulaire complet pour préparer le contact client et le retrait.</p></div><form id="checkoutForm" class="checkout-grid"><div class="glass-card"><h3 style="margin-bottom:1rem">Informations client</h3><div class="form-grid"><div class="field wide"><input required name="fullname" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom complet" /></div><div class="field"><select name="phoneCountry" class="phone-country" aria-label="Indicatif pays"></select></div><div class="field"><input required name="phone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone / WhatsApp" /></div><div class="field wide"><input required name="email" type="email" placeholder="Adresse e-mail" /></div><div class="field wide"><textarea name="address" placeholder="Adresse ou informations utiles"></textarea></div></div></div><div class="glass-card"><h3 style="margin-bottom:1.5rem">Moyen de paiement</h3><div class="form-grid"><label class="pay-btn-label wide" id="label_sumup"><input type="radio" name="payment_method" value="sumup" checked><div class="pay-btn-box"><span>Payer en ligne (Carte bancaire)</span><svg class="svg-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"></rect><line x1="1" y1="10" x2="23" y2="10" stroke="currentColor" stroke-width="2"></line></svg></div></label><label class="pay-btn-label wide" id="label_cash"><input type="radio" name="payment_method" value="cash"><div class="pay-btn-box"><span>Payer sur place (Espèces)</span><svg class="svg-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="currentColor" stroke-width="2"></path></svg></div></label></div><h3 style="margin-top:2rem; margin-bottom:1rem">Retrait / livraison</h3><div class="form-grid"><div class="field wide"><input required name="pickupName" pattern=".{3,}" title="Veuillez entrer un nom valide d'au moins 3 caractères" placeholder="Nom de la personne qui récupère" /></div><div class="field"><select name="pickupCountry" class="phone-country" aria-label="Indicatif pays retrait"></select></div><div class="field"><input required name="pickupPhone" type="tel" pattern="[\d\s\-\+\.]{7,15}" title="Veuillez entrer un numéro de téléphone valide" placeholder="Téléphone de la personne qui récupère" /></div><div class="field wide"><textarea name="message" placeholder="Message pour AB PRODUCTS"></textarea></div><button class="btn primary wide" type="submit">Confirmer ma commande</button></div></div></form></div></section>
 
     <section class="page" id="suivi"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Suivi</div><h2>Suivre une commande.</h2></div><p>Renseignez votre numéro de commande pour le suivi. Réservé aux commandes de votre compte.</p></div><div class="glass-card"><div class="field"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg> <input id="trackingInput" placeholder="Exemple : ABP-2026-1234567" /></div><button class="btn primary" id="trackingBtn" style="width:max-content;margin-top:.9rem">Afficher le suivi</button><div id="trackingResult"></div></div></div></section>
 
@@ -370,7 +370,7 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbyeDK7OZ6e5mRTiyb9L2vFlLv6-cKLduvSYoFgWn1-Wcce2tq3EpSyb-_SHFDQBSEQIUw/exec";
     const _K = "abadmin_key_2026"; const _S2 = "ABM_CLIENT_2026";
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
-    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true };
+    const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true, feat_sumup: true, feat_cash: true, feat_banner: true };
     const CLIENT_NAV = [{id:"home",label:"Accueil"},{id:"catalogue",label:"Catalogue"},{id:"commande",label:"Commande libre"},{id:"suivi",label:"Suivi"},{id:"faq",label:"Infos"}];
     const ADMIN_NAV = [{tab:"orders",label:"Commandes"},{tab:"archives",label:"Archives"},{tab:"products",label:"Articles"},{tab:"clients",label:"Clients"},{tab:"messages",label:"Messages"},{tab:"config",label:"Configuration"}];
     const ROUTES = {home:"/home",catalogue:"/catalogue",commande:"/commande",panier:"/panier",checkout:"/checkout",suivi:"/suivi",faq:"/faq",login:"/login",signup:"/signup",compte:"/compte",admin:"/admin"};
@@ -428,6 +428,8 @@
         $$('.marquee span').forEach(el => {
             if(el.textContent.includes("MINIMUM")) el.textContent = `MINIMUM D'ACHAT DE ${minV} € REQUIS DANS LE PANIER`;
         });
+        const banner = document.querySelector('.scrolling-banner');
+        if(banner) banner.style.display = state.config.feat_banner !== false ? 'block' : 'none';
     }
 
     function renderNav(){
@@ -465,7 +467,6 @@
       if(id === "panier" && !state.user && !isAdmin()) { id = "login"; }
       if(id === "admin" && !isAdmin()) { currentPage="admin"; $$(".page").forEach(p=>p.classList.toggle("active",p.id==="admin")); renderNav(); if(pushHash && location.pathname !== "/admin") history.pushState(null,"","/admin"); return; }
       
-      // Sécurité si une page est désactivée coté config
       if(!isAdmin()) {
           if(id === 'catalogue' && state.config.feat_catalogue === false) return window.location.href = "maintenance.html";
           if(id === 'commande' && state.config.feat_commande === false) return window.location.href = "maintenance.html";
@@ -517,7 +518,7 @@
           const data=await api({action:"getcatalog"}); 
           if(data.ok){
               const newStr = JSON.stringify(data.items);
-              if(silent && newStr === lastCatalogStr) return; // Prevent DOM flicker if no changes
+              if(silent && newStr === lastCatalogStr) return; 
               lastCatalogStr = newStr;
               state.products=(data.items||[]).map(normalizeProduct); 
               state.catalogLoaded=true; initCategories(); renderProducts(); renderCategoryOptions();
@@ -525,7 +526,6 @@
       } catch(e){state.catalogLoaded=true; if(!silent) renderProducts();}
     }
     
-    // Normalisation des images avec option mappée
     function normalizeProduct(p){
         p=p||{}; let imgs = [];
         if(Array.isArray(p.images)) {
@@ -593,53 +593,71 @@
     ["searchInput","categoryFilter","sortSelect"].forEach(id=>document.addEventListener("input",e=>{if(e.target.id===id)renderProducts()}));
     $("#resetFilters").addEventListener("click",()=>{$("#searchInput").value="";$("#categoryFilter").value="all";$("#sortSelect").value="featured";renderProducts();});
 
-    // Filtre d'image corrigé 
+    // Fonction globale pour changer d'image
     window.makeImageActive = function(index) {
         const thumbs = document.querySelectorAll('.recom-thumbs img');
         if (thumbs[index]) {
-            // Forcer le changement visuel
             document.getElementById('recomMainImg').src = thumbs[index].src;
             thumbs.forEach(t => t.classList.remove('active-thumb'));
             thumbs[index].classList.add('active-thumb');
         }
     };
     
-    window.filterGalleryByOption = function(productId, selectedOption) {
-        const p = state.products.find(x => x.id === productId); if(!p) return;
-        const thumbsContainer = document.querySelector('.recom-thumbs');
-        let html = ""; let firstValidIdx = -1;
+    // MAJ Dynamique de la modal (Prix + Image)
+    window.updateModalVariant = function(productId, labelId, optVal) {
+        if(labelId) {
+            const labelEl = document.getElementById(labelId);
+            if(labelEl) labelEl.textContent = optVal;
+        }
         
-        const selOpt = selectedOption.toLowerCase().trim();
-
-        p.images.forEach((img, idx) => {
-            let show = false;
-            // Si l'image n'a pas d'option liée, elle reste globale
-            if(!img.opt) show = true; 
-            else {
-                const imgOpt = img.opt.toLowerCase().trim();
-                // Match exact ou partiel entre le paramètre choisi et l'image
-                if(imgOpt.includes(selOpt) || selOpt.includes(imgOpt)) {
-                    show = true;
-                }
-            }
-            
-            if(show) {
-                if(firstValidIdx === -1) firstValidIdx = idx;
-                html += `<img src="${escapeHtml(img.url)}" alt="" class="" onclick="makeImageActive(${idx})" id="thumb_${idx}">`;
+        const p = state.products.find(x => x.id === productId); if(!p) return;
+        let newPrice = p.price;
+        
+        // 1. Calcul du prix dynamique
+        document.querySelectorAll('#modalProductContent input[type="radio"]:checked').forEach(radio => {
+            const val = radio.dataset.optval || ""; 
+            const priceMatch = val.match(/(\d+(?:[.,]\d+)?)\s*€/i);
+            if(priceMatch) {
+                newPrice = parseFloat(priceMatch[1].replace(',', '.'));
             }
         });
         
-        // Sécurité : Si l'admin a mis des options mais oublié de lier les images, on montre tout
-        if(html === "") {
-            p.images.forEach((img, idx) => {
-                if(firstValidIdx === -1) firstValidIdx = idx;
-                html += `<img src="${escapeHtml(img.url)}" alt="" class="" onclick="makeImageActive(${idx})" id="thumb_${idx}">`;
-            });
+        // MAJ DOM Prix
+        const priceEl = document.querySelector('.recom-price');
+        const kmfEl = document.querySelector('.recom-kmf');
+        if(priceEl && kmfEl) {
+            priceEl.textContent = formatEUR(newPrice);
+            kmfEl.textContent = formatKMF(newPrice);
+            priceEl.dataset.currentPrice = newPrice; 
         }
+
+        // 2. Filtrage des images
+        if(!optVal) return;
+        const selOpt = optVal.toLowerCase().trim();
+        const hasLinkedImage = p.images.some(img => img.opt && (img.opt.toLowerCase().trim() === selOpt || selOpt.includes(img.opt.toLowerCase().trim())));
         
-        thumbsContainer.innerHTML = html;
-        if(firstValidIdx !== -1) makeImageActive(firstValidIdx);
-    }
+        if(hasLinkedImage) {
+            let firstValidIdx = -1;
+            p.images.forEach((img, idx) => {
+                const thumbEl = document.getElementById(`thumb_${idx}`);
+                if(!thumbEl) return;
+                let show = false;
+                if(!img.opt) show = true;
+                else {
+                    const imgOpt = img.opt.toLowerCase().trim();
+                    if(imgOpt === selOpt || selOpt.includes(imgOpt) || imgOpt.includes(selOpt)) show = true;
+                }
+                
+                if(show) {
+                    thumbEl.style.display = 'block';
+                    if(firstValidIdx === -1) firstValidIdx = idx;
+                } else {
+                    thumbEl.style.display = 'none';
+                }
+            });
+            if(firstValidIdx !== -1) makeImageActive(firstValidIdx);
+        }
+    };
 
     function openProductModal(id){
       const p = state.products.find(x => x.id === id); if(!p) return; modalProduct = p; 
@@ -657,14 +675,10 @@
           <div class="recom-opt-title">${escapeHtml(k)}: <span id="val_${id}_${sanitizedK}" class="recom-opt-val">${escapeHtml(opts[0])}</span></div>
           <div class="recom-options-row">
             ${opts.map((opt, idx) => {
-                let onChangeLogic = `document.getElementById('val_${id}_${sanitizedK}').textContent='${escapeHtml(opt)}';`;
-                onChangeLogic += ` filterGalleryByOption('${id}', '${escapeHtml(opt)}');`;
-                
-                if(isColor) {
-                    return `<label class="recom-color-label"><input type="radio" name="v_param_${sanitizedK}" value="${escapeHtml(k)}: ${escapeHtml(opt)}" ${idx===0?'checked':''} onchange="${onChangeLogic}"><span class="recom-color-circle" style="background-color:${mapColorToHex(opt)}"></span></label>`;
-                } else {
-                    return `<label class="recom-btn-label"><input type="radio" name="v_param_${sanitizedK}" value="${escapeHtml(k)}: ${escapeHtml(opt)}" ${idx===0?'checked':''} onchange="${onChangeLogic}"><span class="recom-btn-box">${escapeHtml(opt)}</span></label>`;
-                }
+                return `<label class="${isColor?'recom-color-label':'recom-btn-label'}">
+                    <input type="radio" name="v_param_${sanitizedK}" value="${escapeHtml(k)}: ${escapeHtml(opt)}" data-optval="${escapeHtml(opt)}" ${idx===0?'checked':''} onchange="updateModalVariant('${id}', 'val_${id}_${sanitizedK}', '${escapeHtml(opt)}')">
+                    <span class="${isColor?'recom-color-circle':'recom-btn-box'}" ${isColor ? `style="background-color:${mapColorToHex(opt)}"` : ''}>${isColor?'':escapeHtml(opt)}</span>
+                </label>`;
             }).join("")}
           </div>
         </div>`;
@@ -682,7 +696,7 @@
           <h2 class="recom-title">${escapeHtml(p.name)}</h2>
           
           <div class="recom-price-box">
-            <div class="recom-price">${formatEUR(p.price)}</div>
+            <div class="recom-price" data-current-price="${p.price}">${formatEUR(p.price)}</div>
             <span class="recom-kmf">${formatKMF(p.price)}</span>
             
             ${variantsHtml}
@@ -705,12 +719,12 @@
       
       $("#productModal").classList.add("active");
       
-      // Init gallery filter if color is pre-selected
-      const firstColorRadio = document.querySelector('.recom-color-label input:checked');
-      if(firstColorRadio) {
-          const optVal = firstColorRadio.value.split(':')[1].trim();
-          filterGalleryByOption(id, optVal);
-      }
+      // Init dynamique (Force l'update des radios cochés par défaut pour mettre le prix à jour)
+      setTimeout(() => {
+          document.querySelectorAll('#modalProductContent input[type="radio"]:checked').forEach(radio => {
+              updateModalVariant(id, null, radio.dataset.optval);
+          });
+      }, 10);
       
       $("#confirmAddProduct").addEventListener("click",confirmAddProduct);
     }
@@ -720,12 +734,15 @@
       if(!state.user) { toast("Veuillez vous connecter pour ajouter des articles."); $("#productModal").classList.remove("active"); switchPage("login"); return; }
       const p=modalProduct; if(!p)return; 
       const qty=Math.max(1,Number($("#modalQty")?.value||1)); const note=$("#modalNote")?.value||""; 
+      
+      const priceEl = document.querySelector('.recom-price');
+      const finalPrice = priceEl && priceEl.dataset.currentPrice ? parseFloat(priceEl.dataset.currentPrice) : p.price;
+
       let selectedOptions = []; $$("#modalProductContent input[type='radio']:checked").forEach(radio => selectedOptions.push(radio.value));
       const optionsString = selectedOptions.join(" / ");
       const cartId = [p.id, optionsString, note].join("|"); 
       const existing = state.cart.find(i=>i.cartId===cartId&&i.type==="product"); 
       
-      // Determine the best image thumbnail based on selected options
       let thumbUrl = p.image;
       if(p.images && p.images.length > 0) {
           for(let opt of selectedOptions) {
@@ -733,11 +750,11 @@
               const matchedImg = p.images.find(img => img.opt && (img.opt.toLowerCase().includes(optVal) || optVal.includes(img.opt.toLowerCase())));
               if(matchedImg) { thumbUrl = matchedImg.url; break; }
           }
-          if(thumbUrl === p.image) thumbUrl = p.images[0].url; // fallback to first image
+          if(thumbUrl === p.image) thumbUrl = p.images[0].url;
       }
 
       if(existing) existing.qty += qty; 
-      else state.cart.push({type:"product", cartId, id:p.id, name:p.name, price:p.price, category:p.category, qty, weight:p.weight||0.5, image:thumbUrl, options:optionsString, note, params:p.params||{}}); 
+      else state.cart.push({type:"product", cartId, id:p.id, name:p.name, price:finalPrice, category:p.category, qty, weight:p.weight||0.5, image:thumbUrl, options:optionsString, note, params:p.params||{}}); 
       save(); $("#productModal").classList.remove("active"); toast(`${p.name} ajouté au panier`);
     }
     $("#closeProductModal").addEventListener("click",()=>$("#productModal").classList.remove("active"));
@@ -812,7 +829,16 @@
       e.currentTarget.reset(); e.currentTarget.qty.value=1; $("#customKmfPreview").textContent="0 € = 0 KMF";
     });
 
-    function prefillCheckout(){const form=$("#checkoutForm"); if(!form)return; if(!state.user)return; form.fullname.value=state.user.name||""; form.email.value=state.user.email||""; const sp=splitDial(state.user.phone); if(sp){form.phoneCountry.value=sp.dial; form.phone.value=sp.rest;} else if(state.user.phone){form.phone.value=state.user.phone;}}
+    function prefillCheckout(){
+        const form=$("#checkoutForm"); if(!form)return; if(!state.user)return; 
+        form.fullname.value=state.user.name||""; form.email.value=state.user.email||""; 
+        const sp=splitDial(state.user.phone); if(sp){form.phoneCountry.value=sp.dial; form.phone.value=sp.rest;} else if(state.user.phone){form.phone.value=state.user.phone;}
+        
+        const labelSumup = document.getElementById('label_sumup');
+        const labelCash = document.getElementById('label_cash');
+        if(labelSumup) labelSumup.style.display = state.config.feat_sumup !== false ? 'block' : 'none';
+        if(labelCash) labelCash.style.display = state.config.feat_cash !== false ? 'block' : 'none';
+    }
     
     async function executeOrderPlacement(data, items, totals, orderId, finalStatus) {
         try {
@@ -1146,7 +1172,7 @@
         if(!res.ok)throw new Error(res.error);
         
         const newStr = JSON.stringify(res.orders);
-        if(silent && newStr === lastOrdersStr) return; // Prevent DOM flicker
+        if(silent && newStr === lastOrdersStr) return; 
         lastOrdersStr = newStr;
         
         currentAdminOrders = res.orders;
@@ -1262,6 +1288,9 @@
         const fPan = state.config.feat_panier !== false;
         const fSui = state.config.feat_suivi !== false;
         const feesEn = state.config.feesEnabled !== false;
+        const fSumup = state.config.feat_sumup !== false;
+        const fCash = state.config.feat_cash !== false;
+        const fBanner = state.config.feat_banner !== false;
         
         panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3>
         <div class="form-grid" style="margin-top:1rem">
@@ -1276,6 +1305,13 @@
             <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Options Financières</h4>
             <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfgFees" ${feesEn ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfgFees">Activer les calculs des frais (Port et Livraison)</label></div>
             
+            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Moyens de Paiement (Panier)</h4>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_sumup" ${fSumup ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_sumup">Paiement par Carte (SumUp)</label></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_cash" ${fCash ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_cash">Paiement sur place (Espèces)</label></div>
+
+            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Design & Interface</h4>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_banner" ${fBanner ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_banner">Afficher la bannière d'annonce défilante jaune</label></div>
+
             <button class="btn primary wide" id="saveCfgBtn" style="margin-top:1rem">Enregistrer la configuration</button>
         </div></div>`;
         
@@ -1289,7 +1325,10 @@
                     feat_commande: $("#cfg_commande").checked,
                     feat_panier: $("#cfg_panier").checked,
                     feat_suivi: $("#cfg_suivi").checked,
-                    feesEnabled: $("#cfgFees").checked 
+                    feesEnabled: $("#cfgFees").checked,
+                    feat_sumup: $("#cfg_sumup").checked,
+                    feat_cash: $("#cfg_cash").checked,
+                    feat_banner: $("#cfg_banner").checked
                 };
                 const res = await api({action:"saveconfig", adminKey:adminKey(), config: newConfig});
                 if(res.ok) {
@@ -1303,9 +1342,8 @@
         });
     }
 
-    // Builder Variantes Admin 
     function renderAdminProducts(panel){
-        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes infinis</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres souhaités. Ex: Couleur, Capacité, Taille, Prix supplémentaire, Modèle... Séparez les choix par des virgules.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
+        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes (Prix Dynamique)</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos (HD)</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
         bindAdminProductForm(); loadCatalog(true).then(renderAdminList);
     }
     
@@ -1367,7 +1405,7 @@
         $("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});
     }
     
-    // Compression haute définition sur fond blanc
+    // Compression Haute Définition sur fond blanc
     function compressToWhiteBg(file){
         return new Promise(resolve=>{
             const img=new Image();
@@ -1380,7 +1418,7 @@
                 ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,w,h);
                 ctx.drawImage(img,0,0,w,h);
                 let q=0.92, out=canvas.toDataURL('image/jpeg',q);
-                while(out.length>500000 && q>.3){ q-=.1; out=canvas.toDataURL('image/jpeg',q); } // Limite à 500Ko
+                while(out.length>500000 && q>.3){ q-=.1; out=canvas.toDataURL('image/jpeg',q); } // Limite à ~500Ko par image HD
                 resolve(out); URL.revokeObjectURL(img.src);
             };
             img.onerror=()=>resolve(''); img.src=URL.createObjectURL(file);
