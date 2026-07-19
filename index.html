@@ -58,7 +58,45 @@
     .btn.secondary{background:var(--panel);border-color:var(--line);color:var(--txt)}.btn.secondary:hover{border-color:var(--muted2)}
     .btn.danger{background:rgba(255,85,115,.08);border-color:rgba(255,85,115,.3);color:var(--danger)}.btn.small{min-height:38px;padding:.5rem .8rem;font-size:.85rem;border-radius:9px}.btn:hover{transform:translateY(-2px)}.btn:disabled{opacity:.6;cursor:not-allowed;transform:none;background:var(--muted2)!important;color:#111!important;box-shadow:none!important;}
     .trust-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem}.trust-card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:.8rem 1rem;min-width:150px;box-shadow:0 1px 2px rgba(0,0,0,.15)}.trust-card strong{font-size:1.05rem;display:block;font-family:Archivo,Inter,sans-serif}.trust-card span{color:var(--muted2);font-size:.82rem}
-    .visual-card{position:relative;border:1px solid var(--line);background:var(--panel);border-radius:22px;padding:14px;box-shadow:var(--shadow)}.visual-inner{border-radius:14px;overflow:hidden;background:var(--card2);border:1px solid var(--line)}.mock-hero{padding:1.2rem;background:linear-gradient(150deg,#182b47,#13223a);color:#fff}.mock-hero .pill{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.75)}.mock-search{margin-top:1rem;height:44px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:8px;padding:0 1rem;color:rgba(255,255,255,.5);font-size:.92rem}.mock-products{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;padding:1rem}.mini-product{min-height:135px;border-radius:13px;border:1px solid var(--line);background:var(--panel);padding:.8rem;display:flex;flex-direction:column;justify-content:space-between}.mini-icon{color:var(--muted2); display:flex; align-items:center; justify-content:center; width:32px; height:32px;}.mini-line{height:8px;border-radius:999px;background:var(--line);margin-top:.45rem}.mini-line.short{width:60%}
+    
+    /* Animation Flottante Conservée */
+    .visual-card{position:relative;border:1px solid var(--line);background:var(--panel);border-radius:22px;padding:14px;box-shadow:var(--shadow); animation:floatCard 6s ease-in-out infinite}
+    @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+    /* ==================== AB MOTORS CSS IMPORTÉ ==================== */
+    .abm-section::before{content:"";position:absolute;inset:8% 0 auto;height:72%;pointer-events:none;background:radial-gradient(700px 320px at 16% 50%,rgba(125,182,224,.08),transparent 68%),radial-gradient(600px 300px at 86% 48%,rgba(47,191,139,.08),transparent 70%)}
+    .abm-slider{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:var(--panel);box-shadow:var(--shadow);isolation:isolate}
+    .abm-track{display:flex;transition:transform .9s cubic-bezier(.22,.8,.22,1);will-change:transform}
+    .abm-slide{position:relative;min-width:100%;overflow:hidden}
+    .abm-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.045);animation:abmCinematic 16s ease-in-out infinite alternate;filter:saturate(1.04) contrast(1.03)}
+    .abm-photo-shadow{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,13,24,.95) 0%,rgba(8,19,33,.78) 40%,rgba(8,19,33,.25) 70%,rgba(5,13,24,.56) 100%),linear-gradient(0deg,rgba(5,13,24,.92) 0%,transparent 52%,rgba(5,13,24,.24) 100%)}
+    .abm-photo-glow{position:absolute;width:420px;height:420px;border-radius:50%;left:23%;bottom:7%;background:radial-gradient(circle,rgba(230,179,77,.22),rgba(230,179,77,.04) 42%,transparent 70%);filter:blur(10px);animation:abmGlow 4.5s ease-in-out infinite alternate}
+    .abm-grid-lines{position:absolute;inset:0;opacity:.17;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(90deg,#000,transparent 74%)}
+    .abm-wave{position:absolute;left:-8%;right:-8%;bottom:-67px;height:126px;border-radius:46% 54% 0 0/58% 58% 0 0;background:rgba(125,182,224,.1);filter:blur(.2px);animation:abmWave 8s ease-in-out infinite alternate;z-index:3}
+    .abm-wave.two{bottom:-85px;background:rgba(47,191,139,.08);animation-duration:10s;animation-delay:-3s}
+    .abm-map{position:relative;min-height:430px;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,rgba(125,182,224,.1),rgba(47,191,139,.045)),radial-gradient(circle at 50% 58%,rgba(47,191,139,.09),transparent 32%),#0b1729;}
+    .abm-map::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(238,243,250,.18) 1px,transparent 1px);background-size:22px 22px;opacity:.24;mask-image:radial-gradient(circle,#000 15%,transparent 76%)}
+    .abm-map-illustration{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+    .abm-route-line{fill:none;stroke:var(--brand);stroke-width:4.5;stroke-linecap:round;stroke-dasharray:13 17;filter:drop-shadow(0 0 9px rgba(125,182,224,.5));animation:abmRouteDash 7s linear infinite}
+    .abm-route-line.route-green{stroke:var(--brand2);animation-duration:8.5s;animation-direction:reverse}
+    .abm-island-path{fill:url(#abmIslandFill);stroke:rgba(238,243,250,.42);stroke-width:3.5;stroke-linejoin:round;filter:drop-shadow(0 18px 28px rgba(0,0,0,.34))}
+    .abm-island-shine{fill:url(#abmIslandShine);opacity:.42;pointer-events:none}
+    .abm-islet{fill:#4ebf9f;stroke:rgba(238,243,250,.32);stroke-width:2;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
+    .abm-map-marker .ring{fill:none;stroke:rgba(230,179,77,.25);stroke-width:14;animation:abmMarkerPulse 2.4s ease-in-out infinite}
+    .abm-map-marker .core{fill:var(--gold);stroke:#fff;stroke-width:2;filter:drop-shadow(0 0 12px rgba(230,179,77,.65))}
+    .abm-map-label .name{fill:var(--txt);font-size:26px;font-weight:800;letter-spacing:-.02em}
+    .abm-map-label .sub{fill:rgba(238,243,250,.7);font-size:16px;font-weight:650}
+    .abm-map-label .leader{fill:none;stroke:rgba(238,243,250,.42);stroke-width:2.2;stroke-linecap:round}
+    .abm-svg-boat .halo{fill:rgba(47,191,139,.16);stroke:rgba(47,191,139,.35);stroke-width:3}
+    .abm-svg-boat .disc{fill:var(--brand2);filter:drop-shadow(0 10px 16px rgba(0,0,0,.38))}
+    .abm-svg-boat .boat-mark{fill:none;stroke:#04160e;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+    @keyframes abmMarkerPulse{0%,100%{opacity:.45;transform:scale(.86);transform-origin:center}50%{opacity:.12;transform:scale(1.18);transform-origin:center}}
+    @keyframes abmCinematic{0%{transform:scale(1.045) translate3d(0,0,0)}100%{transform:scale(1.11) translate3d(-1.5%,-1%,0)}}
+    @keyframes abmGlow{to{transform:scale(1.15);opacity:.7}}
+    @keyframes abmWave{to{transform:translateX(4%) rotate(.5deg)}}
+    @keyframes abmRouteDash{to{stroke-dashoffset:-160}}
+    /* ========================================================= */
+
     .section{padding:66px 0}.section-head{display:flex;justify-content:space-between;gap:1.2rem;align-items:center;margin-bottom:1.6rem}.eyebrow{color:var(--brand2);font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem}h2{font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.06;letter-spacing:-.028em;margin-top:.45rem;font-weight:800}.section-head p,.sub{color:var(--muted);max-width:690px}.glass-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow)}
     .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.step{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:1.3rem;min-height:210px;box-shadow:0 1px 2px rgba(0,0,0,.15)}.step-num{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:var(--brand2);font-weight:800;color:#04160e;margin-bottom:1.1rem;font-family:Archivo,Inter,sans-serif}.step h3{font-size:1.12rem;margin-bottom:.5rem;letter-spacing:-.015em}.step p{color:var(--muted);font-size:.93rem}
     .toolbar{display:grid;grid-template-columns:1fr 180px 160px auto;gap:.8rem;margin:1.4rem 0 1.2rem}.field{min-height:50px;border-radius:11px;border:1px solid var(--line);background:var(--panel);display:flex;align-items:center;gap:.7rem;padding:0 .9rem;transition:border-color .15s ease}.field:focus-within{border-color:var(--brand2);box-shadow:0 0 0 3px rgba(47,191,139,.12)}.field input,.field select,.field textarea{width:100%;background:transparent;border:0;outline:0;color:var(--txt)}.field input::placeholder,.field textarea::placeholder{color:var(--muted2)}.field textarea{padding:.9rem 0;min-height:105px;resize:vertical}.field.compact{min-height:42px;border-radius:9px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.form-grid .wide{grid-column:1/-1}.mini-note{color:var(--muted2);font-size:.85rem;margin-top:.75rem}
@@ -137,7 +175,7 @@
     .cursor-glow{position:fixed;top:0;left:0;width:340px;height:340px;border-radius:999px;background:radial-gradient(circle,rgba(47,191,139,.09),transparent 62%);pointer-events:none;z-index:9999;mix-blend-mode:screen;transition:opacity .2s ease}
     .brand-mark::after{content:"";position:absolute;inset:-70%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:rotate(35deg) translateX(-70%);animation:shine 3.8s ease-in-out infinite}@keyframes shine{0%,62%{transform:rotate(35deg) translateX(-70%)}78%,100%{transform:rotate(35deg) translateX(72%)}}
     .gradient-text{animation:textHue 7s ease-in-out infinite alternate}@keyframes textHue{to{filter:hue-rotate(8deg)}}
-    .visual-card{animation:floatCard 6s ease-in-out infinite}@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    
     .product-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-120%) skewX(-12deg);transition:.6s ease;pointer-events:none}.product:hover .product-art::after{transform:translateX(120%) skewX(-12deg)}
     .product-slider{position:absolute;inset:0;border-radius:inherit;overflow:hidden}.product-slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:inherit;opacity:0;animation:productSlide var(--slide-duration,12s) infinite ease-in-out}.product-slider img:first-child{opacity:1}@keyframes productSlide{0%,25%{opacity:1;transform:scale(1.02)}29%,96%{opacity:0;transform:scale(1.08)}100%{opacity:1;transform:scale(1.02)}}
     .product,.step,.glass-card{animation:softRise .55s cubic-bezier(.2,.8,.2,1) both}@keyframes softRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -235,11 +273,19 @@
             <div class="trust-card"><strong>Retrait local</strong><span>Comores</span></div>
           </div>
         </div>
-        <div class="visual-card">
-          <div class="visual-inner"><div class="mock-hero"><div class="pill"><span class="dot"></span> Catalogue comprenant un large choix d'articles</div><h3 style="font-size:2rem;line-height:1;margin-top:.9rem;letter-spacing:-.06em">AB PRODUCTS</h3><div class="mock-search"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg> Shein, Sephora, Zara, auto, maison…</div></div><div class="mock-products"><div class="mini-product"><div class="mini-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.38 3.46L16 2 12 4 8 2 3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg></div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="8" y="10" width="8" height="12" rx="2"></rect><path d="M10 10V6h4v4"></path><path d="M10 2h4v4h-4z"></path></svg></div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div><div class="mini-product"><div class="mini-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><div><div class="mini-line"></div><div class="mini-line short"></div></div></div></div></div>
+        
+        <div class="visual-card" style="padding:0; border:none; box-shadow:none; background:transparent;">
+          <!-- ============================================== -->
+          <!-- COLLE LA SUITE DE TON ANIMATION SVG JUSTE ICI  -->
+          <!-- ============================================== -->
+          <div class="abm-map" style="height:100%; min-height:450px; border-radius:24px; box-shadow:var(--shadow);">
+              <p style="color:var(--muted); text-align:center; padding-top:200px;">Insérer le code de l'animation ici</p>
+          </div>
+          <!-- ============================================== -->
         </div>
+
       </div>
-      <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF exacte et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div><h3>Catalogue</h3><p>Produits avec photos, poids, paramètres personnalisés et détails complets.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><h3>Frais de port</h3><p>Poids calculé automatiquement : moins de 1kg (4.50€) ou par kilo (9€).</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div><h3>Livraison</h3><p>Frais fixes de livraison de 4.99€ ajoutés au panier.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail au client avec un récapitulatif type facture.</p></div></div></div>
+      <div class="shell section"><div class="section-head"><div><div class="eyebrow">Process simple</div><h2>Du lien produit au panier.</h2></div><p>Le site prépare un panier cohérent avec prix en euros, conversion KMF exacte et estimation d'envoi selon le poids.</p></div><div class="steps"><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div><h3>Catalogue</h3><p>Produits avec photos, poids, paramètres personnalisés et détails complets.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><h3>Frais de port</h3><p>Poids calculé automatiquement : moins de 1kg 4.50€ ou par kilo 9€.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div><h3>Livraison</h3><p>Frais fixes de livraison de 4.99€ ajoutés au panier.</p></div><div class="step"><div class="step-num"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><h3>Suivi</h3><p>Chaque changement de statut envoie un mail au client avec un récapitulatif type facture.</p></div></div></div>
     </section>
 
     <section class="page" id="catalogue"><div class="shell section"><div class="section-head"><div><div class="eyebrow">Catalogue</div><h2>Articles disponibles.</h2></div><p>Le prix affiché correspond au prix article. Les frais d'envois seront calculés au panier.</p></div><div class="toolbar"><div class="field"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg> <input id="searchInput" type="search" placeholder="Rechercher : robe, parfum, phare, téléphone..." /></div><div class="field"><select id="categoryFilter"><option value="all">Toutes catégories</option></select></div><div class="field"><select id="sortSelect"><option value="featured">Recommandé</option><option value="asc">Prix croissant</option><option value="desc">Prix décroissant</option></select></div><button class="btn secondary" id="resetFilters">Réinitialiser</button></div><div class="grid" id="productGrid"></div></div></section>
@@ -425,9 +471,14 @@
 
     function updateMarquee() {
         const minV = state.config.minCart || 25;
-        $$('.marquee span').forEach(el => {
-            if(el.textContent.includes("MINIMUM")) el.textContent = `MINIMUM D'ACHAT DE ${minV} € REQUIS DANS LE PANIER`;
-        });
+        const t1 = state.config.banner_text1 || `MINIMUM D'ACHAT DE ${minV} € REQUIS DANS LE PANIER`;
+        const t2 = state.config.banner_text2 || `LIVRAISON OFFERTE DÈS 100€ D'ACHAT`;
+        
+        const marquee = document.querySelector('.marquee');
+        if(marquee) {
+            marquee.innerHTML = `<span>${escapeHtml(t1)}</span><span>${escapeHtml(t2)}</span><span>${escapeHtml(t1)}</span><span>${escapeHtml(t2)}</span><span>${escapeHtml(t1)}</span><span>${escapeHtml(t2)}</span><span>${escapeHtml(t1)}</span><span>${escapeHtml(t2)}</span>`;
+        }
+        
         const banner = document.querySelector('.scrolling-banner');
         if(banner) banner.style.display = state.config.feat_banner !== false ? 'block' : 'none';
     }
@@ -454,7 +505,7 @@
               if(n.id === 'suivi' && state.config.feat_suivi === false) isEnabled = false;
 
               if (!isEnabled) {
-                  return `<a class="nav-link disabled" href="maintenance.html">${n.label} <span style="font-size:10px">(Désactivé)</span></a>`;
+                  return `<a class="nav-link disabled" href="maintenance.html">${n.label} <span style="font-size:10px">Désactivé</span></a>`;
               }
               return `<a class="nav-link ${(!onAdminPage&&currentPage===n.id)?"active":""}" href="${ROUTES[n.id]}" data-page="${n.id}">${n.label}</a>`;
           }).join("");
@@ -500,7 +551,7 @@
     $("#mobileToggle").addEventListener("click",()=>$("#navLinks").classList.toggle("open"));
     function renderCounts(){const count=state.cart.reduce((s,i)=>s+Number(i.qty||1),0);$("#cartCount").textContent=count;renderNav();}
 
-    function initPhoneCountries(){const opts=PHONE_COUNTRIES.map(c=>`<option value="${escapeHtml(c.dial)}" ${c.dial==="+269"?"selected":""}>${escapeHtml(c.name)} (${escapeHtml(c.dial)})</option>`).join("");$$("select.phone-country").forEach(sel=>{sel.innerHTML=opts;});}
+    function initPhoneCountries(){const opts=PHONE_COUNTRIES.map(c=>`<option value="${escapeHtml(c.dial)}" ${c.dial==="+269"?"selected":""}>${escapeHtml(c.name)} ${escapeHtml(c.dial)}</option>`).join("");$$("select.phone-country").forEach(sel=>{sel.innerHTML=opts;});}
     function splitDial(full){full=String(full||"").trim();if(!full)return null;const found=PHONE_COUNTRIES.filter(c=>full.indexOf(c.dial)===0).sort((a,b)=>b.dial.length-a.dial.length)[0];return found?{dial:found.dial,rest:full.slice(found.dial.length).trim()}:null;}
 
     async function loadConfig() {
@@ -610,7 +661,7 @@
         }
     };
     
-    // MAJ Dynamique de la modal (Prix + Image)
+    // MAJ Dynamique de la modal Prix + Image
     window.updateModalVariant = function(productId, labelId, optVal) {
         if(labelId) {
             const labelEl = document.getElementById(labelId);
@@ -620,7 +671,6 @@
         const p = state.products.find(x => x.id === productId); if(!p) return;
         let newPrice = p.price;
         
-        // 1. Calcul du prix dynamique
         document.querySelectorAll('#modalProductContent input[type="radio"]:checked').forEach(radio => {
             const val = radio.dataset.optval || ""; 
             const priceMatch = val.match(/(\d+(?:[.,]\d+)?)\s*€/i);
@@ -629,7 +679,6 @@
             }
         });
         
-        // MAJ DOM Prix
         const priceEl = document.querySelector('.recom-price');
         const kmfEl = document.querySelector('.recom-kmf');
         if(priceEl && kmfEl) {
@@ -638,7 +687,6 @@
             priceEl.dataset.currentPrice = newPrice; 
         }
 
-        // 2. Filtrage des images
         if(!optVal) return;
         const selOpt = optVal.toLowerCase().trim();
         const hasLinkedImage = p.images.some(img => img.opt && (img.opt.toLowerCase().trim() === selOpt || selOpt.includes(img.opt.toLowerCase().trim())));
@@ -717,7 +765,7 @@
                 <div class="qty" style="background:var(--card); border-radius:9px; padding:4px"><button type="button" onclick="this.nextElementSibling.stepDown()">-</button><input type="number" id="modalQty" min="1" value="1" style="width:40px; text-align:center; background:transparent; border:none; color:var(--txt); font-weight:bold"><button type="button" onclick="this.previousElementSibling.stepUp()">+</button></div>
                 <button class="btn primary" id="confirmAddProduct" style="flex:1; height:50px; font-size:1.05rem">Ajouter au panier</button>
             </div>
-            <div class="field wide compact" style="margin-top:0.8rem"><input id="modalNote" placeholder="Note pour la préparation (Optionnel)" style="font-size:0.85rem" /></div>
+            <div class="field wide compact" style="margin-top:0.8rem"><input id="modalNote" placeholder="Note pour la préparation Optionnel" style="font-size:0.85rem" /></div>
           </div>
         </div>
         <div class="recom-desc">
@@ -728,7 +776,6 @@
       
       $("#productModal").classList.add("active");
       
-      // Init dynamique (Force l'update des radios cochés par défaut pour mettre le prix à jour)
       setTimeout(() => {
           document.querySelectorAll('#modalProductContent input[type="radio"]:checked').forEach(radio => {
               updateModalVariant(id, null, radio.dataset.optval);
@@ -799,7 +846,7 @@
         const minVal = Number(state.config.minCart) || 25;
         let disableCheckout = false; let minWarnHtml = "";
         if(t.subtotal > 0 && t.subtotal < minVal) {
-            minWarnHtml = `<div class="msg-red" style="margin-bottom:1rem; padding:10px; font-size:0.9rem">Un minimum d'achat de ${minVal} € (hors frais) est requis.</div>`;
+            minWarnHtml = `<div class="msg-red" style="margin-bottom:1rem; padding:10px; font-size:0.9rem">Un minimum d'achat de ${minVal} € hors frais est requis.</div>`;
             disableCheckout = true;
         }
         $("#subtotal").innerHTML=formatDual(t.subtotal); 
@@ -973,7 +1020,7 @@
             if(s.includes("retrait")) activeIdx = 8;
 
             box.innerHTML=`<div style="margin-top:1.5rem">
-                <div class="pill" style="margin-bottom:1rem"><span class="dot"></span> Commande ${escapeHtml(res.order.id)} — ${escapeHtml(res.order.items)} article(s)</div>
+                <div class="pill" style="margin-bottom:1rem"><span class="dot"></span> Commande ${escapeHtml(res.order.id)} — ${escapeHtml(res.order.items)} article s </div>
                 ${res.order.note ? `<div class="msg-red">Information AB PRODUCTS : ${escapeHtml(res.order.note)}</div>` : ""}
                 <div class="tracking-grid">
                     ${TRACK_STAGES.map((step, i) => `
@@ -1007,7 +1054,6 @@
     $("#signupForm").addEventListener("submit",async e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget).entries());if(data.password!==data.password2)return toast("Mots de passe différents");const btn=e.currentTarget.querySelector("button[type=submit]");btn.disabled=true;btn.textContent="Création…";try{const passHash=await sha256(data.email.toLowerCase().trim()+"|"+data.password+"|"+_S2);const phoneNumber=(data.phone||"").trim();const fullPhone=phoneNumber?`${data.phoneCountry||""} ${phoneNumber}`.trim():"";const res=await api({action:"signup",name:data.name,email:data.email,phone:fullPhone,passHash});if(!res.ok)throw new Error(res.error);state.user=res.user;save();toast("Bienvenue "+res.user.name);switchPage("compte");e.target.reset();initPhoneCountries();}catch(err){toast(err.message);}finally{btn.disabled=false;btn.textContent="Créer mon compte";}});
     $("#forgotBtn").addEventListener("click",async e=>{e.preventDefault();const em=prompt("Entrez l'adresse email de votre compte :");if(!em)return;toast("Envoi en cours...");try{const r=await api({action:"resetpassword",email:em});toast(r.ok?"Email de réinitialisation envoyé":r.error);}catch(er){toast("Erreur serveur.");}});
 
-    // Espace Client : Sidebar
     function renderAccount(){
       if(!state.user) return switchPage("login");
       const navs = $$(".sidebar-link");
@@ -1029,14 +1075,14 @@
                 <div class="field wide"><input required name="name" value="${escapeHtml(state.user.name)}" placeholder="Nom complet" /></div>
                 <div class="field wide"><input required type="email" name="email" value="${escapeHtml(state.user.email)}" placeholder="Adresse e-mail" disabled style="opacity:0.5" /></div>
                 <div class="field wide"><input name="phone" type="tel" value="${escapeHtml(state.user.phone)}" placeholder="Téléphone / WhatsApp" /></div>
-                <div class="field wide pwd-wrapper"><input type="password" name="newPassword" placeholder="Nouveau mot de passe (Laisser vide pour ne pas changer)" /><button type="button" class="pwd-toggle"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></div>
+                <div class="field wide pwd-wrapper"><input type="password" name="newPassword" placeholder="Nouveau mot de passe Optionnel" /><button type="button" class="pwd-toggle"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></div>
                 <button class="btn primary wide" type="submit">Mettre à jour mes informations</button>
             </form>
             
             <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line)">
                 <h4 style="margin-bottom:1rem; color:var(--txt)">Mon Adresse</h4>
                 <form id="updateAddressForm" class="form-grid" style="max-width:600px">
-                    <div class="field wide"><textarea required name="fullAddress" placeholder="Adresse complète (Numéro, Rue, Ville, Code Postal, Pays...)" style="min-height:80px">${escapeHtml(state.user.fullAddress || "")}</textarea></div>
+                    <div class="field wide"><textarea required name="fullAddress" placeholder="Adresse complète Numéro, Rue, Ville, Code Postal, Pays..." style="min-height:80px">${escapeHtml(state.user.fullAddress || "")}</textarea></div>
                     <button class="btn primary wide" type="submit">Enregistrer l'adresse</button>
                 </form>
             </div>
@@ -1095,7 +1141,7 @@
                 box.innerHTML = `<h3 style="margin-bottom:1.5rem; font-size:1.8rem">Mes Commandes</h3>` + displayOrders.map(o => {
                     let actionHtml = ""; let st = String(o.status).toLowerCase();
                     if(st.includes("en attente de paiement") || st.includes("en attente de validation")) { actionHtml = `<button class="btn danger small action-order-btn" data-id="${o.id}" data-type="cancel" style="background:transparent; border:1px solid rgba(255,85,115,0.3)">Annuler la commande</button>`; } 
-                    else if(st.includes("dispo en retrait") || st.includes("port") || st.includes("recpetionné")) { actionHtml = `<button class="btn secondary small action-order-btn" data-id="${o.id}" data-type="retract">Demander rétractation (14j)</button>`; }
+                    else if(st.includes("dispo en retrait") || st.includes("port") || st.includes("recpetionné")) { actionHtml = `<button class="btn secondary small action-order-btn" data-id="${o.id}" data-type="retract">Demander rétractation 14j</button>`; }
                     
                     const orderItems = o.details && o.details.items ? o.details.items : [];
                     let itemsHtml = orderItems.length ? `<div style="margin-top:10px; padding:10px; background:var(--card2); border-radius:8px; border:1px solid var(--line);">
@@ -1111,7 +1157,7 @@
                             <span style="color:var(--txt); font-weight:600">${escapeHtml(o.status)}</span>
                         </div>
                         <div style="display:flex; justify-content:space-between; color:var(--muted); font-size:0.95rem; border-bottom:1px solid var(--line); padding-bottom:1rem">
-                            <span>${o.items} article(s)</span>
+                            <span>${o.items} article s</span>
                             <strong>${formatEUR(o.total)}</strong>
                         </div>
                         ${itemsHtml}
@@ -1124,7 +1170,7 @@
                 
                 $$(".action-order-btn").forEach(b => b.addEventListener("click", async e => {
                     const id = e.target.dataset.id; const type = e.target.dataset.type;
-                    let msg = type === "cancel" ? "Confirmez-vous l'annulation de cette commande ?" : "Confirmez-vous vouloir exercer votre droit de rétractation (frais de retour à votre charge) ?";
+                    let msg = type === "cancel" ? "Confirmez-vous l'annulation de cette commande ?" : "Confirmez-vous vouloir exercer votre droit de rétractation ?";
                     if(confirm(msg)) {
                         e.target.disabled = true; e.target.textContent = "...";
                         try { const r = await api({action:"client_action_order", orderId:id, type, email:state.user.email}); if(r.ok) { toast("Demande prise en compte."); renderAccountTab(document.querySelector('.sidebar-link.active').dataset.tab); } else toast(r.error); } catch(er) { toast("Erreur serveur"); e.target.disabled = false; }
@@ -1298,30 +1344,31 @@
         const fPan = state.config.feat_panier !== false;
         const fSui = state.config.feat_suivi !== false;
         const feesEn = state.config.feesEnabled !== false;
-        
         const fSumup = state.config.feat_sumup !== false;
         const fCash = state.config.feat_cash !== false;
         const fBanner = state.config.feat_banner !== false;
         
         panel.innerHTML=`<div class="glass-card"><h3>Configuration Générale</h3>
         <div class="form-grid" style="margin-top:1rem">
-            <div class="field wide"><label style="color:var(--muted); font-size:0.85rem; width:100%">Minimum d'achat Panier (€)</label><input type="number" id="cfgMinCart" value="${minC}" style="width:100%" /></div>
+            <div class="field wide"><label style="color:var(--muted); font-size:0.85rem; width:100%">Minimum d'achat Panier €</label><input type="number" id="cfgMinCart" value="${minC}" style="width:100%" /></div>
             
-            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Modules du site (Activation / Désactivation)</h4>
+            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Modules du site Activation / Désactivation</h4>
             <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_catalogue" ${fCat ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_catalogue">Afficher la page Catalogue</label></div>
             <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_commande" ${fCom ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_commande">Afficher la page Commande Libre</label></div>
-            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_panier" ${fPan ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_panier">Afficher le Panier (Nav + Ajouts)</label></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_panier" ${fPan ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_panier">Afficher le Panier Nav + Ajouts</label></div>
             <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_suivi" ${fSui ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_suivi">Afficher la page Suivi</label></div>
 
             <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Options Financières</h4>
-            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfgFees" ${feesEn ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfgFees">Activer les calculs des frais (Port et Livraison)</label></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfgFees" ${feesEn ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfgFees">Activer les calculs des frais Port et Livraison</label></div>
             
-            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Moyens de Paiement (Panier)</h4>
-            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_sumup" ${fSumup ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_sumup">Paiement par Carte (SumUp)</label></div>
-            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_cash" ${fCash ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_cash">Paiement sur place (Espèces)</label></div>
+            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Moyens de Paiement Panier</h4>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_sumup" ${fSumup ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_sumup">Paiement par Carte SumUp</label></div>
+            <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_cash" ${fCash ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_cash">Paiement sur place Espèces</label></div>
 
-            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Design & Interface</h4>
+            <h4 style="grid-column:1/-1; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--txt)">Design & Interface Bannière</h4>
             <div class="field wide" style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="cfg_banner" ${fBanner ? 'checked' : ''} style="width:20px; height:20px; accent-color:var(--brand2); cursor:pointer;"><label style="color:var(--txt); cursor:pointer;" for="cfg_banner">Afficher la bannière d'annonce défilante jaune</label></div>
+            <div class="field wide"><input type="text" id="cfg_banner_text1" placeholder="Texte bannière 1" value="${escapeHtml(state.config.banner_text1 || "MINIMUM D'ACHAT DE 25 € REQUIS DANS LE PANIER")}" oninput="this.value = this.value.toUpperCase()" /></div>
+            <div class="field wide"><input type="text" id="cfg_banner_text2" placeholder="Texte bannière 2" value="${escapeHtml(state.config.banner_text2 || "LIVRAISON OFFERTE DÈS 100€ D'ACHAT")}" oninput="this.value = this.value.toUpperCase()" /></div>
 
             <button class="btn primary wide" id="saveCfgBtn" style="margin-top:1rem">Enregistrer la configuration</button>
         </div></div>`;
@@ -1332,7 +1379,9 @@
             const localExtra = {
                 feat_sumup: $("#cfg_sumup").checked,
                 feat_cash: $("#cfg_cash").checked,
-                feat_banner: $("#cfg_banner").checked
+                feat_banner: $("#cfg_banner").checked,
+                banner_text1: $("#cfg_banner_text1").value,
+                banner_text2: $("#cfg_banner_text2").value
             };
             localStorage.setItem("abp_extra_config", JSON.stringify(localExtra));
 
@@ -1358,9 +1407,8 @@
         });
     }
 
-    // Builder Variantes Admin 
     function renderAdminProducts(panel){
-        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes (Prix Dynamique)</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos (HD)</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
+        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes Prix Dynamique</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos HD</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles en ligne</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
         bindAdminProductForm(); loadCatalog(true).then(renderAdminList);
     }
     
@@ -1368,11 +1416,11 @@
         const form=$("#adminProductForm");
         $("#addAdminVariantBtn").addEventListener("click", () => {
             const div = document.createElement("div"); div.style = "display:grid; grid-template-columns:1fr 2fr auto; gap:0.5rem;";
-            div.innerHTML = `<div class="field compact"><input class="var-name" placeholder="Nom (ex: Capacité, Prix...)" /></div><div class="field compact"><input class="var-vals" placeholder="Valeurs (ex: 64Go, 128Go...)" /></div><button type="button" class="icon-btn danger-btn" onclick="this.parentElement.remove()" style="width:36px; height:36px">✕</button>`;
+            div.innerHTML = `<div class="field compact"><input class="var-name" placeholder="Nom ex: Capacité, Prix..." /></div><div class="field compact"><input class="var-vals" placeholder="Valeurs ex: 64Go, 128Go..." /></div><button type="button" class="icon-btn danger-btn" onclick="this.parentElement.remove()" style="width:36px; height:36px">✕</button>`;
             $("#adminVariantsList").appendChild(div);
         });
         $("#browseImages").addEventListener("click",e=>{e.preventDefault();$("#photoInput").click();});
-        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images (Haute Qualité)...");for(const file of files){const img=await compressToWhiteBg(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";});
+        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images Haute Qualité...");for(const file of files){const img=await compressToWhiteBg(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";});
         $("#importBtn").addEventListener("click",importExternalProduct);
         $("#resetProductForm").addEventListener("click",resetProductForm);
         form.addEventListener("submit",async e=>{
@@ -1404,7 +1452,7 @@
     }
     
     async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>({url:url, opt:""}));renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
-    function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="icon-btn danger-btn" style="position:absolute;top:0;right:0;width:24px;height:24px;border:none;background:var(--danger);color:white;">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à (ex: Bleu)" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
+    function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="icon-btn danger-btn" style="position:absolute;top:0;right:0;width:24px;height:24px;border:none;background:var(--danger);color:white;">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à ex: Bleu" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
     function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";adminImages=[];renderImagePreview();$("#adminVariantsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";}
     function renderAdminList(){const list=$("#adminList");if(!list)return;if(!state.products.length){list.innerHTML="<p>Aucun article.</p>";return;}list.innerHTML=state.products.map(p=>`<div class="admin-item"><div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'></path></svg>"}</div><div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small></div><div class="admin-actions"><button class="btn secondary small edit-product" data-id="${p.id}">Editer</button></div><button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button></div>`).join("");$$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));$$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');await loadCatalog(true);renderAdminList();}}));}
     
@@ -1498,7 +1546,7 @@
         }
     }, 10000);
 
-    $("#newsletterForm").addEventListener("submit",async e=>{e.preventDefault();try{await api({action:"newsletter",email:e.currentTarget.email.value});toast("Merci ! Vous êtes abonné(e)");e.target.reset();}catch(err){toast("Merci !");}});
+    $("#newsletterForm").addEventListener("submit",async e=>{e.preventDefault();try{await api({action:"newsletter",email:e.currentTarget.email.value});toast("Merci ! Vous êtes abonné e ");e.target.reset();}catch(err){toast("Merci !");}});
     window.addEventListener("hashchange",routeFromHash);window.addEventListener("popstate",routeFromHash);
     checkCartExpiration();
     initPhoneCountries();
