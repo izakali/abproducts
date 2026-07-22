@@ -359,6 +359,8 @@
     .chat-input { display:flex; border-top:1px solid var(--line); padding:.8rem; gap:.5rem; background:var(--card); align-items:center; }
     .chat-input input { flex:1; min-width:0; background:var(--card2); border:1px solid var(--line); border-radius:9px; padding:.6rem .8rem; outline:0; color:var(--txt); font-size:.9rem; }
     .chat-input button { background:var(--brand2); color:#04160e; border:0; border-radius:9px; padding:0 1.2rem; height:100%; min-height:42px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0; width:auto; }
+    .chat-input.is-locked input,.chat-input.is-locked button{opacity:.55;cursor:not-allowed}.chat-input.is-locked button{background:var(--muted2)}
+    .admin-ticket-messages{background:var(--card2);padding:10px;border-radius:8px;max-height:180px;overflow-y:auto;font-size:.85rem;scroll-behavior:smooth}.admin-ticket-actions{display:flex;gap:10px;flex-wrap:wrap}.client-registered-at{display:flex;flex-wrap:wrap;column-gap:1rem;row-gap:.2rem;margin-top:.4rem;color:var(--muted2)}
     .icon-btn.danger-btn { padding:0; display:grid; place-items:center; border-color:rgba(255,85,115,.3); color:var(--danger); background:transparent; font-size:1.1rem; cursor:pointer; transition:0.2s; }
     .icon-btn.danger-btn:hover { background:rgba(255,85,115,.08); }
     .svg-icon { width:18px; height:18px; flex-shrink:0; margin-right:6px; color:var(--muted); }
@@ -783,6 +785,7 @@
 
     let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let adminImages = []; let chatInterval = null;
     let chatWaitTimer = null; let chatWaitStartedAt = 0; let chatAgentAccepted = false;
+    let currentClientTicketId = null; let clientChatClosed = false;
     let currentAdminOrders = []; let ignoredChatMsgs = -1;
     let lastCatalogStr = ""; let lastOrdersStr = ""; let lastClientOrdersStr = "";
 
@@ -978,7 +981,9 @@
           if(id === 'suivi' && state.config.feat_suivi === false) return window.location.href = "maintenance.html";
       }
 
-      if(!document.getElementById(id)) id="home"; currentPage=id;
+      if(!document.getElementById(id)) id="home";
+      if(currentPage !== id) resetClientChatForNavigation();
+      currentPage=id;
       $$(".page").forEach(p=>p.classList.toggle("active",p.id===id));
       $("#navLinks").classList.remove("open"); window.scrollTo({top:0,behavior:"smooth"});
       if(pushHash && ROUTES[id] && location.pathname !== ROUTES[id]) history.pushState(null,"",ROUTES[id]);
@@ -1002,6 +1007,21 @@
       const target=e.target.closest("[data-page]"); if(target){e.preventDefault(); switchPage(target.dataset.page);}
     });
     $("#mobileToggle").addEventListener("click",()=>$("#navLinks").classList.toggle("open"));
+    document.addEventListener("click", e => {
+      const toggle = e.target.closest(".pwd-toggle");
+      if(!toggle) return;
+      e.preventDefault();
+      const wrapper = toggle.closest(".pwd-wrapper");
+      const input = wrapper ? wrapper.querySelector('input[type="password"], input[type="text"]') : null;
+      if(!input) return;
+      const reveal = input.type === "password";
+      input.type = reveal ? "text" : "password";
+      toggle.setAttribute("aria-label", reveal ? "Masquer le mot de passe" : "Afficher le mot de passe");
+      toggle.setAttribute("title", reveal ? "Masquer le mot de passe" : "Afficher le mot de passe");
+      toggle.innerHTML = reveal
+        ? `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l18 18"></path><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"></path><path d="M9.9 4.2A10.8 10.8 0 0 1 12 4c7 0 11 8 11 8a18.2 18.2 0 0 1-3 4.2"></path><path d="M6.2 6.2C3.5 8 1 12 1 12s4 8 11 8a10.8 10.8 0 0 0 5.8-1.8"></path></svg>`
+        : `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+    });
     function renderCounts(){const count=state.cart.reduce((s,i)=>s+Number(i.qty||1),0);$("#cartCount").textContent=count;renderNav();}
 
     function initPhoneCountries(){const opts=PHONE_COUNTRIES.map(c=>`<option value="${escapeHtml(c.dial)}" ${c.dial==="+269"?"selected":""}>${escapeHtml(c.name)} ${escapeHtml(c.dial)}</option>`).join("");$$("select.phone-country").forEach(sel=>{sel.innerHTML=opts;});}
@@ -1762,64 +1782,183 @@
       }catch(e){if(!silent)list.innerHTML="Erreur : "+escapeHtml(e.message);}
     }
 
+    function formatClientRegistrationDate(value) {
+        const raw = String(value || "").trim();
+        const french = raw.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})(?:[ T](\d{1,2}):(\d{2}))?/);
+        if(french) return {date:`${french[1].padStart(2,"0")}/${french[2].padStart(2,"0")}/${french[3]}`, time:`${String(french[4] || "00").padStart(2,"0")}:${french[5] || "00"}`};
+        const parsed = new Date(raw);
+        if(!Number.isNaN(parsed.getTime())) {
+            return {
+                date:new Intl.DateTimeFormat("fr-FR",{day:"2-digit",month:"2-digit",year:"numeric"}).format(parsed),
+                time:new Intl.DateTimeFormat("fr-FR",{hour:"2-digit",minute:"2-digit",hour12:false}).format(parsed)
+            };
+        }
+        return {date:raw || "—", time:""};
+    }
+
     async function renderAdminClients(panel) {
         panel.innerHTML=`<div class="glass-card"><h3>Clients inscrits</h3><div class="admin-list" id="adminClientList">Chargement...</div></div>`;
         try {
             const res = await api({action:"getclients_admin", adminKey:adminKey()});
             if(!res.ok) throw new Error(res.error);
             if(!res.clients.length) { $("#adminClientList").innerHTML = "<p>Aucun client.</p>"; return; }
-            $("#adminClientList").innerHTML = res.clients.map(c => `
+            $("#adminClientList").innerHTML = res.clients.map(c => {
+                const registered = formatClientRegistrationDate(c.date);
+                return `
                 <div class="admin-item" style="grid-template-columns:1fr auto">
                     <div>
                         <strong>${escapeHtml(c.name)}</strong><br>
-                        <small style="color:var(--muted)">Mail: ${escapeHtml(c.email)} • Tel: ${escapeHtml(c.phone)}</small><br>
-                        <small style="color:var(--muted2)">Inscrit le : ${escapeHtml(c.date)}</small>
+                        <small style="color:var(--muted)">Mail: ${escapeHtml(c.email)} • Tel: ${escapeHtml(c.phone)}</small>
+                        <small class="client-registered-at"><span>Inscrit le : ${escapeHtml(registered.date)}</span>${registered.time ? `<span>à ${escapeHtml(registered.time)}</span>` : ""}</small>
                     </div>
                     <button class="btn danger small" onclick="if(confirm('Bannir / Supprimer ce client ?')) { api({action:'deleteclient_admin', adminKey:'${adminKey()}', email:'${escapeHtml(c.email)}'}).then(r => { if(r.ok) {toast('Client supprimé'); renderAdminClients(document.getElementById('adminPanel'));} else toast(r.error) }) }">Supprimer</button>
-                </div>
-            `).join("");
+                </div>`;
+            }).join("");
         } catch(e) { $("#adminClientList").innerHTML="Erreur : "+escapeHtml(e.message); }
     }
 
-    async function renderAdminMessages(panel) {
-        panel.innerHTML=`<div class="glass-card"><h3>Messages & Support</h3><div class="admin-list" id="adminMsgList">Chargement...</div></div>`;
+    function adminMessageSenderLabel(sender) {
+        return sender === "admin" ? "AB PRODUCTS" : (sender === "system" ? "Système" : "Client");
+    }
+    function adminMessageSenderColor(sender) {
+        return sender === "admin" ? "var(--brand2)" : (sender === "system" ? "var(--brand)" : "var(--txt)");
+    }
+    function adminMessageSignature(messages) {
+        return JSON.stringify((messages || []).map(m => [String(m.sender || ""), String(m.text || "")]));
+    }
+    function adminTicketMessagesHtml(messages) {
+        return (messages || []).map(m => `<div style="margin-bottom:5px;color:${adminMessageSenderColor(m.sender)}"><strong>${adminMessageSenderLabel(m.sender)}:</strong> ${escapeHtml(m.text)}</div>`).join("");
+    }
+    function adminTicketActionsHtml(ticket) {
+        const isClosed = ticket.status === "Fermé";
+        const isAccepted = ticket.adminAccepted === true;
+        if(isClosed) return `<button class="btn danger small" style="align-self:flex-end" onclick="deleteTicket('${escapeHtml(ticket.id)}')">Archiver/Supprimer</button>`;
+        return `${!isAccepted ? `<button class="btn primary small" onclick="acceptTicket('${escapeHtml(ticket.id)}')">Prendre la conversation</button>` : ""}
+            <input type="text" id="reply_${escapeHtml(ticket.id)}" class="field compact" style="flex:1;min-width:220px" placeholder="Répondre..." ${!isAccepted ? "disabled" : ""} />
+            <button class="btn primary small" onclick="replyTicket('${escapeHtml(ticket.id)}', '${escapeHtml(ticket.email)}')" ${!isAccepted ? "disabled" : ""}>Envoyer</button>
+            <button class="btn secondary small" onclick="closeTicket('${escapeHtml(ticket.id)}')">Clôturer</button>`;
+    }
+    function adminTicketStatusLabel(ticket) {
+        return ticket.status === "Fermé" ? "Fermé" : (ticket.adminAccepted === true ? "Agent connecté" : "En attente d’un agent");
+    }
+    function createAdminTicketElement(ticket) {
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = `<div class="admin-item" data-ticket-id="${escapeHtml(ticket.id)}" style="display:flex;flex-direction:column;align-items:stretch;gap:10px">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:center">
+                <strong>Client : ${escapeHtml(ticket.email)}</strong>
+                <span class="tag" data-ticket-status></span>
+            </div>
+            <div class="admin-ticket-messages" data-ticket-messages></div>
+            <div class="admin-ticket-actions" data-ticket-actions></div>
+        </div>`;
+        return wrapper.firstElementChild;
+    }
+    function patchAdminMessages(tickets) {
+        const list = $("#adminMsgList");
+        if(!list) return;
+        if(!tickets.length) {
+            if(list.dataset.empty !== "1") list.innerHTML = "<p>Aucun ticket.</p>";
+            list.dataset.empty = "1";
+            return;
+        }
+        if(list.dataset.empty === "1") list.innerHTML = "";
+        list.dataset.empty = "0";
+        const wantedIds = new Set(tickets.map(t => String(t.id)));
+        list.querySelectorAll("[data-ticket-id]").forEach(node => {
+            if(!wantedIds.has(String(node.dataset.ticketId))) node.remove();
+        });
+        tickets.forEach(ticket => {
+            const id = String(ticket.id);
+            let item = [...list.querySelectorAll("[data-ticket-id]")].find(node => String(node.dataset.ticketId) === id);
+            if(!item) item = createAdminTicketElement(ticket);
+
+            const status = item.querySelector("[data-ticket-status]");
+            const statusLabel = adminTicketStatusLabel(ticket);
+            if(status && status.textContent !== statusLabel) status.textContent = statusLabel;
+
+            const stream = item.querySelector("[data-ticket-messages]");
+            const messages = ticket.messages || [];
+            const signature = adminMessageSignature(messages);
+            if(stream && stream.dataset.signature !== signature) {
+                const keepBottom = stream.scrollHeight - stream.scrollTop - stream.clientHeight < 36;
+                stream.innerHTML = adminTicketMessagesHtml(messages);
+                stream.dataset.signature = signature;
+                stream._abpMessages = messages.slice();
+                if(keepBottom || !stream.dataset.initialized) stream.scrollTop = stream.scrollHeight;
+                stream.dataset.initialized = "1";
+            }
+
+            const actions = item.querySelector("[data-ticket-actions]");
+            const actionState = `${ticket.status}|${ticket.adminAccepted === true}`;
+            if(actions && actions.dataset.state !== actionState) {
+                actions.innerHTML = adminTicketActionsHtml(ticket);
+                actions.dataset.state = actionState;
+            }
+            const expectedNode = list.children[tickets.indexOf(ticket)] || null;
+            if(expectedNode !== item) list.insertBefore(item, expectedNode);
+        });
+    }
+    function appendAdminMessageLocally(ticketId, text) {
+        const item = [...document.querySelectorAll("[data-ticket-id]")].find(node => String(node.dataset.ticketId) === String(ticketId));
+        const stream = item ? item.querySelector("[data-ticket-messages]") : null;
+        if(!stream) return;
+        const messages = Array.isArray(stream._abpMessages) ? stream._abpMessages.slice() : [];
+        messages.push({sender:"admin", text:String(text)});
+        stream._abpMessages = messages;
+        stream.dataset.signature = adminMessageSignature(messages);
+        stream.insertAdjacentHTML("beforeend", `<div style="margin-bottom:5px;color:var(--brand2)"><strong>AB PRODUCTS:</strong> ${escapeHtml(text)}</div>`);
+        stream.scrollTop = stream.scrollHeight;
+    }
+    async function renderAdminMessages(panel, silent=false) {
+        if(!silent || !$("#adminMsgList")) panel.innerHTML=`<div class="glass-card"><h3>Messages & Support</h3><div class="admin-list" id="adminMsgList">Chargement...</div></div>`;
         try {
             const res = await api({action:"getmessages_admin", adminKey:adminKey()});
             if(!res.ok) throw new Error(res.error);
-            if(!res.tickets.length) { $("#adminMsgList").innerHTML = "<p>Aucun ticket ouvert.</p>"; return; }
-            $("#adminMsgList").innerHTML = res.tickets.map(t => {
-                const msgs = t.messages || [];
-                const isClosed = t.status === 'Fermé';
-                const isAccepted = t.adminAccepted === true;
-                const statusLabel = isClosed ? 'Fermé' : (isAccepted ? 'Agent connecté' : 'En attente d’un agent');
-                return `
-                <div class="admin-item" style="display:flex; flex-direction:column; align-items:stretch; gap:10px">
-                    <div style="display:flex; justify-content:space-between;gap:12px;align-items:center">
-                        <strong>Client : ${escapeHtml(t.email)}</strong>
-                        <span class="tag">${escapeHtml(statusLabel)}</span>
-                    </div>
-                    <div style="background:var(--card2); padding:10px; border-radius:8px; max-height:180px; overflow-y:auto; font-size:0.85rem">
-                        ${msgs.map(m => {
-                            const senderLabel = m.sender === 'admin' ? 'AB PRODUCTS' : (m.sender === 'system' ? 'Système' : 'Client');
-                            const senderColor = m.sender === 'admin' ? 'var(--brand2)' : (m.sender === 'system' ? 'var(--brand)' : 'var(--txt)');
-                            return `<div style="margin-bottom:5px; color:${senderColor}"><strong>${senderLabel}:</strong> ${escapeHtml(m.text)}</div>`;
-                        }).join("")}
-                    </div>
-                    ${!isClosed ? `
-                    <div style="display:flex; gap:10px; flex-wrap:wrap">
-                        ${!isAccepted ? `<button class="btn primary small" onclick="acceptTicket('${t.id}')">Prendre la conversation</button>` : ''}
-                        <input type="text" id="reply_${t.id}" class="field compact" style="flex:1;min-width:220px" placeholder="Répondre..." ${!isAccepted ? 'disabled' : ''} />
-                        <button class="btn primary small" onclick="replyTicket('${t.id}', '${t.email}')" ${!isAccepted ? 'disabled' : ''}>Envoyer</button>
-                        <button class="btn secondary small" onclick="closeTicket('${t.id}')">Clôturer</button>
-                    </div>` : `<button class="btn danger small" style="align-self:flex-end" onclick="deleteTicket('${t.id}')">Archiver/Supprimer</button>`}
-                </div>`;
-            }).join("");
-        } catch(e) { $("#adminMsgList").innerHTML="Erreur : "+escapeHtml(e.message); }
+            patchAdminMessages(res.tickets || []);
+        } catch(e) {
+            if(!silent && $("#adminMsgList")) $("#adminMsgList").innerHTML="Erreur : "+escapeHtml(e.message);
+        }
     }
-    window.acceptTicket = async (id) => { try { const r = await api({action:"acceptticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Conversation prise en charge"); renderAdminMessages(document.getElementById("adminPanel"));} else toast(r.error || "Erreur"); } catch(e){toast("Erreur");} };
-    window.replyTicket = async (id, email) => { const input = $("#reply_"+id); const text = input ? input.value.trim() : ""; if(!text)return; try { const r = await api({action:"sendmessage_admin", adminKey:adminKey(), ticketId:id, email, text}); if(r.ok) {toast("Envoyé"); renderAdminMessages(document.getElementById("adminPanel"));} else toast(r.error || "Erreur"); } catch(e){toast("Erreur");} };
-    window.closeTicket = async (id) => { try { const r = await api({action:"closeticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Ticket clos"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
-    window.deleteTicket = async (id) => { try { const r = await api({action:"deleteticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Ticket supprimé"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
+    window.acceptTicket = async (id) => {
+        try {
+            const r = await api({action:"acceptticket_admin", adminKey:adminKey(), ticketId:id});
+            if(r.ok) { toast("Conversation prise en charge"); await renderAdminMessages(document.getElementById("adminPanel"), true); }
+            else toast(r.error || "Erreur");
+        } catch(e){toast("Erreur");}
+    };
+    window.replyTicket = async (id, email) => {
+        const input = $("#reply_"+CSS.escape(String(id)));
+        const text = input ? input.value.trim() : "";
+        if(!text) return;
+        const sendButton = input?.parentElement?.querySelector('button[onclick^="replyTicket"]');
+        if(sendButton) sendButton.disabled = true;
+        try {
+            const r = await api({action:"sendmessage_admin", adminKey:adminKey(), ticketId:id, email, text});
+            if(r.ok) {
+                input.value = "";
+                appendAdminMessageLocally(id, text);
+                toast("Envoyé");
+            } else toast(r.error || "Erreur");
+        } catch(e){toast("Erreur");}
+        finally { if(sendButton) sendButton.disabled = false; }
+    };
+    window.closeTicket = async (id) => {
+        try {
+            const r = await api({action:"closeticket_admin", adminKey:adminKey(), ticketId:id});
+            if(r.ok) { toast("Ticket clos"); await renderAdminMessages(document.getElementById("adminPanel"), true); }
+            else toast(r.error || "Erreur");
+        } catch(e){toast("Erreur");}
+    };
+    window.deleteTicket = async (id) => {
+        try {
+            const r = await api({action:"deleteticket_admin", adminKey:adminKey(), ticketId:id});
+            if(r.ok) {
+                const item = [...document.querySelectorAll("[data-ticket-id]")].find(node => String(node.dataset.ticketId) === String(id));
+                if(item) item.remove();
+                toast("Ticket supprimé");
+            } else toast(r.error || "Erreur");
+        } catch(e){toast("Erreur");}
+    };
 
     function renderAdminConfig(panel) {
         const minC = state.config.minCart || 25;
@@ -2038,74 +2177,137 @@
         if(status) { status.className = "chat-status"; status.innerHTML = ""; }
     }
 
+    function setClientChatLocked(locked) {
+        clientChatClosed = locked === true;
+        const form = $("#chatForm");
+        if(!form) return;
+        const input = form.elements.msg;
+        const button = form.querySelector('button[type="submit"]');
+        form.classList.toggle("is-locked", clientChatClosed);
+        if(input) {
+            input.disabled = clientChatClosed;
+            input.placeholder = clientChatClosed ? "Conversation clôturée" : "Votre message...";
+        }
+        if(button) button.disabled = clientChatClosed;
+    }
+
+    function resetClientChatForNavigation() {
+        clearInterval(chatInterval);
+        chatInterval = null;
+        clearChatStatus();
+        chatAgentAccepted = false;
+        currentClientTicketId = null;
+        clientChatClosed = false;
+        const box = $("#chatBox");
+        const msgs = $("#chatMsgs");
+        if(box) box.classList.remove("open");
+        if(msgs) { msgs.innerHTML = ""; msgs.dataset.signature = ""; }
+        setClientChatLocked(false);
+    }
+
     function showAgentWaitingMessage() {
-        if(chatAgentAccepted) { clearChatStatus(); return; }
-        chatWaitStartedAt = Date.now();
+        if(chatAgentAccepted || clientChatClosed || !currentClientTicketId) { clearChatStatus(); return; }
+        if(!chatWaitStartedAt) chatWaitStartedAt = Date.now();
         setChatStatus("waiting", `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span>Veuillez patienter jusqu’à 3 minutes, le temps de trouver un agent disponible.</span>`);
         clearTimeout(chatWaitTimer);
+        const remaining = Math.max(0, CHAT_AGENT_WAIT_MS - (Date.now() - chatWaitStartedAt));
         chatWaitTimer = setTimeout(() => {
-            if(chatAgentAccepted || !$("#chatBox").classList.contains("open")) return;
+            if(chatAgentAccepted || clientChatClosed || !$("#chatBox").classList.contains("open")) return;
             setChatStatus("email", `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg><span>Aucun agent n’a encore validé la conversation. Vous pouvez aussi envoyer votre demande à <a href="mailto:contact@ab-transit.fr">contact@ab-transit.fr</a>.</span>`);
-        }, CHAT_AGENT_WAIT_MS);
+        }, remaining);
+    }
+
+    function clientMessageSignature(messages, closed) {
+        return JSON.stringify({closed:closed === true, messages:(messages || []).map(m => [String(m.sender || ""), String(m.text || "")])});
+    }
+
+    function renderClientChatMessages(messages, closed) {
+        const box = $("#chatMsgs");
+        if(!box) return;
+        const signature = clientMessageSignature(messages, closed);
+        if(box.dataset.signature === signature) return;
+        const nearBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 36;
+        let content = "";
+        if(messages.length) {
+            content = messages.map(m => {
+                const type = m.sender === "client" ? "client" : (m.sender === "system" ? "system" : "admin");
+                return `<div class="chat-msg ${type}">${escapeHtml(m.text)}</div>`;
+            }).join("");
+        } else {
+            content = `<p style="color:var(--muted);text-align:center;margin-top:20px;font-size:.9rem">Envoyez-nous un message.</p>`;
+        }
+        if(closed) content += `<p style="color:var(--muted);text-align:center;font-size:.8rem;margin-top:10px">Conversation clôturée. Changez de page ou actualisez le site pour démarrer une nouvelle conversation.</p>`;
+        box.innerHTML = content;
+        box.dataset.signature = signature;
+        if(nearBottom || !box.dataset.initialized) box.scrollTop = box.scrollHeight;
+        box.dataset.initialized = "1";
     }
 
     $("#openChatBtn").addEventListener("click", () => {
         $("#chatBox").classList.add("open");
         $("#openChatBtn").style.display="none";
-        chatAgentAccepted = false;
-        showAgentWaitingMessage();
         loadChat();
         clearInterval(chatInterval);
-        chatInterval = setInterval(loadChat, 5000);
+        chatInterval = setInterval(loadChat, 10000);
     });
     $("#closeChatBtn").addEventListener("click", () => {
         $("#chatBox").classList.remove("open");
         $("#openChatBtn").style.display="grid";
         clearInterval(chatInterval);
+        chatInterval = null;
         clearChatStatus();
     });
-    
+
     async function loadChat() {
         if(!state.user) return;
         try {
-            const r = await api({action:"getchat_client", email:state.user.email});
+            const r = await api({action:"getchat_client", email:state.user.email, ticketId:currentClientTicketId || ""});
             if(r.ok && r.ticket) {
-                const msgs = r.ticket.messages || [];
+                currentClientTicketId = r.ticket.id;
+                const messages = r.ticket.messages || [];
                 chatAgentAccepted = r.ticket.adminAccepted === true;
-                if(chatAgentAccepted) clearChatStatus();
+                const closed = r.ticket.status === "Fermé";
+                setClientChatLocked(closed);
+                renderClientChatMessages(messages, closed);
 
-                if(!msgs.length) {
-                    $("#chatMsgs").innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:20px; font-size:0.9rem">Envoyez-nous un message, nous vous répondrons dès que possible.</p>`;
-                } else {
-                    const newHtml = msgs.map(m => {
-                        const type = m.sender === 'client' ? 'client' : (m.sender === 'system' ? 'system' : 'admin');
-                        return `<div class="chat-msg ${type}">${escapeHtml(m.text)}</div>`;
-                    }).join("");
-                    if($("#chatMsgs").dataset.rendered !== newHtml) {
-                        $("#chatMsgs").innerHTML = newHtml;
-                        $("#chatMsgs").dataset.rendered = newHtml;
-                        $("#chatMsgs").scrollTop = $("#chatMsgs").scrollHeight;
-                    }
-                }
-                if(r.ticket.status === "Fermé" && !$("#chatMsgs").innerHTML.includes("Ticket clôturé")) {
-                    $("#chatMsgs").innerHTML += `<p style="color:var(--muted); text-align:center; font-size:0.8rem; margin-top:10px">Ticket clôturé. Envoyez un message pour en rouvrir un nouveau.</p>`;
-                }
+                if(closed || chatAgentAccepted) clearChatStatus();
+                else if(messages.length && !chatWaitTimer && !chatWaitStartedAt) showAgentWaitingMessage();
             } else {
-                ignoredChatMsgs = 0;
-                $("#chatMsgs").innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:20px; font-size:0.9rem">Envoyez-nous un message.</p>`;
+                currentClientTicketId = null;
+                chatAgentAccepted = false;
+                clearChatStatus();
+                setClientChatLocked(false);
+                renderClientChatMessages([], false);
             }
         } catch(e) {}
     }
+
     $("#chatForm").addEventListener("submit", async e => {
         e.preventDefault();
-        const text = e.target.msg.value.trim();
-        if(!text || !state.user) return;
-        e.target.msg.value = "";
-        $("#chatMsgs").innerHTML += `<div class="chat-msg client">${escapeHtml(text)}</div>`;
-        $("#chatMsgs").scrollTop = $("#chatMsgs").scrollHeight;
+        const input = e.target.elements.msg;
+        const text = input.value.trim();
+        if(!text || !state.user || clientChatClosed) return;
+        const firstMessage = !currentClientTicketId;
+        input.value = "";
+        const messageBox = $("#chatMsgs");
+        if(firstMessage) messageBox.innerHTML = "";
+        messageBox.insertAdjacentHTML("beforeend", `<div class="chat-msg client">${escapeHtml(text)}</div>`);
+        messageBox.scrollTop = messageBox.scrollHeight;
+        messageBox.dataset.signature = "";
         try {
-            const r = await api({action:"sendchat_client", email:state.user.email, text});
-            if(!r.ok) toast(r.error || "Message non envoyé");
+            const r = await api({action:"sendchat_client", email:state.user.email, text, ticketId:currentClientTicketId || ""});
+            if(!r.ok) {
+                if(r.closed) {
+                    setClientChatLocked(true);
+                    await loadChat();
+                }
+                return toast(r.error || "Message non envoyé");
+            }
+            currentClientTicketId = r.ticketId || currentClientTicketId;
+            if(firstMessage) {
+                chatWaitStartedAt = Date.now();
+                showAgentWaitingMessage();
+            }
             await loadChat();
         } catch(err) { toast("Message non envoyé"); }
     });
@@ -2114,6 +2316,7 @@
         if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA' || document.activeElement.tagName === 'SELECT')) return;
         if (currentPage === 'catalogue' || currentPage === 'home') loadCatalog(true, true);
         if (currentPage === 'admin' && adminTab === 'orders') renderAdminOrders(document.getElementById('adminPanel'), false, true);
+        if (currentPage === 'admin' && adminTab === 'messages') renderAdminMessages(document.getElementById('adminPanel'), true);
         if (currentPage === 'compte' && state.user) {
             const activeTab = document.querySelector('.sidebar-link.active');
             if(activeTab && activeTab.dataset.tab.startsWith('orders_')) renderAccountTab(activeTab.dataset.tab, true);
