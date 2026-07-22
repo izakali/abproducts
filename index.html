@@ -289,7 +289,7 @@
     .sidebar-link.active { color:var(--brand2); background:rgba(47,191,139,.08); border-color:rgba(47,191,139,.2); }
     
     .faq-grid{display:grid;grid-template-columns:1fr;gap:1rem}.faq-item{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:1.2rem;box-shadow:0 1px 2px rgba(0,0,0,.15)}.faq-item h3{font-weight:700; font-size:1.05rem; margin-bottom:0.8rem}.faq-item p{color:var(--muted)}
-    footer{padding:60px 0 40px;color:rgba(238,243,250,.75);background:#080d16;border-top:3px solid transparent;border-image:var(--flag) 1;margin-top:60px}.footer-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr 1.3fr;gap:2.4rem}.footer-col h4{text-transform:uppercase;letter-spacing:.13em;font-size:.8rem;color:rgba(238,243,250,.5);margin-bottom:1.1rem;font-weight:800}.footer-col ul{list-style:none}.footer-col li{margin-bottom:.7rem}.footer-col a{color:rgba(238,243,250,.78);transition:.2s ease;cursor:pointer}.footer-col a:hover{color:#fff}.newsletter-box{display:flex;margin-top:1.1rem;border:1px solid rgba(238,243,250,.2);border-radius:11px;overflow:hidden;background:rgba(255,255,255,.06)}.newsletter-box input{flex:1;background:transparent;border:0;outline:0;color:#fff;padding:.85rem 1rem}.newsletter-box input::placeholder{color:rgba(238,243,250,.45)}.newsletter-box button{padding:.85rem 1.15rem;font-weight:800;background:var(--brand2);color:#04160e}.footer-bottom{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid rgba(238,243,250,.14);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:rgba(238,243,250,.5)}
+    footer{padding:60px 0 40px;color:rgba(238,243,250,.75);background:#080d16;border-top:3px solid transparent;border-image:var(--flag) 1;margin-top:60px}.footer-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr 1.3fr;gap:2.4rem}.footer-col h4{text-transform:uppercase;letter-spacing:.13em;font-size:.8rem;color:rgba(238,243,250,.5);margin-bottom:1.1rem;font-weight:800}.footer-col ul{list-style:none}.footer-col li{margin-bottom:.7rem}.footer-col a{color:rgba(238,243,250,.78);transition:.2s ease;cursor:pointer}.footer-col a:hover{color:#fff}.newsletter-box{display:flex;margin-top:1.1rem;border:1px solid rgba(238,243,250,.2);border-radius:11px;overflow:hidden;background:rgba(255,255,255,.06)}.newsletter-box input{flex:1;background:transparent;border:0;outline:0;color:#fff;padding:.85rem 1rem}.newsletter-box input::placeholder{color:rgba(238,243,250,.45)}.newsletter-box button{padding:.85rem 1.15rem;font-weight:800;background:var(--brand2);color:#04160e}.footer-bottom{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid rgba(238,243,250,.14);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:rgba(238,243,250,.5)}.footer-socials{display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap}.footer-social-link{width:39px;height:39px;border-radius:11px;display:grid;place-items:center;border:1px solid rgba(238,243,250,.16);background:rgba(255,255,255,.04);color:rgba(238,243,250,.76);transition:transform .2s ease,border-color .2s ease,color .2s ease,background .2s ease}.footer-social-link:hover{transform:translateY(-2px);border-color:var(--brand2);background:rgba(47,191,139,.1);color:var(--brand2)}.footer-social-link svg{width:19px;height:19px;display:block}
     .toast-wrap{position:fixed;right:18px;bottom:18px;z-index:100;display:grid;gap:.7rem}.toast{min-width:min(360px,calc(100vw - 36px));border:1px solid rgba(255,255,255,.08);background:#182b47;color:#fff;border-radius:13px;padding:1rem 1.05rem;box-shadow:0 18px 45px rgba(0,0,0,.5);animation:toastIn .28s ease both;font-size:.94rem}@keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
     
     .modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:20px;background:rgba(10,20,35,.7);backdrop-filter:blur(6px)}.modal.active{display:grid}.modal-card{width:min(1100px,100%);max-height:92vh;overflow:auto;border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:2rem;box-shadow:0 30px 90px rgba(0,0,0,.5)}.modal-head{display:flex;justify-content:space-between;align-items:start;gap:1rem;margin-bottom:1.5rem}
@@ -349,10 +349,13 @@
     .chat-box { position:fixed; bottom:94px; right:24px; width:380px; height:50vh; min-height:400px; max-width:calc(100vw - 48px); background:var(--panel); border:1px solid var(--line); border-radius:18px; display:none; flex-direction:column; box-shadow:0 24px 60px rgba(0,0,0,.6); z-index:80; overflow:hidden; }
     .chat-box.open { display:flex; animation:softRise .2s ease both; }
     .chat-header { background:var(--panel-strong); padding:1rem; border-bottom:1px solid var(--line); font-weight:700; display:flex; justify-content:space-between; align-items:center; }
+    .chat-status{display:none;align-items:flex-start;gap:.65rem;margin:.75rem 1rem 0;padding:.72rem .8rem;border-radius:11px;border:1px solid var(--line);font-size:.82rem;line-height:1.4;background:var(--card2);color:var(--muted)}
+    .chat-status.show{display:flex}.chat-status.waiting{border-color:rgba(230,179,77,.35);background:rgba(230,179,77,.07)}.chat-status.email{border-color:rgba(125,182,224,.35);background:rgba(125,182,224,.07)}.chat-status svg{width:18px;height:18px;flex:0 0 auto;margin-top:1px}.chat-status a{color:var(--brand);font-weight:800;text-decoration:underline;text-underline-offset:2px}
     .chat-msgs { flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.8rem; }
     .chat-msg { padding:.7rem 1rem; border-radius:12px; font-size:.9rem; max-width:85%; line-height:1.4; }
     .chat-msg.admin { background:var(--card2); border:1px solid var(--line); align-self:flex-start; color:var(--txt); }
     .chat-msg.client { background:var(--brand2); color:#04160e; align-self:flex-end; font-weight:500; }
+    .chat-msg.system { align-self:center;max-width:94%;background:rgba(125,182,224,.08);border:1px solid rgba(125,182,224,.22);color:var(--muted);text-align:center;font-size:.8rem; }
     .chat-input { display:flex; border-top:1px solid var(--line); padding:.8rem; gap:.5rem; background:var(--card); align-items:center; }
     .chat-input input { flex:1; min-width:0; background:var(--card2); border:1px solid var(--line); border-radius:9px; padding:.6rem .8rem; outline:0; color:var(--txt); font-size:.9rem; }
     .chat-input button { background:var(--brand2); color:#04160e; border:0; border-radius:9px; padding:0 1.2rem; height:100%; min-height:42px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0; width:auto; }
@@ -400,7 +403,7 @@
       .trust-card { min-width:auto; padding:0.5rem; flex:1; text-align:center; }
       .trust-card strong { font-size:0.8rem; }
       .trust-card span { font-size:0.65rem; }
-      .steps,.grid,.toolbar,.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.cart-item{grid-template-columns:1fr;text-align:center}.cart-icon{margin:auto}.qty{justify-content:center}.section-head{display:block; text-align:center; margin-bottom:2rem}.section-head p {margin:auto}.config-row,.shipping-row{grid-template-columns:1fr}.tracking-grid{grid-template-columns:1fr}.footer-bottom{display:block}.summary{position:static}.btn{width:100%}
+      .steps,.grid,.toolbar,.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.cart-item{grid-template-columns:1fr;text-align:center}.cart-icon{margin:auto}.qty{justify-content:center}.section-head{display:block; text-align:center; margin-bottom:2rem}.section-head p {margin:auto}.config-row,.shipping-row{grid-template-columns:1fr}.tracking-grid{grid-template-columns:1fr}.footer-bottom{display:flex;flex-direction:column;text-align:center}.footer-socials{order:2}.summary{position:static}.btn{width:100%}
       .recom-thumbs{flex-direction:row; overflow-x:auto}
     }
   </style>
@@ -701,7 +704,17 @@
       <div class="faq-item"><h3>Comment payer ?</h3><p>Vous pouvez régler directement sur le site si vous êtes en France ou bien régler en espèces directement à la boutique AB Motors aux Comores.</p></div>
     </div></div></section>
 
-    <footer><div class="shell"><div class="footer-grid"><div class="footer-col"><h4>Pages</h4><ul><li><a data-page="home">Accueil</a></li><li><a data-page="catalogue">Catalogue</a></li><li><a data-page="commande">Commande libre</a></li><li><a data-page="panier">Panier</a></li><li><a data-page="suivi">Suivi</a></li></ul></div><div class="footer-col"><h4>Accès</h4><ul><li><a data-page="login">Connexion client / pro</a></li><li><a data-page="faq">Infos</a></li></ul></div><div class="footer-col"><h4>AB PRODUCTS</h4><p>Service de commande en ligne : catalogue, commandes personnalisées, import de liens, suivi et estimation des frais vers les Comores.</p></div><div class="footer-col"><h4>Newsletter</h4><p>Recevez les nouveautés et arrivages.</p><form class="newsletter-box" id="newsletterForm"><input type="email" required placeholder="Email" name="email" /><button type="submit">S'abonner</button></form></div></div><div class="footer-bottom"><span>© 2026 AB PRODUCTS</span><span>France → Comores</span></div></div></footer>
+    <footer><div class="shell"><div class="footer-grid"><div class="footer-col"><h4>Pages</h4><ul><li><a data-page="home">Accueil</a></li><li><a data-page="catalogue">Catalogue</a></li><li><a data-page="commande">Commande libre</a></li><li><a data-page="panier">Panier</a></li><li><a data-page="suivi">Suivi</a></li></ul></div><div class="footer-col"><h4>Accès</h4><ul><li><a data-page="login">Connexion client / pro</a></li><li><a data-page="faq">Infos</a></li></ul></div><div class="footer-col"><h4>AB PRODUCTS</h4><p>Service de commande en ligne : catalogue, commandes personnalisées, import de liens, suivi et estimation des frais vers les Comores.</p></div><div class="footer-col"><h4>Newsletter</h4><p>Recevez les nouveautés et arrivages.</p><form class="newsletter-box" id="newsletterForm"><input type="email" required placeholder="Email" name="email" /><button type="submit">S'abonner</button></form></div></div><div class="footer-bottom"><span>© 2026 AB PRODUCTS</span><div class="footer-socials" aria-label="Réseaux sociaux AB PRODUCTS">
+      <!-- LIEN TIKTOK : remplacer uniquement le # dans href="#" quand la page TikTok sera créée -->
+      <a class="footer-social-link" href="#" onclick="return false;" aria-label="TikTok" title="TikTok bientôt disponible"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 3c.3 2.1 1.5 3.4 3.5 3.6v3.1c-1.3 0-2.5-.4-3.5-1.1v6.1a5.7 5.7 0 1 1-4.9-5.6v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.1Z"/></svg></a>
+      <!-- LIEN INSTAGRAM : remplacer uniquement le # dans href="#" quand la page Instagram sera créée -->
+      <a class="footer-social-link" href="#" onclick="return false;" aria-label="Instagram" title="Instagram bientôt disponible"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <!-- LIEN FACEBOOK : remplacer uniquement le # dans href="#" quand la page Facebook sera créée -->
+      <a class="footer-social-link" href="#" onclick="return false;" aria-label="Facebook" title="Facebook bientôt disponible"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.7 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5H17V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.5V13h2.8v8h3.4Z"/></svg></a>
+      <!-- LIEN WHATSAPP : remplacer uniquement le # dans href="#" quand le numéro professionnel sera prêt -->
+      <a class="footer-social-link" href="#" onclick="return false;" aria-label="WhatsApp" title="WhatsApp bientôt disponible"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.4-8.4Zm-8.4 18.2c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.5 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.5.3-.5.9-1.7.1-.2 0-.4 0-.6l-.9-2.1c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.9 5.2 2.2.9 3.1 1 4.2.8.7-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3Z"/></svg></a>
+      <a class="footer-social-link" href="mailto:contact@ab-transit.fr" aria-label="E-mail" title="contact@ab-transit.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div><span>France → Comores</span></div></div></footer>
   </main>
 
   <div class="toast-wrap" id="toastWrap"></div>
@@ -710,6 +723,7 @@
   <button class="chat-btn" id="openChatBtn"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></button>
   <div class="chat-box" id="chatBox">
     <div class="chat-header">Service Client <button class="icon-btn" id="closeChatBtn" style="width:28px;height:28px;font-size:.8rem;background:transparent;border:0;color:var(--muted)">✕</button></div>
+    <div class="chat-status" id="chatStatus" aria-live="polite"></div>
     <div class="chat-msgs" id="chatMsgs"></div>
     <form class="chat-input" id="chatForm">
       <input type="text" name="msg" required placeholder="Votre message..." autocomplete="off">
@@ -768,6 +782,7 @@
     const MASSIVE_CATEGORIES = ["Smartphones & Téléphones", "Accessoires Téléphonie", "Ordinateurs Portables", "Ordinateurs de Bureau", "Tablettes", "Composants PC", "Périphériques PC", "Jeux Vidéo", "Consoles de jeux", "Accessoires Gaming", "TV & Image", "Audio & Casques", "Enceintes Bluetooth", "Appareils Photo", "Objets Connectés", "Mode Femme", "Mode Homme", "Mode Enfant", "Bébé", "Chaussures Femme", "Chaussures Homme", "Sneakers", "Sacs à main", "Sacs à dos", "Bagagerie", "Bijoux", "Montres", "Lunettes de soleil", "Accessoires Mode", "Maquillage", "Parfums", "Soins du Visage", "Soins du Corps", "Soins des Cheveux", "Hygiène", "Appareils Beauté", "Meubles", "Décoration", "Linge de maison", "Literie", "Luminaire", "Cuisine & Arts de la table", "Électroménager", "Gros Électroménager", "Petit Électroménager", "Chauffage & Climatisation", "Bricolage", "Outillage", "Jardin & Extérieur", "Piscines & Spas", "Animalerie", "Chiens", "Chats", "Sport & Fitness", "Vélos & Trottinettes", "Camping & Randonnée", "Auto & Moto", "Pièces Auto", "Accessoires Auto", "Pneus", "Équipement Moto", "Jouets", "Jeux de société", "Plein air enfant", "Livres", "Papeterie", "Fournitures de bureau", "Divers"];
 
     let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let adminImages = []; let chatInterval = null;
+    let chatWaitTimer = null; let chatWaitStartedAt = 0; let chatAgentAccepted = false;
     let currentAdminOrders = []; let ignoredChatMsgs = -1;
     let lastCatalogStr = ""; let lastOrdersStr = ""; let lastClientOrdersStr = "";
 
@@ -807,10 +822,84 @@
       if(deliveryText) deliveryText.textContent = `Frais fixes de livraison de ${formatEUR(delivery)} ajoutés au panier.`;
     }
 
+    function normalizeColorName(value) {
+        return String(value || "")
+          .trim()
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[’']/g, " ")
+          .replace(/[-_/]+/g, " ")
+          .replace(/\bclaire\b/g, "clair")
+          .replace(/\bfoncee?\b/g, "fonce")
+          .replace(/\bbordeau\b/g, "bordeaux")
+          .replace(/\s+/g, " ");
+    }
+
+    function deterministicColorFallback(name) {
+        let hash = 0;
+        for(let i = 0; i < name.length; i++) hash = ((hash << 5) - hash + name.charCodeAt(i)) | 0;
+        const hue = Math.abs(hash) % 360;
+        return `hsl(${hue} 68% 52%)`;
+    }
+
     function mapColorToHex(cName) {
-        const map = { "noir":"#1a1a1a", "minuit":"#1e293b", "blanc":"#f8fafc", "stellaire":"#f1f5f9", "bleu":"#3b82f6", "pacifique":"#1e3a8a", "rouge":"#ef4444", "vert":"#22c55e", "jaune":"#eab308", "rose":"#ec4899", "violet":"#a855f7", "gris":"#6b7280", "argent":"#e2e8f0", "or":"#fef08a", "marron":"#78350f", "orange":"#f97316" };
-        for(let key in map) if(cName.toLowerCase().includes(key)) return map[key];
-        return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+        const original = String(cName || "").trim();
+        if(!original) return "#94a3b8";
+
+        // Prend automatiquement en charge toutes les couleurs CSS valides :
+        // cyan, lightblue, maroon, rebeccapurple, #RRGGBB, rgb(), hsl(), etc.
+        if(window.CSS && CSS.supports && CSS.supports("color", original)) return original;
+
+        const name = normalizeColorName(original);
+        const aliases = {
+          "noir":"#111111", "noir charbon":"#242424", "noir mat":"#1c1c1c", "noir ebene":"#1b1b1b", "anthracite":"#343a40",
+          "blanc":"#ffffff", "blanc casse":"#f5f1e8", "blanc neige":"#fffafa", "ivoire":"#fffff0", "creme":"#fffdd0", "ecru":"#f5f0dc",
+          "gris":"#808080", "gris clair":"#d3d3d3", "gris fonce":"#4b5563", "gris souris":"#9e9e9e", "gris perle":"#c7c9c7", "gris acier":"#71797e", "argent":"#c0c0c0",
+          "bleu":"#2563eb", "bleu clair":"#add8e6", "bleu ciel":"#87ceeb", "bleu pastel":"#aec6cf", "bleu glacier":"#78cce2", "bleu azur":"#007fff", "azur":"#007fff",
+          "bleu marine":"#000080", "bleu nuit":"#191970", "bleu roi":"#4169e1", "bleu cobalt":"#0047ab", "bleu electrique":"#0066ff", "bleu denim":"#1560bd",
+          "bleu canard":"#006d77", "bleu petrole":"#005f73", "bleu turquoise":"#40e0d0", "turquoise":"#40e0d0", "cyan":"#00ffff", "aqua":"#00ffff",
+          "indigo":"#4b0082", "bleu indigo":"#4b0082", "pacifique":"#1e3a8a", "minuit":"#191970",
+          "rouge":"#ef4444", "rouge clair":"#ff6b6b", "rouge fonce":"#8b0000", "rouge bordeaux":"#800020", "bordeaux":"#800020", "lie de vin":"#722f37",
+          "rouge cerise":"#de3163", "cerise":"#de3163", "rouge grenat":"#6f1d1b", "grenat":"#6f1d1b", "rouge carmin":"#960018", "carmin":"#960018",
+          "rouge ecarlate":"#ff2400", "ecarlate":"#ff2400", "rouge framboise":"#c72c48", "framboise":"#c72c48", "corail":"#ff7f50", "saumon":"#fa8072",
+          "vert":"#22c55e", "vert clair":"#90ee90", "vert fonce":"#006400", "vert pastel":"#77dd77", "vert menthe":"#98ff98", "menthe":"#98ff98",
+          "vert emeraude":"#50c878", "emeraude":"#50c878", "vert sapin":"#095228", "vert foret":"#228b22", "vert bouteille":"#006a4e", "vert anis":"#9acd32",
+          "vert citron":"#bfff00", "citron vert":"#bfff00", "vert olive":"#808000", "olive":"#808000", "kaki":"#78866b", "vert kaki":"#78866b", "vert d eau":"#b0f2b6",
+          "jaune":"#facc15", "jaune clair":"#fff59d", "jaune citron":"#fff44f", "citron":"#fff44f", "jaune moutarde":"#ffdb58", "moutarde":"#ffdb58",
+          "jaune pastel":"#fdfd96", "jaune dore":"#ffd700", "or":"#ffd700", "dore":"#ffd700", "champagne":"#f7e7ce",
+          "orange":"#f97316", "orange clair":"#ffb347", "orange fonce":"#c2410c", "orange brule":"#cc5500", "mandarine":"#f28500", "abricot":"#fbceb1", "peche":"#ffcba4",
+          "rose":"#ec4899", "rose clair":"#ffb6c1", "rose pale":"#fadadd", "rose pastel":"#ffd1dc", "rose poudre":"#e8b4b8", "rose bonbon":"#f4c2c2",
+          "rose fuchsia":"#ff00ff", "fuchsia":"#ff00ff", "magenta":"#ff00ff", "vieux rose":"#c08081", "rose saumon":"#ff91a4",
+          "violet":"#8b5cf6", "violet clair":"#c4a1ff", "violet fonce":"#4c1d95", "mauve":"#e0b0ff", "lilas":"#c8a2c8", "lavande":"#e6e6fa",
+          "prune":"#8e4585", "aubergine":"#614051", "pourpre":"#800080", "amethyste":"#9966cc",
+          "marron":"#8b4513", "marron clair":"#a0522d", "marron fonce":"#4e2a1e", "chocolat":"#7b3f00", "cafe":"#6f4e37", "noisette":"#955628",
+          "caramel":"#c68e17", "camel":"#c19a6b", "taupe":"#8b8589", "beige":"#f5f5dc", "sable":"#c2b280", "terracotta":"#e2725b", "terre cuite":"#e2725b",
+          "bronze":"#cd7f32", "cuivre":"#b87333", "or rose":"#b76e79", "transparent":"transparent", "stellaire":"#f1f5f9"
+        };
+
+        if(aliases[name]) return aliases[name];
+
+        // Recherche d'abord les expressions les plus précises et les plus longues.
+        const matchingAlias = Object.keys(aliases)
+          .sort((a, b) => b.length - a.length)
+          .find(key => name.includes(key));
+        if(matchingAlias) return aliases[matchingAlias];
+
+        const baseColors = {
+          "bleu":[217, 91, 60], "rouge":[0, 84, 60], "vert":[142, 71, 45], "jaune":[48, 96, 53],
+          "orange":[25, 95, 53], "rose":[330, 81, 60], "violet":[263, 70, 58], "marron":[25, 55, 35],
+          "gris":[215, 12, 50], "beige":[60, 56, 85], "turquoise":[174, 72, 48]
+        };
+        const baseName = Object.keys(baseColors).find(key => name.includes(key));
+        if(baseName) {
+          const [h, s, defaultL] = baseColors[baseName];
+          const lightness = name.includes("clair") || name.includes("pale") || name.includes("pastel") ? 78 : name.includes("fonce") || name.includes("sombre") ? 28 : defaultL;
+          return `hsl(${h} ${s}% ${lightness}%)`;
+        }
+
+        // Une saisie inconnue conserve toujours la même couleur au lieu de changer aléatoirement.
+        return deterministicColorFallback(name);
     }
 
     function checkCookies() { if (!localStorage.getItem("abp_cookies")) $("#cookieBanner").style.display = "flex"; }
@@ -1700,26 +1789,35 @@
             if(!res.tickets.length) { $("#adminMsgList").innerHTML = "<p>Aucun ticket ouvert.</p>"; return; }
             $("#adminMsgList").innerHTML = res.tickets.map(t => {
                 const msgs = t.messages || [];
+                const isClosed = t.status === 'Fermé';
+                const isAccepted = t.adminAccepted === true;
+                const statusLabel = isClosed ? 'Fermé' : (isAccepted ? 'Agent connecté' : 'En attente d’un agent');
                 return `
                 <div class="admin-item" style="display:flex; flex-direction:column; align-items:stretch; gap:10px">
-                    <div style="display:flex; justify-content:space-between">
+                    <div style="display:flex; justify-content:space-between;gap:12px;align-items:center">
                         <strong>Client : ${escapeHtml(t.email)}</strong>
-                        <span class="tag">${escapeHtml(t.status)}</span>
+                        <span class="tag">${escapeHtml(statusLabel)}</span>
                     </div>
-                    <div style="background:var(--card2); padding:10px; border-radius:8px; max-height:150px; overflow-y:auto; font-size:0.85rem">
-                        ${msgs.map(m => `<div style="margin-bottom:5px; color:${m.sender==='admin'?'var(--brand2)':'var(--txt)'}"><strong>${m.sender==='admin'?'AB PRODUCTS':'Client'}:</strong> ${escapeHtml(m.text)}</div>`).join("")}
+                    <div style="background:var(--card2); padding:10px; border-radius:8px; max-height:180px; overflow-y:auto; font-size:0.85rem">
+                        ${msgs.map(m => {
+                            const senderLabel = m.sender === 'admin' ? 'AB PRODUCTS' : (m.sender === 'system' ? 'Système' : 'Client');
+                            const senderColor = m.sender === 'admin' ? 'var(--brand2)' : (m.sender === 'system' ? 'var(--brand)' : 'var(--txt)');
+                            return `<div style="margin-bottom:5px; color:${senderColor}"><strong>${senderLabel}:</strong> ${escapeHtml(m.text)}</div>`;
+                        }).join("")}
                     </div>
-                    ${t.status === 'Ouvert' ? `
-                    <div style="display:flex; gap:10px">
-                        <input type="text" id="reply_${t.id}" class="field compact" style="flex:1" placeholder="Répondre..." />
-                        <button class="btn primary small" onclick="replyTicket('${t.id}', '${t.email}')">Envoyer</button>
+                    ${!isClosed ? `
+                    <div style="display:flex; gap:10px; flex-wrap:wrap">
+                        ${!isAccepted ? `<button class="btn primary small" onclick="acceptTicket('${t.id}')">Prendre la conversation</button>` : ''}
+                        <input type="text" id="reply_${t.id}" class="field compact" style="flex:1;min-width:220px" placeholder="Répondre..." ${!isAccepted ? 'disabled' : ''} />
+                        <button class="btn primary small" onclick="replyTicket('${t.id}', '${t.email}')" ${!isAccepted ? 'disabled' : ''}>Envoyer</button>
                         <button class="btn secondary small" onclick="closeTicket('${t.id}')">Clôturer</button>
                     </div>` : `<button class="btn danger small" style="align-self:flex-end" onclick="deleteTicket('${t.id}')">Archiver/Supprimer</button>`}
                 </div>`;
             }).join("");
         } catch(e) { $("#adminMsgList").innerHTML="Erreur : "+escapeHtml(e.message); }
     }
-    window.replyTicket = async (id, email) => { const text = $("#reply_"+id).value.trim(); if(!text)return; try { const r = await api({action:"sendmessage_admin", adminKey:adminKey(), ticketId:id, email, text}); if(r.ok) {toast("Envoyé"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
+    window.acceptTicket = async (id) => { try { const r = await api({action:"acceptticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Conversation prise en charge"); renderAdminMessages(document.getElementById("adminPanel"));} else toast(r.error || "Erreur"); } catch(e){toast("Erreur");} };
+    window.replyTicket = async (id, email) => { const input = $("#reply_"+id); const text = input ? input.value.trim() : ""; if(!text)return; try { const r = await api({action:"sendmessage_admin", adminKey:adminKey(), ticketId:id, email, text}); if(r.ok) {toast("Envoyé"); renderAdminMessages(document.getElementById("adminPanel"));} else toast(r.error || "Erreur"); } catch(e){toast("Erreur");} };
     window.closeTicket = async (id) => { try { const r = await api({action:"closeticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Ticket clos"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
     window.deleteTicket = async (id) => { try { const r = await api({action:"deleteticket_admin", adminKey:adminKey(), ticketId:id}); if(r.ok) {toast("Ticket supprimé"); renderAdminMessages(document.getElementById("adminPanel"));} } catch(e){toast("Erreur");} };
 
@@ -1923,12 +2021,48 @@
       } catch(e) {}
     });
 
+    const CHAT_AGENT_WAIT_MS = 3 * 60 * 1000;
+
+    function setChatStatus(type, content) {
+        const status = $("#chatStatus");
+        if(!status) return;
+        status.className = `chat-status show ${type}`;
+        status.innerHTML = content;
+    }
+
+    function clearChatStatus() {
+        clearTimeout(chatWaitTimer);
+        chatWaitTimer = null;
+        chatWaitStartedAt = 0;
+        const status = $("#chatStatus");
+        if(status) { status.className = "chat-status"; status.innerHTML = ""; }
+    }
+
+    function showAgentWaitingMessage() {
+        if(chatAgentAccepted) { clearChatStatus(); return; }
+        chatWaitStartedAt = Date.now();
+        setChatStatus("waiting", `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span>Veuillez patienter jusqu’à 3 minutes, le temps de trouver un agent disponible.</span>`);
+        clearTimeout(chatWaitTimer);
+        chatWaitTimer = setTimeout(() => {
+            if(chatAgentAccepted || !$("#chatBox").classList.contains("open")) return;
+            setChatStatus("email", `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg><span>Aucun agent n’a encore validé la conversation. Vous pouvez aussi envoyer votre demande à <a href="mailto:contact@ab-transit.fr">contact@ab-transit.fr</a>.</span>`);
+        }, CHAT_AGENT_WAIT_MS);
+    }
+
     $("#openChatBtn").addEventListener("click", () => {
-        $("#chatBox").classList.add("open"); $("#openChatBtn").style.display="none"; loadChat();
-        chatInterval = setInterval(loadChat, 10000); 
+        $("#chatBox").classList.add("open");
+        $("#openChatBtn").style.display="none";
+        chatAgentAccepted = false;
+        showAgentWaitingMessage();
+        loadChat();
+        clearInterval(chatInterval);
+        chatInterval = setInterval(loadChat, 5000);
     });
     $("#closeChatBtn").addEventListener("click", () => {
-        $("#chatBox").classList.remove("open"); $("#openChatBtn").style.display="grid"; clearInterval(chatInterval);
+        $("#chatBox").classList.remove("open");
+        $("#openChatBtn").style.display="grid";
+        clearInterval(chatInterval);
+        clearChatStatus();
     });
     
     async function loadChat() {
@@ -1937,34 +2071,43 @@
             const r = await api({action:"getchat_client", email:state.user.email});
             if(r.ok && r.ticket) {
                 const msgs = r.ticket.messages || [];
-                if(ignoredChatMsgs === -1) ignoredChatMsgs = msgs.length;
-                
-                const visibleMsgs = msgs.slice(ignoredChatMsgs);
-                if(!visibleMsgs.length) { 
-                    $("#chatMsgs").innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:20px; font-size:0.9rem">Envoyez-nous un message, nous vous répondrons dès que possible.</p>`; 
+                chatAgentAccepted = r.ticket.adminAccepted === true;
+                if(chatAgentAccepted) clearChatStatus();
+
+                if(!msgs.length) {
+                    $("#chatMsgs").innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:20px; font-size:0.9rem">Envoyez-nous un message, nous vous répondrons dès que possible.</p>`;
                 } else {
-                    const currentHtml = $("#chatMsgs").innerHTML;
-                    const newHtml = visibleMsgs.map(m => `<div class="chat-msg ${m.sender==='client'?'client':'admin'}">${escapeHtml(m.text)}</div>`).join("");
-                    if(currentHtml !== newHtml) {
+                    const newHtml = msgs.map(m => {
+                        const type = m.sender === 'client' ? 'client' : (m.sender === 'system' ? 'system' : 'admin');
+                        return `<div class="chat-msg ${type}">${escapeHtml(m.text)}</div>`;
+                    }).join("");
+                    if($("#chatMsgs").dataset.rendered !== newHtml) {
                         $("#chatMsgs").innerHTML = newHtml;
+                        $("#chatMsgs").dataset.rendered = newHtml;
                         $("#chatMsgs").scrollTop = $("#chatMsgs").scrollHeight;
                     }
                 }
-                if(r.ticket.status === "Fermé" && !$("#chatMsgs").innerHTML.includes("Ticket clôturé")) { 
-                    $("#chatMsgs").innerHTML += `<p style="color:var(--muted); text-align:center; font-size:0.8rem; margin-top:10px">Ticket clôturé. Envoyez un message pour en rouvrir un nouveau.</p>`; 
+                if(r.ticket.status === "Fermé" && !$("#chatMsgs").innerHTML.includes("Ticket clôturé")) {
+                    $("#chatMsgs").innerHTML += `<p style="color:var(--muted); text-align:center; font-size:0.8rem; margin-top:10px">Ticket clôturé. Envoyez un message pour en rouvrir un nouveau.</p>`;
                 }
             } else {
                 ignoredChatMsgs = 0;
-                $("#chatMsgs").innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:20px; font-size:0.9rem">Envoyez-nous un message.</p>`; 
+                $("#chatMsgs").innerHTML = `<p style="color:var(--muted); text-align:center; margin-top:20px; font-size:0.9rem">Envoyez-nous un message.</p>`;
             }
         } catch(e) {}
     }
     $("#chatForm").addEventListener("submit", async e => {
-        e.preventDefault(); const text = e.target.msg.value.trim(); if(!text || !state.user) return;
+        e.preventDefault();
+        const text = e.target.msg.value.trim();
+        if(!text || !state.user) return;
         e.target.msg.value = "";
         $("#chatMsgs").innerHTML += `<div class="chat-msg client">${escapeHtml(text)}</div>`;
         $("#chatMsgs").scrollTop = $("#chatMsgs").scrollHeight;
-        try { await api({action:"sendchat_client", email:state.user.email, text}); } catch(err){}
+        try {
+            const r = await api({action:"sendchat_client", email:state.user.email, text});
+            if(!r.ok) toast(r.error || "Message non envoyé");
+            await loadChat();
+        } catch(err) { toast("Message non envoyé"); }
     });
 
     setInterval(() => {
