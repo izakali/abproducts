@@ -812,6 +812,7 @@
     const MASSIVE_CATEGORIES = ["Smartphones & Téléphones", "Accessoires Téléphonie", "Ordinateurs Portables", "Ordinateurs de Bureau", "Tablettes", "Composants PC", "Périphériques PC", "Jeux Vidéo", "Consoles de jeux", "Accessoires Gaming", "TV & Image", "Audio & Casques", "Enceintes Bluetooth", "Appareils Photo", "Objets Connectés", "Mode Femme", "Mode Homme", "Mode Enfant", "Bébé", "Chaussures Femme", "Chaussures Homme", "Sneakers", "Sacs à main", "Sacs à dos", "Bagagerie", "Bijoux", "Montres", "Lunettes de soleil", "Accessoires Mode", "Maquillage", "Parfums", "Soins du Visage", "Soins du Corps", "Soins des Cheveux", "Hygiène", "Appareils Beauté", "Meubles", "Décoration", "Linge de maison", "Literie", "Luminaire", "Cuisine & Arts de la table", "Électroménager", "Gros Électroménager", "Petit Électroménager", "Chauffage & Climatisation", "Bricolage", "Outillage", "Jardin & Extérieur", "Piscines & Spas", "Animalerie", "Chiens", "Chats", "Sport & Fitness", "Vélos & Trottinettes", "Camping & Randonnée", "Auto & Moto", "Pièces Auto", "Accessoires Auto", "Pneus", "Équipement Moto", "Jouets", "Jeux de société", "Plein air enfant", "Livres", "Papeterie", "Fournitures de bureau", "Divers"];
 
     let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let adminImages = []; let chatInterval = null;
+    let adminImagesDirty = false; let adminSaveInProgress = false;
     let catalogRefreshPromise = null; let adminCatalogRefreshPromise = null;
     let chatWaitTimer = null; let chatWaitStartedAt = 0; let chatAgentAccepted = false;
     let currentClientTicketId = null; let clientChatClosed = false;
@@ -872,6 +873,7 @@
       }
 
       if(lastError?.name === "AbortError") throw new Error("Le serveur met trop de temps à répondre");
+      if(lastError instanceof Error && lastError.message) throw lastError;
       throw new Error("Connexion au serveur impossible");
     }
     async function sha256(text){ const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)); return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join(""); }
@@ -2266,6 +2268,7 @@
             });
             adminImages.push(item);
             prepared.push(item);
+            adminImagesDirty = true;
             renderImagePreview();
           }
 
@@ -2282,6 +2285,7 @@
             const initialText = submitBtn.textContent;
             submitBtn.disabled = true;
             submitBtn.textContent = "Enregistrement…";
+            adminSaveInProgress = true;
 
             try{
               const d=Object.fromEntries(new FormData(form).entries());
@@ -2310,6 +2314,7 @@
               }).filter(img => Number.isInteger(img.existingIndex) || img.url).slice(0,30);
 
               const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
+              const replaceImages = !d.id || adminImagesDirty;
               const product={
                 id:d.id||undefined,
                 name:d.name,
@@ -2318,10 +2323,11 @@
                 weight:totalWeight,
                 desc:d.desc,
                 params:params,
-                images:imagesWithOpts,
+                imagesMode:replaceImages ? "replace" : "keep",
                 active:$("#adminProductActive").checked,
                 showWeightInName:$("#adminProductShowWeight").checked
               };
+              if(replaceImages) product.images = imagesWithOpts;
 
               const res=await api({action:"saveproduct",adminKey:adminKey(),product}, {retries:0, timeoutMs:90000});
               if(!res.ok) throw new Error(res.error || "Enregistrement impossible");
@@ -2329,6 +2335,7 @@
               localStorage.removeItem(PUBLIC_CATALOG_CACHE_KEY);
               localStorage.removeItem(ADMIN_CATALOG_CACHE_KEY);
               toast("Article enregistré");
+              adminImagesDirty = false;
               resetProductForm();
               state.adminProducts = [];
               state.catalogLoaded = false;
@@ -2337,6 +2344,7 @@
             }catch(err){
               toast("Erreur : "+err.message);
             }finally{
+              adminSaveInProgress = false;
               submitBtn.disabled = false;
               submitBtn.textContent = initialText;
             }
@@ -2359,6 +2367,7 @@
         if(d.price) f.price.value=d.price;
         f.category.value=d.category||f.category.value||"Divers";
         adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>normalizeAdminImageItem({url:url,opt:"",existingIndex:null,status:"done"}));
+        adminImagesDirty = true;
         renderImagePreview();
         toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");
       }catch(err){
@@ -2388,6 +2397,7 @@
           syncAdminImageOptions();
           const id = btn.dataset.imgRemove;
           adminImages = adminImages.filter(img => img.clientId !== id);
+          adminImagesDirty = true;
           renderImagePreview();
         });
       });
@@ -2396,7 +2406,10 @@
         input.addEventListener("input",()=>{
           const card = input.closest(".preview-card");
           const item = adminImages.find(img => img.clientId === card?.dataset.imageId);
-          if(item) item.opt = input.value;
+          if(item) {
+            item.opt = input.value;
+            adminImagesDirty = true;
+          }
         });
       });
     }
@@ -2408,6 +2421,7 @@
       if($("#adminProductActive")) $("#adminProductActive").checked=true;
       if($("#adminProductShowWeight")) $("#adminProductShowWeight").checked=false;
       adminImages=[];
+      adminImagesDirty = false;
       renderImagePreview();
       if($("#adminVariantsList")) $("#adminVariantsList").innerHTML="";
       if($("#productFormTitle")) $("#productFormTitle").textContent="Ajouter / modifier un article";
@@ -2486,6 +2500,7 @@
             status:"done"
           });
         });
+        adminImagesDirty = false;
         renderImagePreview();
 
         $("#adminVariantsList").innerHTML = "";
@@ -2703,6 +2718,7 @@
     });
 
     setInterval(() => {
+        if(adminSaveInProgress) return;
         if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA' || document.activeElement.tagName === 'SELECT')) return;
         if (currentPage === 'catalogue' || currentPage === 'home') loadCatalog(true, true);
         if (currentPage === 'admin' && adminTab === 'orders') renderAdminOrders(document.getElementById('adminPanel'), false, true);
