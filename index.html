@@ -2204,7 +2204,8 @@
         image.url = String(image.url || "");
         image.opt = String(image.opt || "");
         image.uploadId = image.uploadId || createAdminImageId();
-        image.status = image.status || (image.url.startsWith("data:image/") ? "local" : "done");
+        image.existingIndex = Number.isInteger(image.existingIndex) ? image.existingIndex : null;
+        image.status = image.status || (image.existingIndex !== null ? "done" : (image.url.startsWith("data:image/") ? "local" : "done"));
         image.uploadPromise = image.uploadPromise || null;
         image.error = String(image.error || "");
         return image;
@@ -2216,7 +2217,8 @@
         opt:String(source.opt || ""),
         clientId:createAdminImageId(),
         uploadId:source.uploadId || createAdminImageId(),
-        status:source.status || (String(source.url || "").startsWith("data:image/") ? "local" : "done"),
+        existingIndex:Number.isInteger(source.existingIndex) ? source.existingIndex : null,
+        status:source.status || (Number.isInteger(source.existingIndex) ? "done" : (String(source.url || "").startsWith("data:image/") ? "local" : "done")),
         uploadPromise:source.uploadPromise || null,
         error:String(source.error || "")
       };
@@ -2259,6 +2261,7 @@
               opt:"",
               clientId:createAdminImageId(),
               uploadId:createAdminImageId(),
+              existingIndex:null,
               status:"local"
             });
             adminImages.push(item);
@@ -2298,10 +2301,13 @@
 
               syncAdminImageOptions();
 
-              const imagesWithOpts = adminImages.map(img => ({
-                url:String(img.url || ""),
-                opt:String(img.opt || "")
-              })).filter(img => img.url).slice(0,30);
+              const imagesWithOpts = adminImages.map(img => {
+                const opt = String(img.opt || "");
+                if(d.id && Number.isInteger(img.existingIndex) && img.existingIndex >= 0){
+                  return {existingIndex:img.existingIndex, opt:opt};
+                }
+                return {url:String(img.url || ""), opt:opt};
+              }).filter(img => Number.isInteger(img.existingIndex) || img.url).slice(0,30);
 
               const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
               const product={
@@ -2352,7 +2358,7 @@
         f.desc.value=d.desc||f.desc.value||"";
         if(d.price) f.price.value=d.price;
         f.category.value=d.category||f.category.value||"Divers";
-        adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>normalizeAdminImageItem({url:url,opt:"",status:"done"}));
+        adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>normalizeAdminImageItem({url:url,opt:"",existingIndex:null,status:"done"}));
         renderImagePreview();
         toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");
       }catch(err){
@@ -2471,7 +2477,15 @@
         f.weightKg.value = Math.floor(w);
         f.weightG.value = Math.round((w - Math.floor(w)) * 1000);
 
-        adminImages=(p.images||[]).slice(0,30).map(img=>normalizeAdminImageItem(img));
+        adminImages=(p.images||[]).slice(0,30).map((img,index)=>{
+          const source = typeof img === "string" ? {url:img,opt:""} : (img || {});
+          return normalizeAdminImageItem({
+            url:String(source.url || ""),
+            opt:String(source.opt || ""),
+            existingIndex:index,
+            status:"done"
+          });
+        });
         renderImagePreview();
 
         $("#adminVariantsList").innerHTML = "";
