@@ -8,6 +8,12 @@
   <link rel="icon" type="image/png" href="logo.PNG" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://script.google.com" />
+  <link rel="preconnect" href="https://script.googleusercontent.com" />
+  <link rel="dns-prefetch" href="//script.google.com" />
+  <link rel="dns-prefetch" href="//script.googleusercontent.com" />
+  <link rel="preconnect" href="https://drive.google.com" />
+  <link rel="dns-prefetch" href="//drive.google.com" />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
   <script>(function(){try{var p=new URLSearchParams(window.location.search),rd=p.get('redirect');if(rd){window.history.replaceState(null,"",rd);}else{var r=sessionStorage.getItem("abp_redirect");if(r){sessionStorage.removeItem("abp_redirect");window.history.replaceState(null,"",r);}}}catch(e){}})();</script>
@@ -325,7 +331,7 @@
     .recom-desc h3 { font-size: 1.5rem; margin-bottom: 1rem; }
     .recom-desc p { color: var(--muted); line-height: 1.6; white-space: pre-wrap; font-size:1.05rem; }
 
-    .admin-tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}.admin-tabs button.active{background:rgba(47,191,139,.1);border-color:var(--brand2);color:var(--brand2)}.admin-list{display:grid;gap:.7rem;margin-top:1.2rem}.admin-item{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:.9rem;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:.7rem .9rem}.admin-thumb{width:70px;height:70px;border-radius:10px;object-fit:cover;background:#ffffff !important;display:grid;place-items:center;font-size:1.2rem;overflow:hidden;color:var(--muted2)}.admin-thumb img{width:100%;height:100%;object-fit:contain; padding:4px; mix-blend-mode: multiply;}.drop-zone{border:2px dashed var(--line);border-radius:12px;padding:1.1rem;text-align:center;color:var(--muted);transition:.2s ease;background:var(--card2)}.drop-zone:hover{border-color:var(--brand2);color:var(--txt)}.preview-list{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.8rem}.preview-card{width:108px;border:1px solid var(--line);border-radius:11px;padding:.35rem;background:var(--panel);position:relative;display:flex;flex-direction:column;gap:4px}.preview-card img{width:100%;height:82px;object-fit:contain;border-radius:8px;background:#ffffff !important; mix-blend-mode: multiply;}.preview-card button{position:absolute;top:0;right:0;width:26px;height:26px;border-radius:999px;background:var(--danger);color:white; display:grid; place-items:center; border:none; cursor:pointer}.preview-card .photo-remove-btn{position:absolute!important;top:-10px!important;right:-10px!important;width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;padding:0!important;border:0!important;border-radius:999px!important;background:var(--danger)!important;color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;z-index:20!important;line-height:1!important;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.preview-card .photo-remove-btn svg{width:20px;height:20px;display:block;pointer-events:none}.config-table{display:grid;gap:.65rem}.config-row{display:grid;grid-template-columns:1fr 130px 130px 90px auto;gap:.6rem;align-items:center}.shipping-row{display:grid;grid-template-columns:1fr 1fr auto;gap:.6rem;align-items:center}.dual-price small{display:block;color:var(--muted2);font-size:.8em;font-weight:600;margin-top:.12rem;font-variant-numeric:tabular-nums}
+    .admin-tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}.admin-tabs button.active{background:rgba(47,191,139,.1);border-color:var(--brand2);color:var(--brand2)}.admin-list{display:grid;gap:.7rem;margin-top:1.2rem}.admin-item{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:.9rem;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:.7rem .9rem}.admin-thumb{width:70px;height:70px;border-radius:10px;object-fit:cover;background:#ffffff !important;display:grid;place-items:center;font-size:1.2rem;overflow:hidden;color:var(--muted2)}.admin-thumb img{width:100%;height:100%;object-fit:contain; padding:4px; mix-blend-mode: multiply;}.drop-zone{border:2px dashed var(--line);border-radius:12px;padding:1.1rem;text-align:center;color:var(--muted);transition:.2s ease;background:var(--card2);overflow:visible}.drop-zone:hover{border-color:var(--brand2);color:var(--txt)}.preview-list{display:flex;gap:.95rem;flex-wrap:wrap;margin-top:.8rem;padding:.35rem .35rem 0}.preview-card{width:108px;border:1px solid var(--line);border-radius:11px;padding:.35rem;background:var(--panel);position:relative;display:flex;flex-direction:column;gap:4px;overflow:visible}.preview-card img{width:100%;height:82px;object-fit:contain;border-radius:8px;background:#ffffff !important;mix-blend-mode:multiply;pointer-events:none}.preview-remove-btn{position:absolute!important;top:-11px!important;right:-11px!important;width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;border-radius:999px!important;background:var(--danger)!important;color:#fff!important;display:grid!important;place-items:center!important;border:2px solid var(--panel)!important;cursor:pointer!important;z-index:20!important;line-height:1!important;font-size:1.15rem!important;padding:0!important;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.preview-remove-btn::before{content:"";position:absolute;inset:-5px;border-radius:999px}.preview-remove-btn:hover,.preview-remove-btn:focus-visible{transform:scale(1.06);background:#ff6b84!important;outline:2px solid rgba(255,255,255,.45);outline-offset:1px}.preview-upload-status{font-size:.66rem;line-height:1.2;color:var(--muted2);min-height:.8rem}.preview-upload-status.uploading{color:var(--gold)}.preview-upload-status.error{color:var(--danger)}.config-table{display:grid;gap:.65rem}.config-row{display:grid;grid-template-columns:1fr 130px 130px 90px auto;gap:.6rem;align-items:center}.shipping-row{display:grid;grid-template-columns:1fr 1fr auto;gap:.6rem;align-items:center}.dual-price small{display:block;color:var(--muted2);font-size:.8em;font-weight:600;margin-top:.12rem;font-variant-numeric:tabular-nums}
 
     .cursor-glow{position:fixed;top:0;left:0;width:340px;height:340px;border-radius:999px;background:radial-gradient(circle,rgba(47,191,139,.09),transparent 62%);pointer-events:none;z-index:9999;mix-blend-mode:screen;transition:opacity .2s ease}
     .brand-mark::after{content:"";position:absolute;inset:-70%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:rotate(35deg) translateX(-70%);animation:shine 3.8s ease-in-out infinite}@keyframes shine{0%,62%{transform:rotate(35deg) translateX(-70%)}78%,100%{transform:rotate(35deg) translateX(72%)}}
@@ -757,6 +763,10 @@
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
     const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true, weightFeeUnder1: 4.50, weightFeePerKg: 9, deliveryFee: 4.99, feat_sumup: true, feat_cash: true, feat_banner: true };
     const PUBLIC_CONFIG_CACHE_KEY = "abp_public_config_cache_v1";
+    const PUBLIC_CATALOG_CACHE_KEY = "abp_public_catalog_cache_v3";
+    const ADMIN_CATALOG_CACHE_KEY = "abp_admin_catalog_cache_v3";
+    const CATALOG_CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
+
     function readPublicConfigCache(){
       try { return JSON.parse(localStorage.getItem(PUBLIC_CONFIG_CACHE_KEY) || "{}"); }
       catch(e) { return {}; }
@@ -773,6 +783,24 @@
         }));
       } catch(e) {}
     }
+
+    function readTimedCache(key){
+      try{
+        const cached = JSON.parse(localStorage.getItem(key) || "null");
+        if(!cached || !Array.isArray(cached.items) || !cached.savedAt) return [];
+        if(Date.now() - Number(cached.savedAt) > CATALOG_CACHE_MAX_AGE) return [];
+        return cached.items;
+      }catch(e){
+        return [];
+      }
+    }
+
+    function writeTimedCache(key, items){
+      try{
+        localStorage.setItem(key, JSON.stringify({savedAt:Date.now(), items:Array.isArray(items) ? items : []}));
+      }catch(e){}
+    }
+
     const CLIENT_NAV = [{id:"home",label:"Accueil"},{id:"catalogue",label:"Catalogue"},{id:"commande",label:"Commande libre"},{id:"suivi",label:"Suivi"},{id:"faq",label:"Infos"}];
     const ADMIN_NAV = [{tab:"orders",label:"Commandes"},{tab:"archives",label:"Archives"},{tab:"products",label:"Articles"},{tab:"clients",label:"Clients"},{tab:"messages",label:"Messages"},{tab:"config",label:"Configuration"}];
     const ROUTES = {home:"/home",catalogue:"/catalogue",commande:"/commande",panier:"/panier",checkout:"/checkout",suivi:"/suivi",faq:"/faq",login:"/login",signup:"/signup",compte:"/compte",admin:"/admin"};
@@ -784,6 +812,7 @@
     const MASSIVE_CATEGORIES = ["Smartphones & Téléphones", "Accessoires Téléphonie", "Ordinateurs Portables", "Ordinateurs de Bureau", "Tablettes", "Composants PC", "Périphériques PC", "Jeux Vidéo", "Consoles de jeux", "Accessoires Gaming", "TV & Image", "Audio & Casques", "Enceintes Bluetooth", "Appareils Photo", "Objets Connectés", "Mode Femme", "Mode Homme", "Mode Enfant", "Bébé", "Chaussures Femme", "Chaussures Homme", "Sneakers", "Sacs à main", "Sacs à dos", "Bagagerie", "Bijoux", "Montres", "Lunettes de soleil", "Accessoires Mode", "Maquillage", "Parfums", "Soins du Visage", "Soins du Corps", "Soins des Cheveux", "Hygiène", "Appareils Beauté", "Meubles", "Décoration", "Linge de maison", "Literie", "Luminaire", "Cuisine & Arts de la table", "Électroménager", "Gros Électroménager", "Petit Électroménager", "Chauffage & Climatisation", "Bricolage", "Outillage", "Jardin & Extérieur", "Piscines & Spas", "Animalerie", "Chiens", "Chats", "Sport & Fitness", "Vélos & Trottinettes", "Camping & Randonnée", "Auto & Moto", "Pièces Auto", "Accessoires Auto", "Pneus", "Équipement Moto", "Jouets", "Jeux de société", "Plein air enfant", "Livres", "Papeterie", "Fournitures de bureau", "Divers"];
 
     let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let adminImages = []; let chatInterval = null;
+    let catalogRefreshPromise = null; let adminCatalogRefreshPromise = null;
     let chatWaitTimer = null; let chatWaitStartedAt = 0; let chatAgentAccepted = false;
     let currentClientTicketId = null; let clientChatClosed = false;
     let currentAdminOrders = []; let ignoredChatMsgs = -1;
@@ -796,10 +825,55 @@
       lastOrder: JSON.parse(localStorage.getItem("abp_last_order") || "null")
     };
 
-    async function api(payload){
+    async function api(payload, options={}){
       if(!apiReady()) throw new Error("API non configurée");
-      const res = await fetch(API_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(payload)});
-      return await res.json();
+
+      const action = String(payload?.action || "").toLowerCase();
+      const retryableActions = new Set([
+        "getcatalog","getcatalog_admin","getconfig","getorders","getclients_admin",
+        "getmessages_admin","gettracking","getorders_client","getchat_client","ping",
+        "uploadproductimage"
+      ]);
+      const retries = options.retries ?? (retryableActions.has(action) ? 2 : 0);
+      const timeoutMs = options.timeoutMs ?? (action === "uploadproductimage" ? 65000 : 35000);
+      let lastError = null;
+
+      for(let attempt = 0; attempt <= retries; attempt++){
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), timeoutMs);
+        try{
+          const res = await fetch(API_URL, {
+            method:"POST",
+            headers:{"Content-Type":"text/plain;charset=utf-8"},
+            body:JSON.stringify(payload),
+            cache:"no-store",
+            credentials:"omit",
+            signal:controller.signal
+          });
+
+          const text = await res.text();
+          if(!res.ok) throw new Error(`Serveur indisponible (${res.status})`);
+
+          let data;
+          try{
+            data = JSON.parse(text);
+          }catch(e){
+            throw new Error("Réponse serveur invalide");
+          }
+          return data;
+        }catch(err){
+          lastError = err;
+          if(attempt < retries){
+            await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
+            continue;
+          }
+        }finally{
+          clearTimeout(timer);
+        }
+      }
+
+      if(lastError?.name === "AbortError") throw new Error("Le serveur met trop de temps à répondre");
+      throw new Error("Connexion au serveur impossible");
     }
     async function sha256(text){ const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)); return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join(""); }
     const adminKey = () => sessionStorage.getItem("abp_admin") || "";
@@ -1045,29 +1119,78 @@
         renderNav();
     }
 
-    async function loadCatalog(force=false, silent=false){
-      if(state.catalogLoaded && !force) return;
-      try{
-          const data=await api({action:"getcatalog"}); 
-          if(data.ok){
-              const newStr = JSON.stringify(data.items);
-              if(silent && newStr === lastCatalogStr) return; 
-              lastCatalogStr = newStr;
-              state.products=(data.items||[]).map(normalizeProduct); 
-              state.catalogLoaded=true; initCategories(); renderProducts(); renderCategoryOptions();
-          }
-      } catch(e){state.catalogLoaded=true; if(!silent) renderProducts();}
+    function applyCatalogItems(items, {cache=true, silent=false}={}){
+      const normalized = (Array.isArray(items) ? items : []).map(normalizeProduct);
+      const newStr = JSON.stringify(normalized);
+      if(silent && newStr === lastCatalogStr) return false;
+      lastCatalogStr = newStr;
+      state.products = normalized;
+      state.catalogLoaded = true;
+      if(cache) writeTimedCache(PUBLIC_CATALOG_CACHE_KEY, items);
+      initCategories();
+      renderProducts();
+      renderCategoryOptions();
+      return true;
     }
-    
-    async function loadAdminCatalog(){
+
+    function hydrateCatalogFromCache(){
+      if(state.catalogLoaded || state.products.length) return false;
+      const cachedItems = readTimedCache(PUBLIC_CATALOG_CACHE_KEY);
+      if(!cachedItems.length) return false;
+      applyCatalogItems(cachedItems, {cache:false, silent:false});
+      return true;
+    }
+
+    async function refreshCatalogFromServer(silent=false){
       try{
-        const data = await api({action:"getcatalog_admin", adminKey:adminKey()});
-        if(!data.ok) throw new Error(data.error || "Catalogue indisponible");
-        state.adminProducts = (data.items || []).map(normalizeProduct);
-      } catch(e) {
-        state.adminProducts = [];
-        toast("Erreur catalogue admin : " + e.message);
+        const data = await api({action:"getcatalog"});
+        if(data.ok) applyCatalogItems(data.items || [], {cache:true, silent});
+      }catch(e){
+        if(!state.catalogLoaded){
+          state.catalogLoaded = true;
+          if(!silent) renderProducts();
+        }
       }
+    }
+
+    async function loadCatalog(force=false, silent=false){
+      hydrateCatalogFromCache();
+
+      if(state.catalogLoaded && !force){
+        if(!catalogRefreshPromise){
+          catalogRefreshPromise = refreshCatalogFromServer(true).finally(() => { catalogRefreshPromise = null; });
+        }
+        return;
+      }
+
+      await refreshCatalogFromServer(silent);
+    }
+
+    async function loadAdminCatalog(){
+      const cachedItems = readTimedCache(ADMIN_CATALOG_CACHE_KEY);
+      if(cachedItems.length && !state.adminProducts.length){
+        state.adminProducts = cachedItems.map(normalizeProduct);
+        renderAdminList();
+      }
+
+      if(adminCatalogRefreshPromise) return adminCatalogRefreshPromise;
+      adminCatalogRefreshPromise = (async()=>{
+        try{
+          const data = await api({action:"getcatalog_admin", adminKey:adminKey()});
+          if(!data.ok) throw new Error(data.error || "Catalogue indisponible");
+          state.adminProducts = (data.items || []).map(normalizeProduct);
+          writeTimedCache(ADMIN_CATALOG_CACHE_KEY, data.items || []);
+          renderAdminList();
+        } catch(e) {
+          if(!state.adminProducts.length){
+            state.adminProducts = [];
+            toast("Erreur catalogue admin : " + e.message);
+          }
+        } finally {
+          adminCatalogRefreshPromise = null;
+        }
+      })();
+      return adminCatalogRefreshPromise;
     }
 
     function normalizeProduct(p){
@@ -1080,10 +1203,32 @@
         } else if (p.image) {
             imgs = [{ url: p.image, opt: "" }];
         }
-        const showWeight = p.showWeight === undefined || p.showWeight === null || p.showWeight === "" ? true : (p.showWeight === true || String(p.showWeight).toLowerCase() === "oui" || String(p.showWeight).toLowerCase() === "true");
-        return {...p,images:imgs.slice(0,30),image:imgs[0]?.url||"",price:numberVal(p.price),recommendedPrice:numberVal(p.recommendedPrice),weight:numberVal(p.weight),showWeight,category:p.category||"Divers",params:p.params||{}};
+        return {
+          ...p,
+          images:imgs.slice(0,30),
+          image:imgs[0]?.url||"",
+          price:numberVal(p.price),
+          recommendedPrice:numberVal(p.recommendedPrice),
+          weight:numberVal(p.weight),
+          category:p.category||"Divers",
+          params:p.params||{},
+          showWeightInName:p.showWeightInName === true || String(p.showWeightInName).toLowerCase() === "true" || String(p.showWeightInName).toLowerCase() === "oui"
+        };
     }
-    
+
+    function formatWeightLabel(weight){
+      const value = numberVal(weight);
+      if(value <= 0) return "";
+      if(value < 1) return `${Math.round(value * 1000)} g`;
+      return `${new Intl.NumberFormat("fr-FR", {maximumFractionDigits:3}).format(value)} kg`;
+    }
+
+    function productDisplayName(product){
+      const p = product || {};
+      const weightLabel = p.showWeightInName ? formatWeightLabel(p.weight) : "";
+      return weightLabel ? `${p.name || ""} • ${weightLabel}` : String(p.name || "");
+    }
+
     function initCategories(){const cats=[...new Set([...MASSIVE_CATEGORIES, ...state.products.map(p=>p.category).filter(Boolean)])].sort();$("#categoryFilter").innerHTML='<option value="all">Toutes catégories</option>'+cats.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");}
     function renderCategoryOptions(){const cats=[...new Set([...MASSIVE_CATEGORIES, ...state.products.map(p=>p.category).filter(Boolean)])].sort();$("#categoryOptions").innerHTML=cats.map(c=>`<option value="${escapeHtml(c)}"></option>`).join("");}
     function filteredProducts(){const q=$("#searchInput")?.value?.toLowerCase().trim()||"";const cat=$("#categoryFilter")?.value||"all";const sort=$("#sortSelect")?.value||"featured";let items=state.products.filter(p=>[p.name,p.category,p.desc,Object.values(p.params||{}).join(" ")].join(" ").toLowerCase().includes(q)&&(cat==="all"||p.category===cat));if(sort==="asc")items.sort((a,b)=>a.price-b.price);if(sort==="desc")items.sort((a,b)=>b.price-a.price);return items;}
@@ -1092,9 +1237,9 @@
         const imgs=(p.images||[]).filter(Boolean).slice(0,3);
         if(imgs.length>1){
             const duration=imgs.length*4;
-            return `<div class="product-slider" style="--slide-duration:${duration}s">${imgs.map((img,i)=>`<img class="product-slide" src="${escapeHtml(img.url)}" alt="${escapeHtml(p.name)}" loading="lazy" style="animation-delay:${i*4}s" />`).join("")}</div>`;
+            return `<div class="product-slider" style="--slide-duration:${duration}s">${imgs.map((img,i)=>`<img class="product-slide" src="${escapeHtml(img.url)}" alt="${escapeHtml(productDisplayName(p))}" loading="lazy" style="animation-delay:${i*4}s" />`).join("")}</div>`;
         }
-        if(imgs.length===1) return `<img src="${escapeHtml(imgs[0].url)}" alt="${escapeHtml(p.name)}" loading="lazy" />`;
+        if(imgs.length===1) return `<img src="${escapeHtml(imgs[0].url)}" alt="${escapeHtml(productDisplayName(p))}" loading="lazy" />`;
         return `<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted2)"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`;
     }
     
@@ -1129,8 +1274,8 @@
             <div class="product-art">${productArt(p)}</div>
             ${colorDots}
             <div class="product-cat">${escapeHtml(p.category)}</div>
-            <h3>${escapeHtml(p.name)}${p.showWeight && p.weight > 0 ? ` <span style="font-size:.72em;color:var(--muted);font-weight:600">• ${p.weight} kg</span>` : ""}</h3>
-            <div class="product-options"><span style="border:none; padding:0; font-size:0.8rem">${optStr ? escapeHtml(optStr) : ""}</span></div>
+            <h3>${escapeHtml(productDisplayName(p))}</h3>
+            ${optStr ? `<div class="product-options"><span style="border:none; padding:0; font-size:0.8rem">${escapeHtml(optStr)}</span></div>` : ""}
             <div class="product-price-row">
                 <small>à partir de</small>
                 <div class="product-price">${formatEUR(p.price)}</div>
@@ -1241,7 +1386,7 @@
           <div class="recom-main-img"><img id="recomMainImg" src="${escapeHtml(p.images[0]?.url || '')}" alt=""></div>
         </div>
         <div>
-          <h2 class="recom-title">${escapeHtml(p.name)}${p.showWeight && p.weight > 0 ? ` <span style="font-size:.55em;color:var(--muted);font-weight:600">• ${p.weight} kg</span>` : ""}</h2>
+          <h2 class="recom-title">${escapeHtml(productDisplayName(p))}</h2>
           
           <div class="recom-price-box">
             <div class="recom-price" data-current-price="${p.price}">${formatEUR(p.price)}</div>
@@ -1249,7 +1394,7 @@
             
             ${variantsHtml}
             
-            ${p.showWeight ? `<div class="summary-row" style="border:none; padding-bottom:0"><span>Poids</span><strong>${p.weight||0} kg</strong></div>` : ""}
+            ${p.showWeightInName ? `<div class="summary-row" style="border:none; padding-bottom:0"><span>Poids</span><strong>${escapeHtml(formatWeightLabel(p.weight))}</strong></div>` : ""}
             <div class="summary-row" style="border:none; padding-bottom:1rem"><span>Frais calculés</span><strong>Au panier</strong></div>
             
             <div style="display:flex; gap:0.5rem; align-items:center">
@@ -1301,8 +1446,8 @@
       }
 
       if(existing) existing.qty += qty; 
-      else state.cart.push({type:"product", cartId, id:p.id, name:p.name, price:finalPrice, category:p.category, qty, weight:p.weight||0.5, showWeight:p.showWeight!==false, image:thumbUrl, options:optionsString, note, params:p.params||{}}); 
-      save(); $("#productModal").classList.remove("active"); toast(`${p.name} ajouté au panier`);
+      else state.cart.push({type:"product", cartId, id:p.id, name:p.name, price:finalPrice, category:p.category, qty, weight:p.weight||0.5, showWeightInName:p.showWeightInName===true, image:thumbUrl, options:optionsString, note, params:p.params||{}}); 
+      save(); $("#productModal").classList.remove("active"); toast(`${productDisplayName(p)} ajouté au panier`);
     }
     $("#closeProductModal").addEventListener("click",()=>$("#productModal").classList.remove("active"));
 
@@ -1335,9 +1480,9 @@
         list.innerHTML=`<div class="pill" style="margin-bottom:1rem;color:var(--gold)"><span class="dot" style="background:var(--gold)"></span>Le panier est supprimé après 10 jours d'inactivité.</div>`+state.cart.map(item=>{
             const thumb = item.image ? `<img src="${escapeHtml(item.image)}" alt="">` : (item.icon && item.icon.startsWith('<svg') ? item.icon : `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`);
             let displayOptions = item.options ? item.options.replace(/\d+(?:[.,]\d+)?\s*€/gi, '').replace(/\s+/g, ' ').trim() : "";
-            const linkedProduct = state.products.find(p=>p.id===item.id);
-            const showItemWeight = item.showWeight !== undefined ? item.showWeight !== false : (linkedProduct ? linkedProduct.showWeight !== false : true);
-            return `<div class="cart-item"><div class="cart-icon">${thumb}</div><div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category)} • article ${formatEUR(item.price)}${showItemWeight ? ` • ${item.weight||0} kg` : ""}</small>${displayOptions?`<br><small style="color:var(--brand3); font-weight:600">${escapeHtml(displayOptions)}</small>`:""}</div><div class="qty"><button class="qty-btn" data-op="minus" data-id="${escapeHtml(item.cartId||item.id)}">−</button><strong>${item.qty}</strong><button class="qty-btn" data-op="plus" data-id="${escapeHtml(item.cartId||item.id)}">+</button></div><button class="icon-btn danger-btn" style="width:36px; height:36px" data-op="remove" data-id="${escapeHtml(item.cartId||item.id)}">✕</button></div>`
+            const cartDisplayName = item.type === "product" ? productDisplayName(item) : String(item.name || "");
+            const customWeightMeta = item.type === "custom" && numberVal(item.weight) > 0 ? ` • ${formatWeightLabel(item.weight)}` : "";
+            return `<div class="cart-item"><div class="cart-icon">${thumb}</div><div><h4>${escapeHtml(cartDisplayName)}</h4><small>${escapeHtml(item.category)} • article ${formatEUR(item.price)}${escapeHtml(customWeightMeta)}</small>${displayOptions?`<br><small style="color:var(--brand3); font-weight:600">${escapeHtml(displayOptions)}</small>`:""}</div><div class="qty"><button class="qty-btn" data-op="minus" data-id="${escapeHtml(item.cartId||item.id)}">−</button><strong>${item.qty}</strong><button class="qty-btn" data-op="plus" data-id="${escapeHtml(item.cartId||item.id)}">+</button></div><button class="icon-btn danger-btn" style="width:36px; height:36px" data-op="remove" data-id="${escapeHtml(item.cartId||item.id)}">✕</button></div>`
         }).join("");
         
         const t=cartTotals(); 
@@ -2045,62 +2190,309 @@
     }
 
     function renderAdminProducts(panel){
-        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductActive" name="active" checked style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductActive" style="color:var(--txt);cursor:pointer">Afficher cet article dans le catalogue</label></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductShowWeight" name="showWeight" checked style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductShowWeight" style="color:var(--txt);cursor:pointer">Afficher le poids pour cet article</label></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes Prix Dynamique</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos HD</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles du catalogue</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
-        bindAdminProductForm(); loadAdminCatalog().then(renderAdminList);
+        panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" max="999" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductActive" name="active" checked style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductActive" style="color:var(--txt);cursor:pointer">Afficher cet article dans le catalogue</label></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductShowWeight" name="showWeightInName" style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductShowWeight" style="color:var(--txt);cursor:pointer">Afficher le poids dans le nom de cet article</label></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes Prix Dynamique</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos HD</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles du catalogue</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
+        bindAdminProductForm();
+        loadAdminCatalog().then(renderAdminList);
     }
-    
+
+    function createAdminImageId(){
+      if(window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID().replace(/-/g, "");
+      return "img" + Date.now().toString(36) + Math.random().toString(36).slice(2);
+    }
+
+    function normalizeAdminImageItem(image){
+      if(image && typeof image === "object" && image.clientId){
+        image.url = String(image.url || "");
+        image.opt = String(image.opt || "");
+        image.uploadId = image.uploadId || createAdminImageId();
+        image.status = image.status || (image.url.startsWith("data:image/") ? "local" : "done");
+        image.uploadPromise = image.uploadPromise || null;
+        image.error = String(image.error || "");
+        return image;
+      }
+
+      const source = typeof image === "string" ? {url:image, opt:""} : (image || {});
+      return {
+        url:String(source.url || ""),
+        opt:String(source.opt || ""),
+        clientId:createAdminImageId(),
+        uploadId:source.uploadId || createAdminImageId(),
+        status:source.status || (String(source.url || "").startsWith("data:image/") ? "local" : "done"),
+        uploadPromise:source.uploadPromise || null,
+        error:String(source.error || "")
+      };
+    }
+
+    function syncAdminImageOptions(){
+      $$(".preview-card[data-image-id]").forEach(card => {
+        const item = adminImages.find(img => img.clientId === card.dataset.imageId);
+        const input = card.querySelector(".img-link-opt");
+        if(item && input) item.opt = input.value.trim();
+      });
+    }
+
+    function updateAdminImageStatus(item){
+      const card = document.querySelector(`.preview-card[data-image-id="${item.clientId}"]`);
+      if(!card) return;
+      const status = card.querySelector(".preview-upload-status");
+      if(!status) return;
+      status.className = "preview-upload-status";
+      if(item.status === "uploading"){
+        status.classList.add("uploading");
+        status.textContent = "Envoi sécurisé…";
+      }else if(item.status === "error"){
+        status.classList.add("error");
+        status.textContent = item.error || "Erreur d'envoi";
+      }else{
+        status.textContent = "";
+      }
+    }
+
+    async function uploadAdminImage(item){
+      if(!item || !String(item.url || "").startsWith("data:image/")){
+        if(item) item.status = "done";
+        return item;
+      }
+      if(item.uploadPromise) return item.uploadPromise;
+
+      item.status = "uploading";
+      item.error = "";
+      updateAdminImageStatus(item);
+
+      const dataUrl = item.url;
+      item.uploadPromise = (async()=>{
+        try{
+          const res = await api({
+            action:"uploadproductimage",
+            adminKey:adminKey(),
+            uploadId:item.uploadId,
+            dataUrl:dataUrl
+          }, {retries:2, timeoutMs:65000});
+
+          if(!res.ok || !res.url) throw new Error(res.error || "Téléversement impossible");
+          item.url = res.url;
+          item.status = "done";
+          item.error = "";
+          return item;
+        }catch(err){
+          item.status = "error";
+          item.error = err.message || "Erreur d'envoi";
+          throw err;
+        }finally{
+          item.uploadPromise = null;
+          updateAdminImageStatus(item);
+        }
+      })();
+
+      return item.uploadPromise;
+    }
+
+    async function uploadAdminImagesInBatches(items, concurrency=3){
+      const queue = (items || []).filter(Boolean);
+      if(!queue.length) return;
+      let cursor = 0;
+      const worker = async()=>{
+        while(cursor < queue.length){
+          const index = cursor++;
+          await uploadAdminImage(queue[index]);
+        }
+      };
+      const workers = Array.from({length:Math.min(concurrency, queue.length)}, () => worker());
+      await Promise.all(workers);
+    }
+
+    async function ensureAdminImagesUploaded(){
+      syncAdminImageOptions();
+      const pending = adminImages.filter(img => String(img.url || "").startsWith("data:image/"));
+      if(pending.length) await uploadAdminImagesInBatches(pending, 3);
+      const failed = adminImages.find(img => img.status === "error" || String(img.url || "").startsWith("data:image/"));
+      if(failed) throw new Error(failed.error || "Une photo n'a pas pu être envoyée");
+    }
+
     function bindAdminProductForm(){
         const form=$("#adminProductForm");
         $("#addAdminVariantBtn").addEventListener("click", () => {
-            const div = document.createElement("div"); div.style = "display:grid; grid-template-columns:1fr 2fr auto; gap:0.5rem;";
+            const div = document.createElement("div");
+            div.style = "display:grid; grid-template-columns:1fr 2fr auto; gap:0.5rem;";
             div.innerHTML = `<div class="field compact"><input class="var-name" placeholder="Nom ex: Capacité, Prix..." /></div><div class="field compact"><input class="var-vals" placeholder="Valeurs ex: 64Go, 128Go..." /></div><button type="button" class="icon-btn danger-btn" onclick="this.parentElement.remove()" style="width:36px; height:36px">✕</button>`;
             $("#adminVariantsList").appendChild(div);
         });
-        $("#browseImages").addEventListener("click",e=>{e.preventDefault();$("#photoInput").click();});
-        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images Haute Qualité...");for(const file of files){const img=await compressToWhiteBg(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";});
+
+        $("#browseImages").addEventListener("click",e=>{
+          e.preventDefault();
+          $("#photoInput").click();
+        });
+
+        $("#photoInput").addEventListener("change",async e=>{
+          const files=[...e.target.files].slice(0,30-adminImages.length);
+          e.target.value="";
+          if(!files.length) return;
+
+          toast("Préparation des images HD…");
+          const prepared = [];
+          for(const file of files){
+            const dataUrl = await compressToWhiteBg(file);
+            if(!dataUrl) continue;
+            const item = normalizeAdminImageItem({
+              url:dataUrl,
+              opt:"",
+              clientId:createAdminImageId(),
+              uploadId:createAdminImageId(),
+              status:"local"
+            });
+            adminImages.push(item);
+            prepared.push(item);
+            renderImagePreview();
+          }
+
+          if(!prepared.length) return toast("Aucune image valide");
+          uploadAdminImagesInBatches(prepared, 3)
+            .then(()=>toast("Photos prêtes"))
+            .catch(()=>toast("Une photo sera renvoyée lors de l'enregistrement"));
+        });
+
         $("#importBtn").addEventListener("click",importExternalProduct);
         $("#resetProductForm").addEventListener("click",resetProductForm);
+
         form.addEventListener("submit",async e=>{
             e.preventDefault();
-            const d=Object.fromEntries(new FormData(form).entries());
-            const params = {};
-            $$("#adminVariantsList > div").forEach(row => {
-                const k = row.querySelector(".var-name").value.trim(); const v = row.querySelector(".var-vals").value.trim();
-                if(k && v) {
-                    if(!params[k]) params[k] = [];
-                    v.split(",").forEach(val => {
-                        const cleanVal = val.trim();
-                        if(cleanVal) params[k].push(cleanVal);
-                    });
-                }
-            });
-            for(let k in params) params[k] = [...new Set(params[k])].join(", ");
-            
-            const imagesWithOpts = [];
-            $$(".preview-card").forEach((card, idx) => {
-                const optVal = card.querySelector(".img-link-opt").value.trim();
-                imagesWithOpts.push({ url: adminImages[idx].url, opt: optVal });
-            });
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const initialText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Enregistrement…";
 
-            const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
-            const product={id:d.id||undefined,name:d.name,category:d.category||"Divers",price:numberVal(d.price),weight:totalWeight,desc:d.desc,params:params,images:imagesWithOpts,active:$("#adminProductActive").checked,showWeight:$("#adminProductShowWeight").checked};
-            try{const res=await api({action:"saveproduct",adminKey:adminKey(),product});if(!res.ok)throw new Error(res.error);toast("Article enregistré");resetProductForm();state.catalogLoaded=false;await Promise.all([loadAdminCatalog(),loadCatalog(true)]);renderAdminList();}catch(err){toast("Erreur : "+err.message);}
+            try{
+              const d=Object.fromEntries(new FormData(form).entries());
+              const params = {};
+              $$("#adminVariantsList > div").forEach(row => {
+                  const k = row.querySelector(".var-name").value.trim();
+                  const v = row.querySelector(".var-vals").value.trim();
+                  if(k && v) {
+                      if(!params[k]) params[k] = [];
+                      v.split(",").forEach(val => {
+                          const cleanVal = val.trim();
+                          if(cleanVal) params[k].push(cleanVal);
+                      });
+                  }
+              });
+              for(let k in params) params[k] = [...new Set(params[k])].join(", ");
+
+              submitBtn.textContent = "Envoi des photos…";
+              await ensureAdminImagesUploaded();
+              syncAdminImageOptions();
+
+              const imagesWithOpts = adminImages.map(img => ({
+                url:String(img.url || ""),
+                opt:String(img.opt || "")
+              })).filter(img => img.url).slice(0,30);
+
+              const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
+              const product={
+                id:d.id||undefined,
+                name:d.name,
+                category:d.category||"Divers",
+                price:numberVal(d.price),
+                weight:totalWeight,
+                desc:d.desc,
+                params:params,
+                images:imagesWithOpts,
+                active:$("#adminProductActive").checked,
+                showWeightInName:$("#adminProductShowWeight").checked
+              };
+
+              submitBtn.textContent = "Sauvegarde…";
+              const res=await api({action:"saveproduct",adminKey:adminKey(),product}, {retries:0, timeoutMs:45000});
+              if(!res.ok) throw new Error(res.error || "Enregistrement impossible");
+
+              localStorage.removeItem(PUBLIC_CATALOG_CACHE_KEY);
+              localStorage.removeItem(ADMIN_CATALOG_CACHE_KEY);
+              toast("Article enregistré");
+              resetProductForm();
+              state.adminProducts = [];
+              state.catalogLoaded = false;
+              await Promise.all([loadAdminCatalog(), loadCatalog(true, true)]);
+              renderAdminList();
+            }catch(err){
+              toast("Erreur : "+err.message);
+            }finally{
+              submitBtn.disabled = false;
+              submitBtn.textContent = initialText;
+            }
         });
     }
-    
-    async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.name.value=d.title||f.name.value||"";f.desc.value=d.desc||f.desc.value||"";if(d.price)f.price.value=d.price;f.category.value=d.category||f.category.value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>({url:url, opt:""}));renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
+
+    async function importExternalProduct(){
+      const url=$("#importUrl").value.trim();
+      if(!url) return toast("Collez d'abord un lien");
+      const btn=$("#importBtn");
+      btn.disabled=true;
+      btn.textContent="Import en cours…";
+      try{
+        const res=await api({action:"scrape",adminKey:adminKey(),url}, {retries:0, timeoutMs:45000});
+        if(!res.ok) throw new Error(res.error||"Import impossible");
+        const d=res.data||{};
+        const f=$("#adminProductForm");
+        f.name.value=d.title||f.name.value||"";
+        f.desc.value=d.desc||f.desc.value||"";
+        if(d.price) f.price.value=d.price;
+        f.category.value=d.category||f.category.value||"Divers";
+        adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>normalizeAdminImageItem({url:url,opt:"",status:"done"}));
+        renderImagePreview();
+        toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");
+      }catch(err){
+        toast("Import impossible sur ce lien : "+err.message);
+      }finally{
+        btn.disabled=false;
+        btn.textContent="Importer les détails du lien";
+      }
+    }
+
     function renderImagePreview(){
       const box=$("#photoPreview");
-      if(!box)return;
-      box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="photo-remove-btn" aria-label="Supprimer la photo ${i+1}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à ex: Bleu" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");
-      $$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',event=>{
-        event.preventDefault();
-        event.stopPropagation();
-        adminImages.splice(Number(btn.dataset.imgRemove),1);
-        renderImagePreview();
-      }));
+      if(!box) return;
+
+      syncAdminImageOptions();
+      adminImages = adminImages.map(normalizeAdminImageItem).slice(0,30);
+
+      box.innerHTML=adminImages.map((img,i)=>{
+        const statusClass = img.status === "uploading" ? " uploading" : (img.status === "error" ? " error" : "");
+        const statusText = img.status === "uploading" ? "Envoi sécurisé…" : (img.status === "error" ? escapeHtml(img.error || "Erreur d'envoi") : "");
+        return `<div class="preview-card" data-image-id="${escapeHtml(img.clientId)}"><button type="button" data-img-remove="${escapeHtml(img.clientId)}" class="preview-remove-btn" aria-label="Supprimer la photo ${i+1}" title="Supprimer la photo">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à ex: Bleu" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"><div class="preview-upload-status${statusClass}">${statusText}</div></div>`;
+      }).join("");
+
+      $$('[data-img-remove]', box).forEach(btn=>{
+        btn.addEventListener("pointerdown", event=>event.stopPropagation());
+        btn.addEventListener("click",event=>{
+          event.preventDefault();
+          event.stopPropagation();
+          syncAdminImageOptions();
+          const id = btn.dataset.imgRemove;
+          adminImages = adminImages.filter(img => img.clientId !== id);
+          renderImagePreview();
+        });
+      });
+
+      $$(".img-link-opt", box).forEach(input=>{
+        input.addEventListener("input",()=>{
+          const card = input.closest(".preview-card");
+          const item = adminImages.find(img => img.clientId === card?.dataset.imageId);
+          if(item) item.opt = input.value;
+        });
+      });
     }
-    function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";if($("#adminProductActive"))$("#adminProductActive").checked=true;if($("#adminProductShowWeight"))$("#adminProductShowWeight").checked=true;adminImages=[];renderImagePreview();$("#adminVariantsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";}
+
+    function resetProductForm(){
+      const f=$("#adminProductForm");
+      if(f) f.reset();
+      if($("#adminProductId")) $("#adminProductId").value="";
+      if($("#adminProductActive")) $("#adminProductActive").checked=true;
+      if($("#adminProductShowWeight")) $("#adminProductShowWeight").checked=false;
+      adminImages=[];
+      renderImagePreview();
+      if($("#adminVariantsList")) $("#adminVariantsList").innerHTML="";
+      if($("#productFormTitle")) $("#productFormTitle").textContent="Ajouter / modifier un article";
+    }
+
     function renderAdminList(){
       const list=$("#adminList");
       if(!list)return;
@@ -2108,57 +2500,115 @@
       if(!items.length){list.innerHTML="<p>Aucun article.</p>";return;}
       list.innerHTML=items.map(p=>`<div class="admin-item">
         <div class="admin-thumb">${p.image?`<img src="${escapeHtml(p.image)}" alt="">`:"<svg viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'></path></svg>"}</div>
-        <div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${p.weight||0} kg</small><br><small style="color:${p.active===false?'var(--gold)':'var(--brand2)'};font-weight:800">${p.active===false?'MASQUÉ':'VISIBLE'}</small></div>
-        <div class="admin-actions" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn secondary small edit-product" data-id="${p.id}">Éditer</button><button class="btn ${p.active===false?'primary':'secondary'} small toggle-product" data-id="${p.id}" data-active="${p.active===false?'true':'false'}">${p.active===false?'Afficher':'Masquer'}</button></div>
-        <button class="icon-btn danger-btn del-product" data-id="${p.id}">✕</button>
+        <div><strong>${escapeHtml(p.name)}</strong><br><small style="color:var(--muted)">${escapeHtml(p.category)} • ${formatEUR(p.price)} • ${escapeHtml(formatWeightLabel(p.weight) || "0 kg")}</small><br><small style="color:${p.active===false?'var(--gold)':'var(--brand2)'};font-weight:800">${p.active===false?'MASQUÉ':'VISIBLE'}</small> <small style="color:var(--muted2);font-weight:700">• ${p.showWeightInName?'POIDS DANS LE NOM':'POIDS MASQUÉ DU NOM'}</small></div>
+        <div class="admin-actions" style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn secondary small edit-product" data-id="${escapeHtml(p.id)}">Éditer</button><button class="btn ${p.active===false?'primary':'secondary'} small toggle-product" data-id="${escapeHtml(p.id)}" data-active="${p.active===false?'true':'false'}">${p.active===false?'Afficher':'Masquer'}</button></div>
+        <button class="icon-btn danger-btn del-product" data-id="${escapeHtml(p.id)}">✕</button>
       </div>`).join("");
+
       $$('.edit-product').forEach(btn=>btn.addEventListener('click',()=>editProduct(btn.dataset.id)));
       $$('.toggle-product').forEach(btn=>btn.addEventListener('click',()=>toggleProductVisibility(btn.dataset.id,btn.dataset.active==='true')));
-      $$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{if(confirm('Supprimer cet article ?')){await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id});toast('Article supprimé');state.catalogLoaded=false;await Promise.all([loadAdminCatalog(),loadCatalog(true)]);renderAdminList();}}));
+      $$('.del-product').forEach(btn=>btn.addEventListener('click',async()=>{
+        if(!confirm('Supprimer cet article ?')) return;
+        try{
+          const res = await api({action:'deleteproduct',adminKey:adminKey(),id:btn.dataset.id}, {retries:0});
+          if(!res.ok) throw new Error(res.error || "Suppression impossible");
+          localStorage.removeItem(PUBLIC_CATALOG_CACHE_KEY);
+          localStorage.removeItem(ADMIN_CATALOG_CACHE_KEY);
+          toast('Article supprimé');
+          state.adminProducts = [];
+          state.catalogLoaded = false;
+          await Promise.all([loadAdminCatalog(), loadCatalog(true, true)]);
+          renderAdminList();
+        }catch(err){
+          toast("Erreur : " + err.message);
+        }
+      }));
     }
 
     async function toggleProductVisibility(id, active){
       try{
-        const res=await api({action:"toggleproductactive",adminKey:adminKey(),id,active});
+        const res=await api({action:"toggleproductactive",adminKey:adminKey(),id,active}, {retries:0});
         if(!res.ok)throw new Error(res.error||"Modification impossible");
+        localStorage.removeItem(PUBLIC_CATALOG_CACHE_KEY);
+        localStorage.removeItem(ADMIN_CATALOG_CACHE_KEY);
         toast(active?"Article affiché dans le catalogue":"Article masqué du catalogue");
-        state.catalogLoaded=false;
-        await Promise.all([loadAdminCatalog(),loadCatalog(true)]);
+        state.adminProducts = [];
+        state.catalogLoaded = false;
+        await Promise.all([loadAdminCatalog(), loadCatalog(true, true)]);
         renderAdminList();
-      }catch(e){toast("Erreur : "+e.message);}
+      }catch(e){
+        toast("Erreur : "+e.message);
+      }
     }
-    
+
     function editProduct(id){
-        const p=(state.adminProducts||[]).find(x=>x.id===id);if(!p)return;const f=$("#adminProductForm");
-        f.id.value=p.id;f.name.value=p.name||"";f.category.value=p.category||"";f.price.value=p.price||"";f.desc.value=p.desc||"";$("#adminProductActive").checked=p.active!==false;$("#adminProductShowWeight").checked=p.showWeight!==false;
-        const w = Number(p.weight || 0); f.weightKg.value = Math.floor(w); f.weightG.value = Math.round((w - Math.floor(w)) * 1000);
-        adminImages=(p.images||[]).slice(0,30);renderImagePreview();
+        const p=(state.adminProducts||[]).find(x=>x.id===id);
+        if(!p)return;
+        const f=$("#adminProductForm");
+        f.id.value=p.id;
+        f.name.value=p.name||"";
+        f.category.value=p.category||"";
+        f.price.value=p.price||"";
+        f.desc.value=p.desc||"";
+        $("#adminProductActive").checked=p.active!==false;
+        $("#adminProductShowWeight").checked=p.showWeightInName===true;
+
+        const w = Number(p.weight || 0);
+        f.weightKg.value = Math.floor(w);
+        f.weightG.value = Math.round((w - Math.floor(w)) * 1000);
+
+        adminImages=(p.images||[]).slice(0,30).map(img=>normalizeAdminImageItem(img));
+        renderImagePreview();
+
         $("#adminVariantsList").innerHTML = "";
         Object.entries(p.params || {}).forEach(([k,v]) => {
-            const div = document.createElement("div"); div.style = "display:grid; grid-template-columns:1fr 2fr auto; gap:0.5rem;";
+            const div = document.createElement("div");
+            div.style = "display:grid; grid-template-columns:1fr 2fr auto; gap:0.5rem;";
             div.innerHTML = `<div class="field compact"><input class="var-name" value="${escapeHtml(k)}" /></div><div class="field compact"><input class="var-vals" value="${escapeHtml(v)}" /></div><button type="button" class="icon-btn danger-btn" onclick="this.parentElement.remove()" style="width:36px; height:36px">✕</button>`;
             $("#adminVariantsList").appendChild(div);
         });
-        $("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});
+
+        $("#productFormTitle").textContent="Modifier l'article";
+        window.scrollTo({top:0,behavior:'smooth'});
     }
-    
-    // Compression Haute Définition sur fond blanc
+
+    // Compression HD sur fond blanc, avec poids réseau limité pour éviter les erreurs de transfert.
     function compressToWhiteBg(file){
         return new Promise(resolve=>{
             const img=new Image();
+            const objectUrl = URL.createObjectURL(file);
+
             img.onload=()=>{
-                const MAX=1024; // Force la HD
-                let w=img.width, h=img.height;
-                if(w>h&&w>MAX){h=Math.floor(h*MAX/w);w=MAX}else if(h>=w&&h>MAX){w=Math.floor(w*MAX/h);h=MAX}
-                const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
-                const ctx=canvas.getContext('2d');
-                ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,w,h);
-                ctx.drawImage(img,0,0,w,h);
-                let q=0.92, out=canvas.toDataURL('image/jpeg',q);
-                while(out.length>500000 && q>.3){ q-=.1; out=canvas.toDataURL('image/jpeg',q); } // Limite à ~500Ko par image HD
-                resolve(out); URL.revokeObjectURL(img.src);
+                const MAX=1600;
+                let w=img.naturalWidth || img.width;
+                let h=img.naturalHeight || img.height;
+                if(w>h&&w>MAX){h=Math.floor(h*MAX/w);w=MAX}
+                else if(h>=w&&h>MAX){w=Math.floor(w*MAX/h);h=MAX}
+
+                const canvas=document.createElement('canvas');
+                canvas.width=Math.max(1,w);
+                canvas.height=Math.max(1,h);
+                const ctx=canvas.getContext('2d',{alpha:false});
+                ctx.fillStyle="#ffffff";
+                ctx.fillRect(0,0,canvas.width,canvas.height);
+                ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+                let q=0.9;
+                let out=canvas.toDataURL('image/jpeg',q);
+                while(out.length>650000 && q>0.5){
+                  q-=0.06;
+                  out=canvas.toDataURL('image/jpeg',q);
+                }
+
+                URL.revokeObjectURL(objectUrl);
+                resolve(out);
             };
-            img.onerror=()=>resolve(''); img.src=URL.createObjectURL(file);
+
+            img.onerror=()=>{
+              URL.revokeObjectURL(objectUrl);
+              resolve('');
+            };
+            img.src=objectUrl;
         });
     }
 
