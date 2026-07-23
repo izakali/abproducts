@@ -413,26 +413,35 @@
     /* Correction précise du clic sur les croix de suppression des photos admin */
     .preview-card .preview-remove-btn{
       position:absolute!important;
-      top:-10px!important;
-      right:-10px!important;
-      width:38px!important;
-      height:38px!important;
-      min-width:38px!important;
-      min-height:38px!important;
+      top:-13px!important;
+      right:-13px!important;
+      width:42px!important;
+      height:42px!important;
+      min-width:42px!important;
+      min-height:42px!important;
       padding:0!important;
       border-radius:999px!important;
       border:none!important;
       background:var(--danger)!important;
       color:#fff!important;
-      display:flex!important;
-      align-items:center!important;
-      justify-content:center!important;
-      line-height:1!important;
-      font-size:1.25rem!important;
-      z-index:30!important;
+      display:grid!important;
+      place-items:center!important;
+      line-height:0!important;
+      font-size:1.35rem!important;
+      z-index:80!important;
       cursor:pointer!important;
       box-shadow:0 6px 16px rgba(0,0,0,.22)!important;
       pointer-events:auto!important;
+      touch-action:manipulation!important;
+      overflow:visible!important;
+      -webkit-tap-highlight-color:transparent!important;
+    }
+    .preview-card .preview-remove-btn::before{
+      content:"";
+      position:absolute;
+      inset:-14px;
+      border-radius:999px;
+      background:transparent;
     }
     .preview-card img{pointer-events:none;}
 
@@ -2091,6 +2100,77 @@
       })).filter(img => img.url));
     }
 
+    const SHEETS_CELL_LIMIT_CHARS = 50000;
+    const SHEETS_IMAGE_JSON_SAFE_CHARS = 45500;
+    function isInlineDataImage(url){return /^data:image\//i.test(String(url||""));}
+    function loadImageSource(src){
+      return new Promise(resolve=>{
+        const img=new Image();
+        img.onload=()=>resolve(img);
+        img.onerror=()=>resolve(null);
+        img.src=src;
+      });
+    }
+    function drawImageToJpegDataUrl(img,maxSide,quality){
+      let w=img.naturalWidth||img.width||maxSide;
+      let h=img.naturalHeight||img.height||maxSide;
+      const side=Math.max(24,Math.floor(maxSide));
+      if(w>h&&w>side){h=Math.max(1,Math.floor(h*side/w));w=side;}
+      else if(h>=w&&h>side){w=Math.max(1,Math.floor(w*side/h));h=side;}
+      const canvas=document.createElement("canvas");
+      canvas.width=w;
+      canvas.height=h;
+      const ctx=canvas.getContext("2d");
+      ctx.fillStyle="#ffffff";
+      ctx.fillRect(0,0,w,h);
+      ctx.drawImage(img,0,0,w,h);
+      return canvas.toDataURL("image/jpeg",quality);
+    }
+    async function compressImageSourceToLimit(src,maxChars){
+      const img=await loadImageSource(src);
+      if(!img)return "";
+      let maxSide=1024;
+      let quality=.88;
+      let best="";
+      for(let attempt=0;attempt<28;attempt++){
+        const out=drawImageToJpegDataUrl(img,maxSide,quality);
+        if(!best||out.length<best.length)best=out;
+        if(out.length<=maxChars)return out;
+        if(quality>.36)quality=Math.max(.34,quality-.14);
+        else{maxSide=Math.max(36,Math.floor(maxSide*.76));quality=.72;}
+      }
+      return best;
+    }
+    async function compressToWhiteBg(file,maxChars){
+      const src=URL.createObjectURL(file);
+      try{return await compressImageSourceToLimit(src,maxChars||14000);}
+      finally{URL.revokeObjectURL(src);}
+    }
+    async function optimizeImagesForSheets(list){
+      const cleaned=(list||[]).slice(0,30).map(img=>({
+        url:String((img&&img.url)||""),
+        opt:String((img&&img.opt)||"")
+      })).filter(img=>img.url);
+      if(serializeAdminImages(cleaned).length<=SHEETS_IMAGE_JSON_SAFE_CHARS)return cleaned;
+      const inlineIndexes=cleaned.map((img,i)=>isInlineDataImage(img.url)?i:-1).filter(i=>i>=0);
+      if(!inlineIndexes.length)return cleaned;
+      const withoutInlineUrls=cleaned.map((img,i)=>inlineIndexes.includes(i)?{url:"",opt:img.opt}:img);
+      const overhead=serializeAdminImages(withoutInlineUrls).length;
+      let target=Math.max(700,Math.floor((SHEETS_IMAGE_JSON_SAFE_CHARS-overhead-700)/inlineIndexes.length));
+      for(let round=0;round<7&&serializeAdminImages(cleaned).length>SHEETS_IMAGE_JSON_SAFE_CHARS;round++){
+        for(const i of inlineIndexes){
+          cleaned[i].url=await compressImageSourceToLimit(cleaned[i].url,target);
+        }
+        target=Math.max(450,Math.floor(target*.72));
+      }
+      while(cleaned.length&&serializeAdminImages(cleaned).length>SHEETS_IMAGE_JSON_SAFE_CHARS){
+        const lastInline=cleaned.map((img,i)=>isInlineDataImage(img.url)?i:-1).filter(i=>i>=0).pop();
+        if(lastInline===undefined)break;
+        cleaned.splice(lastInline,1);
+      }
+      return cleaned;
+    }
+
     function renderAdminProducts(panel){
         panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductActive" name="active" checked style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductActive" style="color:var(--txt);cursor:pointer">Afficher cet article dans le catalogue</label></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductShowWeight" name="showWeightInName" style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductShowWeight" style="color:var(--txt);cursor:pointer">Afficher le poids dans le nom de cet article</label></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes Prix Dynamique</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos HD</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles du catalogue</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
         bindAdminProductForm(); loadAdminCatalog().then(renderAdminList);
@@ -2104,7 +2184,7 @@
             $("#adminVariantsList").appendChild(div);
         });
         $("#browseImages").addEventListener("click",e=>{e.preventDefault();$("#photoInput").click();});
-        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images Haute Qualité...");for(const file of files){const img=await compressToWhiteBg(file);if(img)adminImages.push({url:img, opt:""});}adminImages=adminImages.slice(0,30);renderImagePreview();e.target.value="";});
+        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation et optimisation des images...");const projectedCount=Math.max(1,adminImages.length+files.length);const targetPerImage=Math.max(1200,Math.floor((SHEETS_IMAGE_JSON_SAFE_CHARS-2500)/projectedCount));for(const file of files){const img=await compressToWhiteBg(file,targetPerImage);if(img)adminImages.push({url:img,opt:""});}adminImages=await optimizeImagesForSheets(adminImages.slice(0,30));renderImagePreview();e.target.value="";});
         $("#importBtn").addEventListener("click",importExternalProduct);
         $("#resetProductForm").addEventListener("click",resetProductForm);
         form.addEventListener("submit",async e=>{
@@ -2131,9 +2211,20 @@
 
             const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
             const imagesUnchanged = Boolean(d.id) && serializeAdminImages(imagesWithOpts) === adminInitialImagesJson;
+            let imagesPayload = imagesWithOpts;
+            if(!imagesUnchanged){
+                const beforeSize = serializeAdminImages(imagesPayload).length;
+                imagesPayload = await optimizeImagesForSheets(imagesPayload);
+                const afterSize = serializeAdminImages(imagesPayload).length;
+                if(afterSize < beforeSize){
+                    adminImages = imagesPayload.map(img => ({url:img.url,opt:img.opt || ""}));
+                    renderImagePreview();
+                    toast("Images optimisées pour Google Sheets.");
+                }
+            }
             const product={id:d.id||undefined,name:d.name,category:d.category||"Divers",price:numberVal(d.price),weight:totalWeight,desc:d.desc,params:params,active:$("#adminProductActive").checked,showWeightInName:$("#adminProductShowWeight").checked};
             if(imagesUnchanged) product.keepImages = true;
-            else product.images = imagesWithOpts;
+            else product.images = imagesPayload;
             try{const res=await api({action:"saveproduct",adminKey:adminKey(),product});if(!res.ok)throw new Error(res.error);toast("Article enregistré");resetProductForm();await loadAdminCatalog();state.catalogLoaded=false;await loadCatalog(true);renderAdminList();}catch(err){toast("Erreur : "+err.message);}
         });
     }
@@ -2183,25 +2274,7 @@
         $("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});
     }
     
-    // Compression Haute Définition sur fond blanc
-    function compressToWhiteBg(file){
-        return new Promise(resolve=>{
-            const img=new Image();
-            img.onload=()=>{
-                const MAX=1024; // Force la HD
-                let w=img.width, h=img.height;
-                if(w>h&&w>MAX){h=Math.floor(h*MAX/w);w=MAX}else if(h>=w&&h>MAX){w=Math.floor(w*MAX/h);h=MAX}
-                const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
-                const ctx=canvas.getContext('2d');
-                ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,w,h);
-                ctx.drawImage(img,0,0,w,h);
-                let q=0.92, out=canvas.toDataURL('image/jpeg',q);
-                while(out.length>500000 && q>.3){ q-=.1; out=canvas.toDataURL('image/jpeg',q); } // Limite à ~500Ko par image HD
-                resolve(out); URL.revokeObjectURL(img.src);
-            };
-            img.onerror=()=>resolve(''); img.src=URL.createObjectURL(file);
-        });
-    }
+    // Compression gérée plus haut par optimizeImagesForSheets(), afin de respecter la limite Google Sheets.
 
     window.addEventListener("load", () => { ignoredChatMsgs = -1; updateMarquee(); loadConfig(); });
     window.addEventListener("resize", syncBannerOffset, { passive: true });
