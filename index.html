@@ -408,6 +408,34 @@
       .steps,.grid,.toolbar,.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.cart-item{grid-template-columns:1fr;text-align:center}.cart-icon{margin:auto}.qty{justify-content:center}.section-head{display:block; text-align:center; margin-bottom:2rem}.section-head p {margin:auto}.config-row,.shipping-row{grid-template-columns:1fr}.tracking-grid{grid-template-columns:1fr}.footer-bottom{display:flex;flex-direction:column;text-align:center}.footer-socials{order:2}.summary{position:static}.btn{width:100%}
       .recom-thumbs{flex-direction:row; overflow-x:auto}
     }
+
+
+    /* Correction précise du clic sur les croix de suppression des photos admin */
+    .preview-card .preview-remove-btn{
+      position:absolute!important;
+      top:-10px!important;
+      right:-10px!important;
+      width:38px!important;
+      height:38px!important;
+      min-width:38px!important;
+      min-height:38px!important;
+      padding:0!important;
+      border-radius:999px!important;
+      border:none!important;
+      background:var(--danger)!important;
+      color:#fff!important;
+      display:flex!important;
+      align-items:center!important;
+      justify-content:center!important;
+      line-height:1!important;
+      font-size:1.25rem!important;
+      z-index:30!important;
+      cursor:pointer!important;
+      box-shadow:0 6px 16px rgba(0,0,0,.22)!important;
+      pointer-events:auto!important;
+    }
+    .preview-card img{pointer-events:none;}
+
   </style>
   <link rel="preload" as="image" href="bateau.PNG" />
 </head>
@@ -2111,7 +2139,7 @@
     }
     
     async function importExternalProduct(){const url=$("#importUrl").value.trim();if(!url)return toast("Collez d'abord un lien");const btn=$("#importBtn");btn.disabled=true;btn.textContent="Import en cours…";try{const res=await api({action:"scrape",adminKey:adminKey(),url});if(!res.ok)throw new Error(res.error||"Import impossible");const d=res.data||{};const f=$("#adminProductForm");f.elements["name"].value=d.title||f.elements["name"].value||"";f.elements["desc"].value=d.desc||f.elements["desc"].value||"";if(d.price)f.elements["price"].value=d.price;f.elements["category"].value=d.category||f.elements["category"].value||"Divers";adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>({url:url, opt:""}));adminInitialImagesJson="";renderImagePreview();toast(d.importStatus||"Import terminé. Vérifiez puis publiez.");}catch(err){toast("Import impossible sur ce lien : "+err.message);}finally{btn.disabled=false;btn.textContent="Importer les détails du lien";}}
-    function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><button type="button" data-img-remove="${i}" class="icon-btn danger-btn" style="position:absolute;top:0;right:0;width:24px;height:24px;border:none;background:var(--danger);color:white;">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à ex: Bleu" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',()=>{adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
+    function renderImagePreview(){const box=$("#photoPreview");if(!box)return;box.innerHTML=adminImages.map((img,i)=>`<div class="preview-card"><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><button type="button" data-img-remove="${i}" class="preview-remove-btn" aria-label="Supprimer cette photo">✕</button><input type="text" placeholder="Lier à ex: Bleu" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`).join("");$$('[data-img-remove]').forEach(btn=>btn.addEventListener('click',(ev)=>{ev.preventDefault();ev.stopPropagation();adminImages.splice(Number(btn.dataset.imgRemove),1);renderImagePreview();}));}
     function resetProductForm(){editingProductId="";const f=$("#adminProductForm");if(f)f.reset();$("#adminProductId").value="";if($("#adminProductActive"))$("#adminProductActive").checked=true;if($("#adminProductShowWeight"))$("#adminProductShowWeight").checked=false;adminImages=[];adminInitialImagesJson="";renderImagePreview();$("#adminVariantsList").innerHTML="";$("#productFormTitle").textContent="Ajouter / modifier un article";}
     function renderAdminList(){
       const list=$("#adminList");
