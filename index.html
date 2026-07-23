@@ -831,8 +831,7 @@
       const action = String(payload?.action || "").toLowerCase();
       const retryableActions = new Set([
         "getcatalog","getcatalog_admin","getconfig","getorders","getclients_admin",
-        "getmessages_admin","gettracking","getorders_client","getchat_client","ping",
-        "uploadproductimage"
+        "getmessages_admin","gettracking","getorders_client","getchat_client","ping"
       ]);
       const retries = options.retries ?? (retryableActions.has(action) ? 2 : 0);
       const timeoutMs = options.timeoutMs ?? (action === "uploadproductimage" ? 65000 : 35000);
@@ -2231,21 +2230,8 @@
       });
     }
 
-    function updateAdminImageStatus(item){
-      const card = document.querySelector(`.preview-card[data-image-id="${item.clientId}"]`);
-      if(!card) return;
-      const status = card.querySelector(".preview-upload-status");
-      if(!status) return;
-      status.className = "preview-upload-status";
-      if(item.status === "uploading"){
-        status.classList.add("uploading");
-        status.textContent = "Envoi sécurisé…";
-      }else if(item.status === "error"){
-        status.classList.add("error");
-        status.textContent = item.error || "Erreur d'envoi";
-      }else{
-        status.textContent = "";
-      }
+    function updateAdminImageStatus(){
+      // Aucun libellé technique n'est affiché sous les photos.
     }
 
     async function uploadAdminImage(item){
@@ -2346,9 +2332,7 @@
           }
 
           if(!prepared.length) return toast("Aucune image valide");
-          uploadAdminImagesInBatches(prepared, 3)
-            .then(()=>toast("Photos prêtes"))
-            .catch(()=>toast("Une photo sera renvoyée lors de l'enregistrement"));
+          toast("Photos prêtes");
         });
 
         $("#importBtn").addEventListener("click",importExternalProduct);
@@ -2377,7 +2361,6 @@
               });
               for(let k in params) params[k] = [...new Set(params[k])].join(", ");
 
-              submitBtn.textContent = "Envoi des photos…";
               await ensureAdminImagesUploaded();
               syncAdminImageOptions();
 
@@ -2400,7 +2383,6 @@
                 showWeightInName:$("#adminProductShowWeight").checked
               };
 
-              submitBtn.textContent = "Sauvegarde…";
               const res=await api({action:"saveproduct",adminKey:adminKey(),product}, {retries:0, timeoutMs:45000});
               if(!res.ok) throw new Error(res.error || "Enregistrement impossible");
 
@@ -2455,9 +2437,7 @@
       adminImages = adminImages.map(normalizeAdminImageItem).slice(0,30);
 
       box.innerHTML=adminImages.map((img,i)=>{
-        const statusClass = img.status === "uploading" ? " uploading" : (img.status === "error" ? " error" : "");
-        const statusText = img.status === "uploading" ? "Envoi sécurisé…" : (img.status === "error" ? escapeHtml(img.error || "Erreur d'envoi") : "");
-        return `<div class="preview-card" data-image-id="${escapeHtml(img.clientId)}"><button type="button" data-img-remove="${escapeHtml(img.clientId)}" class="preview-remove-btn" aria-label="Supprimer la photo ${i+1}" title="Supprimer la photo">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à ex: Bleu" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"><div class="preview-upload-status${statusClass}">${statusText}</div></div>`;
+        return `<div class="preview-card" data-image-id="${escapeHtml(img.clientId)}"><button type="button" data-img-remove="${escapeHtml(img.clientId)}" class="preview-remove-btn" aria-label="Supprimer la photo ${i+1}" title="Supprimer la photo">✕</button><img src="${escapeHtml(img.url)}" alt="photo ${i+1}"><input type="text" placeholder="Lier à ex: Bleu" class="img-link-opt field compact" style="width:100%; font-size:0.75rem; margin-top:4px; height:24px; min-height:24px; padding:0 5px" value="${escapeHtml(img.opt||'')}"></div>`;
       }).join("");
 
       $$('[data-img-remove]', box).forEach(btn=>{
