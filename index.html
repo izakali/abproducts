@@ -2234,6 +2234,40 @@
       });
     }
 
+    function isBase64ProductImage(url){
+      return /^data:image\/(?:jpeg|jpg|png|webp|gif);base64,/i.test(String(url || ""));
+    }
+
+    async function uploadPendingAdminImages(submitBtn){
+      const pending = adminImages.filter(img => isBase64ProductImage(img.url));
+      if(!pending.length) return;
+
+      for(let i=0; i<pending.length; i++){
+        const item = pending[i];
+        submitBtn.textContent = `Envoi photo ${i + 1}/${pending.length}…`;
+        item.status = "uploading";
+
+        const result = await api({
+          action:"uploadproductimage",
+          adminKey:adminKey(),
+          dataUrl:item.url,
+          fileName:`ab-products-${item.uploadId || createAdminImageId()}`
+        }, {retries:0, timeoutMs:90000});
+
+        if(!result.ok || !result.url){
+          item.status = "error";
+          item.error = result.error || "Téléversement impossible";
+          throw new Error(item.error);
+        }
+
+        item.url = String(result.url);
+        item.existingIndex = null;
+        item.status = "done";
+        item.error = "";
+        adminImagesDirty = true;
+      }
+    }
+
     function bindAdminProductForm(){
         const form=$("#adminProductForm");
         $("#addAdminVariantBtn").addEventListener("click", () => {
@@ -2305,6 +2339,11 @@
 
               syncAdminImageOptions();
 
+              // Les fichiers Base64 sont d’abord envoyés un par un dans Google Drive.
+              // La requête finale et la cellule Images JSON ne contiennent ensuite que des URL courtes.
+              const mustReplaceImages = !d.id || adminImagesDirty;
+              if(mustReplaceImages) await uploadPendingAdminImages(submitBtn);
+
               const imagesWithOpts = adminImages.map(img => {
                 const opt = String(img.opt || "");
                 if(d.id && Number.isInteger(img.existingIndex) && img.existingIndex >= 0){
@@ -2314,7 +2353,7 @@
               }).filter(img => Number.isInteger(img.existingIndex) || img.url).slice(0,30);
 
               const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
-              const replaceImages = !d.id || adminImagesDirty;
+              const replaceImages = mustReplaceImages;
               const product={
                 id:d.id||undefined,
                 name:d.name,
