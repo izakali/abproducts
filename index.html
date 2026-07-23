@@ -813,6 +813,7 @@
 
     let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let adminImages = []; let chatInterval = null;
     let adminImagesDirty = false; let adminSaveInProgress = false;
+    let adminOriginalImagesSignature = "";
     let catalogRefreshPromise = null; let adminCatalogRefreshPromise = null;
     let chatWaitTimer = null; let chatWaitStartedAt = 0; let chatAgentAccepted = false;
     let currentClientTicketId = null; let clientChatClosed = false;
@@ -2234,6 +2235,14 @@
       });
     }
 
+    function getAdminImagesSignature(images){
+      return JSON.stringify((images || []).map(img => ({
+        existingIndex:Number.isInteger(img.existingIndex) ? img.existingIndex : null,
+        url:Number.isInteger(img.existingIndex) ? "" : String(img.url || ""),
+        opt:String(img.opt || "").trim()
+      })));
+    }
+
     function bindAdminProductForm(){
         const form=$("#adminProductForm");
         $("#addAdminVariantBtn").addEventListener("click", () => {
@@ -2314,7 +2323,8 @@
               }).filter(img => Number.isInteger(img.existingIndex) || img.url).slice(0,30);
 
               const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
-              const replaceImages = !d.id || adminImagesDirty;
+              const currentImagesSignature = getAdminImagesSignature(adminImages);
+              const replaceImages = !d.id || currentImagesSignature !== adminOriginalImagesSignature;
               const product={
                 id:d.id||undefined,
                 name:d.name,
@@ -2329,7 +2339,10 @@
               };
               if(replaceImages) product.images = imagesWithOpts;
 
-              const res=await api({action:"saveproduct",adminKey:adminKey(),product}, {retries:0, timeoutMs:90000});
+              const res=await api(
+                {action:"saveproduct",adminKey:adminKey(),product},
+                {retries:d.id ? 2 : 0, timeoutMs:90000}
+              );
               if(!res.ok) throw new Error(res.error || "Enregistrement impossible");
 
               localStorage.removeItem(PUBLIC_CATALOG_CACHE_KEY);
@@ -2422,6 +2435,7 @@
       if($("#adminProductShowWeight")) $("#adminProductShowWeight").checked=false;
       adminImages=[];
       adminImagesDirty = false;
+      adminOriginalImagesSignature = "";
       renderImagePreview();
       if($("#adminVariantsList")) $("#adminVariantsList").innerHTML="";
       if($("#productFormTitle")) $("#productFormTitle").textContent="Ajouter / modifier un article";
@@ -2502,6 +2516,7 @@
         });
         adminImagesDirty = false;
         renderImagePreview();
+        adminOriginalImagesSignature = getAdminImagesSignature(adminImages);
 
         $("#adminVariantsList").innerHTML = "";
         Object.entries(p.params || {}).forEach(([k,v]) => {
