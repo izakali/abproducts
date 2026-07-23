@@ -813,7 +813,6 @@
 
     let currentPage = "home"; let adminTab = "orders"; let modalProduct = null; let adminImages = []; let chatInterval = null;
     let adminImagesDirty = false; let adminSaveInProgress = false;
-    let adminOriginalImagesSignature = "";
     let catalogRefreshPromise = null; let adminCatalogRefreshPromise = null;
     let chatWaitTimer = null; let chatWaitStartedAt = 0; let chatAgentAccepted = false;
     let currentClientTicketId = null; let clientChatClosed = false;
@@ -2235,14 +2234,6 @@
       });
     }
 
-    function getAdminImagesSignature(images){
-      return JSON.stringify((images || []).map(img => ({
-        existingIndex:Number.isInteger(img.existingIndex) ? img.existingIndex : null,
-        url:Number.isInteger(img.existingIndex) ? "" : String(img.url || ""),
-        opt:String(img.opt || "").trim()
-      })));
-    }
-
     function bindAdminProductForm(){
         const form=$("#adminProductForm");
         $("#addAdminVariantBtn").addEventListener("click", () => {
@@ -2323,8 +2314,7 @@
               }).filter(img => Number.isInteger(img.existingIndex) || img.url).slice(0,30);
 
               const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
-              const currentImagesSignature = getAdminImagesSignature(adminImages);
-              const replaceImages = !d.id || currentImagesSignature !== adminOriginalImagesSignature;
+              const replaceImages = !d.id || adminImagesDirty;
               const product={
                 id:d.id||undefined,
                 name:d.name,
@@ -2339,10 +2329,7 @@
               };
               if(replaceImages) product.images = imagesWithOpts;
 
-              const res=await api(
-                {action:"saveproduct",adminKey:adminKey(),product},
-                {retries:d.id ? 2 : 0, timeoutMs:90000}
-              );
+              const res=await api({action:"saveproduct",adminKey:adminKey(),product}, {retries:0, timeoutMs:90000});
               if(!res.ok) throw new Error(res.error || "Enregistrement impossible");
 
               localStorage.removeItem(PUBLIC_CATALOG_CACHE_KEY);
@@ -2375,10 +2362,10 @@
         if(!res.ok) throw new Error(res.error||"Import impossible");
         const d=res.data||{};
         const f=$("#adminProductForm");
-        f.name.value=d.title||f.name.value||"";
-        f.desc.value=d.desc||f.desc.value||"";
-        if(d.price) f.price.value=d.price;
-        f.category.value=d.category||f.category.value||"Divers";
+        f.elements["name"].value=d.title||f.elements["name"].value||"";
+        f.elements["desc"].value=d.desc||f.elements["desc"].value||"";
+        if(d.price) f.elements["price"].value=d.price;
+        f.elements["category"].value=d.category||f.elements["category"].value||"Divers";
         adminImages=(d.images||[]).filter(Boolean).slice(0,30).map(url=>normalizeAdminImageItem({url:url,opt:"",existingIndex:null,status:"done"}));
         adminImagesDirty = true;
         renderImagePreview();
@@ -2435,7 +2422,6 @@
       if($("#adminProductShowWeight")) $("#adminProductShowWeight").checked=false;
       adminImages=[];
       adminImagesDirty = false;
-      adminOriginalImagesSignature = "";
       renderImagePreview();
       if($("#adminVariantsList")) $("#adminVariantsList").innerHTML="";
       if($("#productFormTitle")) $("#productFormTitle").textContent="Ajouter / modifier un article";
@@ -2493,17 +2479,17 @@
         const p=(state.adminProducts||[]).find(x=>x.id===id);
         if(!p)return;
         const f=$("#adminProductForm");
-        f.id.value=p.id;
-        f.name.value=p.name||"";
-        f.category.value=p.category||"";
-        f.price.value=p.price||"";
-        f.desc.value=p.desc||"";
+        f.elements["id"].value=p.id;
+        f.elements["name"].value=p.name||"";
+        f.elements["category"].value=p.category||"";
+        f.elements["price"].value=p.price||"";
+        f.elements["desc"].value=p.desc||"";
         $("#adminProductActive").checked=p.active!==false;
         $("#adminProductShowWeight").checked=p.showWeightInName===true;
 
         const w = Number(p.weight || 0);
-        f.weightKg.value = Math.floor(w);
-        f.weightG.value = Math.round((w - Math.floor(w)) * 1000);
+        f.elements["weightKg"].value = Math.floor(w);
+        f.elements["weightG"].value = Math.round((w - Math.floor(w)) * 1000);
 
         adminImages=(p.images||[]).slice(0,30).map((img,index)=>{
           const source = typeof img === "string" ? {url:img,opt:""} : (img || {});
@@ -2516,7 +2502,6 @@
         });
         adminImagesDirty = false;
         renderImagePreview();
-        adminOriginalImagesSignature = getAdminImagesSignature(adminImages);
 
         $("#adminVariantsList").innerHTML = "";
         Object.entries(p.params || {}).forEach(([k,v]) => {
