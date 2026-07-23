@@ -763,8 +763,8 @@
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
     const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true, weightFeeUnder1: 4.50, weightFeePerKg: 9, deliveryFee: 4.99, feat_sumup: true, feat_cash: true, feat_banner: true };
     const PUBLIC_CONFIG_CACHE_KEY = "abp_public_config_cache_v1";
-    const PUBLIC_CATALOG_CACHE_KEY = "abp_public_catalog_cache_v3";
-    const ADMIN_CATALOG_CACHE_KEY = "abp_admin_catalog_cache_v3";
+    const PUBLIC_CATALOG_CACHE_KEY = "abp_public_catalog_cache_v4";
+    const ADMIN_CATALOG_CACHE_KEY = "abp_admin_catalog_cache_v4";
     const CATALOG_CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
 
     function readPublicConfigCache(){
@@ -2234,40 +2234,6 @@
       });
     }
 
-    function isBase64ProductImage(url){
-      return /^data:image\/(?:jpeg|jpg|png|webp|gif);base64,/i.test(String(url || ""));
-    }
-
-    async function uploadPendingAdminImages(submitBtn){
-      const pending = adminImages.filter(img => isBase64ProductImage(img.url));
-      if(!pending.length) return;
-
-      for(let i=0; i<pending.length; i++){
-        const item = pending[i];
-        submitBtn.textContent = `Envoi photo ${i + 1}/${pending.length}…`;
-        item.status = "uploading";
-
-        const result = await api({
-          action:"uploadproductimage",
-          adminKey:adminKey(),
-          dataUrl:item.url,
-          fileName:`ab-products-${item.uploadId || createAdminImageId()}`
-        }, {retries:0, timeoutMs:90000});
-
-        if(!result.ok || !result.url){
-          item.status = "error";
-          item.error = result.error || "Téléversement impossible";
-          throw new Error(item.error);
-        }
-
-        item.url = String(result.url);
-        item.existingIndex = null;
-        item.status = "done";
-        item.error = "";
-        adminImagesDirty = true;
-      }
-    }
-
     function bindAdminProductForm(){
         const form=$("#adminProductForm");
         $("#addAdminVariantBtn").addEventListener("click", () => {
@@ -2339,11 +2305,6 @@
 
               syncAdminImageOptions();
 
-              // Les fichiers Base64 sont d’abord envoyés un par un dans Google Drive.
-              // La requête finale et la cellule Images JSON ne contiennent ensuite que des URL courtes.
-              const mustReplaceImages = !d.id || adminImagesDirty;
-              if(mustReplaceImages) await uploadPendingAdminImages(submitBtn);
-
               const imagesWithOpts = adminImages.map(img => {
                 const opt = String(img.opt || "");
                 if(d.id && Number.isInteger(img.existingIndex) && img.existingIndex >= 0){
@@ -2353,7 +2314,7 @@
               }).filter(img => Number.isInteger(img.existingIndex) || img.url).slice(0,30);
 
               const totalWeight = numberVal(d.weightKg) + (numberVal(d.weightG) / 1000);
-              const replaceImages = mustReplaceImages;
+              const replaceImages = !d.id || adminImagesDirty;
               const product={
                 id:d.id||undefined,
                 name:d.name,
