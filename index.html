@@ -2100,9 +2100,6 @@
       })).filter(img => img.url));
     }
 
-    const SHEETS_CELL_LIMIT_CHARS = 50000;
-    const SHEETS_IMAGE_JSON_SAFE_CHARS = 45500;
-    function isInlineDataImage(url){return /^data:image\//i.test(String(url||""));}
     function loadImageSource(src){
       return new Promise(resolve=>{
         const img=new Image();
@@ -2111,10 +2108,11 @@
         img.src=src;
       });
     }
+
     function drawImageToJpegDataUrl(img,maxSide,quality){
       let w=img.naturalWidth||img.width||maxSide;
       let h=img.naturalHeight||img.height||maxSide;
-      const side=Math.max(24,Math.floor(maxSide));
+      const side=Math.max(320,Math.floor(maxSide));
       if(w>h&&w>side){h=Math.max(1,Math.floor(h*side/w));w=side;}
       else if(h>=w&&h>side){w=Math.max(1,Math.floor(w*side/h));h=side;}
       const canvas=document.createElement("canvas");
@@ -2126,50 +2124,33 @@
       ctx.drawImage(img,0,0,w,h);
       return canvas.toDataURL("image/jpeg",quality);
     }
-    async function compressImageSourceToLimit(src,maxChars){
+
+    async function compressImageSourceToLimit(src){
       const img=await loadImageSource(src);
       if(!img)return "";
-      let maxSide=1024;
-      let quality=.88;
-      let best="";
-      for(let attempt=0;attempt<28;attempt++){
-        const out=drawImageToJpegDataUrl(img,maxSide,quality);
-        if(!best||out.length<best.length)best=out;
-        if(out.length<=maxChars)return out;
-        if(quality>.36)quality=Math.max(.34,quality-.14);
-        else{maxSide=Math.max(36,Math.floor(maxSide*.76));quality=.72;}
+      const MAX=1024;
+      let quality=.92;
+      let out=drawImageToJpegDataUrl(img,MAX,quality);
+      while(out.length>500000&&quality>.3){
+        quality-=.1;
+        out=drawImageToJpegDataUrl(img,MAX,quality);
       }
-      return best;
+      return out;
     }
-    async function compressToWhiteBg(file,maxChars){
+
+    async function compressToWhiteBg(file){
       const src=URL.createObjectURL(file);
-      try{return await compressImageSourceToLimit(src,maxChars||14000);}
+      try{return await compressImageSourceToLimit(src);}
       finally{URL.revokeObjectURL(src);}
     }
+
     async function optimizeImagesForSheets(list){
-      const cleaned=(list||[]).slice(0,30).map(img=>({
+      return (list||[]).slice(0,30).map(img=>({
         url:String((img&&img.url)||""),
         opt:String((img&&img.opt)||"")
       })).filter(img=>img.url);
-      if(serializeAdminImages(cleaned).length<=SHEETS_IMAGE_JSON_SAFE_CHARS)return cleaned;
-      const inlineIndexes=cleaned.map((img,i)=>isInlineDataImage(img.url)?i:-1).filter(i=>i>=0);
-      if(!inlineIndexes.length)return cleaned;
-      const withoutInlineUrls=cleaned.map((img,i)=>inlineIndexes.includes(i)?{url:"",opt:img.opt}:img);
-      const overhead=serializeAdminImages(withoutInlineUrls).length;
-      let target=Math.max(700,Math.floor((SHEETS_IMAGE_JSON_SAFE_CHARS-overhead-700)/inlineIndexes.length));
-      for(let round=0;round<7&&serializeAdminImages(cleaned).length>SHEETS_IMAGE_JSON_SAFE_CHARS;round++){
-        for(const i of inlineIndexes){
-          cleaned[i].url=await compressImageSourceToLimit(cleaned[i].url,target);
-        }
-        target=Math.max(450,Math.floor(target*.72));
-      }
-      while(cleaned.length&&serializeAdminImages(cleaned).length>SHEETS_IMAGE_JSON_SAFE_CHARS){
-        const lastInline=cleaned.map((img,i)=>isInlineDataImage(img.url)?i:-1).filter(i=>i>=0).pop();
-        if(lastInline===undefined)break;
-        cleaned.splice(lastInline,1);
-      }
-      return cleaned;
     }
+
 
     function renderAdminProducts(panel){
         panel.innerHTML=`<div class="checkout-grid"><div class="glass-card"><h3 id="productFormTitle">Ajouter / modifier un article</h3><div class="form-grid" style="margin:1rem 0"><div class="field wide"><input id="importUrl" placeholder="Copier le lien d'un article..." /></div><button class="btn secondary wide" id="importBtn">Importer les détails du lien</button></div><form id="adminProductForm" class="form-grid"><input type="hidden" name="id" id="adminProductId" /><div class="field wide"><input required name="name" placeholder="Nom de l'article" /></div><div class="field wide"><input required name="category" list="categoryOptions" placeholder="Catégorie" /></div><div class="field"><input required name="price" type="number" min="0" step="0.01" placeholder="Prix article €" /></div><div class="field" style="display:flex;gap:.5rem"><input required name="weightKg" type="number" min="0" placeholder="Kilos" style="width:100%" /> <input required name="weightG" type="number" min="0" placeholder="Grammes" style="width:100%" /></div><div class="field wide"><textarea required name="desc" placeholder="Description"></textarea></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductActive" name="active" checked style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductActive" style="color:var(--txt);cursor:pointer">Afficher cet article dans le catalogue</label></div><div class="field wide" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="adminProductShowWeight" name="showWeightInName" style="width:20px;height:20px;accent-color:var(--brand2);cursor:pointer"><label for="adminProductShowWeight" style="color:var(--txt);cursor:pointer">Afficher le poids dans le nom de cet article</label></div><div class="wide glass-card" style="padding:1rem; margin-top:0.5rem; background:var(--card2)"><h4 style="margin-bottom:0.5rem; color:var(--txt)">Options & Variantes Prix Dynamique</h4><p class="sub" style="font-size:0.8rem; margin-bottom:1rem">Ajoutez les paramètres. Ex: Couleur, Capacité, Taille... Séparez les choix par des virgules. <strong>Astuce:</strong> Écrivez "90€ 30Litre" ou "300€ 256GO" pour que le prix s'ajuste automatiquement au clic du client.</p><div id="adminVariantsList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div><button type="button" class="btn secondary small" id="addAdminVariantBtn">+ Ajouter une option</button></div><div class="wide"><div class="drop-zone"><p>Photos de l'article : 30 maximum.</p><button class="btn secondary small" type="button" id="browseImages">Choisir des photos HD</button><input type="file" id="photoInput" accept="image/*" multiple hidden><div class="preview-list" id="photoPreview"></div></div></div><button class="btn primary wide" type="submit">Publier / enregistrer</button><button class="btn secondary wide" type="button" id="resetProductForm">Nouveau produit</button></form></div><div class="glass-card"><h3>Articles du catalogue</h3><div class="admin-list" id="adminList">Chargement…</div></div></div>`;
@@ -2184,7 +2165,7 @@
             $("#adminVariantsList").appendChild(div);
         });
         $("#browseImages").addEventListener("click",e=>{e.preventDefault();$("#photoInput").click();});
-        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation et optimisation des images...");const projectedCount=Math.max(1,adminImages.length+files.length);const targetPerImage=Math.max(1200,Math.floor((SHEETS_IMAGE_JSON_SAFE_CHARS-2500)/projectedCount));for(const file of files){const img=await compressToWhiteBg(file,targetPerImage);if(img)adminImages.push({url:img,opt:""});}adminImages=await optimizeImagesForSheets(adminImages.slice(0,30));renderImagePreview();e.target.value="";});
+        $("#photoInput").addEventListener("change",async e=>{const files=[...e.target.files].slice(0,30-adminImages.length);if(!files.length)return;toast("Préparation des images Haute Qualité...");for(const file of files){const img=await compressToWhiteBg(file);if(img)adminImages.push({url:img,opt:""});}adminImages=await optimizeImagesForSheets(adminImages.slice(0,30));renderImagePreview();e.target.value="";});
         $("#importBtn").addEventListener("click",importExternalProduct);
         $("#resetProductForm").addEventListener("click",resetProductForm);
         form.addEventListener("submit",async e=>{
@@ -2274,7 +2255,7 @@
         $("#productFormTitle").textContent="Modifier l'article";window.scrollTo({top:0,behavior:'smooth'});
     }
     
-    // Compression gérée plus haut par optimizeImagesForSheets(), afin de respecter la limite Google Sheets.
+    // Compression Haute Qualité : les grosses images sont stockées en morceaux côté Google Sheets.
 
     window.addEventListener("load", () => { ignoredChatMsgs = -1; updateMarquee(); loadConfig(); });
     window.addEventListener("resize", syncBannerOffset, { passive: true });
