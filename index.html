@@ -763,8 +763,8 @@
     const PHONE_COUNTRIES = [{"flag":"KM","name":"Comores","dial":"+269"},{"flag":"YT","name":"Mayotte","dial":"+262"},{"flag":"FR","name":"France","dial":"+33"},{"flag":"RE","name":"La Réunion","dial":"+262"}];
     const DEFAULT_CONFIG = { kmfRate: 500, minCart: 25, feat_catalogue: true, feat_commande: true, feat_panier: true, feat_suivi: true, feesEnabled: true, weightFeeUnder1: 4.50, weightFeePerKg: 9, deliveryFee: 4.99, feat_sumup: true, feat_cash: true, feat_banner: true };
     const PUBLIC_CONFIG_CACHE_KEY = "abp_public_config_cache_v1";
-    const PUBLIC_CATALOG_CACHE_KEY = "abp_public_catalog_cache_v4";
-    const ADMIN_CATALOG_CACHE_KEY = "abp_admin_catalog_cache_v4";
+    const PUBLIC_CATALOG_CACHE_KEY = "abp_public_catalog_cache_v3";
+    const ADMIN_CATALOG_CACHE_KEY = "abp_admin_catalog_cache_v3";
     const CATALOG_CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
 
     function readPublicConfigCache(){
@@ -2289,6 +2289,7 @@
 
             try{
               const d=Object.fromEntries(new FormData(form).entries());
+              d.id = String($("#adminProductId")?.value || d.id || "").trim();
               const params = {};
               $$("#adminVariantsList > div").forEach(row => {
                   const k = row.querySelector(".var-name").value.trim();
@@ -2479,7 +2480,7 @@
         const p=(state.adminProducts||[]).find(x=>x.id===id);
         if(!p)return;
         const f=$("#adminProductForm");
-        f.elements["id"].value=p.id;
+        $("#adminProductId").value=p.id||"";
         f.elements["name"].value=p.name||"";
         f.elements["category"].value=p.category||"";
         f.elements["price"].value=p.price||"";
